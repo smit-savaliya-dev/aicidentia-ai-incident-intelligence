@@ -1059,5 +1059,225 @@
     },
     "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
     "function": "aicidentia.data.audit.run_audit"
+  },
+  "prep.aiid_merge_pairs": {
+    "value": 13,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entities_after_alias": {
+    "value": 6936,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entities_before_alias": {
+    "value": 6956,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entities_in_table": {
+    "value": 6936,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entity_aliases_applied": {
+    "value": 20,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entity_aliases_manual": {
+    "value": 1,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entity_aliases_skipped_aiid": {
+    "value": 3,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entity_review.answered": {
+    "value": 0,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entity_review.confirmed_private": {
+    "value": 0,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entity_review.rows": {
+    "value": 1346,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entity_type_counts.abstract_value": {
+    "value": 71,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entity_type_counts.generic_actor_group": {
+    "value": 447,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entity_type_counts.individual_candidate": {
+    "value": 1343,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entity_type_counts.organisation": {
+    "value": 1158,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entity_type_counts.population_group": {
+    "value": 2757,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entity_type_counts.technology_system": {
+    "value": 1159,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.entity_type_counts.unknown": {
+    "value": 1,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.incident_entities_rows": {
+    "value": 18797,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.incidents_clean": {
+    "value": 1775,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.incidents_raw": {
+    "value": 1775,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.incidents_with_deployer": {
+    "value": 1775,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.incidents_with_harmed": {
+    "value": 1774,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.incidents_with_zero_clean_reports": {
+    "value": 1,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.merge_map_size": {
+    "value": 13,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.merged_ids_present_in_excel": {
+    "value": [],
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.near_duplicate_review.answered": {
+    "value": 0,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.near_duplicate_review.merges": {
+    "value": 0,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.near_duplicate_review.rows": {
+    "value": 8,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.privacy.cleared_public": {
+    "value": 0,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.privacy.confirmed_private": {
+    "value": 0,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.privacy.excluded_total": {
+    "value": 0,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.privacy.unreviewed_candidates": {
+    "value": 1343,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.report_count_differs_from_published": {
+    "value": 5,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.reports_clean": {
+    "value": 7211,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.reports_unlinked_kept": {
+    "value": 502,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.review_candidates.priority_A": {
+    "value": 1171,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.review_candidates.priority_B": {
+    "value": 21,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.review_candidates.priority_C": {
+    "value": 154,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.review_candidates.total": {
+    "value": 1346,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.source_excel": {
+    "value": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.stub_reports_dropped": {
+    "value": 812,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.user_merges_applied": {
+    "value": 0,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.validation_checks": {
+    "value": 22,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.validation_failed": {
+    "value": 0,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
   }
 }

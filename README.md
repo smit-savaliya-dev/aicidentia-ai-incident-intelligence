@@ -93,6 +93,7 @@ Put your 150 hand-labelled incidents in `data/manual/` (tracked in git). Optiona
 |------|---------|
 | Check the data | `uv run python scripts/check_data.py` |
 | Phase 1 data audit (tables, figures, `docs/data_audit.md`, `docs/datasheet.md`) | `uv run python scripts/run_phase1_audit.py` |
+| Phase 2 data preparation (parquet tables, review templates, `docs/data_preparation.md`) | `uv run python scripts/run_phase2_prepare.py` |
 | Open Jupyter | `uv run jupyter lab` |
 | Run the dashboard | `uv run streamlit run app/Home.py` |
 | Run the tests | `uv run pytest` |
@@ -101,6 +102,15 @@ Put your 150 hand-labelled incidents in `data/manual/` (tracked in git). Optiona
 
 Notebooks run in order (CRISP-DM): `01_data_audit` -> `02_cleaning_eda` -> `03_rq1_themes_trends` ->
 `04_rq2_network` -> `05_rq3_classification_label_audit` -> `06_rq4_similarity`.
+
+## Manual files (your judgement; the pipeline only creates templates)
+
+| File | You fill in | Then |
+|---|---|---|
+| `data/manual/entity_review.csv` | `is_private_individual` = yes/no for each person-like entity | re-run `run_phase2_prepare.py`; confirmed individuals are excluded from the network and dashboard |
+| `data/manual/duplicate_review.csv` | `decision` = merge_into_a / merge_into_b / keep_separate | re-run `run_phase2_prepare.py` |
+| `config/entity_aliases.yaml` (`manual:` / `blocked:`) | extra aliases or vetoes | re-run `run_phase2_prepare.py` |
+| `config/entity_types.yaml` (`overrides:`) | corrections to the heuristic entity types | re-run `run_phase2_prepare.py` |
 
 ## Results registry
 
@@ -117,10 +127,10 @@ data/             raw (git-ignored), interim, processed, external, manual (track
 notebooks/        01-06, one per CRISP-DM stage / research question
 src/aicidentia/   installable package: data, features, models, evaluation, viz
 app/              Streamlit dashboard (Home.py + pages/)
-scripts/          check_data.py, run_phase1_audit.py, generate_environment_doc.py, export_requirements.py
+scripts/          check_data.py, run_phase1_audit.py, run_phase2_prepare.py, generate_environment_doc.py, export_requirements.py
 models/           saved models (git-ignored)
 reports/          figures/ and tables/
-docs/             environment.md, project_log.md, data_manifest.md, data_audit.md, datasheet.md
+docs/             environment.md, project_log.md, data_manifest.md, data_audit.md, datasheet.md, data_preparation.md
 tests/            smoke tests
 ```
 

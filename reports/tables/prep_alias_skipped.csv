@@ -1,0 +1,4 @@
+alias,canonical,source,reason
+scammers,unknown-scammers,aiid_entity_duplicates,cycle
+synthetic-video-generation-technology,video-generation-technology,aiid_entity_duplicates,cycle
+synthetic-video-generation-technology-developers,video-generation-technology-developers,aiid_entity_duplicates,cycle

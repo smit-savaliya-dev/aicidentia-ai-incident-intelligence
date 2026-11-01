@@ -1,0 +1,145 @@
+# Entity aliases (alias slug -> canonical slug).
+# manual:    YOUR edits; applied first and never overwritten when this file is regenerated.
+# blocked:   alias slugs from `generated` that you do NOT want applied.
+# generated: starter list built from the data by scripts/run_phase2_prepare.py (sources:
+#            aiid_entity_duplicates = AIID's own duplicate list; name_normalisation = same name
+#            apart from case/accents/punctuation/'Inc'). Regenerated on every run.
+# Aliases are chained (a -> b -> c resolves to c). Parent/subsidiary links (e.g. Instagram -> Meta)
+# are deliberately NOT aliases.
+manual:
+  facebook: meta
+blocked: []
+generated:
+- alias: meta-ai
+  canonical: meta
+  source: aiid_entity_duplicates
+  alias_name: Meta AI
+  canonical_name: Meta
+  incidents_alias: 19
+  incidents_canonical: 69
+- alias: synthetic-media-technology
+  canonical: synthetic-media-generation-technology
+  source: aiid_entity_duplicates
+  alias_name: Synthetic media technology
+  canonical_name: Synthetic media generation technology
+  incidents_alias: 10
+  incidents_canonical: 131
+- alias: voice-cloning-technology
+  canonical: synthetic-audio-generation-technology
+  source: aiid_entity_duplicates
+  alias_name: Voice cloning technology
+  canonical_name: Synthetic audio generation technology
+  incidents_alias: 10
+  incidents_canonical: 249
+- alias: voice-cloning-technology-developers
+  canonical: synthetic-audio-generation-technology-developers
+  source: aiid_entity_duplicates
+  alias_name: Voice cloning technology developers
+  canonical_name: Synthetic audio generation technology developers
+  incidents_alias: 10
+  incidents_canonical: 241
+- alias: synthetic-media-technology-developers
+  canonical: synthetic-media-generation-technology-developers
+  source: aiid_entity_duplicates
+  alias_name: Synthetic media technology developers
+  canonical_name: Synthetic media generation technology developers
+  incidents_alias: 6
+  incidents_canonical: 132
+- alias: minorities
+  canonical: minority-groups
+  source: aiid_entity_duplicates
+  alias_name: Minorities
+  canonical_name: Minority groups
+  incidents_alias: 2
+  incidents_canonical: 24
+- alias: meta-platforms
+  canonical: meta
+  source: aiid_entity_duplicates
+  alias_name: Meta platforms
+  canonical_name: Meta
+  incidents_alias: 1
+  incidents_canonical: 69
+- alias: unknown-malicious-actors
+  canonical: malicious-actors
+  source: name_normalisation
+  alias_name: Malicious actors
+  canonical_name: Malicious actors
+  incidents_alias: 9
+  incidents_canonical: 11
+- alias: unknown-hacker
+  canonical: hackers
+  source: name_normalisation
+  alias_name: Hackers
+  canonical_name: hackers
+  incidents_alias: 2
+  incidents_canonical: 7
+- alias: victims-of-sextortion
+  canonical: unnamed-victims-in-sextortion-schemes
+  source: name_normalisation
+  alias_name: Victims of sextortion
+  canonical_name: Victims of sextortion
+  incidents_alias: 2
+  incidents_canonical: 2
+- alias: video-call-technology
+  canonical: unknown-video-call-technology
+  source: name_normalisation
+  alias_name: Video call technology
+  canonical_name: Video call technology
+  incidents_alias: 2
+  incidents_canonical: 2
+- alias: chatgpt-image-generation-tools
+  canonical: chatgpt-image-generation
+  source: name_normalisation
+  alias_name: ChatGPT image-generation tools
+  canonical_name: ChatGPT image-generation tools
+  incidents_alias: 1
+  incidents_canonical: 1
+- alias: does-125
+  canonical: does-1-25
+  source: name_normalisation
+  alias_name: Does-125
+  canonical_name: Does 1-25
+  incidents_alias: 1
+  incidents_canonical: 1
+- alias: general-public-of-united-kingdom
+  canonical: general-public-of-the-united-kingdom
+  source: name_normalisation
+  alias_name: General public of United Kingdom
+  canonical_name: General public of the United Kingdom
+  incidents_alias: 1
+  incidents_canonical: 7
+- alias: lgbtq-people
+  canonical: lgbtq+-people
+  source: name_normalisation
+  alias_name: LGBTQ people
+  canonical_name: LGBTQ+ people
+  incidents_alias: 1
+  incidents_canonical: 1
+- alias: perplexity.ai
+  canonical: perplexity-ai
+  source: name_normalisation
+  alias_name: Perplexity.ai
+  canonical_name: Perplexity AI
+  incidents_alias: 1
+  incidents_canonical: 7
+- alias: unknown-pig-butchering-scammers
+  canonical: pig-butchering-scammers
+  source: name_normalisation
+  alias_name: Pig-butchering scammers
+  canonical_name: Pig-butchering scammers
+  incidents_alias: 1
+  incidents_canonical: 2
+- alias: scammers-impersonating-elon-musk
+  canonical: unknown-scammers-impersonating-elon-musk
+  source: name_normalisation
+  alias_name: Scammers impersonating Elon Musk
+  canonical_name: Scammers impersonating Elon Musk
+  incidents_alias: 1
+  incidents_canonical: 3
+- alias: social-media-accounts
+  canonical: unknown-social-media-accounts
+  source: name_normalisation
+  alias_name: Social media accounts
+  canonical_name: Social media accounts
+  incidents_alias: 1
+  incidents_canonical: 3

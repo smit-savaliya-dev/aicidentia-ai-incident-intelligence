@@ -1,0 +1,24 @@
+| table | name | passed | detail |
+|---|---|---|---|
+| entity_aliases | no self-referential alias | True |  |
+| entity_aliases | canonical entities exist | True | 0 unknown: [] |
+| entity_aliases | alias chains fully resolved | True |  |
+| incidents_clean | no null incident_id | True |  |
+| incidents_clean | incident_id unique | True | 0 duplicates |
+| incidents_clean | dates valid (1900 .. snapshot date) | True | 0 invalid |
+| incidents_clean | year equals date.year | True |  |
+| incidents_clean | quarter in 1..4 | True |  |
+| incidents_clean | title non-empty | True |  |
+| incidents_clean | description non-empty | True |  |
+| incidents_clean | text starts with title | True |  |
+| incidents_clean | report_count >= 0 | True |  |
+| incident_entities | no nulls in key columns | True |  |
+| incident_entities | roles valid | True |  |
+| incident_entities | entity_type valid | True |  |
+| incident_entities | every incident_id exists in incidents_clean | True |  |
+| incident_entities | no duplicate (incident, role, entity) | True | 0 duplicates |
+| reports_clean | report_number unique | True |  |
+| reports_clean | no stub reports (title or url present) | True |  |
+| reports_clean | published dates plausible | True | 0 missing |
+| reports_clean | full text present | True | 0 missing |
+| reports_clean | linked incident ids exist | True |  |

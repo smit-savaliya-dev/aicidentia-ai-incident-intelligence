@@ -13,7 +13,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from aicidentia.viz.style import DOUBLE_COLUMN_IN, PALETTE, SINGLE_COLUMN_IN, apply_style
+from aicidentia.viz.style import (
+    CATEGORICAL,
+    DOUBLE_COLUMN_IN,
+    PALETTE,
+    SINGLE_COLUMN_IN,
+    apply_style,
+)
 
 # --------------------------------------------------------------------------------------
 # Phase 1: data-audit figures
@@ -146,6 +152,88 @@ def plot_reports_per_incident(table: pd.DataFrame) -> plt.Figure:
     ax.text(median + 0.5, counts.max() * 0.6, f"median {median:.0f}", fontsize=6)
     ax.set_title("Reports per incident")
     fig.tight_layout(rect=(0, 0.04, 1, 1))
+    return fig
+
+
+# --------------------------------------------------------------------------------------
+# Phase 2: exploratory figures on the clean tables
+# --------------------------------------------------------------------------------------
+
+
+def plot_incidents_per_year_by_label(
+    incidents: pd.DataFrame, partial_year: int, first_year: int = 2015
+) -> plt.Figure:
+    """Stacked bars of incidents per year: MIT-labelled vs not labelled (partial year hatched)."""
+    apply_style()
+    sub = incidents[incidents["year"] >= first_year]
+    table = (
+        sub.groupby(["year", "has_mit"])
+        .size()
+        .unstack(fill_value=0)
+        .reindex(columns=[True, False], fill_value=0)
+    )
+    fig, ax = plt.subplots(figsize=(DOUBLE_COLUMN_IN, 2.5))
+    labelled = ax.bar(table.index, table[True], color=PALETTE["blue"], label="MIT-labelled")
+    unlabelled = ax.bar(
+        table.index, table[False], bottom=table[True], color=PALETTE["orange"], label="No MIT label"
+    )
+    for bars in (labelled, unlabelled):
+        for bar, year in zip(bars, table.index, strict=True):
+            if year == partial_year:
+                bar.set_hatch("//")
+                bar.set_edgecolor("white")
+    for year, total in table.sum(axis=1).items():
+        ax.text(year, total + 5, str(total), ha="center", va="bottom", fontsize=6)
+    ax.set_xticks(table.index)
+    ax.tick_params(axis="x", rotation=45)
+    ax.set_xlabel("Year the harm occurred")
+    ax.set_ylabel("Incidents (count)")
+    ax.set_title(
+        f"Incidents per year by MIT-label availability ({partial_year} is partial, hatched)"
+    )
+    ax.legend(frameon=False, loc="upper left")
+    fig.tight_layout(rect=(0, 0.04, 1, 1))
+    return fig
+
+
+def plot_top_entities(
+    table: pd.DataFrame, title: str, xlabel: str, colour: str = PALETTE["blue"], n: int = 15
+) -> plt.Figure:
+    """Horizontal bar chart of the `n` most frequent entities (columns: entity, n_incidents)."""
+    apply_style()
+    top = table.head(n).iloc[::-1]
+    labels = ["\n".join(textwrap.wrap(str(e), 34)) for e in top["entity"]]
+    fig, ax = plt.subplots(figsize=(SINGLE_COLUMN_IN, 3.4))
+    ax.barh(labels, top["n_incidents"], color=colour)
+    for i, count in enumerate(top["n_incidents"]):
+        ax.text(count + top["n_incidents"].max() * 0.01, i, str(count), va="center", fontsize=6)
+    ax.set_xlim(0, top["n_incidents"].max() * 1.15)
+    ax.set_xlabel(xlabel)
+    ax.set_title(title)
+    fig.tight_layout(rect=(0, 0.04, 1, 1))
+    return fig
+
+
+def plot_label_distributions(panels: list[tuple[str, pd.Series]]) -> plt.Figure:
+    """Up to four small bar panels of label distributions (title, counts indexed by class)."""
+    apply_style()
+    fig, axes = plt.subplots(2, 2, figsize=(DOUBLE_COLUMN_IN, 4.6))
+    for ax, (title, counts), colour in zip(axes.ravel(), panels, CATEGORICAL, strict=False):
+        counts = counts.sort_values()
+        labels = ["\n".join(textwrap.wrap(str(c), 32)) for c in counts.index]
+        ax.barh(labels, counts.values, color=colour)
+        for i, value in enumerate(counts.values):
+            ax.text(
+                value + counts.max() * 0.01,
+                i,
+                f"{value} ({value / counts.sum():.0%})",
+                va="center",
+                fontsize=6,
+            )
+        ax.set_xlim(0, counts.max() * 1.35)
+        ax.set_xlabel("Incidents (count)")
+        ax.set_title(title)
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
     return fig
 
 

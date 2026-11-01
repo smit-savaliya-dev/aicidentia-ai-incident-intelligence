@@ -1,0 +1,365 @@
+# Rules for the rule-based `entity_type` assigned in Phase 2 (see aicidentia.data.entities).
+# The AIID data has no entity-type field, so these are HEURISTICS, applied in the order below.
+# They are meant for network/dashboard grouping, not as ground truth. Correct any entity with
+# `overrides` (slug -> type) and re-run scripts/run_phase2_prepare.py.
+#
+# Types: organisation, generic_actor_group, technology_system, population_group,
+#        abstract_value, individual_candidate, unknown
+
+overrides:
+  none: unknown  # an entity literally named "None"
+
+# 1. Entities appearing (almost) only as a harmed party whose name is an abstract value or interest.
+abstract_value_terms:
+  - integrity
+  - privacy
+  - epistemic
+  - democracy
+  - democratic
+  - trust
+  - autonomy
+  - dignity
+  - reputation
+  - fairness
+  - equality
+  - freedom
+  - justice
+  - safety
+  - security
+  - wellbeing
+  - well-being
+  - cultural heritage
+  - public discourse
+  - information ecosystem
+  - intellectual property
+  - copyright
+  - property
+  - environment
+  - public trust
+  - human rights
+
+# 2. Entities that are mostly implicated systems, or whose name denotes a technology.
+technology_terms:
+  - technology
+  - technologies
+  - model
+  - models
+  - system
+  - systems
+  - algorithm
+  - algorithms
+  - software
+  - chatbot
+  - chatbots
+  - tool
+  - tools
+  - app
+  - apps
+  - api
+  - bot
+  - bots
+  - autopilot
+  - generator
+  - generators
+  - assistant
+  - recognition
+  - platform
+  - platforms
+  - engine
+  - agent
+  - agents
+
+# 3. Generic (unnamed) actors that appear on the deployer/developer side.
+generic_actor_terms:
+  - scammer
+  - scammers
+  - fraudster
+  - fraudsters
+  - creator
+  - creators
+  - hacker
+  - hackers
+  - criminal
+  - criminals
+  - attacker
+  - attackers
+  - perpetrator
+  - perpetrators
+  - bad actors
+  - malicious
+  - propagandists
+  - abuser
+  - abusers
+  - actors
+  - operators
+  - developers
+  - cybercriminal
+  - cybercriminals
+  - threat actors
+  - stalkers
+  - stalker
+  - extortionists
+  - sextortionists
+  - launderers
+  - extremists
+  - phishers
+  - impersonators
+  - spreaders
+  - brouteurs
+  - suspects
+  - litigants
+  - professors
+  - professionals
+  - lawyers
+  - supporters
+  - service providers
+  - evaluation organizations
+  - unknown
+
+# Names that denote people in general (checked before technology words, so a name such as
+# "Chatbot users" is a population group, not a technology).
+population_terms:
+  - men
+  - women
+  - boys
+  - girls
+  - people
+  - users
+  - victims
+  - students
+  - patients
+  - children
+  - minors
+  - residents
+  - citizens
+  - voters
+  - workers
+  - drivers
+  - passengers
+  - pedestrians
+  - consumers
+  - customers
+  - employees
+  - communities
+  - families
+  - parents
+  - teachers
+  - individuals
+  - population
+  - public
+  - subscribers
+  - viewers
+
+# Words that mark a name as an organisation or place, never a person (used to find person-like names).
+organisation_words:
+  - university
+  - college
+  - school
+  - institute
+  - inc
+  - llc
+  - ltd
+  - corp
+  - corporation
+  - company
+  - group
+  - association
+  - government
+  - ministry
+  - department
+  - council
+  - bank
+  - hospital
+  - court
+  - agency
+  - authority
+  - commission
+  - foundation
+  - labs
+  - lab
+  - media
+  - news
+  - times
+  - studio
+  - studios
+  - network
+  - services
+  - party
+  - campaign
+  - office
+  - board
+  - police
+  - army
+  - navy
+  - force
+  - forces
+  - airlines
+  - motors
+  - technologies
+  - systems
+  - software
+  - partners
+  - holdings
+  - solutions
+  - society
+  - union
+  - committee
+  - bureau
+  - service
+  - service
+  - city
+  - state
+  - county
+  - republic
+  - kingdom
+  - states
+  - federal
+  - national
+  - international
+  - global
+  - public
+  - international
+  - ai
+  - tech
+  - robotics
+  - health
+  - care
+  - insurance
+  - bar
+  - law
+  - fund
+  - capital
+  - ventures
+  - products
+  - app
+  - apps
+  - platform
+  - model
+  - models
+  - safety
+  - research
+  - operation
+  - bard
+  - popular
+  - press
+  - post
+  - journal
+  - review
+  - daily
+  - magazine
+  - television
+  - radio
+  - channel
+  - pictures
+  - entertainment
+  - records
+  - music
+  - games
+  - gaming
+  - airways
+  - automotive
+  - energy
+  - transport
+  - transit
+  - rail
+  - railway
+  - metro
+  - airport
+  - sheriff
+  - patrol
+  - military
+  - defense
+  - defence
+  - security
+  - intelligence
+  - parliament
+  - senate
+  - congress
+  - assembly
+  - election
+  - gpt
+  - chat
+  - cloud
+  - data
+  - digital
+  - online
+  - social
+  - open
+  - deep
+  - machine
+  - learning
+  - neural
+  - vision
+  - voice
+  - image
+  - video
+  - project
+  - initiative
+  - program
+  - programme
+  - center
+  - centre
+  - clinic
+  - church
+  - mosque
+  - temple
+  - festival
+  - cup
+  - league
+  - club
+  - team
+  - brigade
+  - front
+  - movement
+  - alliance
+  - coalition
+  - federation
+  - organization
+  - organisation
+  - academy
+
+# Last words that mark a plural population group, never a named person.
+group_nouns:
+  - users
+  - drivers
+  - workers
+  - students
+  - women
+  - men
+  - children
+  - residents
+  - people
+  - patients
+  - customers
+  - consumers
+  - voters
+  - citizens
+  - victims
+  - minors
+  - girls
+  - boys
+  - teachers
+  - employees
+  - passengers
+  - pedestrians
+  - communities
+  - individuals
+  - families
+  - parents
+  - applicants
+  - candidates
+  - viewers
+  - players
+  - artists
+  - writers
+  - creators
+  - investors
+  - journalists
+  - officials
+  - professionals
+  - subjects
+  - holders
+  - owners
+  - members
+  - stakeholders
+  - persons

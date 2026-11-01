@@ -36,3 +36,9 @@ models:
 year_range:
   start: 1983
   end: 2026
+
+# Privacy handling for named individuals (see data/manual/entity_review.csv).
+privacy:
+  # true = also drop every person-like entity you have NOT explicitly cleared (is_private_individual = no)
+  # from the network and dashboard. false = drop only those you confirmed as private individuals.
+  exclude_unreviewed_individual_candidates: false

@@ -1,0 +1,63 @@
+| entity_type | entity | n_incidents | roles | entity_type_rule |
+|---|---|---|---|---|
+| abstract_value | Epistemic integrity | 448 | developer,harmed,system | harmed_side+abstract_term |
+| abstract_value | Privacy | 192 | developer,harmed | harmed_side+abstract_term |
+| abstract_value | Democratic integrity | 98 | harmed | harmed_side+abstract_term |
+| abstract_value | National security and intelligence stakeholders | 76 | deployer,harmed | harmed_side+abstract_term |
+| abstract_value | Journalistic integrity | 43 | harmed | harmed_side+abstract_term |
+| abstract_value | Judicial integrity | 38 | harmed | harmed_side+abstract_term |
+| abstract_value | Information integrity | 11 | harmed | harmed_side+abstract_term |
+| abstract_value | Information security | 10 | harmed | harmed_side+abstract_term |
+| abstract_value | Public safety | 6 | harmed | harmed_side+abstract_term |
+| abstract_value | Academic integrity | 5 | harmed | harmed_side+abstract_term |
+| generic_actor_group | Deepfake technology developers | 451 | developer,system | actor_side+generic_term |
+| generic_actor_group | Synthetic audio generation technology developers | 242 | deployer,developer,system | actor_side+generic_term |
+| generic_actor_group | Scammers | 240 | deployer | actor_side+generic_term |
+| generic_actor_group | Large language model developers | 141 | deployer,developer,harmed,system | actor_side+generic_term |
+| generic_actor_group | Synthetic media generation technology developers | 138 | deployer,developer,system | actor_side+generic_term |
+| generic_actor_group | Deepfake creators | 137 | deployer,developer | actor_side+generic_term |
+| generic_actor_group | Synthetic image generation technology developers | 124 | developer,system | actor_side+generic_term |
+| generic_actor_group | Synthetic media creators | 105 | deployer | actor_side+generic_term |
+| generic_actor_group | Unknown | 90 | deployer,developer,harmed | actor_side+generic_term |
+| generic_actor_group | Information manipulation actors | 73 | deployer,developer | actor_side+generic_term |
+| individual_candidate | Donald Trump | 30 | deployer,harmed | person_like_name |
+| individual_candidate | Elon Musk | 19 | deployer,harmed | person_like_name |
+| individual_candidate | Joe Biden | 10 | harmed | person_like_name |
+| individual_candidate | Kamala Harris | 8 | harmed | person_like_name |
+| individual_candidate | John Mark Dougan | 6 | deployer,developer | person_like_name |
+| individual_candidate | Taylor Swift | 5 | harmed | person_like_name |
+| individual_candidate | Albin Kurti | 5 | harmed | person_like_name |
+| individual_candidate | Barack Obama | 5 | harmed | person_like_name |
+| individual_candidate | Keir Starmer | 4 | harmed | person_like_name |
+| individual_candidate | Volodymyr Zelenskyy | 4 | harmed | person_like_name |
+| organisation | OpenAI | 194 | deployer,developer,harmed,system | actor_side |
+| organisation | Meta | 194 | deployer,developer,harmed,system | actor_side |
+| organisation | Google | 102 | deployer,developer,harmed,system | actor_side |
+| organisation | Tesla | 54 | deployer,developer,harmed,system | actor_side |
+| organisation | Law enforcement | 46 | deployer,harmed | actor_side |
+| organisation | Microsoft | 46 | deployer,developer,harmed | actor_side |
+| organisation | Anthropic | 42 | deployer,developer,harmed | actor_side |
+| organisation | YouTube | 39 | deployer,developer,harmed,system | actor_side_plurality |
+| organisation | xAI | 35 | deployer,developer | actor_side |
+| organisation | Amazon | 34 | deployer,developer,harmed | actor_side |
+| population_group | General public | 355 | harmed | population_term |
+| population_group | Educational communities | 106 | deployer,harmed | population_term |
+| population_group | Minors | 100 | deployer,harmed | population_term |
+| population_group | Students | 98 | deployer,harmed | population_term |
+| population_group | Women and girls | 97 | harmed | population_term |
+| population_group | Women | 80 | harmed | population_term |
+| population_group | Social media users | 75 | deployer,developer,harmed | population_term |
+| population_group | Facebook users | 69 | developer,harmed | population_term |
+| population_group | Biometric data subjects | 52 | harmed | harmed_side |
+| population_group | Victims of deepfake abuse | 41 | harmed | population_term |
+| technology_system | Deepfake technology | 429 | developer,system | implicated_system_role |
+| technology_system | Synthetic audio generation technology | 250 | developer,system | implicated_system_role |
+| technology_system | Large language models | 164 | system | implicated_system_role |
+| technology_system | Social media platforms | 146 | deployer,developer,system | implicated_system_role |
+| technology_system | Synthetic media generation technology | 141 | system | implicated_system_role |
+| technology_system | Synthetic image generation technology | 126 | developer,system | implicated_system_role |
+| technology_system | AI-enabled decision support systems | 120 | system | implicated_system_role |
+| technology_system | ChatGPT | 115 | deployer,developer,harmed,system | implicated_system_role |
+| technology_system | Chatbots | 82 | developer,system | implicated_system_role |
+| technology_system | Synthetic video generation technology | 58 | developer,system | implicated_system_role |
+| unknown | none | 5 | deployer,developer,harmed | override |
