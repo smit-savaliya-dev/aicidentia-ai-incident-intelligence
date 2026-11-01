@@ -77,3 +77,13 @@ trends:
     horizon: 4                # forecast 1-4 quarters ahead
     min_mean_count: 1.0       # series with a mean below this per quarter are not scored (MASE unstable)
     arima_orders: [[0, 1, 1], [1, 1, 0], [1, 1, 1], [2, 1, 1], [0, 1, 2], [1, 0, 0], [1, 0, 1], [2, 0, 0]]
+
+# Phase 5: incident network (RQ2)
+network:
+  min_incidents: 2             # an entity enters the co-occurrence network if it appears in >= 2 incidents
+  n_seeds: 10                  # seeds base..base+9 for community detection stability (ARI)
+  min_stability_ari: 0.5       # rule: best modularity among methods with mean ARI >= this
+  hub_share_cap: 0.05          # robustness check: drop entities appearing in more than 5% of incidents
+  include_individual_candidates: false   # person-like entities stay out of the network
+  top_n_table: 10
+  export: {top_n: 150, max_edges: 900}   # dashboard JSON caps

@@ -1,0 +1,121 @@
+year,rank,entity_id,organisation,pagerank,n_incidents
+2015,1,google,Google,0.0129,9
+2015,2,meta,Meta,0.01173,7
+2015,3,chicago-police-department,Chicago Police Department,0.00925,3
+2015,4,amazon,Amazon,0.00891,5
+2015,5,youtube,YouTube,0.00704,4
+2015,6,shotspotter,ShotSpotter,0.00666,2
+2015,7,raytheon,Raytheon,0.00648,2
+2015,8,uber,Uber,0.00566,3
+2015,9,uk-home-office,UK Home Office,0.00554,3
+2015,10,san-francisco-police-department,San Francisco Police Department,0.00504,2
+2016,1,google,Google,0.01443,13
+2016,2,amazon,Amazon,0.00915,8
+2016,3,meta,Meta,0.00873,8
+2016,4,chicago-police-department,Chicago Police Department,0.00744,3
+2016,5,shotspotter,ShotSpotter,0.00589,3
+2016,6,youtube,YouTube,0.00526,4
+2016,7,raytheon,Raytheon,0.00496,2
+2016,8,uber,Uber,0.0048,4
+2016,9,tesla,Tesla,0.00465,6
+2016,10,uk-home-office,UK Home Office,0.0043,3
+2017,1,google,Google,0.01156,19
+2017,2,meta,Meta,0.00833,12
+2017,3,amazon,Amazon,0.00668,10
+2017,4,apple,Apple,0.00495,4
+2017,5,chicago-police-department,Chicago Police Department,0.00491,3
+2017,6,youtube,YouTube,0.00468,5
+2017,7,shotspotter,ShotSpotter,0.0039,3
+2017,8,uber,Uber,0.00364,5
+2017,9,raytheon,Raytheon,0.00334,2
+2017,10,tesla,Tesla,0.00309,7
+2018,1,google,Google,0.01032,21
+2018,2,meta,Meta,0.00924,17
+2018,3,amazon,Amazon,0.00803,15
+2018,4,tesla,Tesla,0.00489,13
+2018,5,apple,Apple,0.004,4
+2018,6,chicago-police-department,Chicago Police Department,0.00398,3
+2018,7,youtube,YouTube,0.00397,6
+2018,8,microsoft,Microsoft,0.0037,5
+2018,9,uber,Uber,0.0036,8
+2018,10,shotspotter,ShotSpotter,0.00315,3
+2019,1,meta,Meta,0.00896,21
+2019,2,google,Google,0.00807,21
+2019,3,amazon,Amazon,0.00668,16
+2019,4,tesla,Tesla,0.00666,22
+2019,5,youtube,YouTube,0.00372,9
+2019,6,apple,Apple,0.0037,6
+2019,7,chicago-police-department,Chicago Police Department,0.00315,3
+2019,8,huawei,Huawei,0.00302,3
+2019,9,uber,Uber,0.00286,8
+2019,10,microsoft,Microsoft,0.00286,5
+2020,1,meta,Meta,0.01033,36
+2020,2,google,Google,0.00709,25
+2020,3,amazon,Amazon,0.00502,18
+2020,4,tesla,Tesla,0.00453,25
+2020,5,youtube,YouTube,0.00354,13
+2020,6,microsoft,Microsoft,0.00321,8
+2020,7,openai,OpenAI,0.00294,11
+2020,8,apple,Apple,0.0027,7
+2020,9,clearview-ai,Clearview AI,0.00255,5
+2020,10,chicago-police-department,Chicago Police Department,0.00217,4
+2021,1,meta,Meta,0.0106,49
+2021,2,tesla,Tesla,0.0056,34
+2021,3,google,Google,0.00554,26
+2021,4,amazon,Amazon,0.00493,23
+2021,5,openai,OpenAI,0.00332,14
+2021,6,youtube,YouTube,0.00265,13
+2021,7,apple,Apple,0.00246,8
+2021,8,microsoft,Microsoft,0.00243,8
+2021,9,huawei,Huawei,0.00213,4
+2021,10,clearview-ai,Clearview AI,0.00192,5
+2022,1,meta,Meta,0.00975,56
+2022,2,tesla,Tesla,0.00619,42
+2022,3,google,Google,0.00611,32
+2022,4,openai,OpenAI,0.00452,24
+2022,5,amazon,Amazon,0.00412,24
+2022,6,microsoft,Microsoft,0.0026,9
+2022,7,law-enforcement,Law enforcement,0.00251,9
+2022,8,apple,Apple,0.00251,11
+2022,9,youtube,YouTube,0.00244,14
+2022,10,cruise,Cruise,0.00236,8
+2023,1,meta,Meta,0.00855,66
+2023,2,openai,OpenAI,0.00741,59
+2023,3,google,Google,0.00601,43
+2023,4,tesla,Tesla,0.00477,45
+2023,5,amazon,Amazon,0.00317,27
+2023,6,law-enforcement,Law enforcement,0.00306,17
+2023,7,microsoft,Microsoft,0.00296,22
+2023,8,cruise,Cruise,0.00198,13
+2023,9,apple,Apple,0.00196,12
+2023,10,youtube,YouTube,0.00169,14
+2024,1,openai,OpenAI,0.0082,96
+2024,2,meta,Meta,0.0077,94
+2024,3,google,Google,0.0055,60
+2024,4,tesla,Tesla,0.00311,47
+2024,5,law-enforcement,Law enforcement,0.00309,28
+2024,6,microsoft,Microsoft,0.00271,30
+2024,7,amazon,Amazon,0.00209,29
+2024,8,youtube,YouTube,0.00174,20
+2024,9,apple,Apple,0.00169,15
+2024,10,flock-safety,Flock Safety,0.0014,12
+2025,1,openai,OpenAI,0.00901,166
+2025,2,meta,Meta,0.00872,162
+2025,3,google,Google,0.0052,89
+2025,4,microsoft,Microsoft,0.00265,43
+2025,5,law-enforcement,Law enforcement,0.00238,36
+2025,6,tesla,Tesla,0.00185,50
+2025,7,youtube,YouTube,0.00177,33
+2025,8,amazon,Amazon,0.00149,32
+2025,9,anthropic,Anthropic,0.00147,15
+2025,10,xai,xAI,0.00126,20
+2026,1,meta,Meta,0.00805,194
+2026,2,openai,OpenAI,0.00799,194
+2026,3,google,Google,0.00454,102
+2026,4,anthropic,Anthropic,0.00253,42
+2026,5,law-enforcement,Law enforcement,0.00228,46
+2026,6,microsoft,Microsoft,0.00214,46
+2026,7,xai,xAI,0.0017,35
+2026,8,youtube,YouTube,0.00161,39
+2026,9,tesla,Tesla,0.00152,54
+2026,10,amazon,Amazon,0.00124,34

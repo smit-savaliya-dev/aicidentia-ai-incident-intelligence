@@ -2094,5 +2094,675 @@
     ],
     "source_file": "data/processed/incident_topics.parquet",
     "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq2.chosen_method": {
+    "value": "leiden",
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.chosen_modularity": {
+    "value": 0.36271332486897967,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.chosen_reason": {
+    "value": "highest mean modularity among methods with mean ARI >= 0.5",
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.community_profile": {
+    "value": [
+      {
+        "community": 0,
+        "entities": 292,
+        "incidents": 467,
+        "organisations": "OpenAI; Google; Microsoft; Anthropic",
+        "ai_systems": "Large language models; ChatGPT; Chatbots; AI agent systems",
+        "harmed_groups": "Chatbot users; ChatGPT users; Emotionally vulnerable individuals; Companies",
+        "top_domain": "Misinformation",
+        "top_domain_share": 0.2631578947368421,
+        "domains": "Misinformation (26%); Malicious Actors & Misuse (19%); Discrimination and Toxicity (18%)",
+        "sectors_n": 55,
+        "sectors": "information and communication (34); Arts, entertainment and recreation (11); transportation and storage (4)"
+      },
+      {
+        "community": 1,
+        "entities": 271,
+        "incidents": 628,
+        "organisations": "Meta; YouTube; Twitter; Storm-1516",
+        "ai_systems": "Deepfake technology; Synthetic audio generation technology; Social media platforms; X (Twitter)",
+        "harmed_groups": "General public; Social media users; Facebook users; X (Twitter) users",
+        "top_domain": "Malicious Actors & Misuse",
+        "top_domain_share": 0.6822916666666666,
+        "domains": "Malicious Actors & Misuse (68%); Misinformation (14%); Discrimination and Toxicity (10%)",
+        "sectors_n": 39,
+        "sectors": "information and communication (24); Arts, entertainment and recreation (10); wholesale and retail trade (2)"
+      },
+      {
+        "community": 2,
+        "entities": 193,
+        "incidents": 277,
+        "organisations": "Law enforcement; Amazon; Flock Safety; Clearview AI",
+        "ai_systems": "AI-enabled decision support systems; Enterprise AI systems; Facial recognition systems; Surveillance technology",
+        "harmed_groups": "Biometric data subjects; Minority groups; General public of the United States; Patients",
+        "top_domain": "AI system safety, failures, and limitations",
+        "top_domain_share": 0.3333333333333333,
+        "domains": "AI system safety, failures, and limitations (33%); Discrimination and Toxicity (29%); Privacy & Security (18%)",
+        "sectors_n": 85,
+        "sectors": "information and communication (16); law enforcement (12); wholesale and retail trade (11)"
+      },
+      {
+        "community": 3,
+        "entities": 145,
+        "incidents": 189,
+        "organisations": "ElevenLabs; Universities; Knightscope; political campaigns",
+        "ai_systems": "Synthetic media generation technology; Synthetic image generation technology; Synthetic video generation technology; AI nudification tools",
+        "harmed_groups": "Educational communities; Minors; Students; Women and girls",
+        "top_domain": "Malicious Actors & Misuse",
+        "top_domain_share": 0.5116279069767442,
+        "domains": "Malicious Actors & Misuse (51%); Discrimination and Toxicity (19%); AI system safety, failures, and limitations (19%)",
+        "sectors_n": 27,
+        "sectors": "Education (11); administrative and support service activities (3); Arts, entertainment and recreation (3)"
+      },
+      {
+        "community": 4,
+        "entities": 58,
+        "incidents": 101,
+        "organisations": "Tesla; Waymo; Cruise; Zoox",
+        "ai_systems": "Automated driving systems; Automated driving system deployers; Waymo's autonomous driving system; Robotaxi systems",
+        "harmed_groups": "Road users; Tesla drivers; Drivers; Pedestrians",
+        "top_domain": "AI system safety, failures, and limitations",
+        "top_domain_share": 0.926829268292683,
+        "domains": "AI system safety, failures, and limitations (93%); Human-Computer Interaction (6%); Misinformation (1%)",
+        "sectors_n": 12,
+        "sectors": "transportation and storage (11); manufacturing (1)"
+      },
+      {
+        "community": 5,
+        "entities": 25,
+        "incidents": 15,
+        "organisations": "Stability AI; LAION; EleutherAI; Runway",
+        "ai_systems": "Spotify; Music streaming services; Stable Diffusion",
+        "harmed_groups": "Musicians; Universal Music Group; artists; Songwriters",
+        "top_domain": "Discrimination and Toxicity",
+        "top_domain_share": 0.38461538461538464,
+        "domains": "Discrimination and Toxicity (38%); Malicious Actors & Misuse (23%); Privacy & Security (23%)",
+        "sectors_n": 2,
+        "sectors": "information and communication (1); Arts, entertainment and recreation (1)"
+      },
+      {
+        "community": 6,
+        "entities": 14,
+        "incidents": 2,
+        "organisations": "Government of North Korea; Reconnaissance General Bureau; Internal Revenue Service; Lazarus Group",
+        "ai_systems": "Zoom; Cryptocurrency platforms; Document verification systems; Cryptocurrency wallets",
+        "harmed_groups": "Targets of fraudulent professional opportunities; Employers; Web3; IRS",
+        "top_domain": "Discrimination and Toxicity",
+        "top_domain_share": 0.5,
+        "domains": "Discrimination and Toxicity (50%); Malicious Actors & Misuse (50%)",
+        "sectors_n": 2,
+        "sectors": "public administration (1); financial and insurance activities (1)"
+      },
+      {
+        "community": 7,
+        "entities": 4,
+        "incidents": 2,
+        "organisations": "Nomi AI",
+        "ai_systems": "Nomi chatbots; Nomi",
+        "harmed_groups": "Nomi users",
+        "top_domain": "Discrimination and Toxicity",
+        "top_domain_share": 1.0,
+        "domains": "Discrimination and Toxicity (100%)",
+        "sectors_n": 0,
+        "sectors": ""
+      },
+      {
+        "community": 8,
+        "entities": 1,
+        "incidents": 2,
+        "organisations": "Raytheon",
+        "ai_systems": "",
+        "harmed_groups": "",
+        "top_domain": "AI system safety, failures, and limitations",
+        "top_domain_share": 1.0,
+        "domains": "AI system safety, failures, and limitations (100%)",
+        "sectors_n": 0,
+        "sectors": ""
+      },
+      {
+        "community": 9,
+        "entities": 1,
+        "incidents": 4,
+        "organisations": "",
+        "ai_systems": "Starship Technologies",
+        "harmed_groups": "",
+        "top_domain": "AI system safety, failures, and limitations",
+        "top_domain_share": 1.0,
+        "domains": "AI system safety, failures, and limitations (100%)",
+        "sectors_n": 2,
+        "sectors": "accommodation and food service activities (1); transportation and storage (1)"
+      },
+      {
+        "community": 10,
+        "entities": 1,
+        "incidents": 2,
+        "organisations": "UserWay",
+        "ai_systems": "",
+        "harmed_groups": "",
+        "top_domain": "Malicious Actors & Misuse",
+        "top_domain_share": 0.5,
+        "domains": "Malicious Actors & Misuse (50%); AI system safety, failures, and limitations (50%)",
+        "sectors_n": 1,
+        "sectors": "information and communication (1)"
+      }
+    ],
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.community_sizes": {
+    "value": {
+      "0": 292,
+      "1": 271,
+      "2": 193,
+      "3": 145,
+      "4": 58,
+      "5": 25,
+      "6": 14,
+      "7": 4,
+      "8": 1,
+      "9": 1,
+      "10": 1
+    },
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.entity_network_components": {
+    "value": 4,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.entity_network_edges": {
+    "value": 17884,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.entity_network_nodes": {
+    "value": 1005,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.excluded_person_like_mentions": {
+    "value": 1624,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.excluded_types": {
+    "value": [
+      "individual_candidate"
+    ],
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.export": {
+    "value": {
+      "nodes": 128,
+      "edges": 900,
+      "bytes": 345556
+    },
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.hetero_edges": {
+    "value": 17579,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.hetero_nodes": {
+    "value": 7393,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.hetero_nodes_by_type": {
+    "value": {
+      "incident": 1775,
+      "risk_domain": 7,
+      "sector": 18,
+      "organisation": 1158,
+      "harmed_group": 2757,
+      "ai_system": 1159,
+      "harm_value": 71,
+      "generic_actor": 447,
+      "other": 1
+    },
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.hub_robustness": {
+    "value": {
+      "hubs_removed": [
+        "AI-enabled decision support systems",
+        "ChatGPT",
+        "Deepfake creators",
+        "Deepfake technology",
+        "Deepfake technology developers",
+        "Democratic integrity",
+        "Educational communities",
+        "Epistemic integrity",
+        "General public",
+        "Google",
+        "Large language model developers",
+        "Large language models",
+        "Meta",
+        "Minors",
+        "OpenAI",
+        "Privacy",
+        "Scammers",
+        "Social media platforms",
+        "Students",
+        "Synthetic audio generation technology",
+        "Synthetic audio generation technology developers",
+        "Synthetic image generation technology",
+        "Synthetic image generation technology developers",
+        "Synthetic media creators",
+        "Synthetic media generation technology",
+        "Synthetic media generation technology developers",
+        "Unknown",
+        "Women and girls"
+      ],
+      "n_hubs": 28,
+      "limit_incidents": 88.75,
+      "nodes_after": 967,
+      "modularity_mean": 0.5651420388509948,
+      "ari_vs_main_mean": 0.34843701565139557,
+      "ari_vs_main_min": 0.29110132117869403
+    },
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.last_complete_year": {
+    "value": 2025,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.median_top10_jaccard": {
+    "value": 0.8181818181818182,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.medoid_seed": {
+    "value": 43,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.method_summary": {
+    "value": [
+      {
+        "method": "louvain",
+        "modularity_mean": 0.3568174888192007,
+        "modularity_sd": 0.005054207585784999,
+        "n_communities_mean": 11.1,
+        "largest_share_mean": 0.29323383084577115,
+        "singletons_mean": 3.0,
+        "stability_ari_mean": 0.7854301946924535,
+        "stability_ari_min": 0.5929316056455487
+      },
+      {
+        "method": "leiden",
+        "modularity_mean": 0.3594921954210789,
+        "modularity_sd": 0.003685538251104234,
+        "n_communities_mean": 10.4,
+        "largest_share_mean": 0.29970149253731343,
+        "singletons_mean": 3.0,
+        "stability_ari_mean": 0.7317185100539417,
+        "stability_ari_min": 0.4832530898693064
+      },
+      {
+        "method": "label_propagation",
+        "modularity_mean": 0.044924108747450966,
+        "modularity_sd": 0.06028841335971337,
+        "n_communities_mean": 14.3,
+        "largest_share_mean": 0.8931343283582089,
+        "singletons_mean": 3.0,
+        "stability_ari_mean": 0.7981131455168945,
+        "stability_ari_min": 0.24450116301708177
+      }
+    ],
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.min_incidents": {
+    "value": 2,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.n_communities": {
+    "value": 11,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.near_tie_modularity": {
+    "value": true,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.nmi_community_vs_domain": {
+    "value": 0.19480307187337487,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.organisations_in_network": {
+    "value": 181,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.partial_year": {
+    "value": 2026,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.sector_coverage_incidents": {
+    "value": 200,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.snapshots": {
+    "value": [
+      {
+        "year": 2015,
+        "nodes": 341,
+        "edges": 467,
+        "nodes_incident": 71,
+        "nodes_risk_domain": 7,
+        "nodes_sector": 15,
+        "nodes_organisation": 69,
+        "nodes_harmed_group": 135,
+        "nodes_ai_system": 40,
+        "nodes_harm_value": 2,
+        "nodes_generic_actor": 2,
+        "new_organisations": 69,
+        "organisations": 69,
+        "nodes_other": 0
+      },
+      {
+        "year": 2016,
+        "nodes": 462,
+        "edges": 668,
+        "nodes_incident": 112,
+        "nodes_risk_domain": 7,
+        "nodes_sector": 15,
+        "nodes_organisation": 95,
+        "nodes_harmed_group": 178,
+        "nodes_ai_system": 50,
+        "nodes_harm_value": 3,
+        "nodes_generic_actor": 2,
+        "new_organisations": 26,
+        "organisations": 95,
+        "nodes_other": 0
+      },
+      {
+        "year": 2017,
+        "nodes": 672,
+        "edges": 1001,
+        "nodes_incident": 163,
+        "nodes_risk_domain": 7,
+        "nodes_sector": 15,
+        "nodes_organisation": 142,
+        "nodes_harmed_group": 251,
+        "nodes_ai_system": 81,
+        "nodes_harm_value": 4,
+        "nodes_generic_actor": 8,
+        "new_organisations": 47,
+        "organisations": 142,
+        "nodes_other": 1
+      },
+      {
+        "year": 2018,
+        "nodes": 831,
+        "edges": 1267,
+        "nodes_incident": 209,
+        "nodes_risk_domain": 7,
+        "nodes_sector": 16,
+        "nodes_organisation": 178,
+        "nodes_harmed_group": 310,
+        "nodes_ai_system": 97,
+        "nodes_harm_value": 4,
+        "nodes_generic_actor": 9,
+        "new_organisations": 36,
+        "organisations": 178,
+        "nodes_other": 1
+      },
+      {
+        "year": 2019,
+        "nodes": 1005,
+        "edges": 1574,
+        "nodes_incident": 254,
+        "nodes_risk_domain": 7,
+        "nodes_sector": 16,
+        "nodes_organisation": 214,
+        "nodes_harmed_group": 365,
+        "nodes_ai_system": 128,
+        "nodes_harm_value": 4,
+        "nodes_generic_actor": 16,
+        "new_organisations": 36,
+        "organisations": 214,
+        "nodes_other": 1
+      },
+      {
+        "year": 2020,
+        "nodes": 1396,
+        "edges": 2269,
+        "nodes_incident": 345,
+        "nodes_risk_domain": 7,
+        "nodes_sector": 16,
+        "nodes_organisation": 277,
+        "nodes_harmed_group": 513,
+        "nodes_ai_system": 199,
+        "nodes_harm_value": 8,
+        "nodes_generic_actor": 30,
+        "new_organisations": 63,
+        "organisations": 277,
+        "nodes_other": 1
+      },
+      {
+        "year": 2021,
+        "nodes": 1734,
+        "edges": 2845,
+        "nodes_incident": 425,
+        "nodes_risk_domain": 7,
+        "nodes_sector": 18,
+        "nodes_organisation": 345,
+        "nodes_harmed_group": 643,
+        "nodes_ai_system": 247,
+        "nodes_harm_value": 11,
+        "nodes_generic_actor": 37,
+        "new_organisations": 68,
+        "organisations": 345,
+        "nodes_other": 1
+      },
+      {
+        "year": 2022,
+        "nodes": 2113,
+        "edges": 3525,
+        "nodes_incident": 534,
+        "nodes_risk_domain": 7,
+        "nodes_sector": 18,
+        "nodes_organisation": 419,
+        "nodes_harmed_group": 786,
+        "nodes_ai_system": 287,
+        "nodes_harm_value": 12,
+        "nodes_generic_actor": 49,
+        "new_organisations": 74,
+        "organisations": 419,
+        "nodes_other": 1
+      },
+      {
+        "year": 2023,
+        "nodes": 2763,
+        "edges": 4968,
+        "nodes_incident": 713,
+        "nodes_risk_domain": 7,
+        "nodes_sector": 18,
+        "nodes_organisation": 544,
+        "nodes_harmed_group": 1026,
+        "nodes_ai_system": 359,
+        "nodes_harm_value": 21,
+        "nodes_generic_actor": 74,
+        "new_organisations": 125,
+        "organisations": 544,
+        "nodes_other": 1
+      },
+      {
+        "year": 2024,
+        "nodes": 4048,
+        "edges": 7899,
+        "nodes_incident": 1024,
+        "nodes_risk_domain": 7,
+        "nodes_sector": 18,
+        "nodes_organisation": 757,
+        "nodes_harmed_group": 1519,
+        "nodes_ai_system": 527,
+        "nodes_harm_value": 39,
+        "nodes_generic_actor": 156,
+        "new_organisations": 213,
+        "organisations": 757,
+        "nodes_other": 1
+      },
+      {
+        "year": 2025,
+        "nodes": 6196,
+        "edges": 13450,
+        "nodes_incident": 1487,
+        "nodes_risk_domain": 7,
+        "nodes_sector": 18,
+        "nodes_organisation": 1005,
+        "nodes_harmed_group": 2370,
+        "nodes_ai_system": 894,
+        "nodes_harm_value": 61,
+        "nodes_generic_actor": 353,
+        "new_organisations": 248,
+        "organisations": 1005,
+        "nodes_other": 1
+      },
+      {
+        "year": 2026,
+        "nodes": 7393,
+        "edges": 17579,
+        "nodes_incident": 1775,
+        "nodes_risk_domain": 7,
+        "nodes_sector": 18,
+        "nodes_organisation": 1158,
+        "nodes_harmed_group": 2757,
+        "nodes_ai_system": 1159,
+        "nodes_harm_value": 71,
+        "nodes_generic_actor": 447,
+        "new_organisations": 153,
+        "organisations": 1158,
+        "nodes_other": 1
+      }
+    ],
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.tau_all": {
+    "value": [
+      {
+        "measure": "degree",
+        "degree": 1.0,
+        "weighted_degree": 0.8257575231399088,
+        "betweenness": 0.4288668780461298,
+        "pagerank": 0.6661911877166408,
+        "eigenvector": 0.5999839164088665,
+        "n_incidents": 0.5627438172397491
+      },
+      {
+        "measure": "weighted_degree",
+        "degree": 0.8257575231399088,
+        "weighted_degree": 1.0,
+        "betweenness": 0.44727041154775077,
+        "pagerank": 0.7701467805243426,
+        "eigenvector": 0.5892835192504347,
+        "n_incidents": 0.6456246177377105
+      },
+      {
+        "measure": "betweenness",
+        "degree": 0.42886687804612983,
+        "weighted_degree": 0.4472704115477508,
+        "betweenness": 1.0,
+        "pagerank": 0.513712696640348,
+        "eigenvector": 0.2752186666210635,
+        "n_incidents": 0.5486148386278187
+      },
+      {
+        "measure": "pagerank",
+        "degree": 0.6661911877166408,
+        "weighted_degree": 0.7701467805243426,
+        "betweenness": 0.513712696640348,
+        "pagerank": 1.0,
+        "eigenvector": 0.3830473979312009,
+        "n_incidents": 0.6633531830709096
+      },
+      {
+        "measure": "eigenvector",
+        "degree": 0.5999839164088665,
+        "weighted_degree": 0.5892835192504347,
+        "betweenness": 0.2752186666210635,
+        "pagerank": 0.3830473979312009,
+        "eigenvector": 1.0,
+        "n_incidents": 0.4521005336205824
+      },
+      {
+        "measure": "n_incidents",
+        "degree": 0.5627438172397491,
+        "weighted_degree": 0.6456246177377105,
+        "betweenness": 0.5486148386278186,
+        "pagerank": 0.6633531830709097,
+        "eigenvector": 0.4521005336205824,
+        "n_incidents": 1.0
+      }
+    ],
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.tau_min_between_measures": {
+    "value": 0.2752186666210635,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.tau_pagerank_vs_weighted_degree": {
+    "value": 0.7701467805243426,
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.top_org_pagerank": {
+    "value": [
+      "OpenAI",
+      "Meta",
+      "Google",
+      "Law enforcement",
+      "Anthropic",
+      "xAI",
+      "Microsoft",
+      "YouTube",
+      "Waymo",
+      "Amazon"
+    ],
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
+  },
+  "rq2.top_org_weighted_degree": {
+    "value": [
+      "Meta",
+      "OpenAI",
+      "Google",
+      "Law enforcement",
+      "Anthropic",
+      "xAI",
+      "YouTube",
+      "Microsoft",
+      "Flock Safety",
+      "Perplexity"
+    ],
+    "source_file": "data/processed/incident_entities.parquet",
+    "function": "aicidentia.models.network_outputs.run_network"
   }
 }

@@ -1,0 +1,7 @@
+,degree,weighted_degree,betweenness,pagerank,eigenvector,n_incidents
+degree,1.0,0.826,0.429,0.666,0.6,0.563
+weighted_degree,0.826,1.0,0.447,0.77,0.589,0.646
+betweenness,0.429,0.447,1.0,0.514,0.275,0.549
+pagerank,0.666,0.77,0.514,1.0,0.383,0.663
+eigenvector,0.6,0.589,0.275,0.383,1.0,0.452
+n_incidents,0.563,0.646,0.549,0.663,0.452,1.0

@@ -570,6 +570,332 @@ def plot_forecast_mase(summary: pd.DataFrame, h_max: int) -> plt.Figure:
 
 
 # --------------------------------------------------------------------------------------
+# Phase 5: network
+# --------------------------------------------------------------------------------------
+
+_TYPE_MARKER = {
+    "organisation": "o",
+    "ai_system": "s",
+    "harmed_group": "^",
+    "generic_actor": "D",
+    "harm_value": "P",
+    "other": "X",
+    "person": "*",
+}
+_TYPE_NAME = {
+    "organisation": "Organisation",
+    "ai_system": "AI system",
+    "harmed_group": "Harmed group",
+    "generic_actor": "Generic actor",
+    "harm_value": "Harm / value",
+    "other": "Other",
+    "person": "Person-like",
+}
+_COMMUNITY_COLOURS = [
+    PALETTE["blue"],
+    PALETTE["orange"],
+    PALETTE["green"],
+    PALETTE["vermillion"],
+    PALETTE["sky"],
+    PALETTE["purple"],
+    PALETTE["yellow"],
+    "#000000",
+]
+
+
+def plot_entity_network(
+    graph,
+    assignment: dict,
+    top_n: int = 110,
+    label_n: int = 14,
+    seed: int = 42,
+    provisional_note: str = "",
+) -> plt.Figure:
+    """Spring layout of the top `top_n` entities by weighted degree; colour = community, marker = node type."""
+    import networkx as nx
+
+    apply_style()
+    degree = dict(graph.degree(weight="weight"))
+    keep = sorted(degree, key=degree.get, reverse=True)[:top_n]
+    sub = graph.subgraph(keep)
+    pos = nx.spring_layout(
+        sub, weight="weight", seed=seed, k=1.4 / np.sqrt(len(keep)), iterations=200
+    )
+    sizes = pd.Series({n: assignment[n] for n in keep}).value_counts()
+    main = list(sizes.index[:8])
+    fig, ax = plt.subplots(figsize=(DOUBLE_COLUMN_IN, 5.4))
+    strongest = sorted(sub.edges(data=True), key=lambda e: -e[2]["weight"])[: 6 * len(keep)]
+    for a, b, d in strongest:
+        ax.plot(
+            [pos[a][0], pos[b][0]],
+            [pos[a][1], pos[b][1]],
+            color="#999999",
+            lw=0.15 + 0.12 * np.log1p(d["weight"]),
+            alpha=0.35,
+            zorder=1,
+        )
+    for node_type, marker in _TYPE_MARKER.items():
+        nodes = [n for n in keep if graph.nodes[n]["type"] == node_type]
+        if not nodes:
+            continue
+        colours = [
+            _COMMUNITY_COLOURS[main.index(assignment[n])] if assignment[n] in main else "#BBBBBB"
+            for n in nodes
+        ]
+        ax.scatter(
+            [pos[n][0] for n in nodes],
+            [pos[n][1] for n in nodes],
+            s=[8 + 3.2 * np.sqrt(graph.nodes[n]["n_incidents"]) ** 1.6 / 4 for n in nodes],
+            c=colours,
+            marker=marker,
+            edgecolor="white",
+            linewidth=0.4,
+            zorder=2,
+            label=_TYPE_NAME[node_type],
+        )
+    # Label the most connected entities, skipping any whose label would sit on top of one already placed.
+    placed: list[np.ndarray] = []
+    extent = np.ptp(np.array(list(pos.values())), axis=0)
+    min_gap = 0.075 * float(extent.max())
+    for n in keep:
+        if len(placed) >= label_n:
+            break
+        point = np.asarray(pos[n])
+        if any(np.linalg.norm(point - q) < min_gap for q in placed):
+            continue
+        placed.append(point)
+        ax.annotate(
+            textwrap.shorten(graph.nodes[n]["label"], 26, placeholder="..."),
+            pos[n],
+            fontsize=5.5,
+            ha="center",
+            va="bottom",
+            zorder=3,
+            xytext=(0, 3),
+            textcoords="offset points",
+            bbox={"boxstyle": "round,pad=0.12", "fc": "white", "ec": "none", "alpha": 0.75},
+        )
+    ax.set_axis_off()
+    leg = ax.legend(
+        frameon=False,
+        fontsize=6,
+        loc="lower left",
+        title="Node type",
+        title_fontsize=6,
+        markerscale=0.7,
+    )
+    for handle in leg.legend_handles:
+        handle.set_color("#777777")
+    ax.set_title(
+        f"Entity co-occurrence network, top {len(keep)} entities by weighted degree (colour = community, size = incidents)"
+        + provisional_note,
+        fontsize=7,
+    )
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    return fig
+
+
+def plot_top_central(tables: dict[str, pd.DataFrame], measure: str = "pagerank") -> plt.Figure:
+    """Top-10 bars per node type (e.g. organisations, AI systems, harmed groups) for one centrality measure."""
+    apply_style()
+    fig, axes = plt.subplots(1, len(tables), figsize=(DOUBLE_COLUMN_IN, 3.0))
+    axes = np.atleast_1d(axes)
+    colours = [PALETTE["blue"], PALETTE["green"], PALETTE["vermillion"], PALETTE["purple"]]
+    for ax, ((title, table), colour) in zip(
+        axes, zip(tables.items(), colours, strict=False), strict=False
+    ):
+        data = table.iloc[::-1]
+        ax.barh(
+            [textwrap.shorten(str(x), 30, placeholder="...") for x in data["label"]],
+            data[measure],
+            color=colour,
+        )
+        ax.set_title(title, fontsize=7)
+        ax.set_xlabel(measure.replace("_", " "))
+        ax.tick_params(axis="y", labelsize=6)
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    return fig
+
+
+def plot_tau_heatmap(matrix: pd.DataFrame) -> plt.Figure:
+    """Kendall's tau between centrality measures."""
+    apply_style()
+    fig, ax = plt.subplots(figsize=(SINGLE_COLUMN_IN, 3.0))
+    image = ax.imshow(matrix.to_numpy(dtype=float), vmin=0, vmax=1, cmap="cividis")
+    labels = [c.replace("_", " ") for c in matrix.columns]
+    ax.set_xticks(range(len(labels)))
+    ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=6)
+    ax.set_yticks(range(len(labels)))
+    ax.set_yticklabels(labels, fontsize=6)
+    for i in range(len(labels)):
+        for j in range(len(labels)):
+            v = matrix.iloc[i, j]
+            ax.text(
+                j,
+                i,
+                f"{v:.2f}",
+                ha="center",
+                va="center",
+                fontsize=6,
+                color="white" if v < 0.6 else "black",
+            )
+    cbar = fig.colorbar(image, ax=ax, fraction=0.046, pad=0.03)
+    cbar.set_label("Kendall tau", fontsize=6)
+    cbar.ax.tick_params(labelsize=6)
+    ax.set_title("Agreement between centrality measures", fontsize=7)
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    return fig
+
+
+def plot_community_methods(runs: pd.DataFrame, summary: pd.DataFrame, chosen: str) -> plt.Figure:
+    """(a) modularity per run, (b) stability (mean pairwise ARI over seeds), (c) share of nodes in the largest community."""
+    apply_style()
+    methods = list(summary["method"])
+    colours = {
+        "louvain": PALETTE["blue"],
+        "leiden": PALETTE["orange"],
+        "label_propagation": PALETTE["green"],
+    }
+    fig, axes = plt.subplots(1, 3, figsize=(DOUBLE_COLUMN_IN, 2.5))
+    rng = np.random.default_rng(0)
+    for i, m in enumerate(methods):
+        sub = runs[runs["method"] == m]
+        axes[0].scatter(
+            i + rng.uniform(-0.12, 0.12, len(sub)),
+            sub["modularity"],
+            color=colours[m],
+            s=10,
+            alpha=0.8,
+        )
+        axes[0].hlines(sub["modularity"].mean(), i - 0.25, i + 0.25, color="black", lw=1)
+    axes[0].set_title("(a) Modularity per seed", fontsize=7)
+    axes[1].bar(
+        range(len(methods)), summary["stability_ari_mean"], color=[colours[m] for m in methods]
+    )
+    axes[1].scatter(
+        range(len(methods)),
+        summary["stability_ari_min"],
+        color="black",
+        marker="_",
+        s=120,
+        label="minimum pair",
+    )
+    axes[1].set_ylim(0, 1)
+    axes[1].legend(frameon=False, fontsize=6)
+    axes[1].set_title("(b) Stability (mean pairwise ARI)", fontsize=7)
+    axes[2].bar(
+        range(len(methods)), summary["largest_share_mean"], color=[colours[m] for m in methods]
+    )
+    axes[2].set_ylim(0, 1)
+    axes[2].set_title("(c) Share of nodes in largest community", fontsize=7)
+    for ax in axes:
+        ax.set_xticks(range(len(methods)))
+        ax.set_xticklabels(
+            [m.replace("_", " ") + ("*" if m == chosen else "") for m in methods],
+            rotation=30,
+            ha="right",
+            fontsize=6,
+        )
+    fig.suptitle(
+        "Community detection on the entity network (* = chosen by the pre-specified rule)",
+        fontsize=7,
+        y=1.0,
+    )
+    fig.tight_layout(rect=(0, 0.03, 1, 0.96))
+    return fig
+
+
+def plot_network_growth(snapshots: pd.DataFrame, partial_year: int | None = None) -> plt.Figure:
+    """(a) cumulative node counts by type; (b) organisations first appearing each year."""
+    apply_style()
+    fig, axes = plt.subplots(1, 2, figsize=(DOUBLE_COLUMN_IN, 2.6))
+    series = [
+        ("incident", "Incidents", PALETTE["black"] if "black" in PALETTE else "#000000"),
+        ("harmed_group", "Harmed groups", PALETTE["vermillion"]),
+        ("ai_system", "AI systems", PALETTE["green"]),
+        ("organisation", "Organisations", PALETTE["blue"]),
+        ("generic_actor", "Generic actors", PALETTE["orange"]),
+    ]
+    for key, label, colour in series:
+        col = f"nodes_{key}"
+        if col in snapshots:
+            axes[0].plot(
+                snapshots["year"],
+                snapshots[col],
+                marker="o",
+                ms=2.5,
+                lw=1,
+                label=label,
+                color=colour,
+            )
+    axes[0].set_yscale("log")
+    axes[0].set_xlabel("Year (cumulative to end of year)")
+    axes[0].set_ylabel("Nodes (count, log scale)")
+    axes[0].legend(frameon=False, fontsize=6)
+    axes[0].set_title("(a) Cumulative nodes by type", fontsize=7)
+    bars = axes[1].bar(snapshots["year"], snapshots["new_organisations"], color=PALETTE["blue"])
+    if partial_year is not None:
+        for bar, year in zip(bars, snapshots["year"], strict=True):
+            if year == partial_year:
+                bar.set_hatch("//")
+                bar.set_edgecolor("white")
+    axes[1].set_xlabel("Year")
+    axes[1].set_ylabel("New organisations (count)")
+    axes[1].set_title(
+        "(b) Organisations first appearing in the year"
+        + (" (hatched = partial)" if partial_year else ""),
+        fontsize=7,
+    )
+    for ax in axes:
+        ax.tick_params(axis="x", rotation=45, labelsize=6)
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    return fig
+
+
+def plot_rank_bump(top: pd.DataFrame, min_years: int = 4, top_show: int = 8) -> plt.Figure:
+    """Rank of organisations in the yearly top 10 by PageRank (lines for those present in >= `min_years` years)."""
+    apply_style()
+    fig, ax = plt.subplots(figsize=(DOUBLE_COLUMN_IN, 3.2))
+    present = top.groupby("organisation")["year"].nunique()
+    final = top[top["year"] == top["year"].max()].set_index("organisation")["rank"]
+    chosen = list(present[present >= min_years].index)
+    chosen = sorted(chosen, key=lambda o: (final.get(o, 99), -present[o]))[:top_show]
+    colours = [
+        PALETTE["blue"],
+        PALETTE["orange"],
+        PALETTE["green"],
+        PALETTE["vermillion"],
+        PALETTE["sky"],
+        PALETTE["purple"],
+        "#000000",
+        PALETTE["grey"],
+    ]
+    for org, colour in zip(chosen, colours, strict=False):
+        sub = top[top["organisation"] == org].sort_values("year")
+        ax.plot(sub["year"], sub["rank"], marker="o", ms=3, lw=1.2, color=colour)
+        ax.annotate(
+            org,
+            (sub["year"].iloc[-1], sub["rank"].iloc[-1]),
+            xytext=(4, 0),
+            textcoords="offset points",
+            fontsize=6,
+            color=colour,
+            va="center",
+        )
+    ax.set_ylim(10.5, 0.5)
+    ax.set_yticks(range(1, 11))
+    ax.set_xlim(top["year"].min() - 0.3, top["year"].max() + 2.2)
+    ax.set_xlabel("Year (cumulative network to end of year)")
+    ax.set_ylabel("Rank by PageRank among organisations")
+    ax.set_title(
+        "Organisations in the yearly top 10 by PageRank (alleged involvement, not blame)",
+        fontsize=7,
+    )
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    return fig
+
+
+# --------------------------------------------------------------------------------------
 # Later phases (stubs)
 # --------------------------------------------------------------------------------------
 
