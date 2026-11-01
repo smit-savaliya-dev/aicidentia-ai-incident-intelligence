@@ -1,0 +1,5 @@
+field,unit,empty,mean,median,p05,p95,max
+title,words,0,13.2242,13.0,8.0,19.0,25
+title,characters,0,98.1966,98.0,56.0,139.0,195
+description,words,0,50.2563,54.0,22.0,72.0,101
+description,characters,0,348.6592,380.0,153.0,497.0,680

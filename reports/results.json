@@ -1,0 +1,1063 @@
+{
+  "audit.csetv1_incidents": {
+    "value": 207,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.date_max": {
+    "value": "2026-10-22",
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.date_min": {
+    "value": "1983-09-26",
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.duplicates.duplicate_descriptions_exact": {
+    "value": 0,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.duplicates.duplicate_ids": {
+    "value": 0,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.duplicates.duplicate_titles_exact": {
+    "value": 0,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.duplicates.duplicate_titles_normalised": {
+    "value": 0,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.duplicates.merge_chains": {
+    "value": [
+      [
+        342,
+        88,
+        1057
+      ]
+    ],
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.duplicates.merged_duplicate_ids_in_excel": {
+    "value": [],
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.duplicates.merged_duplicate_ids_still_in_snapshot": {
+    "value": [
+      88,
+      637
+    ],
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.duplicates.merged_pairs_listed": {
+    "value": 13,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.duplicates.merged_true_ids_missing_from_excel": {
+    "value": [
+      88
+    ],
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.duplicates.near_duplicate_pairs_cosine_ge_70": {
+    "value": 3,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.duplicates.near_duplicate_pairs_cosine_ge_80": {
+    "value": 1,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.duplicates.near_duplicate_pairs_cosine_ge_90": {
+    "value": 1,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.duplicates.near_duplicate_threshold": {
+    "value": 0.8,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.entities.deployer_excel_equals_mapped_names_pct": {
+    "value": 0.8788732394366198,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.entities.entities_never_referenced": {
+    "value": 655,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.entities.entities_sheet_rows": {
+    "value": 7609,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.entities.entities_used_in_any_role": {
+    "value": 6954,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.entities.entity_names_containing_comma": {
+    "value": 72,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.entities.slugs_not_in_entities_sheet": {
+    "value": 0,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.excel_vs_snapshot.date_equal_pct": {
+    "value": 1.0,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.excel_vs_snapshot.description_equal_pct": {
+    "value": 1.0,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.excel_vs_snapshot.ids_in_excel": {
+    "value": 1775,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.excel_vs_snapshot.ids_in_snapshot": {
+    "value": 1777,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.excel_vs_snapshot.ids_only_in_excel": {
+    "value": [],
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.excel_vs_snapshot.ids_only_in_snapshot": {
+    "value": [
+      88,
+      637
+    ],
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.excel_vs_snapshot.mit_domain_equal_pct": {
+    "value": 1.0,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.excel_vs_snapshot.mit_ids_in_snapshot": {
+    "value": 1498,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.excel_vs_snapshot.mit_ids_not_in_excel": {
+    "value": [
+      88,
+      637
+    ],
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.excel_vs_snapshot.title_equal_pct": {
+    "value": 1.0,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.gmf_incidents": {
+    "value": 41,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.incidents_pre_2015": {
+    "value": 47,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.last_complete_year": {
+    "value": 2025,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.mit_domain_classes": {
+    "value": 7,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.mit_domain_n": {
+    "value": 1496,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.mit_records.mit_records": {
+    "value": 1498,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.mit_records.mit_records_published": {
+    "value": 1498,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.mit_records.mit_records_with_notes": {
+    "value": 0,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.n_entities_sheet": {
+    "value": 7609,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.n_incidents": {
+    "value": 1775,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.n_reports": {
+    "value": 8023,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.no_taxonomy_incidents": {
+    "value": 279,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.partial_year": {
+    "value": 2026,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.partial_year_incidents": {
+    "value": 288,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.incident_total_text_words_median": {
+    "value": 1545.0,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.incidents_with_any_full_text_pct": {
+    "value": 0.9932394366197184,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.incidents_with_one_report": {
+    "value": 717,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.incidents_with_zero_reports": {
+    "value": 1,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.is_incident_report_true_pct": {
+    "value": 0.8403340396360464,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.languages": {
+    "value": {
+      "en": 7671,
+      "es": 78,
+      "de": 32,
+      "fr": 31,
+      "it": 31
+    },
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.real_report_date_max": {
+    "value": "2026-10-24",
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.real_report_date_min": {
+    "value": "1996-04-03",
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.real_reports_under_50_words_pct": {
+    "value": 0.012203577867147413,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.real_reports_with_nonempty_text_pct": {
+    "value": 1.0,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.report_count_matches_snapshot_links_pct": {
+    "value": 1.0,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.report_count_max": {
+    "value": 58,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.report_count_mean": {
+    "value": 3.892394366197183,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.report_count_median": {
+    "value": 2.0,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.report_count_p90": {
+    "value": 8.0,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.report_text_words_median": {
+    "value": 594.0,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.report_text_words_p05": {
+    "value": 180.0,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.report_text_words_p95": {
+    "value": 2002.5,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.reports_in_snapshot": {
+    "value": 8023,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.reports_linked_to_multiple_incidents": {
+    "value": 135,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.reports_linked_to_some_incident": {
+    "value": 6714,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.reports_not_linked_to_any_incident": {
+    "value": 1309,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.reports_sheet_has_incident_id_column": {
+    "value": false,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.reports_sheet_rows": {
+    "value": 8023,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.stub_reports": {
+    "value": 812,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.stub_reports_epoch_placeholder_dates": {
+    "value": 752,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.stub_reports_pct": {
+    "value": 0.10120902405583947,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.top_source_domains": {
+    "value": {
+      "theguardian.com": 238,
+      "nytimes.com": 235,
+      "washingtonpost.com": 187,
+      "reuters.com": 159,
+      "theverge.com": 128
+    },
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.unlinked_reports_flagged_not_incident_report": {
+    "value": 1276,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.reports.unlinked_reports_that_are_stubs": {
+    "value": 807,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.editor_similar_directed_links": {
+    "value": 486,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.editor_similar_reciprocal_pct": {
+    "value": 0.6604938271604939,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.editor_similar_undirected_pairs": {
+    "value": 325,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.editor_similar_usable_queries_directed": {
+    "value": 416,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.editor_similar_usable_queries_symmetrised": {
+    "value": 447,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.has_editor_similar_field": {
+    "value": true,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.incidents_with_editor_dissimilar": {
+    "value": 145,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.incidents_with_editor_similar": {
+    "value": 416,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.incidents_with_editor_similar_pct": {
+    "value": 0.23410241980866628,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.incidents_with_nlp_similar": {
+    "value": 1295,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.links_with_both_ends_in_excel_pct": {
+    "value": 1.0,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.max_possible_precision_at_5_mean": {
+    "value": 0.2827740492170023,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.queries_with_exactly_one_relevant_pct": {
+    "value": 0.7404921700223713,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.relevant_per_query_max": {
+    "value": 11,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.relevant_per_query_mean": {
+    "value": 1.45413870246085,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.relevant_per_query_median": {
+    "value": 1.0,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.similarity.snapshot_incidents": {
+    "value": 1777,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.snapshot_date": {
+    "value": "20261026",
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.snapshot_present": {
+    "value": true,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.snapshot_rows.quickadd": {
+    "value": 56,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.snapshot_rows.submissions": {
+    "value": 59,
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.snapshot_year_is_partial": {
+    "value": true,
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.table.incidents_per_year": {
+    "value": [
+      {
+        "year": 1983,
+        "incidents": 1,
+        "share": 0.0005633802816901409,
+        "complete": true,
+        "last_incident_date": "1983-09-26"
+      },
+      {
+        "year": 1992,
+        "incidents": 1,
+        "share": 0.0005633802816901409,
+        "complete": true,
+        "last_incident_date": "1992-05-25"
+      },
+      {
+        "year": 1996,
+        "incidents": 1,
+        "share": 0.0005633802816901409,
+        "complete": true,
+        "last_incident_date": "1996-04-03"
+      },
+      {
+        "year": 1998,
+        "incidents": 1,
+        "share": 0.0005633802816901409,
+        "complete": true,
+        "last_incident_date": "1998-03-05"
+      },
+      {
+        "year": 1999,
+        "incidents": 1,
+        "share": 0.0005633802816901409,
+        "complete": true,
+        "last_incident_date": "1999-03-16"
+      },
+      {
+        "year": 2003,
+        "incidents": 4,
+        "share": 0.0022535211267605635,
+        "complete": true,
+        "last_incident_date": "2003-07-01"
+      },
+      {
+        "year": 2006,
+        "incidents": 1,
+        "share": 0.0005633802816901409,
+        "complete": true,
+        "last_incident_date": "2006-02-25"
+      },
+      {
+        "year": 2007,
+        "incidents": 1,
+        "share": 0.0005633802816901409,
+        "complete": true,
+        "last_incident_date": "2007-07-26"
+      },
+      {
+        "year": 2008,
+        "incidents": 3,
+        "share": 0.0016901408450704226,
+        "complete": true,
+        "last_incident_date": "2008-07-18"
+      },
+      {
+        "year": 2009,
+        "incidents": 2,
+        "share": 0.0011267605633802818,
+        "complete": true,
+        "last_incident_date": "2009-09-01"
+      },
+      {
+        "year": 2010,
+        "incidents": 1,
+        "share": 0.0005633802816901409,
+        "complete": true,
+        "last_incident_date": "2010-05-08"
+      },
+      {
+        "year": 2011,
+        "incidents": 3,
+        "share": 0.0016901408450704226,
+        "complete": true,
+        "last_incident_date": "2011-09-20"
+      },
+      {
+        "year": 2012,
+        "incidents": 8,
+        "share": 0.004507042253521127,
+        "complete": true,
+        "last_incident_date": "2012-12-10"
+      },
+      {
+        "year": 2013,
+        "incidents": 6,
+        "share": 0.0033802816901408453,
+        "complete": true,
+        "last_incident_date": "2013-11-27"
+      },
+      {
+        "year": 2014,
+        "incidents": 13,
+        "share": 0.007323943661971831,
+        "complete": true,
+        "last_incident_date": "2014-12-22"
+      },
+      {
+        "year": 2015,
+        "incidents": 24,
+        "share": 0.013521126760563381,
+        "complete": true,
+        "last_incident_date": "2015-12-05"
+      },
+      {
+        "year": 2016,
+        "incidents": 41,
+        "share": 0.023098591549295774,
+        "complete": true,
+        "last_incident_date": "2016-12-31"
+      },
+      {
+        "year": 2017,
+        "incidents": 51,
+        "share": 0.02873239436619718,
+        "complete": true,
+        "last_incident_date": "2017-12-23"
+      },
+      {
+        "year": 2018,
+        "incidents": 46,
+        "share": 0.025915492957746478,
+        "complete": true,
+        "last_incident_date": "2018-12-05"
+      },
+      {
+        "year": 2019,
+        "incidents": 45,
+        "share": 0.02535211267605634,
+        "complete": true,
+        "last_incident_date": "2019-12-29"
+      },
+      {
+        "year": 2020,
+        "incidents": 91,
+        "share": 0.05126760563380282,
+        "complete": true,
+        "last_incident_date": "2020-12-27"
+      },
+      {
+        "year": 2021,
+        "incidents": 80,
+        "share": 0.04507042253521127,
+        "complete": true,
+        "last_incident_date": "2021-12-27"
+      },
+      {
+        "year": 2022,
+        "incidents": 109,
+        "share": 0.061408450704225355,
+        "complete": true,
+        "last_incident_date": "2022-12-28"
+      },
+      {
+        "year": 2023,
+        "incidents": 179,
+        "share": 0.10084507042253521,
+        "complete": true,
+        "last_incident_date": "2023-12-29"
+      },
+      {
+        "year": 2024,
+        "incidents": 311,
+        "share": 0.1752112676056338,
+        "complete": true,
+        "last_incident_date": "2024-12-31"
+      },
+      {
+        "year": 2025,
+        "incidents": 463,
+        "share": 0.2608450704225352,
+        "complete": true,
+        "last_incident_date": "2025-12-31"
+      },
+      {
+        "year": 2026,
+        "incidents": 288,
+        "share": 0.16225352112676056,
+        "complete": false,
+        "last_incident_date": "2026-10-22"
+      }
+    ],
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.table.mit_coverage_by_year": {
+    "value": [
+      {
+        "year": 1983,
+        "labelled": 1,
+        "incidents": 1,
+        "coverage": 1.0
+      },
+      {
+        "year": 1992,
+        "labelled": 1,
+        "incidents": 1,
+        "coverage": 1.0
+      },
+      {
+        "year": 1996,
+        "labelled": 1,
+        "incidents": 1,
+        "coverage": 1.0
+      },
+      {
+        "year": 1998,
+        "labelled": 1,
+        "incidents": 1,
+        "coverage": 1.0
+      },
+      {
+        "year": 1999,
+        "labelled": 1,
+        "incidents": 1,
+        "coverage": 1.0
+      },
+      {
+        "year": 2003,
+        "labelled": 4,
+        "incidents": 4,
+        "coverage": 1.0
+      },
+      {
+        "year": 2006,
+        "labelled": 1,
+        "incidents": 1,
+        "coverage": 1.0
+      },
+      {
+        "year": 2007,
+        "labelled": 1,
+        "incidents": 1,
+        "coverage": 1.0
+      },
+      {
+        "year": 2008,
+        "labelled": 3,
+        "incidents": 3,
+        "coverage": 1.0
+      },
+      {
+        "year": 2009,
+        "labelled": 2,
+        "incidents": 2,
+        "coverage": 1.0
+      },
+      {
+        "year": 2010,
+        "labelled": 1,
+        "incidents": 1,
+        "coverage": 1.0
+      },
+      {
+        "year": 2011,
+        "labelled": 3,
+        "incidents": 3,
+        "coverage": 1.0
+      },
+      {
+        "year": 2012,
+        "labelled": 8,
+        "incidents": 8,
+        "coverage": 1.0
+      },
+      {
+        "year": 2013,
+        "labelled": 6,
+        "incidents": 6,
+        "coverage": 1.0
+      },
+      {
+        "year": 2014,
+        "labelled": 13,
+        "incidents": 13,
+        "coverage": 1.0
+      },
+      {
+        "year": 2015,
+        "labelled": 24,
+        "incidents": 24,
+        "coverage": 1.0
+      },
+      {
+        "year": 2016,
+        "labelled": 41,
+        "incidents": 41,
+        "coverage": 1.0
+      },
+      {
+        "year": 2017,
+        "labelled": 50,
+        "incidents": 51,
+        "coverage": 0.9803921568627451
+      },
+      {
+        "year": 2018,
+        "labelled": 45,
+        "incidents": 46,
+        "coverage": 0.9782608695652174
+      },
+      {
+        "year": 2019,
+        "labelled": 44,
+        "incidents": 45,
+        "coverage": 0.9777777777777777
+      },
+      {
+        "year": 2020,
+        "labelled": 90,
+        "incidents": 91,
+        "coverage": 0.989010989010989
+      },
+      {
+        "year": 2021,
+        "labelled": 79,
+        "incidents": 80,
+        "coverage": 0.9875
+      },
+      {
+        "year": 2022,
+        "labelled": 105,
+        "incidents": 109,
+        "coverage": 0.963302752293578
+      },
+      {
+        "year": 2023,
+        "labelled": 169,
+        "incidents": 179,
+        "coverage": 0.9441340782122905
+      },
+      {
+        "year": 2024,
+        "labelled": 292,
+        "incidents": 311,
+        "coverage": 0.9389067524115756
+      },
+      {
+        "year": 2025,
+        "labelled": 410,
+        "incidents": 463,
+        "coverage": 0.8855291576673866
+      },
+      {
+        "year": 2026,
+        "labelled": 100,
+        "incidents": 288,
+        "coverage": 0.3472222222222222
+      }
+    ],
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.table.mit_domain_by_period": {
+    "value": [
+      {
+        "class": "Malicious Actors & Misuse",
+        "n_before_2024": 125,
+        "n_from_2024": 441,
+        "test_share": 0.7791519434628975
+      },
+      {
+        "class": "Misinformation",
+        "n_before_2024": 61,
+        "n_from_2024": 135,
+        "test_share": 0.6887755102040817
+      },
+      {
+        "class": "AI system safety, failures, and limitations",
+        "n_before_2024": 231,
+        "n_from_2024": 82,
+        "test_share": 0.26198083067092653
+      },
+      {
+        "class": "Discrimination and Toxicity",
+        "n_before_2024": 183,
+        "n_from_2024": 60,
+        "test_share": 0.24691358024691357
+      },
+      {
+        "class": "Privacy & Security",
+        "n_before_2024": 60,
+        "n_from_2024": 52,
+        "test_share": 0.4642857142857143
+      },
+      {
+        "class": "Human-Computer Interaction",
+        "n_before_2024": 19,
+        "n_from_2024": 23,
+        "test_share": 0.5476190476190477
+      },
+      {
+        "class": "Socioeconomic & Environmental Harms",
+        "n_before_2024": 15,
+        "n_from_2024": 9,
+        "test_share": 0.375
+      }
+    ],
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.table.mit_domain_distribution": {
+    "value": [
+      {
+        "class": "Malicious Actors & Misuse",
+        "n": 566,
+        "share": 0.3783422459893048
+      },
+      {
+        "class": "AI system safety, failures, and limitations",
+        "n": 313,
+        "share": 0.2092245989304813
+      },
+      {
+        "class": "Discrimination and Toxicity",
+        "n": 243,
+        "share": 0.16243315508021391
+      },
+      {
+        "class": "Misinformation",
+        "n": 196,
+        "share": 0.13101604278074866
+      },
+      {
+        "class": "Privacy & Security",
+        "n": 112,
+        "share": 0.0748663101604278
+      },
+      {
+        "class": "Human-Computer Interaction",
+        "n": 42,
+        "share": 0.02807486631016043
+      },
+      {
+        "class": "Socioeconomic & Environmental Harms",
+        "n": 24,
+        "share": 0.016042780748663103
+      }
+    ],
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.table.sheet_shapes": {
+    "value": [
+      {
+        "sheet": "Incidents",
+        "rows": 1775,
+        "columns": 59,
+        "banner_count": 1775.0
+      },
+      {
+        "sheet": "Reports",
+        "rows": 8023,
+        "columns": 12,
+        "banner_count": 8023.0
+      },
+      {
+        "sheet": "Entities",
+        "rows": 7609,
+        "columns": 2,
+        "banner_count": 7610.0
+      },
+      {
+        "sheet": "Data Dictionary",
+        "rows": 59,
+        "columns": 5,
+        "banner_count": null
+      },
+      {
+        "sheet": "Coverage Map",
+        "rows": 6,
+        "columns": 4,
+        "banner_count": null
+      }
+    ],
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.taxonomy_provenance.CSETv0": {
+    "value": {
+      "automated": false
+    },
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.taxonomy_provenance.CSETv1": {
+    "value": {
+      "automated": false
+    },
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.taxonomy_provenance.GMF": {
+    "value": {
+      "automated": false
+    },
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.taxonomy_provenance.MIT": {
+    "value": {
+      "automated": true
+    },
+    "source_file": "data/raw/mongodump_full_snapshot",
+    "function": "aicidentia.data.audit.run_audit"
+  },
+  "audit.year_range_recommendation": {
+    "value": {
+      "start": 2015,
+      "end": 2025,
+      "min_incidents": 20,
+      "excluded_years": [
+        1983,
+        1992,
+        1996,
+        1998,
+        1999,
+        2003,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ]
+    },
+    "source_file": "data/raw/AIID_Excel_Export-20261026.xlsx",
+    "function": "aicidentia.data.audit.run_audit"
+  }
+}

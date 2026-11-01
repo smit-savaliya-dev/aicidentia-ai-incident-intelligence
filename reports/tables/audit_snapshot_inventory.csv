@@ -1,0 +1,27 @@
+file,size_mb,rows,columns,fields
+classifications_CSETv0.csv,0.1322,100.0,35.0,"Namespace, Incident ID, Published, Annotator, Annotation Status, Reviewer, Quality Control, Full Description ..."
+classifications_CSETv1.csv,0.2609,214.0,65.0,"Namespace, Incident ID, Published, Incident Number, Annotator, Annotation Status, Peer Reviewer, Quality Control ..."
+classifications_CSETv1_Annotator-1.csv,0.3624,298.0,65.0,"Namespace, Incident ID, Published, Incident Number, Annotator, Annotation Status, Peer Reviewer, Quality Control ..."
+classifications_CSETv1_Annotator-2.csv,0.0838,106.0,65.0,"Namespace, Incident ID, Published, Incident Number, Annotator, Annotation Status, Peer Reviewer, Quality Control ..."
+classifications_CSETv1_Annotator-3.csv,0.0782,81.0,65.0,"Namespace, Incident ID, Published, Incident Number, Annotator, Annotation Status, Peer Reviewer, Quality Control ..."
+classifications_GMF.csv,0.6851,326.0,21.0,"Namespace, Incident ID, Published, Known AI Goal, Known AI Goal Snippets, Known AI Goal Classification Discussion, Potential AI Goal, Potential AI Goal Snippets ..."
+classifications_MIT.csv,0.1886,1498.0,8.0,"Namespace, Incident ID, Published, Risk Domain, Risk Subdomain, Entity, Timing, Intent"
+duplicates.csv,0.0001,13.0,2.0,"duplicate_incident_number, true_incident_number"
+incidents.csv,1.329,1777.0,9.0,"_id, incident_id, date, reports, Alleged deployer of AI system, Alleged developer of AI system, Alleged harmed or nearly harmed parties, description ..."
+quickadd.csv,0.0067,56.0,4.0,"incident_id, url, date_submitted, source_domain"
+reports.csv,43.7441,8023.0,21.0,"_id, authors, date_downloaded, date_modified, date_published, date_submitted, description, epoch_date_downloaded ..."
+submissions.csv,0.5798,59.0,15.0,"authors, date_downloaded, date_modified, date_published, date_submitted, image_url, incident_date, incident_id ..."
+aiidprod/candidates.bson,43.2853,,,BSON collection
+aiidprod/checklists.bson,0.0984,,,BSON collection
+aiidprod/classifications.bson,7.71,,,BSON collection
+aiidprod/duplicates.bson,0.001,,,BSON collection
+aiidprod/entities.bson,0.841,,,BSON collection
+aiidprod/entity_duplicates.bson,0.0393,,,BSON collection
+aiidprod/entity_relationships.bson,0.0119,,,BSON collection
+aiidprod/incident_links.bson,0.1454,,,BSON collection
+aiidprod/incidents.bson,20.4138,,,BSON collection
+aiidprod/migrations.bson,0.0135,,,BSON collection
+aiidprod/quickadd.bson,0.0125,,,BSON collection
+aiidprod/reports.bson,152.2571,,,BSON collection
+aiidprod/submissions.bson,1.6163,,,BSON collection
+aiidprod/taxa.bson,0.3023,,,BSON collection

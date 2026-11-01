@@ -19,9 +19,8 @@ import tarfile
 from datetime import UTC, datetime
 from pathlib import Path
 
-import pandas as pd
-
 from aicidentia.config import PROJECT_ROOT, load_config
+from aicidentia.data import load
 
 EXCEL_DATE_RE = re.compile(r"(\d{8})")
 SNAPSHOT_DATE_RE = re.compile(r"(\d{8})(\d{6})?")
@@ -50,8 +49,14 @@ def date_from_name(path: Path, regex: re.Pattern[str]) -> str | None:
 
 
 def describe_excel(path: Path) -> list[tuple[str, int, int]]:
-    sheets = pd.read_excel(path, sheet_name=None)
-    rows = [(name, df.shape[0], df.shape[1]) for name, df in sheets.items()]
+    """Rows/columns per sheet with banner rows removed (same loader the analysis uses)."""
+    rows = []
+    for name in load_config()["files"]["excel_sheets"]:
+        try:
+            df = load.load_sheet(name, path)
+        except (ValueError, KeyError):
+            continue
+        rows.append((name, df.shape[0], df.shape[1]))
     print(f"  {'Sheet':<20}{'Rows':>10}{'Columns':>10}")
     for name, n_rows, n_cols in rows:
         print(f"  {name:<20}{n_rows:>10}{n_cols:>10}")
@@ -89,6 +94,7 @@ def write_manifest(
     snapshot: Path | None,
     snapshot_date: str | None,
     snapshot_files: list[Path],
+    snapshot_dir: Path | None = None,
 ) -> None:
     lines = [
         "# Data manifest",
@@ -106,13 +112,31 @@ def write_manifest(
             f"| `{snapshot.name}` | no | {snapshot_date or 'unknown'} | `{sha256_of(snapshot)}` | "
             f"{snapshot.stat().st_size} |"
         )
-    else:
+    elif snapshot_dir is None:
         lines.append("| _(backup-*.tar.bz2 not present)_ | no | - | - | - |")
     lines += ["", "## Excel sheets", "", "| Sheet | Rows | Columns |", "|-------|------|---------|"]
     lines += [f"| {name} | {r} | {c} |" for name, r, c in sheets]
-    if snapshot_files:
+    if snapshot is not None and snapshot_files:
         lines += ["", f"## Snapshot contents ({len(snapshot_files)} files)", ""]
         lines += [f"- `{p.name}`" for p in snapshot_files]
+    if snapshot_dir is not None:
+        files = sorted(p for p in snapshot_dir.rglob("*") if p.is_file())
+        hashes = {p.relative_to(snapshot_dir).as_posix(): sha256_of(p) for p in files}
+        joined = "\n".join(f"{k}:{v}" for k, v in hashes.items())
+        tree = hashlib.sha256(joined.encode()).hexdigest()
+        lines += [
+            "",
+            f"## Extracted snapshot directory `{snapshot_dir.name}/` ({len(files)} files)",
+            "",
+            "No `.tar.bz2` archive is present; the dump was extracted manually, and its directory name carries no date.",
+            f"Tree hash (SHA-256 of sorted `path:sha256` lines): `{tree}`",
+            "",
+            "| File | Size (bytes) | SHA-256 |",
+            "|------|--------------|---------|",
+        ]
+        lines += [
+            f"| `{k}` | {(snapshot_dir / k).stat().st_size} | `{v}` |" for k, v in hashes.items()
+        ]
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -138,7 +162,8 @@ def main() -> int:
             f"\n[MISSING] Excel export ({cfg['files']['excel_export_glob']}) not found in data/raw/."
         )
         print("          Download it from the AI Incident Database and place it there.")
-    if snapshot is None:
+    snapshot_dir = load.find_snapshot_dir(raw_dir) if raw_dir.exists() else None
+    if snapshot is None and snapshot_dir is None:
         print(
             f"[MISSING] Snapshot ({cfg['files']['snapshot_glob']}) not found in data/raw/ - optional."
         )
@@ -171,7 +196,16 @@ def main() -> int:
         dest = raw_dir / f"snapshot_{snapshot_date or 'unknown'}"
         snapshot_files = extract_snapshot(snapshot, dest, args.force_extract)
 
-    write_manifest(manifest, excel, excel_date, sheets, snapshot, snapshot_date, snapshot_files)
+    manifest_dir = None
+    if snapshot is None and snapshot_dir is not None:
+        manifest_dir = snapshot_dir
+        print(f"\n[FOUND] extracted snapshot directory {snapshot_dir.name}/ (no archive present)")
+        for p in sorted(snapshot_dir.glob("*")):
+            print(f"    {p.name}{'/' if p.is_dir() else ''}")
+
+    write_manifest(
+        manifest, excel, excel_date, sheets, snapshot, snapshot_date, snapshot_files, manifest_dir
+    )
     print(f"\nManifest written to {manifest.relative_to(PROJECT_ROOT)}")
     return 0
 

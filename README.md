@@ -80,8 +80,9 @@ Then set `snapshot_date` in `config/config.yaml` and verify:
 uv run python scripts/check_data.py
 ```
 
-This prints each sheet with its row and column counts, writes SHA-256 hashes to `docs/data_manifest.md`
-and safely extracts the snapshot into `data/raw/snapshot_<date>/`.
+This prints each sheet with its row and column counts (banner rows excluded), writes SHA-256 hashes to
+`docs/data_manifest.md`, and either safely extracts a `.tar.bz2` snapshot into `data/raw/snapshot_<date>/` or,
+if you already extracted the dump yourself (e.g. `data/raw/mongodump_full_snapshot/`), hashes and lists it.
 
 Put your 150 hand-labelled incidents in `data/manual/` (tracked in git). Optional OECD AIM exports go in
 `data/external/`.
@@ -91,6 +92,7 @@ Put your 150 hand-labelled incidents in `data/manual/` (tracked in git). Optiona
 | Task | Command |
 |------|---------|
 | Check the data | `uv run python scripts/check_data.py` |
+| Phase 1 data audit (tables, figures, `docs/data_audit.md`, `docs/datasheet.md`) | `uv run python scripts/run_phase1_audit.py` |
 | Open Jupyter | `uv run jupyter lab` |
 | Run the dashboard | `uv run streamlit run app/Home.py` |
 | Run the tests | `uv run pytest` |
@@ -100,6 +102,13 @@ Put your 150 hand-labelled incidents in `data/manual/` (tracked in git). Optiona
 Notebooks run in order (CRISP-DM): `01_data_audit` -> `02_cleaning_eda` -> `03_rq1_themes_trends` ->
 `04_rq2_network` -> `05_rq3_classification_label_audit` -> `06_rq4_similarity`.
 
+## Results registry
+
+Every cited number is stored in `reports/results.json` as `key -> {value, source_file, function}`
+(see `aicidentia.registry`). Tables go to `reports/tables/` (CSV + Markdown) and figures to `reports/figures/`
+(PNG 300 dpi + SVG, IEEE column widths, colour-blind-safe palette). The dashboard and the report read from these,
+so numbers are never typed by hand.
+
 ## Project structure
 
 ```
@@ -108,10 +117,10 @@ data/             raw (git-ignored), interim, processed, external, manual (track
 notebooks/        01-06, one per CRISP-DM stage / research question
 src/aicidentia/   installable package: data, features, models, evaluation, viz
 app/              Streamlit dashboard (Home.py + pages/)
-scripts/          check_data.py, generate_environment_doc.py, export_requirements.py
+scripts/          check_data.py, run_phase1_audit.py, generate_environment_doc.py, export_requirements.py
 models/           saved models (git-ignored)
 reports/          figures/ and tables/
-docs/             environment.md, project_log.md, data_manifest.md
+docs/             environment.md, project_log.md, data_manifest.md, data_audit.md, datasheet.md
 tests/            smoke tests
 ```
 

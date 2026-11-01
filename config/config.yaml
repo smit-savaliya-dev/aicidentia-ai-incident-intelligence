@@ -5,7 +5,7 @@ tagline: "Discovering Patterns. Understanding AI Harm. Learning from Failure."
 full_title: "Learning from Failure: A Data-Driven Analysis of Reported Real-World AI Incidents"
 
 # Frozen data snapshot: set to the YYYYMMDD in AIID_Excel_Export-YYYYMMDD.xlsx once downloaded.
-snapshot_date: null
+snapshot_date: 20261026
 
 random_seed: 42
 
@@ -22,8 +22,8 @@ paths:
 
 files:
   # Globs inside paths.raw; the date part is whatever you downloaded.
-  excel_export_glob: "AIID_Excel_Export-*.xlsx"
-  snapshot_glob: "backup-*.tar.bz2"
+  excel_export_glob: "AIID_Excel_Export-20261026.xlsx"
+  snapshot_glob: "backup-20261026.tar.bz2"
   excel_sheets: [Incidents, Reports, Entities, Data Dictionary, Coverage Map]
   hand_labels: hand_labels_150.csv # placed in paths.manual
 

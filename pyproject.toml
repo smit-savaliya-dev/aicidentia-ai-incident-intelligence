@@ -17,6 +17,7 @@ dependencies = [
     "pyyaml",
     "tqdm",
     "python-dotenv",
+    "pymongo>=4.19.0",
 ]
 
 # Install everything with:  uv sync --all-extras

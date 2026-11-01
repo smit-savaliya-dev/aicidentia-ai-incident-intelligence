@@ -6,6 +6,7 @@
 
 from __future__ import annotations
 
+import logging
 import os
 import random
 from functools import lru_cache
@@ -37,6 +38,13 @@ def resolve_path(key: str, cfg: dict[str, Any] | None = None) -> Path:
     """Absolute path for an entry of ``cfg['paths']`` (e.g. ``resolve_path('raw')``)."""
     cfg = cfg or load_config()
     return PROJECT_ROOT / cfg["paths"][key]
+
+
+def configure_logging(level: int = logging.INFO) -> None:
+    """Send package logs to stderr (call once from a script or notebook; the package never prints)."""
+    logging.basicConfig(
+        level=level, format="%(asctime)s %(levelname)s %(name)s: %(message)s", force=True
+    )
 
 
 def set_seeds(seed: int | None = None) -> int:

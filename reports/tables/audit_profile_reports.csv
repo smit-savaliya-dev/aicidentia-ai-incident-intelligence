@@ -1,0 +1,13 @@
+table,column,dtype,non_empty,fill_rate,n_unique
+Reports,Report Number,int64,8023,1.0,8023
+Reports,Title,str,7211,0.8988,7093
+Reports,URL,str,7211,0.8988,7148
+Reports,Source Domain,str,7211,0.8988,2211
+Reports,Date Published,datetime64[us],8023,1.0,2394
+Reports,Date Downloaded,datetime64[us],8023,1.0,935
+Reports,Authors,str,7211,0.8988,5280
+Reports,Submitters,str,8022,0.9999,282
+Reports,Language,str,8023,1.0,41
+Reports,Tags,str,1641,0.2045,398
+Reports,Description,str,2013,0.2509,1990
+Reports,Is Incident Report,object,8023,1.0,2
