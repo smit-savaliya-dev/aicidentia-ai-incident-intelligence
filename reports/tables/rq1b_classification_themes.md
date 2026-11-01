@@ -1,0 +1,14 @@
+| theme | counts | share | report-weighted share | share, later window | agree | window_sensitive |
+|---|---|---|---|---|---|---|
+| T1: data / agent / openai | increasing | no trend | no trend | no trend | False | False |
+| T0: video / depict / circulate | increasing | increasing | increasing | increasing | True | False |
+| T4: student / school / image | increasing | increasing | increasing | no trend | True | True |
+| T2: court / citation / legal | increasing | increasing | increasing | increasing | True | False |
+| T7: scam / impersonate / deepfake | increasing | increasing | increasing | increasing | True | False |
+| T11: google / bias / image | increasing | decreasing | decreasing | no trend | False | True |
+| T6: election / campaign / disinformation | increasing | increasing | increasing | no trend | True | True |
+| T10: plate / license / reader | increasing | no trend | no trend | no trend | False | False |
+| T8: content / facebook / moderation | increasing | no trend | no trend | no trend | False | False |
+| T3: vehicle / autonomous / drive | increasing | decreasing | decreasing | no trend | False | True |
+| T5: facial / recognition / arrest | no trend | no trend | no trend | decreasing | True | True |
+| T9: tesla / autopilot / crash | no trend | no trend | no trend | decreasing | True | True |

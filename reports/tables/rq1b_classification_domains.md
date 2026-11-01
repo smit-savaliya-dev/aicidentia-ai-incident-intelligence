@@ -1,0 +1,9 @@
+| domain | counts | share | report-weighted share | share, later window | agree | window_sensitive |
+|---|---|---|---|---|---|---|
+| Malicious Actors & Misuse | increasing | increasing | increasing | increasing | True | False |
+| Misinformation | increasing | increasing | increasing | increasing | True | False |
+| AI system safety, failures, and limitations | increasing | decreasing | decreasing | decreasing | False | False |
+| Discrimination and Toxicity | increasing | decreasing | decreasing | decreasing | False | False |
+| Privacy & Security | increasing | no trend | no trend | no trend | False | False |
+| Human-Computer Interaction | increasing | no trend | no trend | no trend | False | False |
+| Socioeconomic & Environmental Harms | no trend | no trend | no trend | no trend | True | False |

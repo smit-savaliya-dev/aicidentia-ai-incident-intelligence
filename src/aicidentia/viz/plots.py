@@ -342,6 +342,234 @@ def plot_topic_sizes(table: pd.DataFrame, title: str) -> plt.Figure:
 
 
 # --------------------------------------------------------------------------------------
+# Phase 4: trends and forecasting
+# --------------------------------------------------------------------------------------
+
+_ARROW = {"increasing": "\u25b2", "decreasing": "\u25bc", "no trend": "\u25cf"}
+_DIRECTION_COLOUR = {
+    "increasing": PALETTE["vermillion"],
+    "decreasing": PALETTE["blue"],
+    "no trend": "#BBBBBB",
+}
+
+
+def _short(label: str, width: int = 34) -> str:
+    return label if len(label) <= width else label[: width - 1] + "\u2026"
+
+
+def plot_theme_heatmap(
+    share: pd.DataFrame,
+    trend: pd.DataFrame,
+    partial: pd.Series | None = None,
+    provisional: bool = False,
+) -> plt.Figure:
+    """Themes x years heatmap of yearly shares (%), rows ordered by Sen slope; arrows mark BH-significant trends.
+
+    `partial` (optional) is the share series of the partial year, drawn as a separated, hatched column.
+    """
+    apply_style()
+    order = list(trend["group"])
+    direction = dict(zip(trend["group"], trend["direction"], strict=True))
+    data = share[order].T * 100
+    years = list(data.columns)
+    ncols = len(years) + (1 if partial is not None else 0)
+    fig, ax = plt.subplots(figsize=(DOUBLE_COLUMN_IN, 0.34 * len(order) + 1.3))
+    image = ax.imshow(data.to_numpy(), aspect="auto", cmap="cividis", vmin=0)
+    ax.set_xticks(range(len(years)))
+    ax.set_xticklabels(years, rotation=45, fontsize=6)
+    ax.set_yticks(range(len(order)))
+    ax.set_yticklabels([f"{_ARROW[direction[g]]} {_short(g)}" for g in order], fontsize=6)
+    for i in range(len(order)):
+        for j in range(len(years)):
+            value = data.iloc[i, j]
+            ax.text(
+                j,
+                i,
+                f"{value:.0f}",
+                ha="center",
+                va="center",
+                fontsize=5.5,
+                color="white" if value < data.to_numpy().max() * 0.55 else "black",
+            )
+    if partial is not None:
+        ax.set_xlim(-0.5, ncols - 0.5)
+        extra = (partial.reindex(order) * 100).to_numpy()[:, None]
+        ax.imshow(
+            extra,
+            aspect="auto",
+            cmap="cividis",
+            vmin=0,
+            vmax=data.to_numpy().max(),
+            extent=(len(years) + 0.1, len(years) + 1.1, len(order) - 0.5, -0.5),
+            alpha=0.55,
+        )
+        ax.set_xlim(-0.5, len(years) + 1.1)
+        ax.set_xticks([*range(len(years)), len(years) + 0.6])
+        ax.set_xticklabels([*years, f"{partial.name}*"], rotation=45, fontsize=6)
+    cbar = fig.colorbar(image, ax=ax, pad=0.01, fraction=0.03)
+    cbar.set_label("Share of the year's incidents (%)", fontsize=6)
+    cbar.ax.tick_params(labelsize=6)
+    ax.set_title(
+        ("PROVISIONAL theme names. " if provisional else "")
+        + "Theme share by year (\u25b2 increasing, \u25bc decreasing, \u25cf no trend; Mann-Kendall, BH-adjusted)",
+        fontsize=7,
+    )
+    ax.spines[["top", "right", "left", "bottom"]].set_visible(False)
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    return fig
+
+
+def plot_emerging_small_multiples(
+    share: pd.DataFrame,
+    trend: pd.DataFrame,
+    groups: list[str],
+    partial: pd.Series | None = None,
+    title: str = "",
+) -> plt.Figure:
+    """Small multiples of yearly share for `groups`, with the Sen's-slope line over the tested window."""
+    apply_style()
+    n = max(len(groups), 1)
+    ncols = min(3, n)
+    nrows = -(-n // ncols)
+    fig, axes = plt.subplots(
+        nrows, ncols, figsize=(DOUBLE_COLUMN_IN, 1.75 * nrows + 0.5), sharex=True, squeeze=False
+    )
+    years = np.array(share.index)
+    info = trend.set_index("group")
+    for ax, group in zip(axes.ravel(), groups, strict=False):
+        y = share[group].to_numpy() * 100
+        slope = info.loc[group, "sen_slope"] * 100
+        mid = np.median(np.arange(len(y)))
+        intercept = np.median(y - slope * np.arange(len(y)))
+        ax.plot(years, y, marker="o", ms=3, color=PALETTE["blue"], lw=1)
+        ax.plot(
+            years, intercept + slope * np.arange(len(y)), color=PALETTE["vermillion"], ls="--", lw=1
+        )
+        if partial is not None and group in partial.index:
+            ax.plot(
+                [years[-1], partial.name],
+                [y[-1], partial[group] * 100],
+                color=PALETTE["grey"],
+                ls=":",
+                lw=0.8,
+            )
+            ax.plot(
+                [partial.name],
+                [partial[group] * 100],
+                marker="o",
+                ms=3,
+                mfc="white",
+                color=PALETTE["grey"],
+            )
+        ax.set_title(
+            f"{_short(group, 40)}\nSen {slope:+.2f} pp/yr, p_BH={info.loc[group, 'p_bh']:.3f}",
+            fontsize=6.5,
+        )
+        ax.set_ylim(bottom=0)
+        ax.tick_params(labelsize=6)
+        _ = mid
+    for ax in axes.ravel()[len(groups) :]:
+        ax.set_visible(False)
+    for ax in axes[-1]:
+        ax.set_xlabel("Year the harm occurred")
+    for ax in axes[:, 0]:
+        ax.set_ylabel("Share (%)")
+    fig.suptitle(title, fontsize=8)
+    fig.tight_layout(rect=(0, 0.03, 1, 0.95))
+    return fig
+
+
+def plot_classification_matrix(
+    matrix: pd.DataFrame,
+    bases: list[str],
+    separator_after: int | None = None,
+    provisional: bool = False,
+) -> plt.Figure:
+    """Direction of every theme/domain under each basis (counts, shares, weighted shares, later window)."""
+    apply_style()
+    fig, ax = plt.subplots(figsize=(DOUBLE_COLUMN_IN, 0.24 * len(matrix) + 1.0))
+    for i, (_name, row) in enumerate(matrix.iterrows()):
+        for j, basis in enumerate(bases):
+            ax.scatter(
+                j, i, marker="s", s=170, color=_DIRECTION_COLOUR[row[basis]], edgecolor="white"
+            )
+            ax.text(
+                j,
+                i,
+                _ARROW[row[basis]],
+                ha="center",
+                va="center",
+                fontsize=6,
+                color="white" if row[basis] != "no trend" else "black",
+            )
+        if not row["agree"]:
+            ax.text(
+                len(bases) - 0.35,
+                i,
+                "measures disagree",
+                va="center",
+                fontsize=5.5,
+                color=PALETTE["vermillion"],
+            )
+        elif row.get("window_sensitive", False):
+            ax.text(
+                len(bases) - 0.35,
+                i,
+                "later window differs",
+                va="center",
+                fontsize=5.5,
+                color=PALETTE["grey"],
+            )
+    ax.set_xticks(range(len(bases)))
+    ax.set_xticklabels(bases, fontsize=6.5)
+    ax.set_yticks(range(len(matrix)))
+    ax.set_yticklabels([_short(str(n), 44) for n in matrix.index], fontsize=6)
+    ax.set_xlim(-0.5, len(bases) + 0.3)
+    ax.set_ylim(len(matrix) - 0.5, -0.5)
+    if separator_after is not None:
+        ax.axhline(separator_after - 0.5, color="black", lw=0.6)
+    ax.xaxis.tick_top()
+    ax.spines[["top", "right", "left", "bottom"]].set_visible(False)
+    ax.set_title(
+        ("PROVISIONAL theme names. " if provisional else "")
+        + "Trend direction by measure (\u25b2 increasing, \u25bc decreasing, \u25cf none; BH q = 0.05)",
+        fontsize=7,
+        pad=24,
+    )
+    fig.tight_layout(rect=(0, 0.02, 1, 1))
+    return fig
+
+
+def plot_forecast_mase(summary: pd.DataFrame, h_max: int) -> plt.Figure:
+    """Mean MASE of naive / ETS / ARIMA by horizon; the dashed line at 1 marks the in-sample naive benchmark."""
+    apply_style()
+    fig, ax = plt.subplots(figsize=(SINGLE_COLUMN_IN, 2.5))
+    cols = [
+        ("mean_mase_h1", "1 quarter"),
+        (f"mean_mase_h{h_max}", f"{h_max} quarters"),
+        ("mean_mase_all_horizons", f"1-{h_max} quarters"),
+    ]
+    width = 0.8 / len(cols)
+    colours = [PALETTE["sky"], PALETTE["orange"], PALETTE["blue"]]
+    for k, (col, label) in enumerate(cols):
+        ax.bar(
+            np.arange(len(summary)) + (k - 1) * width,
+            summary[col],
+            width=width,
+            label=label,
+            color=colours[k],
+        )
+    ax.axhline(1.0, color="black", ls="--", lw=0.8)
+    ax.set_xticks(range(len(summary)))
+    ax.set_xticklabels(summary["model"])
+    ax.set_ylabel("Mean MASE (lower is better)")
+    ax.set_title("Rolling-origin forecast error, quarterly counts")
+    ax.legend(frameon=False, fontsize=6, title="Horizon", title_fontsize=6)
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    return fig
+
+
+# --------------------------------------------------------------------------------------
 # Later phases (stubs)
 # --------------------------------------------------------------------------------------
 

@@ -1,0 +1,182 @@
+| series | model | h | mase | origins |
+|---|---|---|---|---|
+| total | arima | 1 | 2.52 | 17 |
+| total | arima | 2 | 4.16 | 17 |
+| total | arima | 3 | 4.13 | 17 |
+| total | arima | 4 | 4.54 | 17 |
+| total | ets | 1 | 2.69 | 17 |
+| total | ets | 2 | 3.83 | 17 |
+| total | ets | 3 | 3.84 | 17 |
+| total | ets | 4 | 4.47 | 17 |
+| total | naive | 1 | 2.61 | 17 |
+| total | naive | 2 | 3.87 | 17 |
+| total | naive | 3 | 3.98 | 17 |
+| total | naive | 4 | 4.4 | 17 |
+| total | arima | 0 | 3.84 | 17 |
+| total | ets | 0 | 3.71 | 17 |
+| total | naive | 0 | 3.71 | 17 |
+| T0: video / depict / circulate | arima | 1 | 4.47 | 17 |
+| T0: video / depict / circulate | arima | 2 | 6.59 | 17 |
+| T0: video / depict / circulate | arima | 3 | 6.74 | 17 |
+| T0: video / depict / circulate | arima | 4 | 9.25 | 17 |
+| T0: video / depict / circulate | ets | 1 | 5.27 | 17 |
+| T0: video / depict / circulate | ets | 2 | 4.79 | 17 |
+| T0: video / depict / circulate | ets | 3 | 7.17 | 17 |
+| T0: video / depict / circulate | ets | 4 | 9.08 | 17 |
+| T0: video / depict / circulate | naive | 1 | 4.76 | 17 |
+| T0: video / depict / circulate | naive | 2 | 6.56 | 17 |
+| T0: video / depict / circulate | naive | 3 | 6.73 | 17 |
+| T0: video / depict / circulate | naive | 4 | 8.89 | 17 |
+| T0: video / depict / circulate | arima | 0 | 6.77 | 17 |
+| T0: video / depict / circulate | ets | 0 | 6.58 | 17 |
+| T0: video / depict / circulate | naive | 0 | 6.74 | 17 |
+| T11: google / bias / image | arima | 1 | 1.29 | 17 |
+| T11: google / bias / image | arima | 2 | 1.45 | 17 |
+| T11: google / bias / image | arima | 3 | 1.33 | 17 |
+| T11: google / bias / image | arima | 4 | 1.44 | 17 |
+| T11: google / bias / image | ets | 1 | 1.34 | 17 |
+| T11: google / bias / image | ets | 2 | 1.51 | 17 |
+| T11: google / bias / image | ets | 3 | 1.39 | 17 |
+| T11: google / bias / image | ets | 4 | 1.47 | 17 |
+| T11: google / bias / image | naive | 1 | 1.3 | 17 |
+| T11: google / bias / image | naive | 2 | 1.49 | 17 |
+| T11: google / bias / image | naive | 3 | 1.39 | 17 |
+| T11: google / bias / image | naive | 4 | 1.75 | 17 |
+| T11: google / bias / image | arima | 0 | 1.38 | 17 |
+| T11: google / bias / image | ets | 0 | 1.42 | 17 |
+| T11: google / bias / image | naive | 0 | 1.48 | 17 |
+| T1: data / agent / openai | arima | 1 | 2.33 | 17 |
+| T1: data / agent / openai | arima | 2 | 2.98 | 17 |
+| T1: data / agent / openai | arima | 3 | 3.07 | 17 |
+| T1: data / agent / openai | arima | 4 | 3.25 | 17 |
+| T1: data / agent / openai | ets | 1 | 2.11 | 17 |
+| T1: data / agent / openai | ets | 2 | 3.05 | 17 |
+| T1: data / agent / openai | ets | 3 | 3.31 | 17 |
+| T1: data / agent / openai | ets | 4 | 3.69 | 17 |
+| T1: data / agent / openai | naive | 1 | 2.32 | 17 |
+| T1: data / agent / openai | naive | 2 | 3.38 | 17 |
+| T1: data / agent / openai | naive | 3 | 3.51 | 17 |
+| T1: data / agent / openai | naive | 4 | 3.25 | 17 |
+| T1: data / agent / openai | arima | 0 | 2.91 | 17 |
+| T1: data / agent / openai | ets | 0 | 3.04 | 17 |
+| T1: data / agent / openai | naive | 0 | 3.11 | 17 |
+| T2: court / citation / legal | arima | 1 | 2.9 | 17 |
+| T2: court / citation / legal | arima | 2 | 3.92 | 17 |
+| T2: court / citation / legal | arima | 3 | 4.09 | 17 |
+| T2: court / citation / legal | arima | 4 | 4.47 | 17 |
+| T2: court / citation / legal | ets | 1 | 2.62 | 17 |
+| T2: court / citation / legal | ets | 2 | 3.81 | 17 |
+| T2: court / citation / legal | ets | 3 | 4.03 | 17 |
+| T2: court / citation / legal | ets | 4 | 4.28 | 17 |
+| T2: court / citation / legal | naive | 1 | 2.44 | 17 |
+| T2: court / citation / legal | naive | 2 | 3.78 | 17 |
+| T2: court / citation / legal | naive | 3 | 4.35 | 17 |
+| T2: court / citation / legal | naive | 4 | 4.72 | 17 |
+| T2: court / citation / legal | arima | 0 | 3.84 | 17 |
+| T2: court / citation / legal | ets | 0 | 3.69 | 17 |
+| T2: court / citation / legal | naive | 0 | 3.82 | 17 |
+| T3: vehicle / autonomous / drive | arima | 1 | 1.98 | 17 |
+| T3: vehicle / autonomous / drive | arima | 2 | 1.93 | 17 |
+| T3: vehicle / autonomous / drive | arima | 3 | 1.84 | 17 |
+| T3: vehicle / autonomous / drive | arima | 4 | 1.6 | 17 |
+| T3: vehicle / autonomous / drive | ets | 1 | 1.75 | 17 |
+| T3: vehicle / autonomous / drive | ets | 2 | 1.84 | 17 |
+| T3: vehicle / autonomous / drive | ets | 3 | 1.67 | 17 |
+| T3: vehicle / autonomous / drive | ets | 4 | 1.78 | 17 |
+| T3: vehicle / autonomous / drive | naive | 1 | 1.88 | 17 |
+| T3: vehicle / autonomous / drive | naive | 2 | 2.33 | 17 |
+| T3: vehicle / autonomous / drive | naive | 3 | 1.74 | 17 |
+| T3: vehicle / autonomous / drive | naive | 4 | 2.37 | 17 |
+| T3: vehicle / autonomous / drive | arima | 0 | 1.84 | 17 |
+| T3: vehicle / autonomous / drive | ets | 0 | 1.76 | 17 |
+| T3: vehicle / autonomous / drive | naive | 0 | 2.08 | 17 |
+| T4: student / school / image | arima | 1 | 3.13 | 17 |
+| T4: student / school / image | arima | 2 | 4.21 | 17 |
+| T4: student / school / image | arima | 3 | 4.24 | 17 |
+| T4: student / school / image | arima | 4 | 4.83 | 17 |
+| T4: student / school / image | ets | 1 | 3.15 | 17 |
+| T4: student / school / image | ets | 2 | 4.19 | 17 |
+| T4: student / school / image | ets | 3 | 4.24 | 17 |
+| T4: student / school / image | ets | 4 | 4.91 | 17 |
+| T4: student / school / image | naive | 1 | 3.28 | 17 |
+| T4: student / school / image | naive | 2 | 4.56 | 17 |
+| T4: student / school / image | naive | 3 | 4.1 | 17 |
+| T4: student / school / image | naive | 4 | 4.07 | 17 |
+| T4: student / school / image | arima | 0 | 4.1 | 17 |
+| T4: student / school / image | ets | 0 | 4.12 | 17 |
+| T4: student / school / image | naive | 0 | 4 | 17 |
+| T5: facial / recognition / arrest | arima | 1 | 0.639 | 17 |
+| T5: facial / recognition / arrest | arima | 2 | 0.755 | 17 |
+| T5: facial / recognition / arrest | arima | 3 | 0.695 | 17 |
+| T5: facial / recognition / arrest | arima | 4 | 0.679 | 17 |
+| T5: facial / recognition / arrest | ets | 1 | 0.648 | 17 |
+| T5: facial / recognition / arrest | ets | 2 | 0.745 | 17 |
+| T5: facial / recognition / arrest | ets | 3 | 0.684 | 17 |
+| T5: facial / recognition / arrest | ets | 4 | 0.67 | 17 |
+| T5: facial / recognition / arrest | naive | 1 | 0.996 | 17 |
+| T5: facial / recognition / arrest | naive | 2 | 1.09 | 17 |
+| T5: facial / recognition / arrest | naive | 3 | 1.13 | 17 |
+| T5: facial / recognition / arrest | naive | 4 | 0.937 | 17 |
+| T5: facial / recognition / arrest | arima | 0 | 0.692 | 17 |
+| T5: facial / recognition / arrest | ets | 0 | 0.687 | 17 |
+| T5: facial / recognition / arrest | naive | 0 | 1.04 | 17 |
+| T6: election / campaign / disinformation | arima | 1 | 2.66 | 17 |
+| T6: election / campaign / disinformation | arima | 2 | 3.67 | 17 |
+| T6: election / campaign / disinformation | arima | 3 | 4.31 | 17 |
+| T6: election / campaign / disinformation | arima | 4 | 5.21 | 17 |
+| T6: election / campaign / disinformation | ets | 1 | 2.47 | 17 |
+| T6: election / campaign / disinformation | ets | 2 | 3.45 | 17 |
+| T6: election / campaign / disinformation | ets | 3 | 4.24 | 17 |
+| T6: election / campaign / disinformation | ets | 4 | 5.23 | 17 |
+| T6: election / campaign / disinformation | naive | 1 | 2.04 | 17 |
+| T6: election / campaign / disinformation | naive | 2 | 3.55 | 17 |
+| T6: election / campaign / disinformation | naive | 3 | 3.79 | 17 |
+| T6: election / campaign / disinformation | naive | 4 | 4.33 | 17 |
+| T6: election / campaign / disinformation | arima | 0 | 3.96 | 17 |
+| T6: election / campaign / disinformation | ets | 0 | 3.85 | 17 |
+| T6: election / campaign / disinformation | naive | 0 | 3.42 | 17 |
+| T7: scam / impersonate / deepfake | arima | 1 | 4.15 | 17 |
+| T7: scam / impersonate / deepfake | arima | 2 | 5.66 | 17 |
+| T7: scam / impersonate / deepfake | arima | 3 | 6.59 | 17 |
+| T7: scam / impersonate / deepfake | arima | 4 | 8.52 | 17 |
+| T7: scam / impersonate / deepfake | ets | 1 | 4.2 | 17 |
+| T7: scam / impersonate / deepfake | ets | 2 | 5.69 | 17 |
+| T7: scam / impersonate / deepfake | ets | 3 | 6.81 | 17 |
+| T7: scam / impersonate / deepfake | ets | 4 | 8.67 | 17 |
+| T7: scam / impersonate / deepfake | naive | 1 | 3.96 | 17 |
+| T7: scam / impersonate / deepfake | naive | 2 | 5.4 | 17 |
+| T7: scam / impersonate / deepfake | naive | 3 | 5.93 | 17 |
+| T7: scam / impersonate / deepfake | naive | 4 | 7.91 | 17 |
+| T7: scam / impersonate / deepfake | arima | 0 | 6.23 | 17 |
+| T7: scam / impersonate / deepfake | ets | 0 | 6.34 | 17 |
+| T7: scam / impersonate / deepfake | naive | 0 | 5.8 | 17 |
+| T8: content / facebook / moderation | arima | 1 | 1.7 | 17 |
+| T8: content / facebook / moderation | arima | 2 | 1.63 | 17 |
+| T8: content / facebook / moderation | arima | 3 | 1.83 | 17 |
+| T8: content / facebook / moderation | arima | 4 | 1.92 | 17 |
+| T8: content / facebook / moderation | ets | 1 | 1.58 | 17 |
+| T8: content / facebook / moderation | ets | 2 | 1.6 | 17 |
+| T8: content / facebook / moderation | ets | 3 | 1.81 | 17 |
+| T8: content / facebook / moderation | ets | 4 | 1.89 | 17 |
+| T8: content / facebook / moderation | naive | 1 | 2.45 | 17 |
+| T8: content / facebook / moderation | naive | 2 | 1.8 | 17 |
+| T8: content / facebook / moderation | naive | 3 | 2.47 | 17 |
+| T8: content / facebook / moderation | naive | 4 | 2.25 | 17 |
+| T8: content / facebook / moderation | arima | 0 | 1.77 | 17 |
+| T8: content / facebook / moderation | ets | 0 | 1.72 | 17 |
+| T8: content / facebook / moderation | naive | 0 | 2.24 | 17 |
+| T9: tesla / autopilot / crash | arima | 1 | 0.902 | 17 |
+| T9: tesla / autopilot / crash | arima | 2 | 0.986 | 17 |
+| T9: tesla / autopilot / crash | arima | 3 | 0.923 | 17 |
+| T9: tesla / autopilot / crash | arima | 4 | 1.1 | 17 |
+| T9: tesla / autopilot / crash | ets | 1 | 0.93 | 17 |
+| T9: tesla / autopilot / crash | ets | 2 | 1.01 | 17 |
+| T9: tesla / autopilot / crash | ets | 3 | 0.938 | 17 |
+| T9: tesla / autopilot / crash | ets | 4 | 1.11 | 17 |
+| T9: tesla / autopilot / crash | naive | 1 | 0.895 | 17 |
+| T9: tesla / autopilot / crash | naive | 2 | 0.791 | 17 |
+| T9: tesla / autopilot / crash | naive | 3 | 0.778 | 17 |
+| T9: tesla / autopilot / crash | naive | 4 | 0.943 | 17 |
+| T9: tesla / autopilot / crash | arima | 0 | 0.977 | 17 |
+| T9: tesla / autopilot / crash | ets | 0 | 0.999 | 17 |
+| T9: tesla / autopilot / crash | naive | 0 | 0.852 | 17 |

@@ -1,0 +1,29 @@
+group,n,trend,p,z,tau,sen_slope,slope_low,slope_high,p_hamed_rao,longrun_mean,recent_mean,p_bh,direction,recent_above_longrun,emerging,basis
+Malicious Actors & Misuse,11,increasing,0.0003,3.5811,0.8545,8.8571,2.0,29.0,0.0003,46.8182,196.0,0.0012,increasing,True,True,counts
+Misinformation,11,increasing,0.0003,3.603,0.8545,4.375,1.0,9.4286,0.0084,16.0909,58.5,0.0012,increasing,True,True,counts
+"AI system safety, failures, and limitations",11,increasing,0.0048,2.8197,0.6727,2.3333,1.0,4.0,0.0048,25.3636,34.5,0.0084,increasing,True,True,counts
+Discrimination and Toxicity,11,increasing,0.0122,2.5064,0.6,1.8,0.5,2.6667,0.0122,20.1818,27.5,0.0171,increasing,True,True,counts
+Privacy & Security,11,increasing,0.0036,2.913,0.6909,1.5556,0.6667,2.7143,0.0036,8.8182,20.5,0.0084,increasing,True,True,counts
+Human-Computer Interaction,11,increasing,0.031,2.1571,0.5091,0.7143,-0.0,1.6667,0.031,3.7273,11.0,0.0362,increasing,True,True,counts
+Socioeconomic & Environmental Harms,11,no trend,0.1167,1.5689,0.3636,0.1429,-0.0,0.3333,0.1167,1.6364,3.0,0.1167,no trend,True,False,counts
+Malicious Actors & Misuse,11,increasing,0.0018,3.114,0.7455,0.0495,0.0153,0.0794,0.0018,0.2112,0.5544,0.0065,increasing,True,True,share
+Misinformation,11,increasing,0.0014,3.2016,0.7636,0.0188,0.0084,0.0262,0.0014,0.0785,0.1678,0.0065,increasing,True,True,share
+Human-Computer Interaction,11,no trend,0.3061,1.0235,0.2545,0.0017,-0.0031,0.0079,0.3061,0.027,0.0288,0.3061,no trend,True,False,share
+Socioeconomic & Environmental Harms,11,decreasing,0.043,-2.0241,-0.4909,-0.0035,-0.0061,-0.0002,0.043,0.0213,0.0088,0.0601,no trend,False,False,share
+Privacy & Security,11,no trend,0.2758,-1.0899,-0.2727,-0.0067,-0.0159,0.0039,0.2758,0.089,0.0584,0.3061,no trend,False,False,share
+Discrimination and Toxicity,11,decreasing,0.0127,-2.4912,-0.6,-0.0325,-0.0418,-0.0089,0.0127,0.2531,0.0819,0.0223,decreasing,False,False,share
+"AI system safety, failures, and limitations",11,decreasing,0.0081,-2.6469,-0.6364,-0.0362,-0.0569,-0.015,0.0081,0.32,0.0999,0.019,decreasing,False,False,share
+Malicious Actors & Misuse,11,increasing,0.0011,3.2697,0.7818,0.0618,0.0409,0.0771,0.0011,0.2268,0.5604,0.0075,increasing,True,True,report-weighted share
+Misinformation,11,increasing,0.0063,2.733,0.6545,0.0177,0.0067,0.026,0.0063,0.0803,0.1377,0.0146,increasing,True,True,report-weighted share
+Privacy & Security,11,no trend,0.2758,1.0899,0.2727,0.0067,-0.0107,0.0107,0.2758,0.0773,0.0828,0.3861,no trend,True,False,report-weighted share
+Human-Computer Interaction,11,no trend,0.8133,0.2362,0.0727,0.0009,-0.0072,0.0071,0.8133,0.0399,0.0435,0.8133,no trend,True,False,report-weighted share
+Socioeconomic & Environmental Harms,11,no trend,0.5334,-0.6228,-0.1636,-0.001,-0.0051,0.0021,0.5334,0.0156,0.0151,0.6223,no trend,False,False,report-weighted share
+Discrimination and Toxicity,11,decreasing,0.0127,-2.4912,-0.6,-0.0276,-0.0618,-0.0091,0.0127,0.2349,0.0864,0.0223,decreasing,False,False,report-weighted share
+"AI system safety, failures, and limitations",11,decreasing,0.0031,-2.9583,-0.7091,-0.0446,-0.0792,-0.0307,0.0031,0.3252,0.0741,0.0108,decreasing,False,False,report-weighted share
+Malicious Actors & Misuse,8,increasing,0.0044,2.8455,0.8571,0.0797,0.0421,0.1292,0.0044,0.2608,0.5544,0.0219,increasing,True,True,"share, later window"
+Misinformation,8,increasing,0.0187,2.3506,0.7143,0.026,0.0101,0.0414,0.0006,0.0999,0.1678,0.0328,increasing,True,True,"share, later window"
+Human-Computer Interaction,8,no trend,0.7105,0.3712,0.1429,0.0016,-0.017,0.0099,0.7105,0.032,0.0288,0.7105,no trend,False,False,"share, later window"
+Socioeconomic & Environmental Harms,8,no trend,0.3865,-0.866,-0.2857,-0.0034,-0.0064,0.004,0.3865,0.0154,0.0088,0.4509,no trend,False,False,"share, later window"
+Privacy & Security,8,no trend,0.2655,-1.1135,-0.3571,-0.0078,-0.0163,0.0039,0.2655,0.0812,0.0584,0.3717,no trend,False,False,"share, later window"
+Discrimination and Toxicity,8,decreasing,0.0094,-2.5981,-0.7857,-0.0418,-0.0632,-0.0278,0.0094,0.2252,0.0819,0.0219,decreasing,False,False,"share, later window"
+"AI system safety, failures, and limitations",8,decreasing,0.0094,-2.5981,-0.7857,-0.0539,-0.0976,-0.0193,0.0094,0.2855,0.0999,0.0219,decreasing,False,False,"share, later window"

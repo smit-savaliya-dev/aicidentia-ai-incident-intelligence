@@ -1591,5 +1591,508 @@
     "value": "NMF",
     "source_file": "data/processed/incidents_clean.parquet",
     "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1b.decreasing_counts": {
+    "value": 0,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.decreasing_share": {
+    "value": 2,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.decreasing_wshare": {
+    "value": 2,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.domains_emerging": {
+    "value": [
+      "Malicious Actors & Misuse",
+      "Misinformation"
+    ],
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.domains_increasing_share": {
+    "value": 2,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.domains_share_trends": {
+    "value": [
+      {
+        "group": "Malicious Actors & Misuse",
+        "sen_slope": 0.04947154471544715,
+        "p": 0.001845721317696336,
+        "p_bh": 0.006460024611937176,
+        "direction": "increasing",
+        "emerging": true
+      },
+      {
+        "group": "Misinformation",
+        "sen_slope": 0.01878341129301704,
+        "p": 0.001366846006866096,
+        "p_bh": 0.006460024611937176,
+        "direction": "increasing",
+        "emerging": true
+      },
+      {
+        "group": "Human-Computer Interaction",
+        "sen_slope": 0.0017146315223238295,
+        "p": 0.3060787926225954,
+        "p_bh": 0.3060787926225954,
+        "direction": "no trend",
+        "emerging": false
+      },
+      {
+        "group": "Socioeconomic & Environmental Harms",
+        "sen_slope": -0.0034880771182141043,
+        "p": 0.04296014602842502,
+        "p_bh": 0.06014420443979502,
+        "direction": "no trend",
+        "emerging": false
+      },
+      {
+        "group": "Privacy & Security",
+        "sen_slope": -0.006749260355029586,
+        "p": 0.27575784782750934,
+        "p_bh": 0.3060787926225954,
+        "direction": "no trend",
+        "emerging": false
+      },
+      {
+        "group": "Discrimination and Toxicity",
+        "sen_slope": -0.03247916023464033,
+        "p": 0.012731364269923606,
+        "p_bh": 0.02227988747236631,
+        "direction": "decreasing",
+        "emerging": false
+      },
+      {
+        "group": "AI system safety, failures, and limitations",
+        "sen_slope": -0.036219512195121956,
+        "p": 0.008123423304273514,
+        "p_bh": 0.0189546543766382,
+        "direction": "decreasing",
+        "emerging": false
+      }
+    ],
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.emerging_themes": {
+    "value": [
+      "T0: video / depict / circulate",
+      "T2: court / citation / legal",
+      "T7: scam / impersonate / deepfake",
+      "T4: student / school / image",
+      "T6: election / campaign / disinformation"
+    ],
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.forecast_best_mase": {
+    "value": 3.1592345773053707,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.forecast_best_model": {
+    "value": "ets",
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.forecast_justified": {
+    "value": false,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.forecast_naive_mase": {
+    "value": 3.1921972549272994,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.forecast_series_scored": {
+    "value": 12,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.forecast_series_skipped": {
+    "value": [
+      "T10: plate / license / reader"
+    ],
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.forecast_summary": {
+    "value": [
+      {
+        "model": "ets",
+        "mean_mase_all_horizons": 3.1592345773053707,
+        "median_mase_all_horizons": 3.3630924135557,
+        "mean_mase_h1": 2.3960735977312395,
+        "mean_mase_h4": 3.936823488562956,
+        "series_where_best": 6,
+        "series_total": 12
+      },
+      {
+        "model": "arima",
+        "mean_mase_all_horizons": 3.1916886325600653,
+        "median_mase_all_horizons": 3.3730680755796714,
+        "mean_mase_h1": 2.389060947413914,
+        "mean_mase_h4": 3.9024960882872057,
+        "series_where_best": 2,
+        "series_total": 12
+      },
+      {
+        "model": "naive",
+        "mean_mase_all_horizons": 3.1921972549272994,
+        "median_mase_all_horizons": 3.2694659831932156,
+        "mean_mase_h1": 2.4091673554095405,
+        "mean_mase_h4": 3.8180468808132466,
+        "series_where_best": 4,
+        "series_total": 12
+      }
+    ],
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.increasing_counts": {
+    "value": 10,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.increasing_share": {
+    "value": 5,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.increasing_wshare": {
+    "value": 5,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.labels": {
+    "value": {
+      "n_topics": 12,
+      "n_answered": 0,
+      "n_themes": 12,
+      "provisional": true,
+      "merged_themes": {},
+      "model_key": "NMF k=12|269da2dc16"
+    },
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.late_window": {
+    "value": [
+      2018,
+      2025
+    ],
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.mean_reports_first_window_year": {
+    "value": 10.125,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.mean_reports_last_window_year": {
+    "value": 3.0345572354211665,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.n_domains_disagree": {
+    "value": 4,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.n_themes": {
+    "value": 12,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.n_themes_disagree": {
+    "value": 5,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.n_themes_tested": {
+    "value": 12,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.n_themes_window_sensitive": {
+    "value": 6,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.oecd_aim_files": {
+    "value": [],
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.partial_year": {
+    "value": 2026,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.partial_year_incidents": {
+    "value": 288,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.provisional": {
+    "value": true,
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.theme_classification": {
+    "value": [
+      {
+        "theme": "T1: data / agent / openai",
+        "counts": "increasing",
+        "share": "no trend",
+        "report-weighted share": "no trend",
+        "share, later window": "no trend",
+        "agree": false,
+        "window_sensitive": false
+      },
+      {
+        "theme": "T0: video / depict / circulate",
+        "counts": "increasing",
+        "share": "increasing",
+        "report-weighted share": "increasing",
+        "share, later window": "increasing",
+        "agree": true,
+        "window_sensitive": false
+      },
+      {
+        "theme": "T4: student / school / image",
+        "counts": "increasing",
+        "share": "increasing",
+        "report-weighted share": "increasing",
+        "share, later window": "no trend",
+        "agree": true,
+        "window_sensitive": true
+      },
+      {
+        "theme": "T2: court / citation / legal",
+        "counts": "increasing",
+        "share": "increasing",
+        "report-weighted share": "increasing",
+        "share, later window": "increasing",
+        "agree": true,
+        "window_sensitive": false
+      },
+      {
+        "theme": "T7: scam / impersonate / deepfake",
+        "counts": "increasing",
+        "share": "increasing",
+        "report-weighted share": "increasing",
+        "share, later window": "increasing",
+        "agree": true,
+        "window_sensitive": false
+      },
+      {
+        "theme": "T11: google / bias / image",
+        "counts": "increasing",
+        "share": "decreasing",
+        "report-weighted share": "decreasing",
+        "share, later window": "no trend",
+        "agree": false,
+        "window_sensitive": true
+      },
+      {
+        "theme": "T6: election / campaign / disinformation",
+        "counts": "increasing",
+        "share": "increasing",
+        "report-weighted share": "increasing",
+        "share, later window": "no trend",
+        "agree": true,
+        "window_sensitive": true
+      },
+      {
+        "theme": "T10: plate / license / reader",
+        "counts": "increasing",
+        "share": "no trend",
+        "report-weighted share": "no trend",
+        "share, later window": "no trend",
+        "agree": false,
+        "window_sensitive": false
+      },
+      {
+        "theme": "T8: content / facebook / moderation",
+        "counts": "increasing",
+        "share": "no trend",
+        "report-weighted share": "no trend",
+        "share, later window": "no trend",
+        "agree": false,
+        "window_sensitive": false
+      },
+      {
+        "theme": "T3: vehicle / autonomous / drive",
+        "counts": "increasing",
+        "share": "decreasing",
+        "report-weighted share": "decreasing",
+        "share, later window": "no trend",
+        "agree": false,
+        "window_sensitive": true
+      },
+      {
+        "theme": "T5: facial / recognition / arrest",
+        "counts": "no trend",
+        "share": "no trend",
+        "report-weighted share": "no trend",
+        "share, later window": "decreasing",
+        "agree": true,
+        "window_sensitive": true
+      },
+      {
+        "theme": "T9: tesla / autopilot / crash",
+        "counts": "no trend",
+        "share": "no trend",
+        "report-weighted share": "no trend",
+        "share, later window": "decreasing",
+        "agree": true,
+        "window_sensitive": true
+      }
+    ],
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.themes_share_trends": {
+    "value": [
+      {
+        "group": "T0: video / depict / circulate",
+        "sen_slope": 0.014623830093592513,
+        "p": 0.014662193685297531,
+        "p_bh": 0.029324387370595062,
+        "direction": "increasing",
+        "emerging": true
+      },
+      {
+        "group": "T2: court / citation / legal",
+        "sen_slope": 0.011075384065737763,
+        "p": 0.009970028375973383,
+        "p_bh": 0.02392806810233612,
+        "direction": "increasing",
+        "emerging": true
+      },
+      {
+        "group": "T7: scam / impersonate / deepfake",
+        "sen_slope": 0.010744810744810745,
+        "p": 0.003579808605350454,
+        "p_bh": 0.020277238226806382,
+        "direction": "increasing",
+        "emerging": true
+      },
+      {
+        "group": "T4: student / school / image",
+        "sen_slope": 0.01070336391437309,
+        "p": 0.003579808605350454,
+        "p_bh": 0.020277238226806382,
+        "direction": "increasing",
+        "emerging": true
+      },
+      {
+        "group": "T6: election / campaign / disinformation",
+        "sen_slope": 0.005893547792989136,
+        "p": 0.019517481182177665,
+        "p_bh": 0.033458539169447424,
+        "direction": "increasing",
+        "emerging": true
+      },
+      {
+        "group": "T1: data / agent / openai",
+        "sen_slope": 0.002277599142550907,
+        "p": 0.7554968749288828,
+        "p_bh": 0.7554968749288828,
+        "direction": "no trend",
+        "emerging": false
+      },
+      {
+        "group": "T10: plate / license / reader",
+        "sen_slope": 0.0015830185285123227,
+        "p": 0.3903649625488059,
+        "p_bh": 0.42585268641687923,
+        "direction": "no trend",
+        "emerging": false
+      },
+      {
+        "group": "T9: tesla / autopilot / crash",
+        "sen_slope": -0.007570672036995597,
+        "p": 0.11947098677170076,
+        "p_bh": 0.1433651841260409,
+        "direction": "no trend",
+        "emerging": false
+      },
+      {
+        "group": "T3: vehicle / autonomous / drive",
+        "sen_slope": -0.011466141532206835,
+        "p": 0.0050693095567015956,
+        "p_bh": 0.020277238226806382,
+        "direction": "decreasing",
+        "emerging": false
+      },
+      {
+        "group": "T5: facial / recognition / arrest",
+        "sen_slope": -0.01338267258258636,
+        "p": 0.06170669002831275,
+        "p_bh": 0.09256003504246912,
+        "direction": "no trend",
+        "emerging": false
+      },
+      {
+        "group": "T8: content / facebook / moderation",
+        "sen_slope": -0.016638080718248422,
+        "p": 0.0867681727038756,
+        "p_bh": 0.1156908969385008,
+        "direction": "no trend",
+        "emerging": false
+      },
+      {
+        "group": "T11: google / bias / image",
+        "sen_slope": -0.019787979500481865,
+        "p": 0.008123423304273514,
+        "p_bh": 0.02392806810233612,
+        "direction": "decreasing",
+        "emerging": false
+      }
+    ],
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.themes_window_sensitive": {
+    "value": [
+      "T4: student / school / image",
+      "T11: google / bias / image",
+      "T6: election / campaign / disinformation",
+      "T3: vehicle / autonomous / drive",
+      "T5: facial / recognition / arrest",
+      "T9: tesla / autopilot / crash"
+    ],
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.themes_with_disagreeing_bases": {
+    "value": [
+      "T1: data / agent / openai",
+      "T11: google / bias / image",
+      "T10: plate / license / reader",
+      "T8: content / facebook / moderation",
+      "T3: vehicle / autonomous / drive"
+    ],
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
+  },
+  "rq1b.window": {
+    "value": [
+      2015,
+      2025
+    ],
+    "source_file": "data/processed/incident_topics.parquet",
+    "function": "aicidentia.models.trend_outputs.run_trends"
   }
 }

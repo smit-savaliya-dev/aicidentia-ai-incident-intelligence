@@ -65,3 +65,15 @@ topics:
     min_samples: 3
     umap: {n_neighbors: 15, n_components: 5, min_dist: 0.0, metric: cosine}
     outlier_strategy: embeddings
+
+# Phase 4: trend tests and forecasting (RQ1b). The test window itself comes from the Phase 1 audit
+# (registry key audit.year_range_recommendation: complete years only, every year >= 20 incidents).
+trends:
+  alpha: 0.05                 # Benjamini-Hochberg false-discovery rate
+  recent_years: 2             # "recent" = mean share of the last two complete years
+  sensitivity_start: 2018     # second window: 2018 .. last complete year
+  forecast:
+    initial_quarters: 24      # first training window: 2015Q1-2020Q4
+    horizon: 4                # forecast 1-4 quarters ahead
+    min_mean_count: 1.0       # series with a mean below this per quarter are not scored (MASE unstable)
+    arima_orders: [[0, 1, 1], [1, 1, 0], [1, 1, 1], [2, 1, 1], [0, 1, 2], [1, 0, 0], [1, 0, 1], [2, 0, 0]]
