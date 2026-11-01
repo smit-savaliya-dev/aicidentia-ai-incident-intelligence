@@ -94,6 +94,7 @@ Put your 150 hand-labelled incidents in `data/manual/` (tracked in git). Optiona
 | Check the data | `uv run python scripts/check_data.py` |
 | Phase 1 data audit (tables, figures, `docs/data_audit.md`, `docs/datasheet.md`) | `uv run python scripts/run_phase1_audit.py` |
 | Phase 2 data preparation (parquet tables, review templates, `docs/data_preparation.md`) | `uv run python scripts/run_phase2_prepare.py` |
+| Phase 3 risk themes (LDA vs NMF vs BERTopic; slow only on the first run, then cached) | `uv run python scripts/run_phase3_topics.py` |
 | Open Jupyter | `uv run jupyter lab` |
 | Run the dashboard | `uv run streamlit run app/Home.py` |
 | Run the tests | `uv run pytest` |
@@ -109,6 +110,7 @@ Notebooks run in order (CRISP-DM): `01_data_audit` -> `02_cleaning_eda` -> `03_r
 |---|---|---|
 | `data/manual/entity_review.csv` | `is_private_individual` = yes/no for each person-like entity | re-run `run_phase2_prepare.py`; confirmed individuals are excluded from the network and dashboard |
 | `data/manual/duplicate_review.csv` | `decision` = merge_into_a / merge_into_b / keep_separate | re-run `run_phase2_prepare.py` |
+| `data/manual/topic_labels.csv` | `final_label` (and `notes`) for each topic of the chosen model | Phase 4 uses your labels; the file carries a `model_key` so answers are never applied to a different topic solution |
 | `config/entity_aliases.yaml` (`manual:` / `blocked:`) | extra aliases or vetoes | re-run `run_phase2_prepare.py` |
 | `config/entity_types.yaml` (`overrides:`) | corrections to the heuristic entity types | re-run `run_phase2_prepare.py` |
 
@@ -127,15 +129,16 @@ data/             raw (git-ignored), interim, processed, external, manual (track
 notebooks/        01-06, one per CRISP-DM stage / research question
 src/aicidentia/   installable package: data, features, models, evaluation, viz
 app/              Streamlit dashboard (Home.py + pages/)
-scripts/          check_data.py, run_phase1_audit.py, run_phase2_prepare.py, generate_environment_doc.py, export_requirements.py
+scripts/          check_data.py, run_phase1_audit.py, run_phase2_prepare.py, run_phase3_topics.py, generate_environment_doc.py, export_requirements.py
 models/           saved models (git-ignored)
 reports/          figures/ and tables/
-docs/             environment.md, project_log.md, data_manifest.md, data_audit.md, datasheet.md, data_preparation.md
+docs/             environment.md, project_log.md, data_manifest.md, data_audit.md, datasheet.md, data_preparation.md, rq1_topic_models.md
 tests/            smoke tests
 ```
 
 ## Notes
 
-- NLTK corpora (stopwords, WordNet, ...) and Hugging Face models are downloaded on first use, not during setup.
+- The NLTK WordNet corpus is downloaded on first use into `./nltk_data/` (git-ignored) and Hugging Face models into the Hugging Face cache; neither is part of setup.
+- Expensive steps (embeddings, topic-model fits) are cached in `data/interim/` under a hash of their inputs, so re-runs are fast; delete the folder to force a recompute.
 - BERTopic installs the `hdbscan` package as a hard dependency; our code uses scikit-learn's built-in
   `sklearn.cluster.HDBSCAN` and passes it to BERTopic.

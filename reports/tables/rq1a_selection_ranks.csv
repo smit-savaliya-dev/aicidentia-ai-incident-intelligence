@@ -1,0 +1,5 @@
+contender,label,rank_c_v,rank_c_npmi,rank_diversity,rank_stability,mean_rank
+NMF,NMF k=12,1.0,1.0,1.0,1.0,1.0
+BERTopic[mpnet],BERTopic[mpnet] mcs=40,2.0,2.0,2.0,2.0,2.0
+BERTopic[MiniLM],BERTopic[MiniLM] mcs=25,3.0,3.0,3.0,4.0,3.25
+LDA,LDA k=15,4.0,4.0,4.0,3.0,3.75

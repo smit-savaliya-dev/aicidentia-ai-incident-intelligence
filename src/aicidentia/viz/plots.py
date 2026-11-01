@@ -238,6 +238,110 @@ def plot_label_distributions(panels: list[tuple[str, pd.Series]]) -> plt.Figure:
 
 
 # --------------------------------------------------------------------------------------
+# Phase 3: topic-model comparison
+# --------------------------------------------------------------------------------------
+
+_FAMILY_COLOUR = {"LDA": PALETTE["blue"], "NMF": PALETTE["orange"]}
+
+
+def _contender_colour(contender: str, bertopic_index: dict[str, int]) -> str:
+    if contender in _FAMILY_COLOUR:
+        return _FAMILY_COLOUR[contender]
+    palette = [PALETTE["green"], PALETTE["vermillion"], PALETTE["purple"], PALETTE["sky"]]
+    return palette[bertopic_index.setdefault(contender, len(bertopic_index)) % len(palette)]
+
+
+def plot_coherence_by_config(summary: pd.DataFrame, eligible: tuple[int, int]) -> plt.Figure:
+    """C_v and NPMI against the number of topics for every configuration (mean +/- sd over seeds)."""
+    apply_style()
+    fig, axes = plt.subplots(1, 2, figsize=(DOUBLE_COLUMN_IN, 2.9), sharex=True)
+    seen: dict[str, int] = {}
+    for ax, (metric, title) in zip(
+        axes, (("c_v", "(a) C_v coherence"), ("c_npmi", "(b) NPMI coherence")), strict=True
+    ):
+        ax.axvspan(eligible[0], eligible[1], color=PALETTE["sky"], alpha=0.12, lw=0)
+        for contender, group in summary.groupby("contender", sort=False):
+            group = group.sort_values("n_topics_mean")
+            colour = _contender_colour(contender, seen)
+            ax.errorbar(
+                group["n_topics_mean"],
+                group[f"{metric}_mean"],
+                yerr=group[f"{metric}_sd"],
+                marker="o",
+                ms=3,
+                lw=1,
+                capsize=2,
+                color=colour,
+                label=contender,
+            )
+        ax.set_xlabel("Number of topics (mean over seeds)")
+        ax.set_ylabel(title[4:])
+        ax.set_title(title)
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(
+        handles,
+        labels,
+        loc="lower center",
+        ncol=len(labels),
+        frameon=False,
+        fontsize=7,
+        bbox_to_anchor=(0.5, 0.03),
+    )
+    fig.tight_layout(rect=(0, 0.1, 1, 1))
+    return fig
+
+
+def plot_best_model_comparison(best: pd.DataFrame, winner: str) -> plt.Figure:
+    """Four panels (C_v, NPMI, diversity, stability) comparing each contender's best configuration."""
+    apply_style()
+    fig, axes = plt.subplots(1, 4, figsize=(DOUBLE_COLUMN_IN, 2.5))
+    seen: dict[str, int] = {}
+    names = list(best["contender"])
+    colours = [_contender_colour(c, seen) for c in names]
+    spec = (
+        ("c_v_mean", "c_v_sd", "C_v"),
+        ("c_npmi_mean", "c_npmi_sd", "NPMI"),
+        ("diversity_mean", "diversity_sd", "Topic diversity"),
+        ("stability", None, "Seed stability"),
+    )
+    for ax, (mean, sd, title) in zip(axes, spec, strict=True):
+        err = best[sd] if sd else None
+        bars = ax.bar(range(len(best)), best[mean], yerr=err, color=colours, capsize=2)
+        for bar, name in zip(bars, names, strict=True):
+            if name == winner:
+                bar.set_edgecolor("black")
+                bar.set_linewidth(1.4)
+        ax.set_xticks(range(len(best)))
+        ax.set_xticklabels(
+            [n.replace("BERTopic", "BERT") for n in names], rotation=60, ha="right", fontsize=6
+        )
+        ax.set_title(title)
+    fig.suptitle(
+        "Best eligible configuration per contender (outlined = selected)", fontsize=8, y=1.0
+    )
+    fig.tight_layout(rect=(0, 0.04, 1, 0.97))
+    return fig
+
+
+def plot_topic_sizes(table: pd.DataFrame, title: str) -> plt.Figure:
+    """Incidents per topic of the chosen model, labelled with the first three terms."""
+    apply_style()
+    data = table.sort_values("n_incidents")
+    labels = [
+        f"T{t}: {lab}" for t, lab in zip(data["topic_id"], data["suggested_label"], strict=True)
+    ]
+    fig, ax = plt.subplots(figsize=(SINGLE_COLUMN_IN, max(2.4, 0.19 * len(data) + 0.8)))
+    ax.barh(labels, data["n_incidents"], color=PALETTE["blue"])
+    for i, count in enumerate(data["n_incidents"]):
+        ax.text(count + data["n_incidents"].max() * 0.01, i, str(count), va="center", fontsize=6)
+    ax.set_xlim(0, data["n_incidents"].max() * 1.15)
+    ax.set_xlabel("Incidents (count)")
+    ax.set_title(title)
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    return fig
+
+
+# --------------------------------------------------------------------------------------
 # Later phases (stubs)
 # --------------------------------------------------------------------------------------
 

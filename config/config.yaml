@@ -42,3 +42,26 @@ privacy:
   # true = also drop every person-like entity you have NOT explicitly cleared (is_private_individual = no)
   # from the network and dashboard. false = drop only those you confirmed as private individuals.
   exclude_unreviewed_individual_candidates: false
+
+# Phase 3: risk-theme models (LDA vs NMF vs BERTopic). All models share one tokenised corpus.
+topics:
+  n_seeds: 5                  # seeds base..base+4; stability and mean metrics use all of them
+  k_grid: [8, 10, 12, 15, 18, 20, 25]   # topic counts for LDA and NMF
+  eligible_topics: [8, 25]    # topic-count range considered interpretable when choosing a winner
+  top_n: 10                   # words per topic used for coherence, diversity and labelling
+  min_df: 3                   # keep tokens found in >= 3 incidents ...
+  max_df: 0.5                 # ... and in at most 50% of incidents
+  min_tokens: 3               # incidents with fewer tokens after filtering are flagged
+  domain_stopwords:           # hedging and boilerplate words that carry no theme
+    [ai, artificial, intelligence, system, systems, algorithm, algorithms, incident, incidents,
+     allegedly, alleged, reportedly, reported, purportedly, purported, reportedly, according, said,
+     also, one, two, new, use, used, using, based, may, could, would, around, including, include,
+     following, found, via, per, amid, led, reportedly, claimed, claim, claims, appeared, appear]
+  lda: {passes: 15, iterations: 200}
+  nmf: {max_iter: 600}
+  bertopic:
+    embedding_models: [sentence_embedding_small, sentence_embedding_large]   # keys of `models`
+    min_cluster_size: [15, 20, 25, 30, 40, 50]   # chosen from topic counts only: covers 8-40 topics
+    min_samples: 3
+    umap: {n_neighbors: 15, n_components: 5, min_dist: 0.0, metric: cosine}
+    outlier_strategy: embeddings

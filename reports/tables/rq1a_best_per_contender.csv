@@ -1,0 +1,5 @@
+label,family,contender,param,n_topics_mean,n_topics_sd,c_v_mean,c_v_sd,c_npmi_mean,c_npmi_sd,diversity_mean,diversity_sd,outlier_share_before_mean,outlier_share_before_sd,stability,eligible,within_score
+LDA k=15,LDA,LDA,15,15.0,0.0,0.5688,0.0314,0.0496,0.0165,0.7,0.0133,,,0.3256,True,3.0
+NMF k=12,NMF,NMF,12,12.0,0.0,0.7944,0.0036,0.2059,0.0071,0.9133,0.0126,,,0.6444,True,2.0
+BERTopic[MiniLM] mcs=25,BERTopic,BERTopic[MiniLM],25,10.2,8.0436,0.6588,0.0325,0.1309,0.042,0.8659,0.0791,0.0837,0.1078,0.2934,True,2.0
+BERTopic[mpnet] mcs=40,BERTopic,BERTopic[mpnet],40,10.0,6.5574,0.6966,0.023,0.149,0.023,0.8719,0.0783,0.1221,0.1101,0.374,True,3.0

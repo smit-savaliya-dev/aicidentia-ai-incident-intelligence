@@ -41,10 +41,15 @@ def resolve_path(key: str, cfg: dict[str, Any] | None = None) -> Path:
 
 
 def configure_logging(level: int = logging.INFO) -> None:
-    """Send package logs to stderr (call once from a script or notebook; the package never prints)."""
+    """Send package logs to stderr (call once from a script or notebook; the package never prints).
+
+    Chatty third-party loggers (gensim's per-batch INFO lines, BERTopic) are held at WARNING.
+    """
     logging.basicConfig(
         level=level, format="%(asctime)s %(levelname)s %(name)s: %(message)s", force=True
     )
+    for noisy in ("gensim", "BERTopic", "numba", "matplotlib", "urllib3", "httpx"):
+        logging.getLogger(noisy).setLevel(max(level, logging.WARNING))
 
 
 def set_seeds(seed: int | None = None) -> int:

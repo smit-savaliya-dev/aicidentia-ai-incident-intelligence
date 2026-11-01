@@ -1279,5 +1279,317 @@
     "value": 0,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
+  },
+  "rq1a.chosen.c_npmi_mean": {
+    "value": 0.20589428325326548,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.c_npmi_sd": {
+    "value": 0.007073530306605136,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.c_v_mean": {
+    "value": 0.7944064822776638,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.c_v_sd": {
+    "value": 0.0036105751550337783,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.diversity_mean": {
+    "value": 0.9133333333333333,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.diversity_sd": {
+    "value": 0.012638125740085899,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.dominant_weight_below_half_share": {
+    "value": 0.4315492957746479,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.dominant_weight_median": {
+    "value": 0.5482230089608251,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.largest_topic_share": {
+    "value": 0.1752112676056338,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.model_key": {
+    "value": "NMF k=12|269da2dc16",
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.n_topics": {
+    "value": 12,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.n_topics_mean": {
+    "value": 12.0,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.outlier_share_before_mean": {
+    "value": null,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.smallest_topic_n": {
+    "value": 48,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.stability": {
+    "value": 0.6444317378527905,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.chosen.topic_sizes": {
+    "value": [
+      {
+        "topic_id": 0,
+        "n_incidents": 216,
+        "suggested_label": "video / depict / circulate"
+      },
+      {
+        "topic_id": 1,
+        "n_incidents": 311,
+        "suggested_label": "data / agent / openai"
+      },
+      {
+        "topic_id": 2,
+        "n_incidents": 155,
+        "suggested_label": "court / citation / legal"
+      },
+      {
+        "topic_id": 3,
+        "n_incidents": 101,
+        "suggested_label": "vehicle / autonomous / drive"
+      },
+      {
+        "topic_id": 4,
+        "n_incidents": 153,
+        "suggested_label": "student / school / image"
+      },
+      {
+        "topic_id": 5,
+        "n_incidents": 97,
+        "suggested_label": "facial / recognition / arrest"
+      },
+      {
+        "topic_id": 6,
+        "n_incidents": 111,
+        "suggested_label": "election / campaign / disinformation"
+      },
+      {
+        "topic_id": 7,
+        "n_incidents": 209,
+        "suggested_label": "scam / impersonate / deepfake"
+      },
+      {
+        "topic_id": 8,
+        "n_incidents": 126,
+        "suggested_label": "content / facebook / moderation"
+      },
+      {
+        "topic_id": 9,
+        "n_incidents": 67,
+        "suggested_label": "tesla / autopilot / crash"
+      },
+      {
+        "topic_id": 10,
+        "n_incidents": 48,
+        "suggested_label": "plate / license / reader"
+      },
+      {
+        "topic_id": 11,
+        "n_incidents": 181,
+        "suggested_label": "google / bias / image"
+      }
+    ],
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.corpus.documents": {
+    "value": 1775,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.corpus.tokens_per_doc_mean": {
+    "value": 33.796056338028166,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.corpus.tokens_per_doc_min": {
+    "value": 6,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.corpus.vocabulary": {
+    "value": 2955,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.grid.eligible_topics": {
+    "value": [
+      8,
+      25
+    ],
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.grid.n_configs": {
+    "value": 26,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.grid.n_fits": {
+    "value": 130,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.grid.seeds": {
+    "value": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.manual.topic_labels_status": {
+    "value": "unchanged",
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.selection.best_per_contender": {
+    "value": [
+      {
+        "contender": "LDA",
+        "label": "LDA k=15",
+        "n_topics_mean": 15.0,
+        "c_v_mean": 0.5687890632390884,
+        "c_v_sd": 0.03135931960716539,
+        "c_npmi_mean": 0.04960190741738946,
+        "c_npmi_sd": 0.01652220629187028,
+        "diversity_mean": 0.7,
+        "diversity_sd": 0.013333333333333322,
+        "stability": 0.3256455567136681
+      },
+      {
+        "contender": "NMF",
+        "label": "NMF k=12",
+        "n_topics_mean": 12.0,
+        "c_v_mean": 0.7944064822776638,
+        "c_v_sd": 0.0036105751550337783,
+        "c_npmi_mean": 0.20589428325326548,
+        "c_npmi_sd": 0.007073530306605136,
+        "diversity_mean": 0.9133333333333333,
+        "diversity_sd": 0.012638125740085899,
+        "stability": 0.6444317378527905
+      },
+      {
+        "contender": "BERTopic[MiniLM]",
+        "label": "BERTopic[MiniLM] mcs=25",
+        "n_topics_mean": 10.2,
+        "c_v_mean": 0.6588257607044706,
+        "c_v_sd": 0.032470858416057805,
+        "c_npmi_mean": 0.13089087214067505,
+        "c_npmi_sd": 0.042046600592916636,
+        "diversity_mean": 0.8658947368421053,
+        "diversity_sd": 0.07905729189430943,
+        "stability": 0.2934467637987273
+      },
+      {
+        "contender": "BERTopic[mpnet]",
+        "label": "BERTopic[mpnet] mcs=40",
+        "n_topics_mean": 10.0,
+        "c_v_mean": 0.6965882604793563,
+        "c_v_sd": 0.023005260800385688,
+        "c_npmi_mean": 0.14896539604877987,
+        "c_npmi_sd": 0.022951470464615792,
+        "diversity_mean": 0.8718875242404653,
+        "diversity_sd": 0.0782883675721068,
+        "stability": 0.37398777692895335
+      }
+    ],
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.selection.ranks": {
+    "value": [
+      {
+        "contender": "NMF",
+        "label": "NMF k=12",
+        "rank_c_v": 1.0,
+        "rank_c_npmi": 1.0,
+        "rank_diversity": 1.0,
+        "rank_stability": 1.0,
+        "mean_rank": 1.0
+      },
+      {
+        "contender": "BERTopic[mpnet]",
+        "label": "BERTopic[mpnet] mcs=40",
+        "rank_c_v": 2.0,
+        "rank_c_npmi": 2.0,
+        "rank_diversity": 2.0,
+        "rank_stability": 2.0,
+        "mean_rank": 2.0
+      },
+      {
+        "contender": "BERTopic[MiniLM]",
+        "label": "BERTopic[MiniLM] mcs=25",
+        "rank_c_v": 3.0,
+        "rank_c_npmi": 3.0,
+        "rank_diversity": 3.0,
+        "rank_stability": 4.0,
+        "mean_rank": 3.25
+      },
+      {
+        "contender": "LDA",
+        "label": "LDA k=15",
+        "rank_c_v": 4.0,
+        "rank_c_npmi": 4.0,
+        "rank_diversity": 4.0,
+        "rank_stability": 3.0,
+        "mean_rank": 3.75
+      }
+    ],
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.selection.sensitivity": {
+    "value": {
+      "all four metrics (the rule)": "NMF",
+      "coherence only (C_v + NPMI)": "NMF",
+      "C_v only": "NMF",
+      "NPMI only": "NMF",
+      "without stability": "NMF"
+    },
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.selection.winner_config": {
+    "value": "NMF k=12",
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
+  },
+  "rq1a.selection.winner_contender": {
+    "value": "NMF",
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.topic_experiment.run_experiment"
   }
 }
