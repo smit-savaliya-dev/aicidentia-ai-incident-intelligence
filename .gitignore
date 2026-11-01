@@ -1,0 +1,42 @@
+# Environment
+.venv/
+.env
+.env.*
+!.env.example
+
+# Data (kept out of git; folders are preserved via .gitkeep). data/manual IS tracked.
+data/raw/*
+!data/raw/.gitkeep
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Saved models
+models/*
+!models/.gitkeep
+
+# Python / tooling caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.hypothesis/
+
+# Model / dataset caches
+.cache/
+.huggingface/
+nltk_data/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/

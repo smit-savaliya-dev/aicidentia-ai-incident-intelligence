@@ -1,0 +1,38 @@
+# AICIDENTIA project configuration. All paths are relative to the project root.
+project_name: AICIDENTIA
+dashboard_name: AICIDENTIA Intelligence
+tagline: "Discovering Patterns. Understanding AI Harm. Learning from Failure."
+full_title: "Learning from Failure: A Data-Driven Analysis of Reported Real-World AI Incidents"
+
+# Frozen data snapshot: set to the YYYYMMDD in AIID_Excel_Export-YYYYMMDD.xlsx once downloaded.
+snapshot_date: null
+
+random_seed: 42
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  external: data/external
+  manual: data/manual
+  models: models
+  figures: reports/figures
+  tables: reports/tables
+  manifest: docs/data_manifest.md
+
+files:
+  # Globs inside paths.raw; the date part is whatever you downloaded.
+  excel_export_glob: "AIID_Excel_Export-*.xlsx"
+  snapshot_glob: "backup-*.tar.bz2"
+  excel_sheets: [Incidents, Reports, Entities, Data Dictionary, Coverage Map]
+  hand_labels: hand_labels_150.csv # placed in paths.manual
+
+models:
+  sentence_embedding_small: sentence-transformers/all-MiniLM-L6-v2
+  sentence_embedding_large: sentence-transformers/all-mpnet-base-v2
+  transformer_classifier: distilbert-base-uncased
+
+# Inclusive year range for trend analysis (RQ1). Adjust after the data audit.
+year_range:
+  start: 1983
+  end: 2026

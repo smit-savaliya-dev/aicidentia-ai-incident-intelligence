@@ -1,0 +1,12 @@
+# Strip notebook outputs on commit (filter is activated by `uv run nbstripout --install`)
+*.ipynb filter=nbstripout
+*.ipynb diff=ipynb
+
+# Normalise line endings
+* text=auto
+*.ipynb text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+uv.lock text eol=lf

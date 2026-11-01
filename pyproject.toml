@@ -1,0 +1,101 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aicidentia"
+version = "0.1.0"
+description = "AICIDENTIA - Learning from Failure: A Data-Driven Analysis of Reported Real-World AI Incidents"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+# --- core -------------------------------------------------------------------
+dependencies = [
+    "pandas",
+    "numpy",
+    "pyarrow",
+    "openpyxl",
+    "pyyaml",
+    "tqdm",
+    "python-dotenv",
+]
+
+# Install everything with:  uv sync --all-extras
+[project.optional-dependencies]
+nlp_topics = [
+    "scikit-learn",
+    "gensim",
+    "bertopic",  # pulls in hdbscan transitively; our code uses sklearn.cluster.HDBSCAN
+    "sentence-transformers",
+    "umap-learn",
+    "nltk",
+    "rank-bm25",
+]
+deep_learning = [
+    "torch",  # CUDA build on Windows/Linux via [tool.uv.sources]; DistilBERT fine-tuning can also run on Colab
+    "transformers",
+    "datasets",
+    "accelerate",
+]
+graph = [
+    "networkx",
+    "python-igraph",
+    "leidenalg",
+    "pyvis",
+]
+stats_timeseries = [
+    "scipy",
+    "statsmodels",
+    "pymannkendall",
+]
+viz_app = [
+    "plotly",
+    "matplotlib",
+    "seaborn",
+    "streamlit",
+]
+
+[dependency-groups]
+dev = [
+    "jupyterlab",
+    "ipykernel",
+    "ruff",
+    "pytest",
+    "nbstripout",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aicidentia"]
+
+# --- uv ---------------------------------------------------------------------
+[tool.uv]
+default-groups = ["dev"]
+
+# torch: the PyPI wheel for Windows is CPU-only, so GPU users take the CUDA build from
+# the PyTorch index. macOS has no CUDA wheels and falls back to PyPI.
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu132", marker = "sys_platform == 'win32' or sys_platform == 'linux'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cu132"
+url = "https://download.pytorch.org/whl/cu132"
+explicit = true
+
+# --- tooling ----------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+extend-exclude = [".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "W"]
+ignore = ["E501"]  # long docstrings/strings; the formatter handles code wrapping
+
+[tool.ruff.lint.per-file-ignores]
+"notebooks/*.ipynb" = ["E402"]
+"app/*.py" = ["E402"]
+"app/pages/*.py" = ["E402"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]
