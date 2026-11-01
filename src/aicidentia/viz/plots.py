@@ -896,6 +896,144 @@ def plot_rank_bump(top: pd.DataFrame, min_years: int = 4, top_show: int = 8) -> 
 
 
 # --------------------------------------------------------------------------------------
+# Phase 6: classification
+# --------------------------------------------------------------------------------------
+
+
+def plot_classifier_comparison(
+    table: pd.DataFrame, baseline_name: str = "majority class"
+) -> plt.Figure:
+    """Macro-F1 with bootstrap 95% CI per model for cross-validation and the time split (table columns:
+    model, setting, macro_f1, ci_low, ci_high)."""
+    apply_style()
+    models = list(dict.fromkeys(table["model"]))
+    fig, ax = plt.subplots(figsize=(DOUBLE_COLUMN_IN, 0.42 * len(models) + 1.2))
+    offsets = {"cv": -0.17, "time": 0.17}
+    colours = {"cv": PALETTE["blue"], "time": PALETTE["orange"]}
+    labels = {"cv": "5-fold cross-validation", "time": "time split (train <= 2023, test >= 2024)"}
+    for setting in ("cv", "time"):
+        sub = table[table["setting"] == setting].set_index("model").reindex(models)
+        y = np.arange(len(models)) + offsets[setting]
+        ax.errorbar(
+            sub["macro_f1"],
+            y,
+            xerr=[sub["macro_f1"] - sub["ci_low"], sub["ci_high"] - sub["macro_f1"]],
+            fmt="o",
+            ms=4,
+            color=colours[setting],
+            capsize=2,
+            label=labels[setting],
+        )
+    ax.set_yticks(range(len(models)))
+    ax.set_yticklabels(models, fontsize=7)
+    ax.invert_yaxis()
+    ax.set_xlabel("Macro-F1 (point and bootstrap 95% CI)")
+    ax.set_xlim(0, max(0.8, float(table["ci_high"].max()) + 0.03))
+    ax.legend(frameon=False, fontsize=6, loc="upper right")
+    ax.set_title(
+        "Risk-domain classification: model comparison (MIT labels are machine-generated)",
+        fontsize=8,
+    )
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    _ = baseline_name
+    return fig
+
+
+def plot_confusion_heatmap(
+    cm: pd.DataFrame, title: str, xlabel: str = "Predicted (out-of-fold)", ylabel: str = "MIT label"
+) -> plt.Figure:
+    """Row-normalised confusion matrix (share of each true class predicted as each class)."""
+    apply_style()
+    fig, ax = plt.subplots(figsize=(SINGLE_COLUMN_IN + 1.6, 3.6))
+    image = ax.imshow(cm.to_numpy(), vmin=0, vmax=1, cmap="cividis")
+    short = [textwrap.shorten(c, 24, placeholder="...") for c in cm.columns]
+    ax.set_xticks(range(len(short)))
+    ax.set_xticklabels(short, rotation=50, ha="right", fontsize=6)
+    ax.set_yticks(range(len(short)))
+    ax.set_yticklabels(short, fontsize=6)
+    for i in range(cm.shape[0]):
+        for j in range(cm.shape[1]):
+            v = cm.iloc[i, j]
+            ax.text(
+                j,
+                i,
+                f"{v:.2f}",
+                ha="center",
+                va="center",
+                fontsize=5.5,
+                color="white" if v < 0.55 else "black",
+            )
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    cbar = fig.colorbar(image, ax=ax, fraction=0.046, pad=0.03)
+    cbar.ax.tick_params(labelsize=6)
+    ax.set_title(title, fontsize=7)
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    return fig
+
+
+def plot_per_class_f1(per_class: pd.DataFrame, support: dict[str, int]) -> plt.Figure:
+    """Grouped bars of per-class F1 (columns: model, class, f1), classes ordered by size."""
+    apply_style()
+    classes = sorted(support, key=support.get, reverse=True)
+    models = list(dict.fromkeys(per_class["model"]))
+    fig, ax = plt.subplots(figsize=(DOUBLE_COLUMN_IN, 3.0))
+    width = 0.8 / len(models)
+    for k, model in enumerate(models):
+        sub = per_class[per_class["model"] == model].set_index("class").reindex(classes)
+        ax.bar(
+            np.arange(len(classes)) + (k - (len(models) - 1) / 2) * width,
+            sub["f1"],
+            width=width,
+            label=model,
+            color=CATEGORICAL[k % len(CATEGORICAL)],
+        )
+    ax.set_xticks(range(len(classes)))
+    ax.set_xticklabels([f"{textwrap.fill(c, 18)}\n(n={support[c]})" for c in classes], fontsize=6)
+    ax.set_ylabel("F1 (cross-validation, out-of-fold)")
+    ax.set_ylim(0, 1)
+    ax.legend(frameon=False, fontsize=6, ncol=3, loc="upper right")
+    ax.set_title("Per-domain F1: the small domains are the hard ones", fontsize=8)
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    return fig
+
+
+def plot_reliability(panels: list[tuple[str, pd.DataFrame, float]], chosen: str) -> plt.Figure:
+    """Reliability diagrams (top-label confidence vs accuracy) for several calibration options.
+
+    `panels` = [(label, reliability table, ECE)]; `chosen` is the method name highlighted in the title.
+    """
+    apply_style()
+    fig, axes = plt.subplots(1, len(panels), figsize=(DOUBLE_COLUMN_IN, 2.7), sharey=True)
+    colours = [PALETTE["vermillion"], PALETTE["orange"], PALETTE["blue"]]
+    for ax, (label, table, ece), colour in zip(axes, panels, colours, strict=False):
+        valid = table[table["n"] > 0]
+        ax.plot([0, 1], [0, 1], color="black", ls="--", lw=0.8)
+        ax.plot(valid["confidence"], valid["accuracy"], marker="o", color=colour, lw=1)
+        for _, r in valid.iterrows():
+            ax.annotate(
+                str(int(r["n"])),
+                (r["confidence"], r["accuracy"]),
+                fontsize=5,
+                xytext=(0, 4),
+                textcoords="offset points",
+                ha="center",
+            )
+        ax.set_xlim(0, 1)
+        ax.set_ylim(0, 1)
+        ax.set_xlabel("Confidence of the predicted domain")
+        ax.set_title(f"{label}: ECE = {ece:.3f}", fontsize=7)
+    axes[0].set_ylabel("Accuracy in the bin (labels = bin size)")
+    fig.suptitle(
+        f"Reliability of the deployable model's confidence (selected: {chosen.replace('raw', 'uncalibrated')})",
+        fontsize=8,
+        y=1.0,
+    )
+    fig.tight_layout(rect=(0, 0.03, 1, 0.95))
+    return fig
+
+
+# --------------------------------------------------------------------------------------
 # Later phases (stubs)
 # --------------------------------------------------------------------------------------
 

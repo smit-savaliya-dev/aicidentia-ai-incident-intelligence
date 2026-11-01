@@ -1,0 +1,5 @@
+| cset_protected_characteristic | MIT: Discrimination and Toxicity | MIT: other domain |
+|---|---|---|
+| maybe | 0 | 4 |
+| no | 12 | 115 |
+| yes | 58 | 11 |

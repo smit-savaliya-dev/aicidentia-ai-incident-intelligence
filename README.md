@@ -97,6 +97,9 @@ Put your 150 hand-labelled incidents in `data/manual/` (tracked in git). Optiona
 | Phase 3 risk themes (LDA vs NMF vs BERTopic; slow only on the first run, then cached) | `uv run python scripts/run_phase3_topics.py` |
 | Phase 4 trends (Mann-Kendall, BH, reporting-bias sensitivity, forecasting evaluation; re-run after you label topics) | `uv run python scripts/run_phase4_trends.py` |
 | Phase 5 network (centrality, communities, temporal evolution, dashboard JSON) | `uv run python scripts/run_phase5_network.py` |
+| Phase 6 classification, calibration, blind audit sample | `uv run python scripts/run_phase6_classification.py` |
+| Annotate the audit sample (optional helper) | `uv run streamlit run scripts/label_audit_app.py` |
+| Analyse your annotations (kappa etc.) | `uv run python scripts/run_phase6_audit.py` |
 | Open Jupyter | `uv run jupyter lab` |
 | Run the dashboard | `uv run streamlit run app/Home.py` |
 | Run the tests | `uv run pytest` |
@@ -113,6 +116,8 @@ Notebooks run in order (CRISP-DM): `01_data_audit` -> `02_cleaning_eda` -> `03_r
 | `data/manual/entity_review.csv` | `is_private_individual` = yes/no for each person-like entity | re-run `run_phase2_prepare.py`; confirmed individuals are excluded from the network and dashboard |
 | `data/manual/duplicate_review.csv` | `decision` = merge_into_a / merge_into_b / keep_separate | re-run `run_phase2_prepare.py` |
 | `data/manual/topic_labels.csv` | `final_label` (and `notes`) for each topic of the chosen model | Phase 4 uses your labels (blank = PROVISIONAL placeholder names; **two topics with the same `final_label` are merged into one theme**); the file carries a `model_key` so answers are never applied to a different topic solution |
+| `data/manual/label_audit_sample.csv` | `my_label`, `my_confidence` (1-3), `notes` for 150 incidents (MIT label hidden; see `docs/label_guidelines.md`) | `run_phase6_audit.py` |
+| `reports/colab/rq3_distilbert_predictions.csv` (copy from Colab) | run `notebooks/colab_distilbert_finetune.ipynb` on Colab with `reports/colab/rq3_colab_input.csv` | re-run `run_phase6_classification.py` |
 | `config/entity_aliases.yaml` (`manual:` / `blocked:`) | extra aliases or vetoes | re-run `run_phase2_prepare.py` |
 | `config/entity_types.yaml` (`overrides:`) | corrections to the heuristic entity types | re-run `run_phase2_prepare.py` |
 
@@ -131,10 +136,10 @@ data/             raw (git-ignored), interim, processed, external, manual (track
 notebooks/        01-06, one per CRISP-DM stage / research question
 src/aicidentia/   installable package: data, features, models, evaluation, viz
 app/              Streamlit dashboard (Home.py + pages/)
-scripts/          check_data.py, run_phase1_audit.py, run_phase2_prepare.py, run_phase3_topics.py, run_phase4_trends.py, run_phase5_network.py, generate_environment_doc.py, export_requirements.py
+scripts/          check_data.py, run_phase1_audit.py, run_phase2_prepare.py, run_phase3_topics.py, run_phase4_trends.py, run_phase5_network.py, run_phase6_classification.py, run_phase6_audit.py, label_audit_app.py, colab_distilbert_code.py, generate_environment_doc.py, export_requirements.py
 models/           saved models (git-ignored)
 reports/          figures/ and tables/
-docs/             environment.md, project_log.md, data_manifest.md, data_audit.md, datasheet.md, data_preparation.md, rq1_topic_models.md, rq1_trends.md, rq2_network.md
+docs/             environment.md, project_log.md, data_manifest.md, data_audit.md, datasheet.md, data_preparation.md, rq1_topic_models.md, rq1_trends.md, rq2_network.md, rq3_classification.md, label_guidelines.md, rq3_label_audit.md
 tests/            smoke tests
 ```
 

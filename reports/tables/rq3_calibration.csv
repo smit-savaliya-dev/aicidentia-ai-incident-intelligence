@@ -1,0 +1,6 @@
+,raw,sigmoid,temperature
+ece,0.0499,0.1255,0.0204
+brier,0.3428,0.3366,0.3352
+accuracy,0.7627,0.7861,0.7627
+mean_confidence,0.7134,0.6634,0.7809
+macro_f1,0.6506,0.6685,0.6506

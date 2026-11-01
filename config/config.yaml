@@ -87,3 +87,9 @@ network:
   include_individual_candidates: false   # person-like entities stay out of the network
   top_n_table: 10
   export: {top_n: 150, max_edges: 900}   # dashboard JSON caps
+
+# Phase 6: risk-domain classification and the label audit (RQ3)
+classification:
+  n_boot: 1000                 # bootstrap resamples for confidence intervals and paired tests
+  report_words: 256            # ablation: words of the longest linked report appended to the text
+  audit: {total: 150, floor: 10}   # blind audit sample: 150 incidents, at least 10 per MIT domain
