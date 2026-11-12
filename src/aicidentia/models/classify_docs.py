@@ -69,7 +69,7 @@ def write_classification_doc(res: ClassificationResults, path: Path) -> None:
         f"- **Best cross-validated model: {best}**, macro-F1 {_ci(best_row)} (pooled out-of-fold, bootstrap 95% CI), accuracy {pct(best_row['accuracy'])}. "
         f"{BASELINE}: {_ci(base)}. The five local models span {spread.min():.3f} to {spread.max():.3f}; only {n_sig} of {len(sig_cv)} paired comparisons with {BASELINE} reach p < 0.05, so most differences between the real models are within noise.\n"
         + (
-            f"- **DistilBERT (Colab):** macro-F1 {_ci(cv.loc[DISTIL])}; see section 2 for how it compares.\n"
+            f"- **DistilBERT (fine-tuned on the local GPU; Colab notebook as alternative):** macro-F1 {_ci(cv.loc[DISTIL])}; see section 2 for how it compares.\n"
             if res.colab_present
             else "- **DistilBERT:** *not yet run.* `notebooks/colab_distilbert_finetune.ipynb` is ready (same folds and seeds); copy its output to `reports/colab/rq3_distilbert_predictions.csv` and re-run `scripts/run_phase6_classification.py`.\n"
         )
@@ -87,10 +87,10 @@ def write_classification_doc(res: ClassificationResults, path: Path) -> None:
     add("## 1. Method\n")
     add(
         f"- **Target and input.** MIT Risk Domain ({len(d.classes)} classes) as agreed in Phase 1 (docs/data_audit.md, D1); input = `text` (title + description).\n"
-        f"- **Splits.** Stratified 5-fold cross-validation with folds fixed once (seed {cfg['random_seed']}, saved in `reports/colab/rq3_colab_input.csv` so the Colab run uses identical folds), "
+        f"- **Splits.** Stratified 5-fold cross-validation with folds fixed once (seed {cfg['random_seed']}, saved in `reports/colab/rq3_colab_input.csv` so the DistilBERT run uses identical folds), "
         f"and a time split (train before 2024: {n(f['time_train'])}; test from 2024: {n(f['time_test'])}). The time-split test set contains only labelled incidents.\n"
-        "- **Models.** Majority class; TF-IDF (1-2-grams, min_df 2, sublinear) + logistic regression; TF-IDF + linear SVM; frozen sentence embeddings (all-MiniLM-L6-v2, all-mpnet-base-v2) + logistic regression; DistilBERT fine-tuned on Colab. "
-        '`class_weight="balanced"` everywhere it exists (the Colab model uses the equivalent class-weighted loss).\n'
+        "- **Models.** Majority class; TF-IDF (1-2-grams, min_df 2, sublinear) + logistic regression; TF-IDF + linear SVM; frozen sentence embeddings (all-MiniLM-L6-v2, all-mpnet-base-v2) + logistic regression; DistilBERT fine-tuned on the local GPU (same protocol as the Colab notebook). "
+        '`class_weight="balanced"` everywhere it exists (DistilBERT uses the equivalent class-weighted loss).\n'
         "- **Tuning without leakage.** The regularisation strength is chosen by an inner 3-fold CV (macro-F1) inside each training part, so no test fold influences any choice (nested CV). DistilBERT's hyperparameters were fixed in advance.\n"
         f"- **Metrics.** Macro-F1 is primary (the classes are very unequal), with weighted-F1, accuracy and per-class precision/recall/F1. Confidence intervals are percentile bootstrap (resampling incidents, {cfg['classification']['n_boot']} draws) of the pooled out-of-fold predictions. "
         "Paired comparisons use the paired bootstrap of the macro-F1 difference and the exact McNemar test on correctness.\n"
@@ -159,7 +159,7 @@ def write_classification_doc(res: ClassificationResults, path: Path) -> None:
         )
     else:
         add(
-            "**DistilBERT:** pending the Colab run; it will be scored in exactly this table with the same folds, and reported whether or not it beats the baseline.\n"
+            "**DistilBERT:** pending (run `scripts/train_distilbert_local.py` or the Colab notebook); it will be scored in exactly this table with the same folds, and reported whether or not it beats the baseline.\n"
         )
     add("### Per-domain results (out-of-fold)\n")
     pc = res.per_class[
@@ -264,13 +264,14 @@ def write_classification_doc(res: ClassificationResults, path: Path) -> None:
     add("### Highest-weight terms per domain (linear models fitted on all labelled incidents)\n")
     add(to_markdown(res.features[res.features["model"] == BASELINE][["domain", "top_terms"]]))
     add("")
-    add("## 6. Colab: fine-tuning DistilBERT\n")
+    add("## 6. Fine-tuning DistilBERT (local GPU; Colab as the documented alternative)\n")
     add(
-        "GPU training is delegated to `notebooks/colab_distilbert_finetune.ipynb` (code in `scripts/colab_distilbert_code.py`, smoke-tested locally on GPU). It reads `reports/colab/rq3_colab_input.csv` "
-        "(incident id, text, label, fold, time-split flag), trains one model per fold and one for the time split with a fixed protocol (4 epochs, lr 5e-5, batch 16, max length 128, class-weighted loss, seed 42 + fold), "
-        "and writes `rq3_distilbert_predictions.csv`. The loader checks that the incidents, labels and folds in that file match this repository exactly before scoring it.\n"
+        "`scripts/train_distilbert_local.py` runs the training code in `scripts/colab_distilbert_code.py` on the local NVIDIA GPU; `notebooks/colab_distilbert_finetune.ipynb` embeds the same file verbatim for Colab. "
+        "Both read `reports/colab/rq3_colab_input.csv` (incident id, text, label, fold, time-split flag), train one model per fold and one for the time split with a protocol fixed in advance "
+        "(4 epochs, lr 5e-5, batch 16, max length 128, class-weighted loss, seed 42 + fold), and write `reports/colab/rq3_distilbert_predictions.csv`. "
+        "The loader checks that the incidents, labels and folds in that file match this repository exactly before scoring it. Run details (GPU, versions, minutes) are in `reports/colab/rq3_distilbert_run.json`.\n"
     )
-    add("## 8. Limitations\n")
+    add("## 7. Limitations\n")
     add(
         "- **Machine-generated target.** High accuracy would mean the text predicts an automatic labeller, not that the labels are right; section 5 assesses the labels against independent signals.\n"
         "- **Small classes.** The smallest domain has 24 incidents; per-class results and the macro-F1 depend heavily on a handful of cases, and bootstrap CIs resample incidents, not model fits.\n"

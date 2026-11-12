@@ -19,7 +19,7 @@ from aicidentia.viz import plots, style
 logger = logging.getLogger(__name__)
 PRODUCER = "aicidentia.models.classify_outputs.run_classification"
 SOURCE = "data/processed/incidents_clean.parquet"
-DISTIL = "DistilBERT fine-tuned (Colab)"
+DISTIL = "DistilBERT fine-tuned"
 BASELINE = "TF-IDF + logistic regression"
 CALIBRATION_MARGIN = 0.005
 DUMMY = "majority class"

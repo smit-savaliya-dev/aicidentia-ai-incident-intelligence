@@ -1,0 +1,19 @@
+{
+  "where": "local GPU (scripts/train_distilbert_local.py)",
+  "device": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "torch": "2.15.0+cu132",
+  "cuda": "13.2",
+  "transformers": "5.22.1",
+  "python": "3.13.12",
+  "minutes": 7.8,
+  "protocol": {
+    "model": "distilbert-base-uncased",
+    "max_len": 128,
+    "epochs": 4,
+    "batch_size": 16,
+    "learning_rate": 5e-05,
+    "weight_decay": 0.01,
+    "warmup_fraction": 0.1,
+    "base_seed": 42
+  }
+}
