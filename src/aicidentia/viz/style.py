@@ -80,7 +80,8 @@ def save_figure(fig: plt.Figure, name: str, snapshot_date: str | int | None = No
         # re-running a phase only changes a figure when its content changes.
         metadata = {"Date": None} if ext == "svg" else {"Software": None}
         with plt.rc_context({"svg.hashsalt": f"aicidentia-{name}"}):
-            fig.savefig(path, bbox_inches="tight", pad_inches=0.05, metadata=metadata)
+            # No tight bounding box: the saved file keeps the exact IEEE width set by figsize (3.5 or 7.16 in).
+            fig.savefig(path, metadata=metadata)
         paths.append(path)
     logger.info("Saved figure %s", name)
     return paths

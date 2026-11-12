@@ -335,7 +335,7 @@ def plot_topic_sizes(table: pd.DataFrame, title: str) -> plt.Figure:
         ax.text(count + data["n_incidents"].max() * 0.01, i, str(count), va="center", fontsize=6)
     ax.set_xlim(0, data["n_incidents"].max() * 1.15)
     ax.set_xlabel("Incidents (count)")
-    ax.set_title(title)
+    ax.set_title(textwrap.fill(title, 46), fontsize=8)
     fig.tight_layout(rect=(0, 0.03, 1, 1))
     return fig
 
@@ -562,8 +562,16 @@ def plot_forecast_mase(summary: pd.DataFrame, h_max: int) -> plt.Figure:
     ax.set_xticks(range(len(summary)))
     ax.set_xticklabels(summary["model"])
     ax.set_ylabel("Mean MASE (lower is better)")
-    ax.set_title("Rolling-origin forecast error, quarterly counts")
-    ax.legend(frameon=False, fontsize=6, title="Horizon", title_fontsize=6)
+    ax.set_title("Rolling-origin forecast error, quarterly counts", fontsize=8)
+    ax.legend(
+        frameon=False,
+        fontsize=6,
+        title="Horizon",
+        title_fontsize=6,
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.14),
+        ncol=3,
+    )
     fig.tight_layout(rect=(0, 0.03, 1, 1))
     return fig
 
@@ -949,7 +957,7 @@ def plot_confusion_heatmap(
 ) -> plt.Figure:
     """Row-normalised confusion matrix (share of each true class predicted as each class)."""
     apply_style()
-    fig, ax = plt.subplots(figsize=(SINGLE_COLUMN_IN + 1.6, 3.6))
+    fig, ax = plt.subplots(figsize=(DOUBLE_COLUMN_IN, 3.9))
     image = ax.imshow(cm.to_numpy(), vmin=0, vmax=1, cmap="cividis")
     short = [textwrap.shorten(c, 24, placeholder="...") for c in cm.columns]
     ax.set_xticks(range(len(short)))
@@ -1239,7 +1247,7 @@ def plot_label_confusion(joint: pd.DataFrame, n: int) -> plt.Figure:
     counts = joint.to_numpy() * n
     off = counts.copy()
     np.fill_diagonal(off, np.nan)
-    fig, ax = plt.subplots(figsize=(SINGLE_COLUMN_IN + 1.6, 3.6))
+    fig, ax = plt.subplots(figsize=(DOUBLE_COLUMN_IN, 3.9))
     image = ax.imshow(off, cmap="Oranges", vmin=0)
     short = [short_domain(c) for c in joint.columns]
     ax.set_xticks(range(len(short)))
