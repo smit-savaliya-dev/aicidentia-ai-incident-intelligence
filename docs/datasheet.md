@@ -27,7 +27,8 @@ _Structure follows Gebru et al., "Datasheets for Datasets". Facts about this sna
 ## 4. Preprocessing, cleaning and labelling in AICIDENTIA
 
 - Raw files are never modified. Phase 2 produces `data/processed/*.parquet`: entity normalisation via `config/entity_aliases.yaml`, merged-duplicate resolution, stub-report removal, and an entity-type column. The cleaning steps are documented in `docs/data_audit.md` and tested.
-- Rule-based decisions on duplicates, person entities and topic names are recorded in `data/manual/` and `docs/decisions.md`.
+- Rule-based decisions on duplicates, person entities and topic names are recorded in `data/manual/` and `docs/decisions.md`: extra near-duplicates are merged only with the same deployer, dates within 7 days and text similarity >= 0.90 (D2); every named person, private or public, is excluded from entity tables, the network and the dashboard (D3); topic names were proposed from top terms and representative incidents and reviewed by the author (D4).
+- No hand annotation of risk domains: the reliability of the machine-generated MIT labels is assessed with independent signals already in AIID (CSETv1/GMF agreement, editor-linked incident pairs, confident learning; D1, D6-D8, `docs/rq3_classification.md`).
 
 ## 5. Uses
 

@@ -548,7 +548,12 @@ def write_datasheet(res: AuditResults, path: Path) -> None:
         "## 4. Preprocessing, cleaning and labelling in AICIDENTIA\n",
         "- Raw files are never modified. Phase 2 produces `data/processed/*.parquet`: entity normalisation via `config/entity_aliases.yaml`, merged-duplicate resolution, stub-report removal, "
         "and an entity-type column. The cleaning steps are documented in `docs/data_audit.md` and tested.\n"
-        "- Rule-based decisions on duplicates, person entities and topic names are recorded in `data/manual/` and `docs/decisions.md`.\n",
+        "- Rule-based decisions on duplicates, person entities and topic names are recorded in `data/manual/` and `docs/decisions.md`: "
+        "extra near-duplicates are merged only with the same deployer, dates within 7 days and text similarity >= 0.90 (D2); every named person, "
+        "private or public, is excluded from entity tables, the network and the dashboard (D3); topic names were proposed from top terms and "
+        "representative incidents and reviewed by the author (D4).\n"
+        "- No hand annotation of risk domains: the reliability of the machine-generated MIT labels is assessed with independent signals already "
+        "in AIID (CSETv1/GMF agreement, editor-linked incident pairs, confident learning; D1, D6-D8, `docs/rq3_classification.md`).\n",
         "## 5. Uses\n",
         "- **Intended in this project.** Topic modelling and trend analysis, network analysis, risk-domain classification and label-reliability assessment, similar-incident retrieval, a read-only dashboard.\n"
         "- **Out of scope / inappropriate.** Estimating the real-world frequency of AI harm; ranking organisations by culpability; individual-level inference about named people; "
