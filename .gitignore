@@ -52,7 +52,9 @@ nltk_data/
 htmlcov/
 coverage.xml
 
-# Logs and temporary files (e.g. the labelling app writes a .tmp before replacing the CSV)
+# Logs and temporary files (e.g. the labelling app writes a .tmp before replacing the CSV;
+# reports/refresh_summary.md is the local log of the last refresh)
+reports/refresh_summary.md
 *.log
 *.tmp
 *.bak

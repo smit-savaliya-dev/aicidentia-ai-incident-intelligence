@@ -163,7 +163,14 @@ def run_classification() -> ClassificationResults:
     for spec in [*SPECS, ABLATION]:
         res.oof[spec.name] = C.cross_validate(spec, data, seed=seed)
         res.time_pred[spec.name] = C.time_split_predict(spec, data, seed=seed)
-    colab = C.load_colab_predictions(data)
+    try:
+        colab = C.load_colab_predictions(data)
+        colab_problem = ""
+    except (
+        ValueError
+    ) as exc:  # e.g. folds changed after a duplicate merge: re-run the Colab notebook
+        colab, colab_problem = None, str(exc)
+        logger.warning("Colab predictions not used: %s", exc)
     res.colab_present = colab is not None
     if colab is not None:
         res.oof[DISTIL], res.time_pred[DISTIL] = colab
@@ -286,6 +293,25 @@ def run_classification() -> ClassificationResults:
     # ---- save the deployable model and predictions for every incident
     bundle = C.fit_final_model(spec, data, calibrate=None if chosen == "raw" else chosen, seed=seed)
     C.save_model(bundle)
+    # Fallback for the dashboard when the embedding model cannot be loaded: TF-IDF + LR, calibration chosen
+    # by the same rule on its own out-of-fold predictions.
+    base_spec = next(s_ for s_ in SPECS if s_.name == BASELINE)
+    base_oof = {
+        "raw": res.oof[BASELINE],
+        "temperature": C.cross_validate(base_spec, data, calibrate="temperature", seed=seed),
+    }
+    base_ece = {
+        m: M.expected_calibration_error(y, f_[cols].to_numpy()) for m, f_ in base_oof.items()
+    }
+    fallback_cal = min(
+        base_ece, key=lambda m: base_ece[m] + (0.0 if m == "raw" else CALIBRATION_MARGIN)
+    )
+    C.save_model(
+        C.fit_final_model(
+            base_spec, data, calibrate=None if fallback_cal == "raw" else fallback_cal, seed=seed
+        ),
+        C.FALLBACK_MODEL_PATH,
+    )
     inc = clean.load_processed("incidents_clean")
     final = C.predict_domains(bundle, inc["text"].tolist()).assign(
         incident_id=inc["incident_id"].to_numpy(), source="final_model"
@@ -356,6 +382,13 @@ def run_classification() -> ClassificationResults:
         "audit_allocation": alloc,
         "audit_progress": res.audit["progress"],
         "model_path": str(C.MODEL_PATH.relative_to(PROJECT_ROOT).as_posix()),
+        "fallback_model": BASELINE,
+        "fallback_calibration": fallback_cal,
+        "fallback_ece": base_ece,
+        "fallback_macro_f1": float(
+            res.metrics.query("setting == 'cv'").set_index("model").loc[BASELINE, "macro_f1"]
+        ),
+        "colab_problem": colab_problem,
     }
     return res
 

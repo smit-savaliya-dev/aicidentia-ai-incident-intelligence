@@ -76,7 +76,11 @@ def save_figure(fig: plt.Figure, name: str, snapshot_date: str | int | None = No
     paths = []
     for ext in ("png", "svg"):
         path = out_dir / f"{name}.{ext}"
-        fig.savefig(path, bbox_inches="tight", pad_inches=0.05)
+        # Reproducible files: no save date in the metadata, and fixed SVG element ids (svg.hashsalt), so
+        # re-running a phase only changes a figure when its content changes.
+        metadata = {"Date": None} if ext == "svg" else {"Software": None}
+        with plt.rc_context({"svg.hashsalt": f"aicidentia-{name}"}):
+            fig.savefig(path, bbox_inches="tight", pad_inches=0.05, metadata=metadata)
         paths.append(path)
     logger.info("Saved figure %s", name)
     return paths

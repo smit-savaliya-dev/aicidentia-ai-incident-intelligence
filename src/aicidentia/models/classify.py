@@ -38,6 +38,9 @@ logger = logging.getLogger(__name__)
 TEST_FROM_YEAR = 2024
 N_FOLDS = 5
 MODEL_PATH = PROJECT_ROOT / "models" / "rq3_domain_classifier.joblib"
+FALLBACK_MODEL_PATH = (
+    PROJECT_ROOT / "models" / "rq3_domain_classifier_fallback.joblib"
+)  # TF-IDF + LR, no download
 COLAB_PREDICTIONS = PROJECT_ROOT / "reports" / "colab" / "rq3_distilbert_predictions.csv"
 
 
@@ -514,11 +517,19 @@ def save_model(bundle: dict[str, Any], path: Path = MODEL_PATH) -> Path:
     return path
 
 
-def predict_domains(bundle: dict[str, Any], texts: list[str]) -> pd.DataFrame:
-    """Predicted domain, calibrated confidence and the full probability vector for each text."""
+def predict_domains(
+    bundle: dict[str, Any], texts: list[str], use_cache: bool = True, local_files_only: bool = False
+) -> pd.DataFrame:
+    """Predicted domain, calibrated confidence and the full probability vector for each text.
+
+    `use_cache=False` and `local_files_only=True` are used by the dashboard (no disk cache per query,
+    never download the embedding model).
+    """
     x: Any = np.array(texts, dtype=object)
     if bundle["embedding_model"]:
-        x = embed_sentences(texts, bundle["embedding_model"])
+        x = embed_sentences(
+            texts, bundle["embedding_model"], use_cache=use_cache, local_files_only=local_files_only
+        )
     proba = bundle["model"].predict_proba(x)
     classes = bundle["classes"]
     best = proba.argmax(axis=1)

@@ -2142,7 +2142,7 @@
         "community": 2,
         "entities": 193,
         "incidents": 277,
-        "organisations": "Law enforcement; Amazon; Flock Safety; Clearview AI",
+        "organisations": "Law enforcement; Amazon; Flock Safety; Uber",
         "ai_systems": "AI-enabled decision support systems; Enterprise AI systems; Facial recognition systems; Surveillance technology",
         "harmed_groups": "Biometric data subjects; Minority groups; General public of the United States; Patients",
         "top_domain": "AI system safety, failures, and limitations",
@@ -2168,7 +2168,7 @@
         "community": 4,
         "entities": 58,
         "incidents": 101,
-        "organisations": "Tesla; Waymo; Cruise; Zoox",
+        "organisations": "Tesla; Waymo; Cruise; Baidu",
         "ai_systems": "Automated driving systems; Automated driving system deployers; Waymo's autonomous driving system; Robotaxi systems",
         "harmed_groups": "Road users; Tesla drivers; Drivers; Pedestrians",
         "top_domain": "AI system safety, failures, and limitations",
@@ -2181,12 +2181,12 @@
         "community": 5,
         "entities": 25,
         "incidents": 15,
-        "organisations": "Stability AI; LAION; EleutherAI; Runway",
-        "ai_systems": "Spotify; Music streaming services; Stable Diffusion",
-        "harmed_groups": "Musicians; Universal Music Group; artists; Songwriters",
-        "top_domain": "Discrimination and Toxicity",
-        "top_domain_share": 0.38461538461538464,
-        "domains": "Discrimination and Toxicity (38%); Malicious Actors & Misuse (23%); Privacy & Security (23%)",
+        "organisations": "Stability AI; LAION; EleutherAI; CompVis LMU",
+        "ai_systems": "Spotify; Stable Diffusion; Music streaming services",
+        "harmed_groups": "Musicians; artists; Universal Music Group; Songwriters",
+        "top_domain": "",
+        "top_domain_share": null,
+        "domains": "(not shown: fewer than 20 incidents)",
         "sectors_n": 2,
         "sectors": "information and communication (1); Arts, entertainment and recreation (1)"
       },
@@ -2194,12 +2194,12 @@
         "community": 6,
         "entities": 14,
         "incidents": 2,
-        "organisations": "Government of North Korea; Reconnaissance General Bureau; Internal Revenue Service; Lazarus Group",
+        "organisations": "Government of North Korea; Internal Revenue Service; Reconnaissance General Bureau; Lazarus Group",
         "ai_systems": "Zoom; Cryptocurrency platforms; Document verification systems; Cryptocurrency wallets",
-        "harmed_groups": "Targets of fraudulent professional opportunities; Employers; Web3; IRS",
-        "top_domain": "Discrimination and Toxicity",
-        "top_domain_share": 0.5,
-        "domains": "Discrimination and Toxicity (50%); Malicious Actors & Misuse (50%)",
+        "harmed_groups": "Targets of fraudulent professional opportunities; Employers; Web3; macOS users",
+        "top_domain": "",
+        "top_domain_share": null,
+        "domains": "(not shown: fewer than 20 incidents)",
         "sectors_n": 2,
         "sectors": "public administration (1); financial and insurance activities (1)"
       },
@@ -2208,11 +2208,11 @@
         "entities": 4,
         "incidents": 2,
         "organisations": "Nomi AI",
-        "ai_systems": "Nomi chatbots; Nomi",
+        "ai_systems": "Nomi; Nomi chatbots",
         "harmed_groups": "Nomi users",
-        "top_domain": "Discrimination and Toxicity",
-        "top_domain_share": 1.0,
-        "domains": "Discrimination and Toxicity (100%)",
+        "top_domain": "",
+        "top_domain_share": null,
+        "domains": "(not shown: fewer than 20 incidents)",
         "sectors_n": 0,
         "sectors": ""
       },
@@ -2223,9 +2223,9 @@
         "organisations": "Raytheon",
         "ai_systems": "",
         "harmed_groups": "",
-        "top_domain": "AI system safety, failures, and limitations",
-        "top_domain_share": 1.0,
-        "domains": "AI system safety, failures, and limitations (100%)",
+        "top_domain": "",
+        "top_domain_share": null,
+        "domains": "(not shown: fewer than 20 incidents)",
         "sectors_n": 0,
         "sectors": ""
       },
@@ -2236,9 +2236,9 @@
         "organisations": "",
         "ai_systems": "Starship Technologies",
         "harmed_groups": "",
-        "top_domain": "AI system safety, failures, and limitations",
-        "top_domain_share": 1.0,
-        "domains": "AI system safety, failures, and limitations (100%)",
+        "top_domain": "",
+        "top_domain_share": null,
+        "domains": "(not shown: fewer than 20 incidents)",
         "sectors_n": 2,
         "sectors": "accommodation and food service activities (1); transportation and storage (1)"
       },
@@ -2249,9 +2249,9 @@
         "organisations": "UserWay",
         "ai_systems": "",
         "harmed_groups": "",
-        "top_domain": "Malicious Actors & Misuse",
-        "top_domain_share": 0.5,
-        "domains": "Malicious Actors & Misuse (50%); AI system safety, failures, and limitations (50%)",
+        "top_domain": "",
+        "top_domain_share": null,
+        "domains": "(not shown: fewer than 20 incidents)",
         "sectors_n": 1,
         "sectors": "information and communication (1)"
       }
@@ -2307,7 +2307,7 @@
     "value": {
       "nodes": 128,
       "edges": 900,
-      "bytes": 345556
+      "bytes": 345393
     },
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
@@ -2671,7 +2671,7 @@
         "weighted_degree": 0.8257575231399088,
         "betweenness": 0.4288668780461298,
         "pagerank": 0.6661911877166408,
-        "eigenvector": 0.5999839164088665,
+        "eigenvector": 0.599981537879961,
         "n_incidents": 0.5627438172397491
       },
       {
@@ -2680,7 +2680,7 @@
         "weighted_degree": 1.0,
         "betweenness": 0.44727041154775077,
         "pagerank": 0.7701467805243426,
-        "eigenvector": 0.5892835192504347,
+        "eigenvector": 0.5892811831413396,
         "n_incidents": 0.6456246177377105
       },
       {
@@ -2689,7 +2689,7 @@
         "weighted_degree": 0.4472704115477508,
         "betweenness": 1.0,
         "pagerank": 0.513712696640348,
-        "eigenvector": 0.2752186666210635,
+        "eigenvector": 0.27521757556589355,
         "n_incidents": 0.5486148386278187
       },
       {
@@ -2698,17 +2698,17 @@
         "weighted_degree": 0.7701467805243426,
         "betweenness": 0.513712696640348,
         "pagerank": 1.0,
-        "eigenvector": 0.3830473979312009,
+        "eigenvector": 0.38302010723400093,
         "n_incidents": 0.6633531830709096
       },
       {
         "measure": "eigenvector",
-        "degree": 0.5999839164088665,
-        "weighted_degree": 0.5892835192504347,
-        "betweenness": 0.2752186666210635,
-        "pagerank": 0.3830473979312009,
+        "degree": 0.599981537879961,
+        "weighted_degree": 0.5892811831413396,
+        "betweenness": 0.2752175755658936,
+        "pagerank": 0.3830201072340009,
         "eigenvector": 1.0,
-        "n_incidents": 0.4521005336205824
+        "n_incidents": 0.4521078013531286
       },
       {
         "measure": "n_incidents",
@@ -2716,7 +2716,7 @@
         "weighted_degree": 0.6456246177377105,
         "betweenness": 0.5486148386278186,
         "pagerank": 0.6633531830709097,
-        "eigenvector": 0.4521005336205824,
+        "eigenvector": 0.45210780135312856,
         "n_incidents": 1.0
       }
     ],
@@ -2724,7 +2724,7 @@
     "function": "aicidentia.models.network_outputs.run_network"
   },
   "rq2.tau_min_between_measures": {
-    "value": 0.2752186666210635,
+    "value": 0.27521757556589355,
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },
@@ -2882,6 +2882,11 @@
     "source_file": "data/processed/incidents_clean.parquet",
     "function": "aicidentia.models.classify_outputs.run_classification"
   },
+  "rq3.colab_problem": {
+    "value": "",
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.classify_outputs.run_classification"
+  },
   "rq3.deployable": {
     "value": "mpnet embeddings + logistic regression",
     "source_file": "data/processed/incidents_clean.parquet",
@@ -2908,6 +2913,29 @@
   },
   "rq3.ece_raw": {
     "value": 0.04989572644313386,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.classify_outputs.run_classification"
+  },
+  "rq3.fallback_calibration": {
+    "value": "temperature",
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.classify_outputs.run_classification"
+  },
+  "rq3.fallback_ece": {
+    "value": {
+      "raw": 0.32880814730197155,
+      "temperature": 0.03258757325460736
+    },
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.classify_outputs.run_classification"
+  },
+  "rq3.fallback_macro_f1": {
+    "value": 0.6137512953891361,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.classify_outputs.run_classification"
+  },
+  "rq3.fallback_model": {
+    "value": "TF-IDF + logistic regression",
     "source_file": "data/processed/incidents_clean.parquet",
     "function": "aicidentia.models.classify_outputs.run_classification"
   },

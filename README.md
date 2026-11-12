@@ -38,6 +38,7 @@ Prerequisites: [uv](https://docs.astral.sh/uv/) and git.
 ```bash
 # 1. Create .venv, install Python 3.13.12 (if needed) and every dependency from uv.lock
 uv sync --all-extras
+cp .env.example .env   # optional: set HF_HOME to keep models off a small system drive
 
 # 2. Strip notebook outputs on commit (once per clone)
 uv run nbstripout --install
@@ -101,8 +102,10 @@ Put your 150 hand-labelled incidents in `data/manual/` (tracked in git). Optiona
 | Annotate the audit sample (optional helper) | `uv run streamlit run scripts/label_audit_app.py` |
 | Analyse your annotations (kappa etc.) | `uv run python scripts/run_phase6_audit.py` |
 | Phase 7 similar-incident retrieval (RQ4) | `uv run python scripts/run_phase7_retrieval.py` |
+| **Refresh everything after editing your manual files** (Phases 2-7 + dashboard check) | `uv run python scripts/refresh_all.py` |
+| Status of your manual files only | `uv run python scripts/refresh_all.py --check` |
 | Open Jupyter | `uv run jupyter lab` |
-| Run the dashboard | `uv run streamlit run app/Home.py` |
+| Run the dashboard (offline; see `docs/dashboard.md`) | `uv run streamlit run app/Home.py` |
 | Run the tests | `uv run pytest` |
 | Lint / format | `uv run ruff check .` / `uv run ruff format .` |
 | Re-export requirements.txt | `uv run python scripts/export_requirements.py` |
@@ -137,10 +140,10 @@ data/             raw (git-ignored), interim, processed, external, manual (track
 notebooks/        01-06, one per CRISP-DM stage / research question
 src/aicidentia/   installable package: data, features, models, evaluation, viz
 app/              Streamlit dashboard (Home.py + pages/)
-scripts/          check_data.py, run_phase1_audit.py, run_phase2_prepare.py, run_phase3_topics.py, run_phase4_trends.py, run_phase5_network.py, run_phase6_classification.py, run_phase6_audit.py, label_audit_app.py, colab_distilbert_code.py, run_phase7_retrieval.py, generate_environment_doc.py, export_requirements.py
+scripts/          check_data.py, run_phase1_audit.py, run_phase2_prepare.py, run_phase3_topics.py, run_phase4_trends.py, run_phase5_network.py, run_phase6_classification.py, run_phase6_audit.py, label_audit_app.py, colab_distilbert_code.py, run_phase7_retrieval.py, refresh_all.py, generate_environment_doc.py, export_requirements.py
 models/           saved models (git-ignored)
 reports/          figures/ and tables/
-docs/             environment.md, project_log.md, data_manifest.md, data_audit.md, datasheet.md, data_preparation.md, rq1_topic_models.md, rq1_trends.md, rq2_network.md, rq3_classification.md, label_guidelines.md, rq3_label_audit.md, rq4_similarity.md
+docs/             environment.md, project_log.md, data_manifest.md, data_audit.md, datasheet.md, data_preparation.md, rq1_topic_models.md, rq1_trends.md, rq2_network.md, rq3_classification.md, label_guidelines.md, rq3_label_audit.md, rq4_similarity.md, dashboard.md
 tests/            smoke tests
 ```
 

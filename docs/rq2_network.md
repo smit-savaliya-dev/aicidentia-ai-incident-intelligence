@@ -191,21 +191,21 @@ Weight = incidents in which the organisation is an alleged deployer or developer
 
 ### Community profiles (most representative run, seed 43)
 
-Incidents are assigned to the community that holds most of their entities. Domains and sectors describe those incidents; they were not used to form the communities.
+Incidents are assigned to the community that holds most of their entities. Domains and sectors describe those incidents; they were not used to form the communities. The domain mix is not shown for communities with fewer than 20 incidents, because it would reveal the labels of individual incidents.
 
 | community | entities | incidents | organisations | ai_systems | harmed_groups | domains | sectors |
 |---|---|---|---|---|---|---|---|
 | 0 | 292 | 467 | OpenAI; Google; Microsoft; Anthropic | Large language models; ChatGPT; Chatbots; AI agent systems | Chatbot users; ChatGPT users; Emotionally vulnerable individuals; Companies | Misinformation (26%); Malicious Actors & Misuse (19%); Discrimination and Toxicity (18%) | information and communication (34); Arts, entertainment and recreation (11); transportation and storage (4) |
 | 1 | 271 | 628 | Meta; YouTube; Twitter; Storm-1516 | Deepfake technology; Synthetic audio generation technology; Social media platforms; X (Twitter) | General public; Social media users; Facebook users; X (Twitter) users | Malicious Actors & Misuse (68%); Misinformation (14%); Discrimination and Toxicity (10%) | information and communication (24); Arts, entertainment and recreation (10); wholesale and retail trade (2) |
-| 2 | 193 | 277 | Law enforcement; Amazon; Flock Safety; Clearview AI | AI-enabled decision support systems; Enterprise AI systems; Facial recognition systems; Surveillance technology | Biometric data subjects; Minority groups; General public of the United States; Patients | AI system safety, failures, and limitations (33%); Discrimination and Toxicity (29%); Privacy & Security (18%) | information and communication (16); law enforcement (12); wholesale and retail trade (11) |
+| 2 | 193 | 277 | Law enforcement; Amazon; Flock Safety; Uber | AI-enabled decision support systems; Enterprise AI systems; Facial recognition systems; Surveillance technology | Biometric data subjects; Minority groups; General public of the United States; Patients | AI system safety, failures, and limitations (33%); Discrimination and Toxicity (29%); Privacy & Security (18%) | information and communication (16); law enforcement (12); wholesale and retail trade (11) |
 | 3 | 145 | 189 | ElevenLabs; Universities; Knightscope; political campaigns | Synthetic media generation technology; Synthetic image generation technology; Synthetic video generation technology; AI nudification tools | Educational communities; Minors; Students; Women and girls | Malicious Actors & Misuse (51%); Discrimination and Toxicity (19%); AI system safety, failures, and limitations (19%) | Education (11); administrative and support service activities (3); Arts, entertainment and recreation (3) |
-| 4 | 58 | 101 | Tesla; Waymo; Cruise; Zoox | Automated driving systems; Automated driving system deployers; Waymo's autonomous driving system; Robotaxi systems | Road users; Tesla drivers; Drivers; Pedestrians | AI system safety, failures, and limitations (93%); Human-Computer Interaction (6%); Misinformation (1%) | transportation and storage (11); manufacturing (1) |
-| 5 | 25 | 15 | Stability AI; LAION; EleutherAI; Runway | Spotify; Music streaming services; Stable Diffusion | Musicians; Universal Music Group; artists; Songwriters | Discrimination and Toxicity (38%); Malicious Actors & Misuse (23%); Privacy & Security (23%) | information and communication (1); Arts, entertainment and recreation (1) |
-| 6 | 14 | 2 | Government of North Korea; Reconnaissance General Bureau; Internal Revenue Service; Lazarus Group | Zoom; Cryptocurrency platforms; Document verification systems; Cryptocurrency wallets | Targets of fraudulent professional opportunities; Employers; Web3; IRS | Discrimination and Toxicity (50%); Malicious Actors & Misuse (50%) | public administration (1); financial and insurance activities (1) |
-| 7 | 4 | 2 | Nomi AI | Nomi chatbots; Nomi | Nomi users | Discrimination and Toxicity (100%) |  |
-| 8 | 1 | 2 | Raytheon |  |  | AI system safety, failures, and limitations (100%) |  |
-| 9 | 1 | 4 |  | Starship Technologies |  | AI system safety, failures, and limitations (100%) | accommodation and food service activities (1); transportation and storage (1) |
-| 10 | 1 | 2 | UserWay |  |  | Malicious Actors & Misuse (50%); AI system safety, failures, and limitations (50%) | information and communication (1) |
+| 4 | 58 | 101 | Tesla; Waymo; Cruise; Baidu | Automated driving systems; Automated driving system deployers; Waymo's autonomous driving system; Robotaxi systems | Road users; Tesla drivers; Drivers; Pedestrians | AI system safety, failures, and limitations (93%); Human-Computer Interaction (6%); Misinformation (1%) | transportation and storage (11); manufacturing (1) |
+| 5 | 25 | 15 | Stability AI; LAION; EleutherAI; CompVis LMU | Spotify; Stable Diffusion; Music streaming services | Musicians; artists; Universal Music Group; Songwriters | (not shown: fewer than 20 incidents) | information and communication (1); Arts, entertainment and recreation (1) |
+| 6 | 14 | 2 | Government of North Korea; Internal Revenue Service; Reconnaissance General Bureau; Lazarus Group | Zoom; Cryptocurrency platforms; Document verification systems; Cryptocurrency wallets | Targets of fraudulent professional opportunities; Employers; Web3; macOS users | (not shown: fewer than 20 incidents) | public administration (1); financial and insurance activities (1) |
+| 7 | 4 | 2 | Nomi AI | Nomi; Nomi chatbots | Nomi users | (not shown: fewer than 20 incidents) |  |
+| 8 | 1 | 2 | Raytheon |  |  | (not shown: fewer than 20 incidents) |  |
+| 9 | 1 | 4 |  | Starship Technologies |  | (not shown: fewer than 20 incidents) | accommodation and food service activities (1); transportation and storage (1) |
+| 10 | 1 | 2 | UserWay |  |  | (not shown: fewer than 20 incidents) | information and communication (1) |
 
 ![Entity co-occurrence network (top entities by weighted degree)](../reports/figures/fig_rq2_1_entity_network.png)
 
@@ -284,7 +284,7 @@ Years to 2025 are complete; 2026 is partial. New organisations per year largely 
 
 ## 6. Dashboard export
 
-`reports/network_graph.json`: 128 nodes and 900 edges (top 150 entities by weighted degree, at most 900 strongest links; 346 kB). Each link carries per-year counts and each node its first and last year, so a year slider can show the cumulative network by summing counts up to the chosen year. Nodes carry a profile (risk-domain mix, up to five recent incidents) for the click panel, and the file states the *alleged involvement* caveat.
+`reports/network_graph.json`: 128 nodes and 900 edges (top 150 entities by weighted degree, at most 900 strongest links; 345 kB). Each link carries per-year counts and each node its first and last year, so a year slider can show the cumulative network by summing counts up to the chosen year. Nodes carry a profile (risk-domain mix, up to five recent incidents) for the click panel, and the file states the *alleged involvement* caveat.
 
 ## 7. Limitations
 

@@ -617,7 +617,13 @@ def plot_entity_network(
     apply_style()
     degree = dict(graph.degree(weight="weight"))
     keep = sorted(degree, key=degree.get, reverse=True)[:top_n]
-    sub = graph.subgraph(keep)
+    # Build the subgraph in a fixed node and edge order: graph.subgraph() iterates in an order that depends on
+    # Python's per-process string hashing, which made the seeded layout differ between runs.
+    sub = nx.Graph()
+    sub.add_nodes_from(sorted(keep))
+    sub.add_edges_from(
+        sorted((min(a, b), max(a, b), d) for a, b, d in graph.subgraph(keep).edges(data=True))
+    )
     pos = nx.spring_layout(
         sub, weight="weight", seed=seed, k=1.4 / np.sqrt(len(keep)), iterations=200
     )

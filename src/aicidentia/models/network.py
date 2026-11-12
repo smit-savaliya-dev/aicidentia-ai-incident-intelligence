@@ -398,11 +398,21 @@ def assign_incidents(links: pd.DataFrame, assignment: dict[str, int]) -> pd.Seri
     return best.set_index("incident_id")["community"].rename("community")
 
 
+MIN_INCIDENTS_FOR_DOMAIN_MIX = 20
+
+
 def profile_communities(
-    graph: nx.Graph, assignment: dict[str, int], nd: NetworkData, top: int = 4
+    graph: nx.Graph,
+    assignment: dict[str, int],
+    nd: NetworkData,
+    top: int = 4,
+    min_incidents_for_mix: int = MIN_INCIDENTS_FOR_DOMAIN_MIX,
 ) -> tuple[pd.DataFrame, dict[str, float]]:
     """One row per community: size, top organisations / AI systems / harmed groups, and the risk-domain and
-    sector mix of the incidents assigned to it. Also returns association scores (NMI) with MIT domain."""
+    sector mix of the incidents assigned to it. Also returns association scores (NMI) with MIT domain.
+
+    Small-cell rule: for communities with fewer than `min_incidents_for_mix` incidents the domain mix is not
+    shown, because it would reveal the labels of individual incidents."""
     incident_comm = assign_incidents(nd.links, assignment)
     inc = nd.incidents.set_index("incident_id").join(incident_comm, how="left")
     rows = []
@@ -414,6 +424,8 @@ def profile_communities(
             by_type[graph.nodes[n]["type"]].append(graph.nodes[n]["label"])
         mine = inc[inc["community"] == comm]
         domains = mine["domain"].dropna().value_counts()
+        if len(mine) < min_incidents_for_mix:
+            domains = domains.iloc[:0]
         sectors = pd.Series([s for lst in mine["sectors"] for s in lst]).value_counts()
         rows.append(
             {
@@ -429,7 +441,9 @@ def profile_communities(
                 else np.nan,
                 "domains": "; ".join(
                     f"{d} ({v / domains.sum():.0%})" for d, v in domains.head(3).items()
-                ),
+                )
+                if len(mine) >= min_incidents_for_mix
+                else f"(not shown: fewer than {min_incidents_for_mix} incidents)",
                 "sectors_n": int(sectors.sum()) if len(sectors) else 0,
                 "sectors": "; ".join(f"{s} ({v})" for s, v in sectors.head(3).items()),
             }
@@ -545,7 +559,10 @@ def export_graph_json(
     cent = centrality.set_index("node")
     keep = cent.sort_values("weighted_degree", ascending=False).head(top_n).index
     sub = graph.subgraph(keep)
-    edges = sorted(sub.edges(data=True), key=lambda e: -e[2]["weight"])[:max_edges]
+    # Canonical order (endpoints sorted, ties broken by name): networkx subgraphs iterate in an order that
+    # depends on Python's per-process string hashing, which made the export (and the max_edges cut) unstable.
+    canonical = [(min(a, b), max(a, b), d) for a, b, d in sub.edges(data=True)]
+    edges = sorted(canonical, key=lambda e: (-e[2]["weight"], e[0], e[1]))[:max_edges]
     linked = {n for a, b, _ in edges for n in (a, b)}
     inc = nd.incidents.set_index("incident_id")
     by_entity = nd.links.groupby("entity_id")["incident_id"].apply(lambda s: sorted(set(s)))

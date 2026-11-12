@@ -154,7 +154,8 @@ def write_network_doc(res: NetworkResults, path: Path) -> None:
     )
     add(f"### Community profiles (most representative run, seed {res.medoid_seed})\n")
     add(
-        "Incidents are assigned to the community that holds most of their entities. Domains and sectors describe those incidents; they were not used to form the communities.\n"
+        "Incidents are assigned to the community that holds most of their entities. Domains and sectors describe those incidents; they were not used to form the communities. "
+        "The domain mix is not shown for communities with fewer than 20 incidents, because it would reveal the labels of individual incidents.\n"
     )
     show = prof[
         [

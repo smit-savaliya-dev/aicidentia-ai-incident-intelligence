@@ -13,4 +13,5 @@ Keep one row per work session. Time spent is in hours.
 | 2026-11-01 | Phase 6: RQ3 classification (5 models, nested CV, bootstrap CIs, paired tests, calibration), Colab DistilBERT notebook, blind audit sample + analysis code | | mpnet+LR best (macro-F1 0.651); temperature scaling selected; audit awaiting annotation, DistilBERT awaiting Colab run. Time spent: fill in. |
 | 2026-11-12 | Caches moved to D: (HF_HOME via .env, uv cache-dir via user uv.toml); offline model loading verified | | Freed about 8 GB on C:. |
 | 2026-11-12 | Phase 7: RQ4 retrieval (TF-IDF, BM25, MiniLM, mpnet, hybrid) against editor-marked similar incidents (447 queries; no manual judgements) | | Hybrid best (MRR 0.510) but not significantly better than BM25 by the primary test; BM25 deployed. Time spent: fill in. |
+| 2026-11-12 | Phase 8: Streamlit dashboard (5 pages, offline-first models with fallbacks, blind-audit masking) and one-command refresh (scripts/refresh_all.py) | | Full refresh 2.5 min; outputs now byte-reproducible across runs. Time spent: fill in. |
 |  |  |  |  |

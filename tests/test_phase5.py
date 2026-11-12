@@ -256,7 +256,7 @@ def test_medoid_seed_picks_most_representative_partition():
 def test_profile_communities_assigns_incidents_and_profiles_domains(nd):
     g = N.entity_network(nd, min_incidents=2)
     part = N.detect_communities(g, "louvain", 1)
-    profile, assoc = N.profile_communities(g, part, nd)
+    profile, assoc = N.profile_communities(g, part, nd, min_incidents_for_mix=1)
     assert profile["incidents"].sum() == assoc["incidents_assigned"]
     assert 0 <= assoc["nmi_community_vs_domain"] <= 1
     top = profile.iloc[0]
@@ -308,3 +308,34 @@ def test_export_graph_json_caps_and_year_data(nd, tmp_path):
     assert "alleged" in data["note"] and data["snapshot"] == "TEST"
     node = data["nodes"][0]
     assert {"community", "n_incidents", "first_year", "domains", "recent_incidents"} <= set(node)
+
+
+def test_small_communities_do_not_reveal_domain_mix(nd):
+    g = N.entity_network(nd, min_incidents=2)
+    part = N.detect_communities(g, "louvain", 1)
+    profile, _ = N.profile_communities(g, part, nd)  # fixture communities have 4-5 incidents (< 20)
+    assert profile["domains"].str.startswith("(not shown").all()
+    assert profile["top_domain"].eq("").all() and profile["top_domain_share"].isna().all()
+
+
+def test_export_is_identical_across_python_hash_seeds(tmp_path):
+    """Regression: edge order and the max_edges cut must not depend on PYTHONHASHSEED."""
+    import subprocess
+    import sys
+
+    code = (
+        "import sys, json; sys.path.insert(0, r'{tests}');"
+        "import test_phase5 as t; from aicidentia.models import network as N;"
+        "nd = N.prepare(t._entities(), t._incidents()); g = N.entity_network(nd, 1);"
+        "part = N.detect_communities(g, 'louvain', 1); ct = N.centrality_table(g);"
+        "N.export_graph_json(g, part, ct, nd, __import__('pathlib').Path(sys.argv[1]), top_n=6, max_edges=4)"
+    ).format(tests=str(__import__("pathlib").Path(__file__).parent))
+    outputs = []
+    for seed in ("1", "2", "3"):
+        out = tmp_path / f"g{seed}.json"
+        env = {**__import__("os").environ, "PYTHONHASHSEED": seed}
+        subprocess.run([sys.executable, "-c", code, str(out)], check=True, env=env)
+        outputs.append(out.read_text(encoding="utf-8"))
+    assert outputs[0] == outputs[1] == outputs[2]
+    data = json.loads(outputs[0])
+    assert all(e["source"] < e["target"] for e in data["edges"])
