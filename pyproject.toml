@@ -30,6 +30,7 @@ nlp_topics = [
     "umap-learn",
     "nltk",
     "rank-bm25",
+    "cleanlab>=2.9.0",
 ]
 deep_learning = [
     "torch",  # CUDA build on Windows/Linux via [tool.uv.sources]; DistilBERT fine-tuning can also run on Colab
