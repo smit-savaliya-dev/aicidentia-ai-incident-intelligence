@@ -10,6 +10,7 @@ rules (answers duplicate_review.csv and entity_review.csv by rules D2 and D3)
   -> phase6 (classification; scores the Colab DistilBERT predictions if present and valid)
   -> phase7 (retrieval)
 -> story (cross-question analyses, docs/key_findings.md; needs phases 4-7)
+-> docs (docs/report_facts.md from reports/results.json)
 -> dashboard (headless check that every page renders)
 
 A failed step blocks the steps that depend on it; the others still run. Nothing here edits a manual file.
@@ -174,6 +175,12 @@ def run_story() -> str:
     )
 
 
+def run_docs() -> str:
+    from aicidentia.reporting import write_report_facts
+
+    return f"docs/report_facts.md: {write_report_facts()} facts"
+
+
 def check_dashboard() -> str:
     """Render every page headlessly; fail if any page raises."""
     from streamlit.testing.v1 import AppTest
@@ -218,6 +225,7 @@ def steps(options: RefreshOptions | None = None) -> list[Step]:
             run_story,
             ("phase4", "phase5", "phase6", "phase7"),
         ),
+        Step("docs", "Fact sheet (docs/report_facts.md)", run_docs, ("story",)),
     ]
     if options.dashboard_check:
         out.append(
