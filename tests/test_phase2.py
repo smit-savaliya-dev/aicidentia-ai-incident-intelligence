@@ -372,28 +372,28 @@ def test_review_candidates_leave_decision_blank_and_file_is_append_only(tmp_path
     inc = pd.DataFrame({"incident_id": [1, 2, 3], "title": ["t1", "t2", "t3"]})
     cands = entities.build_review_candidates(table, long, inc, RULES)
     assert set(cands["entity_id"]) == {"jane-smith", "john-doe-jr"}
-    assert (cands["is_private_individual"] == "").all() and (cands["notes"] == "").all()
+    assert (cands["is_named_person"] == "").all() and (cands["notes"] == "").all()
     assert cands.set_index("entity_id").loc["jane-smith", "review_priority"] == "A"
     assert cands.set_index("entity_id").loc["john-doe-jr", "review_priority"] == "B"
 
     path = tmp_path / "entity_review.csv"
     assert entities.write_review_file(cands, path) is True
     answered = pd.read_csv(path, dtype=str, keep_default_na=False)
-    answered.loc[answered["entity_id"] == "jane-smith", "is_private_individual"] = "yes"
+    answered.loc[answered["entity_id"] == "jane-smith", "is_named_person"] = "yes"
     answered.to_csv(path, index=False)
     new = cands.assign(entity_id=cands["entity_id"] + "-2")
     assert entities.write_review_file(pd.concat([cands, new]), path) is True
     after = pd.read_csv(path, dtype=str, keep_default_na=False).set_index("entity_id")
-    assert after.loc["jane-smith", "is_private_individual"] == "yes"  # your answer survives
+    assert after.loc["jane-smith", "is_named_person"] == "yes"  # your answer survives
     assert len(after) == 4
     assert entities.write_review_file(pd.concat([cands, new]), path) is False  # nothing new
-    assert entities.load_confirmed_individuals(path) == {"jane-smith"}
-    assert entities.review_progress(path) == {"rows": 4, "answered": 1, "confirmed_private": 1}
+    assert entities.load_named_persons(path) == {"jane-smith"}
+    assert entities.review_progress(path) == {"rows": 4, "answered": 1, "named_persons": 1}
 
 
 def test_apply_privacy_exclusions_modes(tmp_path):
     path = tmp_path / "review.csv"
-    pd.DataFrame({"entity_id": ["a", "b", "c"], "is_private_individual": ["yes", "no", ""]}).to_csv(
+    pd.DataFrame({"entity_id": ["a", "b", "c"], "is_named_person": ["yes", "no", ""]}).to_csv(
         path, index=False
     )
     table = pd.DataFrame(
@@ -403,9 +403,9 @@ def test_apply_privacy_exclusions_modes(tmp_path):
         }
     )
     excluded, info = apply_privacy_exclusions(table, False, path)
-    assert excluded == {"a"} and info["confirmed_private"] == 1 and info["cleared_public"] == 1
+    assert excluded == {"a"} and info["named_persons"] == 1 and info["not_persons"] == 1
     excluded, info = apply_privacy_exclusions(table, True, path)
-    assert excluded == {"a", "c"} and info["unreviewed_candidates"] == 1  # b was cleared as public
+    assert excluded == {"a", "c"} and info["unreviewed_candidates"] == 1  # b was cleared as not a person
     assert apply_privacy_exclusions(table, False, tmp_path / "missing.csv")[0] == set()
 
 

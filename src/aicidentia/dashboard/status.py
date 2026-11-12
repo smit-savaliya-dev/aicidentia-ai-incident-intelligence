@@ -76,7 +76,7 @@ def manual_status() -> pd.DataFrame:
             "total": int(ent.get("rows", 0)),
             "state": _state(int(ent.get("answered", 0)), int(ent.get("rows", 0))),
             "used_by": "Phase 2 privacy filter -> Phases 5, 7, dashboard",
-            "how": "is_private_individual = yes / no",
+            "how": "is_named_person = yes / no (rule D3)",
         }
     )
     dup = duplicates.review_progress() if duplicates.REVIEW_PATH.exists() else {}
@@ -94,13 +94,13 @@ def manual_status() -> pd.DataFrame:
     colab = colab_status()
     rows.append(
         {
-            "input": "DistilBERT predictions (Colab)",
+            "input": "DistilBERT predictions",
             "file": "reports/colab/rq3_distilbert_predictions.csv",
             "done": colab["done"],
             "total": 1,
             "state": "present" if colab["done"] else "missing",
             "used_by": "Phase 6 model comparison",
-            "how": "run notebooks/colab_distilbert_finetune.ipynb on Colab, copy the CSV here",
+            "how": "uv run python scripts/train_distilbert_local.py (local GPU) or the Colab notebook",
         }
     )
     return pd.DataFrame(rows)

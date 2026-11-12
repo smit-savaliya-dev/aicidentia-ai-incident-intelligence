@@ -2,7 +2,8 @@
 
 Order and dependencies
 ----------------------
-phase2 (applies entity_review.csv and duplicate_review.csv)
+rules (answers duplicate_review.csv and entity_review.csv by rules D2 and D3)
+-> phase2 (applies entity_review.csv and duplicate_review.csv)
   -> phase3 (topic models; cached, so it only refits if phase2 changed the incidents)
        -> phase4 (trends; applies topic_labels.csv)
   -> phase5 (network)
@@ -62,6 +63,23 @@ class RefreshOptions:
 # --------------------------------------------------------------------------------------
 # The steps (same calls as the per-phase scripts)
 # --------------------------------------------------------------------------------------
+
+
+def run_rules() -> str:
+    from aicidentia import registry
+    from aicidentia.data import rules
+
+    facts = rules.apply_all()
+    for group, values in facts.items():
+        for key, value in values.items():
+            registry.record(
+                f"rules.{group}.{key}", value, "data/manual", "aicidentia.data.rules.apply_all"
+            )
+    d, e = facts.get("duplicates", {}), facts.get("entities", {})
+    return (
+        f"duplicates: {d.get('merged', 0)} merged, {d.get('keep_separate', 0)} kept separate; "
+        f"entities: {e.get('named_persons_excluded', 0)} named persons excluded, {e.get('not_persons_kept', 0)} non-persons kept"
+    )
 
 
 def run_phase2() -> str:
@@ -164,7 +182,13 @@ def check_dashboard() -> str:
 def steps(options: RefreshOptions | None = None) -> list[Step]:
     options = options or RefreshOptions()
     out = [
-        Step("phase2", "Phase 2 data preparation (entity + duplicate review)", run_phase2),
+        Step("rules", "Rules D2/D3: answer the duplicate and entity review files", run_rules),
+        Step(
+            "phase2",
+            "Phase 2 data preparation (entity + duplicate review)",
+            run_phase2,
+            ("rules",),
+        ),
         Step(
             "phase3",
             "Phase 3 topic models (refits only if the data changed)",

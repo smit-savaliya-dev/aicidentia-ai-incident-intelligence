@@ -110,7 +110,7 @@ def test_manual_status_rows_and_states():
         "Topic labels",
         "Entity review",
         "Duplicate review",
-        "DistilBERT predictions (Colab)",
+        "DistilBERT predictions",
     ]
     assert set(table.columns) >= {"file", "done", "total", "state", "used_by", "how"}
     assert (

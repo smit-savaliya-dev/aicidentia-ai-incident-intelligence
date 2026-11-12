@@ -11,6 +11,7 @@ from aicidentia.dashboard import data, ui
 
 ui.setup("Home", data.snapshot_info()["title"])
 info = data.snapshot_info()
+
 st.subheader(info["tagline"])
 
 f = data.fact

@@ -356,7 +356,7 @@ _REVIEW_COLUMNS = [
     "entity_type",
     "example_incident_ids",
     "example_titles",
-    "is_private_individual",
+    "is_named_person",
     "notes",
 ]
 
@@ -369,8 +369,8 @@ def build_review_candidates(
 ) -> pd.DataFrame:
     """Candidate named individuals for manual review, with blank decision columns.
 
-    Candidates are entities with a person-like name. `is_private_individual` and `notes` are left
-    EMPTY: whether someone is a private individual or a public figure is a human judgement.
+    Candidates are entities with a person-like name. `is_named_person` and `notes` are left EMPTY here;
+    `aicidentia.data.rules` answers them (rule D3: every named person, private or public, is excluded).
     `review_priority` is only a guide: A = named in 1-2 incidents (the pattern of private people), B = named in
     3+ incidents (more often public figures), C = surname ends in 's' (may be a plural group).
     """
@@ -395,7 +395,7 @@ def build_review_candidates(
                 "entity_type": rec.entity_type,
                 "example_incident_ids": ";".join(map(str, ids)),
                 "example_titles": " || ".join(str(titles.get(i, "")) for i in ids[:2]),
-                "is_private_individual": "",
+                "is_named_person": "",
                 "notes": "",
             }
         )
@@ -424,23 +424,23 @@ def write_review_file(candidates: pd.DataFrame, path: Path = REVIEW_PATH) -> boo
     return True
 
 
-def load_confirmed_individuals(path: Path = REVIEW_PATH) -> set[str]:
-    """Entity ids you marked is_private_individual = yes (y / true / 1 also accepted)."""
+def load_named_persons(path: Path = REVIEW_PATH) -> set[str]:
+    """Entity ids marked is_named_person = yes (y / true / 1 also accepted); they are excluded."""
     if not path.exists():
         return set()
     review = pd.read_csv(path, dtype=str, keep_default_na=False)
-    answer = review["is_private_individual"].str.strip().str.lower()
+    answer = review["is_named_person"].str.strip().str.lower()
     return set(review.loc[answer.isin({"yes", "y", "true", "1"}), "entity_id"])
 
 
 def review_progress(path: Path = REVIEW_PATH) -> dict[str, int]:
     """How many review rows are answered / confirmed (for the registry and the phase report)."""
     if not path.exists():
-        return {"rows": 0, "answered": 0, "confirmed_private": 0}
+        return {"rows": 0, "answered": 0, "named_persons": 0}
     review = pd.read_csv(path, dtype=str, keep_default_na=False)
-    answer = review["is_private_individual"].str.strip().str.lower()
+    answer = review["is_named_person"].str.strip().str.lower()
     return {
         "rows": len(review),
         "answered": int((answer != "").sum()),
-        "confirmed_private": int(answer.isin({"yes", "y", "true", "1"}).sum()),
+        "named_persons": int(answer.isin({"yes", "y", "true", "1"}).sum()),
     }

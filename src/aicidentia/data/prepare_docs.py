@@ -63,9 +63,9 @@ def write_data_preparation(res: PrepResults, path: Path) -> None:
     add(
         f"- AIID's merge list has {f['aiid_merge_pairs']} pairs, resolved transitively ({f['merge_map_size']} ids). The Excel export already excludes merged incidents "
         f"(merged ids present in Excel: {f['merged_ids_present_in_excel'] or 'none'}), so no incident was removed by this step.\n"
-        f"- **Near-duplicate candidates for your review:** {dupes['rows']} pairs with TF-IDF cosine >= 0.6 in `data/manual/duplicate_review.csv`. "
-        f"The `decision` column is blank; you answer `merge_into_a`, `merge_into_b` or `keep_separate` ({dupes['answered']} answered so far, {f['user_merges_applied']} merges applied). "
-        "Re-run the build after answering.\n"
+        f"- **Near-duplicate candidates:** {dupes['rows']} pairs with TF-IDF cosine >= 0.6 in `data/manual/duplicate_review.csv`, answered by rule D2 (`docs/decisions.md`): "
+        "merge only when the incidents share a deployer, are at most 7 days apart and have similarity >= 0.90; otherwise `keep_separate` "
+        f"({dupes['answered']} answered, {f['user_merges_applied']} merges applied).\n"
     )
     cand = t["near_duplicate_candidates"].head(8)[
         ["incident_a", "incident_b", "cosine", "title_a", "title_b"]
@@ -119,17 +119,18 @@ def write_data_preparation(res: PrepResults, path: Path) -> None:
         "New York Police Department / New York City Police Department. These pairs were noticed in the frequency lists of this snapshot; "
         "whether they are the same entity for your analysis is a judgement.\n"
     )
-    add("### Named individuals: your review\n")
+    add("### Named persons (rule D3)\n")
     add(
         f"`data/manual/entity_review.csv` lists **{n(rc['total'])} entities with person-like names** (priority A: named in 1-2 incidents, {n(rc.get('priority_A', 0))}; "
         f"B: 3+ incidents, {n(rc.get('priority_B', 0))}; C: surname ending in -s, which may be a plural group, {n(rc.get('priority_C', 0))}). "
-        "Each row shows the roles and example incident titles. **Fill `is_private_individual` with `yes` or `no`** (`no` = public figure or not a person). "
-        f"Answered so far: {review['answered']} of {review['rows']}; confirmed private: {review['confirmed_private']}. "
-        "Re-run the build afterwards; confirmed individuals are removed from `incident_entities`, `entity_table`, the network and the dashboard.\n"
+        "Rule D3 (`docs/decisions.md`) answers `is_named_person`: every named person, private or public, is excluded; names that are organisations, products or groups "
+        "are re-typed in `config/entity_types.yaml` and kept. "
+        f"Answered: {review['answered']} of {review['rows']}; named persons excluded: {review['named_persons']}. "
+        "Excluded persons are removed from `incident_entities`, `entity_table`, the network and the dashboard.\n"
     )
     add(
-        f"Privacy switch: `privacy.exclude_unreviewed_individual_candidates` in `config/config.yaml` is currently **off**, so only confirmed individuals are excluded "
-        f"(now: {privacy['excluded_total']} excluded; {n(privacy['unreviewed_candidates'])} person-like entities still unreviewed). Turning it on removes every unreviewed person-like entity until you clear it with `no`. "
+        f"Privacy switch: `privacy.exclude_unreviewed_individual_candidates` in `config/config.yaml` is **on**, so any person-like entity not yet reviewed is also excluded "
+        f"(now: {privacy['excluded_total']} excluded in total; {n(privacy['unreviewed_candidates'])} unreviewed). "
         "Note that incident titles and descriptions are not edited; they come from AIID and the dashboard links back to AIID.\n"
     )
     add("## Validation\n")

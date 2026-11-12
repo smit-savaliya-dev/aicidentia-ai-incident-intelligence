@@ -49,16 +49,16 @@ def apply_privacy_exclusions(
 ) -> tuple[set[str], dict[str, int]]:
     """Entity ids to remove from the network and dashboard.
 
-    Always: entities you confirmed as private individuals. Optionally (config `privacy`): every
-    `individual_candidate` you have not explicitly cleared with is_private_individual = no.
+    Always: entities marked as named persons (rule D3). Optionally (config `privacy`): every
+    `individual_candidate` not explicitly cleared with is_named_person = no.
     """
     review_path = review_path or entities.REVIEW_PATH
-    confirmed = entities.load_confirmed_individuals(review_path)
+    confirmed = entities.load_named_persons(review_path)
     excluded = set(confirmed)
     cleared: set[str] = set()
     if review_path.exists():
         review = pd.read_csv(review_path, dtype=str, keep_default_na=False)
-        answer = review["is_private_individual"].str.strip().str.lower()
+        answer = review["is_named_person"].str.strip().str.lower()
         cleared = set(review.loc[answer.isin({"no", "n", "false", "0"}), "entity_id"])
     candidates = set(
         entity_table.loc[entity_table["entity_type"] == "individual_candidate", "entity_id"]
@@ -67,8 +67,8 @@ def apply_privacy_exclusions(
     if exclude_unreviewed_candidates:
         excluded |= unreviewed_candidates
     return excluded, {
-        "confirmed_private": len(confirmed),
-        "cleared_public": len(cleared),
+        "named_persons": len(confirmed),
+        "not_persons": len(cleared),
         "unreviewed_candidates": len(unreviewed_candidates),
         "excluded_total": len(excluded),
     }

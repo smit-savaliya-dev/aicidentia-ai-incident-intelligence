@@ -85,7 +85,7 @@ def write_network_doc(res: NetworkResults, path: Path) -> None:
         f"Node types come from the Phase 2 `entity_type`: organisation, AI system (`technology_system`), harmed group (`population_group`); generic actors and abstract harm values are kept as their own types "
         f"so that they never pose as organisations or groups.\n"
         f"- **Exclusions.** Person-like entities (`individual_candidate`; {n(f['excluded_person_like_mentions'])} entity mentions) are left out: RQ2 concerns organisations, systems and groups, "
-        "and unreviewed named individuals do not belong in a network. Anything you confirm as a private individual in `data/manual/entity_review.csv` is already removed in Phase 2.\n"
+        "and unreviewed named individuals do not belong in a network. Every named person (rule D3, `data/manual/entity_review.csv`) is already removed in Phase 2.\n"
         f"- **Entity co-occurrence network.** Two entities are linked with weight = number of incidents they share (the one-mode projection). Entities in fewer than {f['min_incidents']} incidents are dropped "
         "(they would be leaves hanging off other entities). Centrality and communities use this network; risk-domain and sector nodes are **not** part of community detection, so profiling communities by domain is not circular.\n"
         "- **Centrality.** Degree (distinct co-occurring entities), weighted degree (total shared incidents), exact betweenness (igraph; link length = 1 / weight, so strong ties are short; exact, so no sampling needed), "

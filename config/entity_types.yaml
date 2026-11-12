@@ -8,6 +8,204 @@
 
 overrides:
   none: unknown  # an entity literally named "None"
+  # Rule D3 (docs/decisions.md): person-like names that are NOT persons, found by reading all 1,346
+  # candidates in data/manual/entity_review.csv. Every other candidate is a named person and is excluded.
+  addleton-academic-publishers: organisation  # Addleton Academic Publishers
+  adobe-stock: technology_system  # Adobe Stock
+  africa-corps: organisation  # Africa Corps
+  air-canada: organisation  # Air Canada
+  al-udeid-air-base: organisation  # Al-Udeid Air Base
+  albertsons-companies: organisation  # Albertsons Companies
+  amazon-flex: organisation  # Amazon Flex
+  amazon-fresh: organisation  # Amazon Fresh
+  amazon-india: organisation  # Amazon India
+  american-zoetrope: organisation  # American Zoetrope
+  ansar-ghazwat-ul-hind: organisation  # Ansar Ghazwat-ul-Hind
+  apollo-go: technology_system  # Apollo Go
+  ars-technica: organisation  # Ars Technica
+  auschwitz-memorial-museum: organisation  # Auschwitz Memorial Museum
+  axon-enterprise: organisation  # Axon Enterprise
+  bayou-title: organisation  # Bayou Title
+  bee-cups: organisation  # Bee Cups
+  berkeley-seismological-laboratory: organisation  # Berkeley Seismological Laboratory
+  bharatiya-janata-yuva-morcha: organisation  # Bharatiya Janata Yuva Morcha
+  bishop's-stortford-independent: organisation  # Bishop’s Stortford Independent
+  black-americans: population_group  # Black Americans
+  black-banshee: organisation  # Black Banshee
+  black-rebellion: organisation  # Black Rebellion
+  black-south-africans: population_group  # Black South Africans
+  boko-haram: organisation  # Boko Haram
+  bonneville-foods-private-limited: organisation  # Bonneville Foods Private Limited
+  boston-dynamics: organisation  # Boston Dynamics
+  british-royal-family: organisation  # British Royal Family
+  brookdale-senior-living: organisation  # Brookdale Senior Living
+  buding-movie-tickets: organisation  # Buding Movie Tickets
+  butler-snow: organisation  # Butler Snow
+  cadillac-fairview: organisation  # Cadillac Fairview
+  canada-alert: organisation  # Canada Alert
+  canada-insight: organisation  # Canada Insight
+  canada-pol-brief: organisation  # Canada Pol Brief
+  canadian-hub: organisation  # Canadian Hub
+  canadian-reporter: organisation  # Canadian Reporter
+  carbon-spider: organisation  # Carbon Spider
+  catholic-answers: organisation  # Catholic Answers
+  cdn-bulletin: organisation  # Cdn Bulletin
+  cdn-insight: organisation  # Cdn Insight
+  cdn-politician: organisation  # Cdn Politician
+  chaac-pizza-northeast: organisation  # Chaac Pizza Northeast
+  changan-automobile: organisation  # Changan Automobile
+  chicago-tribune: organisation  # Chicago Tribune
+  citizens-against-mamdani: organisation  # Citizens Against Mamdani
+  cody-enterprise: organisation  # Cody Enterprise
+  coffee-meets-bagel: organisation  # Coffee Meets Bagel
+  commonwealth-legal: organisation  # Commonwealth Legal
+  contagious-interview: organisation  # Contagious Interview
+  cotton-sandstorm: organisation  # Cotton Sandstorm
+  curious-thing: organisation  # Curious Thing
+  daejeon-fire-headquarters: organisation  # Daejeon Fire Headquarters
+  darn-tough-vermont: organisation  # Darn Tough Vermont
+  disney-cruise-line: organisation  # Disney Cruise Line
+  docomo-pacific: organisation  # Docomo Pacific
+  domenica-in: organisation  # Domenica In
+  dragon's-den: organisation  # Dragon's Den
+  dravida-munnetra-kazhagam: organisation  # Dravida Munnetra Kazhagam
+  eight-sleep: organisation  # Eight Sleep
+  el-universo: organisation  # El Universo
+  emerald-sleet: organisation  # Emerald Sleet
+  extinction-rebellion-belgium: organisation  # Extinction Rebellion Belgium
+  facial-identification-section: organisation  # Facial Identification Section
+  famous-chollima: organisation  # Famous Chollima
+  fancy-bear: organisation  # Fancy Bear
+  fast-enterprises: organisation  # Fast Enterprises
+  fine-gael: organisation  # Fine Gael
+  first-bridge: organisation  # First Bridge
+  fred's-appliance: organisation  # Fred's Appliance
+  french-welfare-offices: organisation  # French Welfare Offices
+  frontier-development: organisation  # Frontier Development
+  fuzhou-zhongfang-marlboro-mall: organisation  # Fuzhou Zhongfang Marlboro Mall
+  gazeta-bota: organisation  # Gazeta Bota
+  geelong-cats: organisation  # Geelong Cats
+  general-electric: organisation  # General Electric
+  getty-images: organisation  # Getty Images
+  golden-currencies: organisation  # Golden Currencies
+  google-books: technology_system  # Google Books
+  google-docs: technology_system  # Google Docs
+  google-home: technology_system  # Google Home
+  google-ngram-viewer: technology_system  # Google Ngram Viewer
+  google-photos: technology_system  # Google Photos
+  griffin-reports: organisation  # Griffin Reports
+  gwisin-gang: organisation  # Gwisin Gang
+  hello-digit: organisation  # Hello Digit
+  hive-box: organisation  # Hive Box
+  home-bargains: organisation  # Home Bargains
+  hoodline-san-jose: organisation  # Hoodline San Jose
+  individual-kaggle-competitors: population_group  # Individual Kaggle Competitors
+  intesa-sanpaolo: organisation  # Intesa Sanpaolo
+  intuitive-surgical: organisation  # Intuitive Surgical
+  jalisco-new-generation-cartel: organisation  # Jalisco New Generation Cartel
+  jewish-onliner: organisation  # Jewish Onliner
+  jinan-art-museum: organisation  # Jinan Art Museum
+  joann's-fabrics: organisation  # Joann's Fabrics
+  kaikatsu-frontier: organisation  # Kaikatsu Frontier
+  keolis-north-america: organisation  # Keolis North America
+  kit-kat: organisation  # Kit Kat
+  klan-kosova: organisation  # Klan Kosova
+  le-creuset: organisation  # Le Creuset
+  limited-charm: organisation  # Limited Charm
+  lockheed-martin: organisation  # Lockheed Martin
+  long-eaton-gallery: organisation  # Long Eaton Gallery
+  lookers-land-rover: organisation  # Lookers Land Rover
+  malta-independent: organisation  # Malta Independent
+  maple-truth: organisation  # Maple Truth
+  marathon-petroleum: organisation  # Marathon Petroleum
+  matata-nursing-home: organisation  # Matata Nursing Home
+  mediterranea-saving-humans: organisation  # Mediterranea Saving Humans
+  memorial-sloan-kettering: organisation  # Memorial Sloan Kettering
+  microsoft-designer: technology_system  # Microsoft Designer
+  minab-hermud-cemetery: organisation  # Minab Hermud Cemetery
+  mother-jones: organisation  # Mother Jones
+  mount-sinai-hospitals: organisation  # Mount Sinai Hospitals
+  natural-england: organisation  # Natural England
+  nearest-edge: organisation  # Nearest Edge
+  never-back-down: organisation  # Never Back Down
+  new-world-westend: organisation  # New World Westend
+  new-zealand: organisation  # New Zealand
+  new-zealand-inland-revenue: organisation  # New Zealand Inland Revenue
+  new-zealanders: population_group  # New Zealanders
+  north-korea: organisation  # North Korea
+  northbound-processing: organisation  # Northbound Processing
+  northgate-house: organisation  # Northgate House
+  noticias-maia: organisation  # Noticias Maia
+  nuance-communications: organisation  # Nuance Communications
+  obiyan-infotech: organisation  # Obiyan Infotech
+  old-mutual: organisation  # Old Mutual
+  ottawa-citizen: organisation  # Ottawa Citizen
+  outback-steakhouse: organisation  # Outback Steakhouse
+  outsider-enterprise: organisation  # Outsider Enterprise
+  parabon-nanolabs: organisation  # Parabon Nanolabs
+  penguin-random-house: organisation  # Penguin Random House
+  peppermill-casino: organisation  # Peppermill Casino
+  ping-an: organisation  # Ping An
+  pizza-hut: organisation  # Pizza Hut
+  policy-options: organisation  # Policy Options
+  portal-kombat: organisation  # Portal Kombat
+  princess-cruises: organisation  # Princess Cruises
+  pro-eu-moldovans: population_group  # Pro-EU Moldovans
+  quentin-wilson-publishing: organisation  # Quentin Wilson Publishing
+  rajya-sabha: organisation  # Rajya Sabha
+  ramble-rants: organisation  # Ramble Rants
+  reality-defender: organisation  # Reality Defender
+  rite-aid: organisation  # Rite Aid
+  riverside-arena-skating-rink: organisation  # Riverside Arena Skating Rink
+  rock-hill-schools: organisation  # Rock Hill Schools
+  rodrigues-blignaut-attorneys: organisation  # Rodrigues Blignaut Attorneys
+  royal-caribbean: organisation  # Royal Caribbean
+  sangria-tempest: organisation  # Sangria Tempest
+  shia-muslims: population_group  # Shia Muslims
+  smart-columbus: organisation  # Smart Columbus
+  southern-co-op: organisation  # Southern Co-op
+  spamouflage-dragon: organisation  # Spamouflage Dragon
+  speedcam-anywhere: technology_system  # Speedcam Anywhere
+  sports-illustrated: organisation  # Sports Illustrated
+  springer-nature: organisation  # Springer Nature
+  stack-overflow: organisation  # Stack Overflow
+  store-patrons: population_group  # Store Patrons
+  taco-bell: organisation  # Taco Bell
+  tasmania-tours: organisation  # Tasmania Tours
+  the-age: organisation  # The Age
+  the-arizona-agenda: organisation  # The Arizona Agenda
+  the-good-guys: organisation  # The Good Guys
+  the-guardian: organisation  # The Guardian
+  the-hub: organisation  # The Hub
+  the-ideaz-factory: organisation  # The Ideaz Factory
+  the-indian-deepfaker: organisation  # The Indian Deepfaker
+  the-real-report: organisation  # The Real Report
+  the-record-argus: organisation  # The Record-Argus
+  the-royal-gazette: organisation  # The Royal Gazette
+  the-spokesman-review: organisation  # The Spokesman-Review
+  the-sydney-morning-herald: organisation  # The Sydney Morning Herald
+  the-thaiger: organisation  # The Thaiger
+  the-vindicator: organisation  # The Vindicator
+  thoma-bravo: organisation  # Thoma Bravo
+  thomson-reuters: organisation  # Thomson Reuters
+  tiger-analytics: organisation  # Tiger Analytics
+  top-fight: organisation  # Top Fight
+  trump-administration: organisation  # Trump Administration
+  turing-robot: organisation  # Turing Robot
+  uber-eats: organisation  # Uber Eats
+  univers-inspirant: organisation  # Univers Inspirant
+  velvet-chollima: organisation  # Velvet Chollima
+  verite-cachee-france: organisation  # Verite Cachee France
+  void-dokkaebi: organisation  # Void Dokkaebi
+  washington-state's-lottery: organisation  # Washington State's Lottery
+  weldborough-hotel: organisation  # Weldborough Hotel
+  western-illinois-dreamers: population_group  # Western Illinois Dreamers
+  western-standard: organisation  # Western Standard
+  white-house: organisation  # White House
+  wilson-parking: organisation  # Wilson Parking
+  windows-paint: technology_system  # Windows Paint
+  youth-laboratories: organisation  # Youth Laboratories
+  zillow-offers: technology_system  # Zillow Offers
 
 # 1. Entities appearing (almost) only as a harmed party whose name is an abstract value or interest.
 abstract_value_terms:

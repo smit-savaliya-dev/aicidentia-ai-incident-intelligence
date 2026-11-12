@@ -38,9 +38,9 @@ year_range:
 
 # Privacy handling for named individuals (see data/manual/entity_review.csv).
 privacy:
-  # true = also drop every person-like entity you have NOT explicitly cleared (is_private_individual = no)
-  # from the network and dashboard. false = drop only those you confirmed as private individuals.
-  exclude_unreviewed_individual_candidates: false
+  # true = also drop every person-like entity not explicitly cleared (is_named_person = no)
+  # from the network and dashboard. false = drop only those marked as named persons.
+  exclude_unreviewed_individual_candidates: true   # rule D3: no named person is ever shown
 
 # Phase 3: risk-theme models (LDA vs NMF vs BERTopic). All models share one tokenised corpus.
 topics:
