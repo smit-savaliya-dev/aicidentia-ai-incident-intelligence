@@ -1,4 +1,4 @@
-"""Phase 6 orchestration: evaluate every classifier, calibrate and save the deployable one, make the audit sample."""
+"""Phase 6 orchestration: evaluate every classifier, calibrate and save the deployable one."""
 
 from __future__ import annotations
 
@@ -11,10 +11,9 @@ import pandas as pd
 
 from aicidentia import registry
 from aicidentia.config import PROJECT_ROOT, load_config
-from aicidentia.data import clean, load
+from aicidentia.data import clean
 from aicidentia.evaluation import metrics as M
 from aicidentia.models import classify as C
-from aicidentia.models import label_audit as A
 from aicidentia.viz import plots, style
 
 logger = logging.getLogger(__name__)
@@ -53,8 +52,6 @@ class ClassificationResults:
     confusion: pd.DataFrame | None = None
     confusions_top: pd.DataFrame | None = None
     features: pd.DataFrame | None = None
-    cset: dict[str, pd.DataFrame] = field(default_factory=dict)
-    audit: dict[str, Any] = field(default_factory=dict)
     facts: dict[str, Any] = field(default_factory=dict)
     colab_present: bool = False
 
@@ -150,7 +147,7 @@ def choose_deployable(
 
 
 def run_classification() -> ClassificationResults:
-    """Evaluate all classifiers and produce the deployable model, the audit sample and every table."""
+    """Evaluate all classifiers and produce the deployable model and every table."""
     cfg = load_config()
     seed = int(cfg["random_seed"])
     n_boot = int(cfg["classification"]["n_boot"])
@@ -283,7 +280,6 @@ def run_classification() -> ClassificationResults:
     res.confusions_top = C.top_confusions(
         res.oof[res.deployable].assign(**{f"proba_{i}": p_chosen[:, i] for i in range(k)}),
         data,
-        exclude_examples=A.audit_incident_ids(),
     )
     res.features = pd.concat(
         [C.top_features(s, data, seed=seed) for s in SPECS if s.kind in ("tfidf_lr", "tfidf_svm")],
@@ -339,29 +335,7 @@ def run_classification() -> ClassificationResults:
     ).sort_values("incident_id")
     clean.save_processed(predictions, "rq3_domain_predictions")
 
-    # ---- audit sample and CSET comparison
-    sample = A.draw_sample(
-        data.frame,
-        int(cfg["classification"]["audit"]["total"]),
-        int(cfg["classification"]["audit"]["floor"]),
-        seed,
-    )
-    status = A.write_template(sample)
     population = data.frame["domain"].value_counts()
-    alloc = (
-        sample["domain"]
-        .value_counts()
-        .rename("sample")
-        .to_frame()
-        .join(population.rename("population"))
-    )
-    res.audit = {
-        "status": status,
-        "allocation": alloc,
-        "progress": A.annotation_progress(classes=data.classes),
-    }
-    res.cset = A.cset_comparison(inc)
-
     res.facts = {
         "labelled": len(data.y),
         "classes": data.classes,
@@ -378,9 +352,6 @@ def run_classification() -> ClassificationResults:
         "ece": {m: cal[m]["ece"] for m in cal},
         "brier": {m: cal[m]["brier"] for m in cal},
         "calibrated_macro_f1": {m: cal[m]["macro_f1"] for m in cal},
-        "audit_sample_status": status,
-        "audit_allocation": alloc,
-        "audit_progress": res.audit["progress"],
         "model_path": str(C.MODEL_PATH.relative_to(PROJECT_ROOT).as_posix()),
         "fallback_model": BASELINE,
         "fallback_calibration": fallback_cal,
@@ -428,9 +399,6 @@ def save_tables(res: ClassificationResults) -> None:
         "rq3_calibration",
         index=True,
     )
-    style.save_table(res.audit["allocation"], "rq3_audit_allocation", index=True)
-    for name, table in res.cset.items():
-        style.save_table(table, f"rq3_cset_{name}", index=True)
 
 
 def make_figures(res: ClassificationResults) -> dict[str, Any]:
@@ -468,44 +436,11 @@ def make_figures(res: ClassificationResults) -> dict[str, Any]:
     return figs
 
 
-def write_label_guidelines(path: Any = None) -> None:
-    """docs/label_guidelines.md from MIT's published taxonomy text in the snapshot taxa record."""
-    path = path or PROJECT_ROOT / "docs" / "label_guidelines.md"
-    taxa = {t["namespace"]: t for t in load.load_taxa()}["MIT"]
-    fields = {f["short_name"]: f for f in taxa["field_list"]}
-    domain, sub = fields["Risk Domain"], fields["Risk Subdomain"]
-    classes = [v.split(". ", 1)[1] for v in domain["permitted_values"]]
-    lines = [
-        "# Label guidelines for the RQ3 blind audit\n",
-        "_Generated from the MIT AI Risk Repository taxonomy text stored in the AIID snapshot (taxa record `MIT`, fields `Risk Domain` and `Risk Subdomain`); nothing here is paraphrased. "
-        "Classifications in AIID using this taxonomy were generated automatically (as stated in the taxonomy record); you are asked for an independent human judgement._\n",
-        "## Your task\n",
-        "For each of the 150 incidents in `data/manual/label_audit_sample.csv`, read the title and description and choose the **one** risk domain that best describes the harm. "
-        "Do **not** look up the existing MIT label for these incidents (the audit is blind); the sample is shuffled and the label is not in the file.\n",
-        "- `my_label`: one of the seven domain names below (exact name, with or without its number, or just the digit 1-7).\n"
-        "- `my_confidence`: 1 = low, 2 = medium, 3 = high.\n"
-        "- `notes`: optional (for example, which two domains you hesitated between).\n"
-        "- Judge the primary harm described, not the technology; if two domains fit, pick the one that is more central and say so in `notes`.\n"
-        "- Alternatively use the helper: `uv run streamlit run scripts/label_audit_app.py` (it saves the same CSV).\n",
-        "## Domains (allowed values of `my_label`)\n",
-        "\n".join(f"{i}. {name}" for i, name in enumerate(classes, 1)) + "\n",
-        "## Domain description (MIT, verbatim)\n",
-        domain["long_description"].strip() + "\n",
-        "## Subdomain definitions (MIT, verbatim)\n",
-        sub["long_description"].strip() + "\n",
-        "## Source\n",
-        f"Taxonomy record description: {taxa['description'].strip()}\n",
-    ]
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
-
-
 def write_all(res: ClassificationResults) -> None:
-    """Registry, tables, figures, guidelines and docs/rq3_classification.md."""
+    """Registry, tables, figures and docs/rq3_classification.md."""
     from aicidentia.models import classify_docs
 
     register(res)
     save_tables(res)
     make_figures(res)
-    write_label_guidelines()
     classify_docs.write_classification_doc(res, PROJECT_ROOT / "docs" / "rq3_classification.md")

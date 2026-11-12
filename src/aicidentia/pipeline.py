@@ -7,7 +7,6 @@ phase2 (applies entity_review.csv and duplicate_review.csv)
        -> phase4 (trends; applies topic_labels.csv)
   -> phase5 (network)
   -> phase6 (classification; scores the Colab DistilBERT predictions if present and valid)
-       -> phase6_audit (your blind annotations; only when all items are annotated)
   -> phase7 (retrieval)
 -> dashboard (headless check that every page renders)
 
@@ -56,7 +55,6 @@ class StepResult:
 
 @dataclass
 class RefreshOptions:
-    partial_audit: bool = False
     dashboard_check: bool = True
     extra: dict = field(default_factory=dict)
 
@@ -137,25 +135,6 @@ def run_phase6() -> str:
     return f"deployed {res.deployable} ({f['calibration_method']}); {colab}"
 
 
-def run_phase6_audit(partial: bool = False) -> str:
-    from aicidentia.models import classify as C
-    from aicidentia.models import label_audit, label_audit_outputs
-
-    progress = label_audit.annotation_progress()
-    if progress["labelled"] == 0:
-        raise StepSkipped("no annotations yet")
-    if progress["labelled"] < progress["rows"] and not partial:
-        raise StepSkipped(
-            f"{progress['labelled']}/{progress['rows']} annotated; runs when complete (or use --partial-audit)"
-        )
-    result = label_audit_outputs.run_audit_analysis()
-    label_audit_outputs.write_all(result, C.load_dataset(with_embeddings=False).classes)
-    extra = (
-        f"; {progress['unrecognised']} labels not recognised" if progress["unrecognised"] else ""
-    )
-    return f"{result['n_annotated']} annotated; kappa {result['kappa_raw']:.3f} ({result['kappa_raw_band']}), design-weighted {result['kappa_weighted']:.3f}{extra}"
-
-
 def run_phase7() -> str:
     from aicidentia.models import retrieval_outputs
 
@@ -195,12 +174,6 @@ def steps(options: RefreshOptions | None = None) -> list[Step]:
         Step("phase4", "Phase 4 trends (topic labels)", run_phase4, ("phase3",)),
         Step("phase5", "Phase 5 network", run_phase5, ("phase2",)),
         Step("phase6", "Phase 6 classification (+ Colab predictions)", run_phase6, ("phase2",)),
-        Step(
-            "phase6_audit",
-            "Phase 6 label audit (your annotations)",
-            lambda: run_phase6_audit(options.partial_audit),
-            ("phase6",),
-        ),
         Step("phase7", "Phase 7 retrieval", run_phase7, ("phase2",)),
     ]
     if options.dashboard_check:

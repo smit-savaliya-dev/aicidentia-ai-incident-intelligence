@@ -440,15 +440,10 @@ def top_confusions(
     data: Dataset,
     n_pairs: int = 6,
     n_examples: int = 3,
-    exclude_examples: set[int] | None = None,
 ) -> pd.DataFrame:
-    """Most frequent (true -> predicted) errors with example incidents (the most confidently wrong, if probabilities exist).
-
-    Counts use every error; incidents in `exclude_examples` (the blind label-audit sample) are never shown as
-    examples, because an example reveals that incident's MIT label.
-    """
+    """Most frequent (true -> predicted) errors with example incidents (the most confidently wrong, if probabilities exist)."""
     wrong = oof[oof["y_true"] != oof["y_pred"]].copy()
-    shown = wrong[~wrong["incident_id"].isin(exclude_examples or set())]
+    shown = wrong
     titles = data.frame.set_index("incident_id")["title"]
     pairs = wrong.groupby(["y_true", "y_pred"]).size().sort_values(ascending=False).head(n_pairs)
     rows = []

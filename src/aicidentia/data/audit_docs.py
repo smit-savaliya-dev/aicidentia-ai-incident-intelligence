@@ -408,14 +408,14 @@ def write_data_audit(res: AuditResults, path: Path) -> None:
     add(_md(candidates))
     add("")
     add(
-        f"1. **Only MIT Risk Domain is a risk-domain taxonomy** and has enough data for 5-fold stratified cross-validation, a time-based split and a 150-incident audit "
+        f"1. **Only MIT Risk Domain is a risk-domain taxonomy** and has enough data for 5-fold stratified cross-validation and a time-based split "
         f"({n(mit['coverage_n'])} labelled incidents; every human-assigned field covers 200 or fewer).\n"
         f"2. **No human field answers the research question.** CSETv1 Harm Domain is a three-way flag about whether harm fell into a recognised domain; "
         f"Sector of Deployment is an industry sector with {int(lp.loc[('CSETv1', 'Sector of Deployment'), 'n_classes'])} classes, {pct(lp.loc[('CSETv1', 'Sector of Deployment'), 'share_multi'], 0)} multi-valued and "
         f"a smallest class of {int(lp.loc[('CSETv1', 'Sector of Deployment'), 'min_class_n'])}; GMF has {n(s['gmf_incidents'])} incidents and {int(gmf_classes.min())}-{int(gmf_classes.max())} sparse classes per field.\n"
         f"3. **Caveat that shapes how RQ3 is framed.** Because MIT labels are automatic, classifier accuracy measures how well text reproduces an automated labeller, "
-        "not agreement with human judgement. The 150-incident blind audit is what connects the labels to humans, so RQ3 should be reported as two linked findings: "
-        "(i) how predictable the MIT label is from text; (ii) how far it agrees with a human (Cohen's kappa).\n"
+        "not agreement with human judgement. RQ3 is therefore reported as two linked findings: "
+        "(i) how predictable the MIT label is from text; (ii) how reliable the label is, judged against independent signals already in AIID (human CSETv1/GMF annotations, editor-linked pairs, confident learning).\n"
         f"4. **Imbalance.** Largest class {pct(largest['share'])} ({largest['class']}), smallest {int(smallest['n'])} ({smallest['class']}); ratio {ratio:.1f}:1. "
         f'A majority-class baseline already scores {pct(maj_share)} accuracy, so **macro-F1 is the primary metric**, with `class_weight="balanced"` and per-class results. '
         f"With 5 folds the smallest class has about {int(smallest['n']) // 5} test cases per fold, so report bootstrap CIs and do not merge classes unless you approve it.\n"
@@ -548,9 +548,9 @@ def write_datasheet(res: AuditResults, path: Path) -> None:
         "## 4. Preprocessing, cleaning and labelling in AICIDENTIA\n",
         "- Raw files are never modified. Phase 2 produces `data/processed/*.parquet`: entity normalisation via `config/entity_aliases.yaml`, merged-duplicate resolution, stub-report removal, "
         "and an entity-type column. The cleaning steps are documented in `docs/data_audit.md` and tested.\n"
-        "- Human hand labels (150 incidents, blind to MIT label) are created by the project author in `data/manual/`.\n",
+        "- Rule-based decisions on duplicates, person entities and topic names are recorded in `data/manual/` and `docs/decisions.md`.\n",
         "## 5. Uses\n",
-        "- **Intended in this project.** Topic modelling and trend analysis, network analysis, risk-domain classification and label auditing, similar-incident retrieval, a read-only dashboard.\n"
+        "- **Intended in this project.** Topic modelling and trend analysis, network analysis, risk-domain classification and label-reliability assessment, similar-incident retrieval, a read-only dashboard.\n"
         "- **Out of scope / inappropriate.** Estimating the real-world frequency of AI harm; ranking organisations by culpability; individual-level inference about named people; "
         "treating MIT labels as ground truth.\n"
         "- **Known biases and gaps.**\n"

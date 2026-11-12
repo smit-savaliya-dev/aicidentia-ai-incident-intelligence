@@ -9,7 +9,6 @@ import pandas as pd
 
 from aicidentia.config import PROJECT_ROOT
 from aicidentia.data import duplicates, entities
-from aicidentia.models import label_audit
 from aicidentia.models.topic_outputs import LABELS_PATH
 
 MANUAL = PROJECT_ROOT / "data" / "manual"
@@ -90,19 +89,6 @@ def manual_status() -> pd.DataFrame:
             "state": _state(int(dup.get("answered", 0)), int(dup.get("rows", 0))),
             "used_by": "Phase 2 merges -> every later phase",
             "how": "decision = merge_into_a / merge_into_b / keep_separate",
-        }
-    )
-    audit = label_audit.annotation_progress()
-    rows.append(
-        {
-            "input": "Blind label audit",
-            "file": "data/manual/label_audit_sample.csv",
-            "done": audit["labelled"],
-            "total": audit["rows"],
-            "state": _state(audit["labelled"], audit["rows"])
-            + (f"; {audit['unrecognised']} unrecognised labels" if audit["unrecognised"] else ""),
-            "used_by": "Phase 6 audit (kappa); unhides MIT labels in the dashboard when complete",
-            "how": "my_label (1-7 or name), my_confidence (1-3)",
         }
     )
     colab = colab_status()

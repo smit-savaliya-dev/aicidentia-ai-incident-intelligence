@@ -13,8 +13,8 @@ PAGE_ICON = "🛰️"
 
 
 @st.cache_data(show_spinner=False)
-def cached_incidents(blind_key: tuple[int, ...]) -> pd.DataFrame:
-    return data.incidents(set(blind_key))
+def cached_incidents() -> pd.DataFrame:
+    return data.incidents()
 
 
 @st.cache_data(show_spinner=False)
@@ -42,11 +42,6 @@ def cached_retriever() -> models.ActiveRetriever:
     return models.load_retriever()
 
 
-def blind_ids() -> set[int]:
-    """Re-checked on every run (cheap), so finishing the annotation unhides labels after a reload."""
-    return data.blind_ids()
-
-
 def setup(title: str, description: str = "") -> None:
     """Page config, title and the sidebar with snapshot information, banners and a reload button."""
     info = data.snapshot_info()
@@ -57,10 +52,6 @@ def setup(title: str, description: str = "") -> None:
         st.caption(description)
     with st.sidebar:
         st.markdown(f"**AIID snapshot** {info['snapshot']}  \n**Random seed** {info['seed']}")
-        if blind_ids():
-            st.warning(
-                "Blind label audit in progress: MIT labels of the 150 audit incidents are hidden."
-            )
         if cached_theme_info().get("provisional"):
             st.info("Theme names are PROVISIONAL until the topic labels are confirmed.")
         if st.button("Reload data after a refresh"):

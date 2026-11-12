@@ -75,6 +75,21 @@ def record(
     logger.debug("Recorded %s", key)
 
 
+def remove(keys: list[str], path: Path = RESULTS_PATH) -> list[str]:
+    """Delete entries that an analysis no longer produces; returns the keys actually removed."""
+    results = load_results(path)
+    gone = [k for k in keys if k in results]
+    if gone:
+        for k in gone:
+            del results[k]
+        payload = json.dumps(dict(sorted(results.items())), indent=2, ensure_ascii=False) + "\n"
+        fd, tmp = tempfile.mkstemp(dir=path.parent, suffix=".tmp")
+        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(payload)
+        os.replace(tmp, path)
+    return gone
+
+
 def get(key: str, path: Path = RESULTS_PATH) -> Any:
     """Return the value stored under `key` (KeyError if missing)."""
     return load_results(path)[key]["value"]

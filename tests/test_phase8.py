@@ -1,4 +1,4 @@
-"""Phase 8 tests: dashboard data and blinding, model fallback, manual-input status, refresh runner, charts, pages."""
+"""Phase 8 tests: dashboard data, model fallback, manual-input status, refresh runner, charts, pages."""
 
 import json
 
@@ -10,29 +10,16 @@ from aicidentia import pipeline
 from aicidentia.config import PROJECT_ROOT
 from aicidentia.dashboard import charts, data, models, status
 from aicidentia.models import classify as C
-from aicidentia.models import label_audit
 
 
-# ------------------------------------------------------------------ blinding
-def test_incidents_hide_mit_labels_of_audit_incidents():
-    inc = data.incidents(hide=set())
-    some = set(inc.loc[inc["mit_domain"] != "(no MIT label)", "incident_id"].head(3))
-    hidden = data.incidents(hide=some)
-    assert (hidden.loc[hidden["incident_id"].isin(some), "mit_domain"] == data.HIDDEN).all()
-    others = hidden[~hidden["incident_id"].isin(some)]
-    assert (others["mit_domain"] != data.HIDDEN).all()
-    assert {"incident_id", "title", "theme", "mit_domain", "reports"} <= set(hidden.columns)
+# ------------------------------------------------------------------ incident table
+def test_incidents_table_shows_mit_labels():
+    inc = data.incidents()
+    assert {"incident_id", "title", "theme", "mit_domain", "reports"} <= set(inc.columns)
+    assert inc["mit_domain"].notna().all()
 
 
-def test_blind_ids_follow_annotation_progress(monkeypatch):
-    monkeypatch.setattr(label_audit, "blind_audit_active", lambda: True)
-    monkeypatch.setattr(label_audit, "audit_incident_ids", lambda: {1, 2})
-    assert data.blind_ids() == {1, 2}
-    monkeypatch.setattr(label_audit, "blind_audit_active", lambda: False)
-    assert data.blind_ids() == set()
-
-
-def test_node_profile_withholds_domain_mix_while_blind():
+def test_node_profile_shows_domain_mix():
     node = {
         "label": "X",
         "type": "organisation",
@@ -44,8 +31,7 @@ def test_node_profile_withholds_domain_mix_while_blind():
         "domains": {"Misinformation": 3},
         "recent_incidents": [{"id": 1, "title": "t", "year": 2024}],
     }
-    assert data.node_profile(node, hide={99})["domains"] is None
-    assert data.node_profile(node, hide=set())["domains"] == {"Misinformation": 3}
+    assert data.node_profile(node)["domains"] == {"Misinformation": 3}
 
 
 # ------------------------------------------------------------------ model loading and fallback
@@ -124,7 +110,6 @@ def test_manual_status_rows_and_states():
         "Topic labels",
         "Entity review",
         "Duplicate review",
-        "Blind label audit",
         "DistilBERT predictions (Colab)",
     ]
     assert set(table.columns) >= {"file", "done", "total", "state", "used_by", "how"}
@@ -174,7 +159,6 @@ def _fake_steps(log, fail=(), skip=(), block=()):
         "phase4": ("phase3",),
         "phase5": ("phase2",),
         "phase6": ("phase2",),
-        "phase6_audit": ("phase6",),
         "phase7": ("phase2",),
         "dashboard": ("phase4", "phase5", "phase6", "phase7"),
     }
@@ -190,7 +174,6 @@ def test_runner_runs_in_order_and_isolates_failures():
         "phase4",
         "phase5",
         "phase6",
-        "phase6_audit",
         "phase7",
     ]  # phase5 ran and failed; independent steps still ran; the dashboard check was blocked
     assert res["phase5"].status == "failed" and "boom" in res["phase5"].note
@@ -201,11 +184,10 @@ def test_runner_runs_in_order_and_isolates_failures():
 def test_runner_blocked_and_skipped_steps():
     log = []
     res = {
-        r.name: r
-        for r in pipeline.run_steps(_fake_steps(log, block={"phase4"}, skip={"phase6_audit"}))
+        r.name: r for r in pipeline.run_steps(_fake_steps(log, block={"phase4"}, skip={"phase7"}))
     }
     assert res["phase4"].status == "blocked" and res["dashboard"].status == "blocked"
-    assert res["phase6_audit"].status == "skipped" and res["phase6"].status == "ok"
+    assert res["phase7"].status == "skipped" and res["phase6"].status == "ok"
     log2 = []
     res2 = {r.name: r for r in pipeline.run_steps(_fake_steps(log2, fail={"phase2"}))}
     assert log2 == ["phase2"] and all(
@@ -221,7 +203,6 @@ def test_select_only_and_from():
     ]
     assert [s.name for s in pipeline.select(steps, start="phase6")] == [
         "phase6",
-        "phase6_audit",
         "phase7",
         "dashboard",
     ]
@@ -230,23 +211,6 @@ def test_select_only_and_from():
     assert [s.name for s in pipeline.steps(pipeline.RefreshOptions(dashboard_check=False))][
         -1
     ] == "phase7"
-
-
-def test_audit_step_waits_for_complete_annotation(monkeypatch):
-    monkeypatch.setattr(
-        label_audit,
-        "annotation_progress",
-        lambda *a, **k: {"rows": 150, "labelled": 0, "unrecognised": 0},
-    )
-    with pytest.raises(pipeline.StepSkipped, match="no annotations"):
-        pipeline.run_phase6_audit()
-    monkeypatch.setattr(
-        label_audit,
-        "annotation_progress",
-        lambda *a, **k: {"rows": 150, "labelled": 40, "unrecognised": 0},
-    )
-    with pytest.raises(pipeline.StepSkipped, match="40/150"):
-        pipeline.run_phase6_audit()
 
 
 def test_write_summary(tmp_path):
@@ -266,7 +230,7 @@ def test_refresh_script_check_mode(capsys):
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     assert mod.main(["--check"]) == 0
-    assert "Blind label audit" in capsys.readouterr().out
+    assert "Duplicate review" in capsys.readouterr().out
 
 
 # ------------------------------------------------------------------ charts

@@ -25,7 +25,6 @@ files:
   excel_export_glob: "AIID_Excel_Export-20261026.xlsx"
   snapshot_glob: "backup-20261026.tar.bz2"
   excel_sheets: [Incidents, Reports, Entities, Data Dictionary, Coverage Map]
-  hand_labels: hand_labels_150.csv # placed in paths.manual
 
 models:
   sentence_embedding_small: sentence-transformers/all-MiniLM-L6-v2
@@ -88,11 +87,10 @@ network:
   top_n_table: 10
   export: {top_n: 150, max_edges: 900}   # dashboard JSON caps
 
-# Phase 6: risk-domain classification and the label audit (RQ3)
+# Phase 6: risk-domain classification and label reliability (RQ3)
 classification:
   n_boot: 1000                 # bootstrap resamples for confidence intervals and paired tests
   report_words: 256            # ablation: words of the longest linked report appended to the text
-  audit: {total: 150, floor: 10}   # blind audit sample: 150 incidents, at least 10 per MIT domain
 
 # Phase 7: similar-incident retrieval (RQ4). Ground truth = editor-marked similar incidents in the snapshot.
 retrieval:

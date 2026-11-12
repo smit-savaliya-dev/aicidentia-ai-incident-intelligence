@@ -77,7 +77,7 @@ with st.expander("MIT risk domains and forecasting"):
 
 st.subheader("Incidents in a theme")
 theme = st.selectbox("Theme", share["group"].tolist())
-inc = ui.cached_incidents(tuple(sorted(ui.blind_ids())))
+inc = ui.cached_incidents()
 st.dataframe(
     inc[inc["theme"] == theme].sort_values("date", ascending=False)[
         ["incident_id", "date", "title"]

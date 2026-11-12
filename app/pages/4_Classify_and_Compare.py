@@ -4,7 +4,6 @@ import streamlit as st
 
 from aicidentia.config import load_config
 from aicidentia.dashboard import charts, data, models, ui
-from aicidentia.models import label_audit
 from aicidentia.models import retrieval as R
 
 ui.setup(
@@ -59,7 +58,7 @@ with c2:
             k=int(load_config()["retrieval"]["top_k_dashboard"]),
             embed=models.query_embedder,
         )
-        years = ui.cached_incidents(tuple(sorted(ui.blind_ids()))).set_index("incident_id")["year"]
+        years = ui.cached_incidents().set_index("incident_id")["year"]
         hits["year"] = hits["incident_id"].map(years)
         st.dataframe(
             hits[["rank", "incident_id", "year", "title"]],
@@ -81,26 +80,3 @@ st.markdown(
     f"Deployed: **{f('rq3.deployable', '?')}** ({f('rq3.calibration_method', '?')} calibration). "
     f"DistilBERT: {'scored' if f('rq3.colab_present') else 'pending the Colab run'}."
 )
-
-st.subheader("Do the MIT labels agree with a human? (blind audit)")
-progress = label_audit.annotation_progress()
-if progress["rows"] and progress["labelled"] < progress["rows"]:
-    st.info(
-        f"Annotation in progress: {progress['labelled']} of {progress['rows']} incidents labelled. Results appear here when it is complete."
-    )
-else:
-    kappa = f("rq3audit.kappa_weighted")
-    if kappa is None:
-        st.info(
-            "Annotation complete: run `uv run python scripts/refresh_all.py` to compute the agreement."
-        )
-    else:
-        lo, hi = f("rq3audit.kappa_weighted_ci")
-        st.metric(
-            "Cohen's kappa (design-weighted)",
-            f"{kappa:.2f}",
-            help=f"95% CI {lo:.2f}-{hi:.2f}; {f('rq3audit.kappa_weighted_band')}",
-        )
-        st.write(
-            f"Raw agreement {100 * f('rq3audit.agreement_design_weighted'):.0f}% (population-weighted) on {f('rq3audit.n_annotated')} incidents."
-        )

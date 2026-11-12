@@ -39,14 +39,12 @@ with right:
         st.write("Choose an entity above to see its profile.")
     else:
         node = next(n for n in net["nodes"] if n["id"] == pick)
-        prof = data.node_profile(node, ui.blind_ids())
+        prof = data.node_profile(node)
         st.markdown(
             f"**{prof['label']}**  \n{charts.TYPE_NAME.get(prof['type'], prof['type'])}, community {prof['community']}  \n"
             f"{prof['incidents']} incidents, {prof['years']}  \nPageRank {prof['pagerank']:.4f}"
         )
-        if prof["domains"] is None:
-            st.caption("Risk-domain mix hidden while the blind label audit is in progress.")
-        elif prof["domains"]:
+        if prof["domains"]:
             st.dataframe(
                 pd.Series(prof["domains"], name="incidents").rename_axis("MIT domain"),
                 width="stretch",

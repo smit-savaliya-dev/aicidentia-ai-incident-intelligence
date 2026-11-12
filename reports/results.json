@@ -2765,54 +2765,6 @@
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },
-  "rq3.audit_allocation": {
-    "value": [
-      {
-        "sample": 41,
-        "population": 566
-      },
-      {
-        "sample": 27,
-        "population": 313
-      },
-      {
-        "sample": 23,
-        "population": 243
-      },
-      {
-        "sample": 20,
-        "population": 196
-      },
-      {
-        "sample": 16,
-        "population": 112
-      },
-      {
-        "sample": 12,
-        "population": 42
-      },
-      {
-        "sample": 11,
-        "population": 24
-      }
-    ],
-    "source_file": "data/processed/incidents_clean.parquet",
-    "function": "aicidentia.models.classify_outputs.run_classification"
-  },
-  "rq3.audit_progress": {
-    "value": {
-      "rows": 150,
-      "labelled": 0,
-      "unrecognised": 0
-    },
-    "source_file": "data/processed/incidents_clean.parquet",
-    "function": "aicidentia.models.classify_outputs.run_classification"
-  },
-  "rq3.audit_sample_status": {
-    "value": "unchanged",
-    "source_file": "data/processed/incidents_clean.parquet",
-    "function": "aicidentia.models.classify_outputs.run_classification"
-  },
   "rq3.best_model": {
     "value": "mpnet embeddings + logistic regression",
     "source_file": "data/processed/incidents_clean.parquet",

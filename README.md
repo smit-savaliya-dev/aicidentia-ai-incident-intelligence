@@ -16,7 +16,7 @@ real-world AI failures.
 |----|----------|---------|
 | RQ1 | Risk themes and their trends over time | LDA vs NMF vs BERTopic; Mann-Kendall trend tests |
 | RQ2 | Network of incidents, organisations, harmed groups and risk domains | Louvain vs Leiden vs label propagation; centrality |
-| RQ3 | Classify incidents into risk domains; audit AI-generated labels against 150 hand labels | TF-IDF + logistic regression/SVM vs sentence embeddings vs fine-tuned DistilBERT; Cohen's kappa |
+| RQ3 | Classify incidents into risk domains; how reliable are the AI-generated (MIT) labels? | TF-IDF + logistic regression/SVM vs sentence embeddings vs fine-tuned DistilBERT; agreement with CSETv1/GMF, editor-linked pairs, confident learning |
 | RQ4 (stretch) | Similar-incident retrieval | TF-IDF vs BM25 vs sentence embeddings; precision@5, MRR |
 
 **Status:** project scaffold only. Module functions are stubs (`NotImplementedError`) and the dashboard
@@ -85,8 +85,8 @@ This prints each sheet with its row and column counts (banner rows excluded), wr
 `docs/data_manifest.md`, and either safely extracts a `.tar.bz2` snapshot into `data/raw/snapshot_<date>/` or,
 if you already extracted the dump yourself (e.g. `data/raw/mongodump_full_snapshot/`), hashes and lists it.
 
-Put your 150 hand-labelled incidents in `data/manual/` (tracked in git). Optional OECD AIM exports go in
-`data/external/`.
+Rule-based decisions (duplicates, person entities, topic names) live in `data/manual/` (tracked in git) and are
+explained in `docs/decisions.md`. Optional OECD AIM exports go in `data/external/`.
 
 ## How to run everything
 
@@ -98,9 +98,7 @@ Put your 150 hand-labelled incidents in `data/manual/` (tracked in git). Optiona
 | Phase 3 risk themes (LDA vs NMF vs BERTopic; slow only on the first run, then cached) | `uv run python scripts/run_phase3_topics.py` |
 | Phase 4 trends (Mann-Kendall, BH, reporting-bias sensitivity, forecasting evaluation; re-run after you label topics) | `uv run python scripts/run_phase4_trends.py` |
 | Phase 5 network (centrality, communities, temporal evolution, dashboard JSON) | `uv run python scripts/run_phase5_network.py` |
-| Phase 6 classification, calibration, blind audit sample | `uv run python scripts/run_phase6_classification.py` |
-| Annotate the audit sample (optional helper) | `uv run streamlit run scripts/label_audit_app.py` |
-| Analyse your annotations (kappa etc.) | `uv run python scripts/run_phase6_audit.py` |
+| Phase 6 classification and calibration | `uv run python scripts/run_phase6_classification.py` |
 | Phase 7 similar-incident retrieval (RQ4) | `uv run python scripts/run_phase7_retrieval.py` |
 | **Refresh everything after editing your manual files** (Phases 2-7 + dashboard check) | `uv run python scripts/refresh_all.py` |
 | Status of your manual files only | `uv run python scripts/refresh_all.py --check` |
@@ -111,7 +109,7 @@ Put your 150 hand-labelled incidents in `data/manual/` (tracked in git). Optiona
 | Re-export requirements.txt | `uv run python scripts/export_requirements.py` |
 
 Notebooks run in order (CRISP-DM): `01_data_audit` -> `02_cleaning_eda` -> `03_rq1_themes_trends` ->
-`04_rq2_network` -> `05_rq3_classification_label_audit` -> `06_rq4_similarity`.
+`04_rq2_network` -> `05_rq3_classification_reliability` -> `06_rq4_similarity`.
 
 ## Manual files (your judgement; the pipeline only creates templates)
 
@@ -120,7 +118,6 @@ Notebooks run in order (CRISP-DM): `01_data_audit` -> `02_cleaning_eda` -> `03_r
 | `data/manual/entity_review.csv` | `is_private_individual` = yes/no for each person-like entity | re-run `run_phase2_prepare.py`; confirmed individuals are excluded from the network and dashboard |
 | `data/manual/duplicate_review.csv` | `decision` = merge_into_a / merge_into_b / keep_separate | re-run `run_phase2_prepare.py` |
 | `data/manual/topic_labels.csv` | `final_label` (and `notes`) for each topic of the chosen model | Phase 4 uses your labels (blank = PROVISIONAL placeholder names; **two topics with the same `final_label` are merged into one theme**); the file carries a `model_key` so answers are never applied to a different topic solution |
-| `data/manual/label_audit_sample.csv` | `my_label`, `my_confidence` (1-3), `notes` for 150 incidents (MIT label hidden; see `docs/label_guidelines.md`) | `run_phase6_audit.py` |
 | `reports/colab/rq3_distilbert_predictions.csv` (copy from Colab) | run `notebooks/colab_distilbert_finetune.ipynb` on Colab with `reports/colab/rq3_colab_input.csv` | re-run `run_phase6_classification.py` |
 | `config/entity_aliases.yaml` (`manual:` / `blocked:`) | extra aliases or vetoes | re-run `run_phase2_prepare.py` |
 | `config/entity_types.yaml` (`overrides:`) | corrections to the heuristic entity types | re-run `run_phase2_prepare.py` |
@@ -140,10 +137,10 @@ data/             raw (git-ignored), interim, processed, external, manual (track
 notebooks/        01-06, one per CRISP-DM stage / research question
 src/aicidentia/   installable package: data, features, models, evaluation, viz
 app/              Streamlit dashboard (Home.py + pages/)
-scripts/          check_data.py, run_phase1_audit.py, run_phase2_prepare.py, run_phase3_topics.py, run_phase4_trends.py, run_phase5_network.py, run_phase6_classification.py, run_phase6_audit.py, label_audit_app.py, colab_distilbert_code.py, run_phase7_retrieval.py, refresh_all.py, generate_environment_doc.py, export_requirements.py
+scripts/          check_data.py, run_phase1_audit.py, run_phase2_prepare.py, run_phase3_topics.py, run_phase4_trends.py, run_phase5_network.py, run_phase6_classification.py, colab_distilbert_code.py, run_phase7_retrieval.py, refresh_all.py, generate_environment_doc.py, export_requirements.py
 models/           saved models (git-ignored)
 reports/          figures/ and tables/
-docs/             environment.md, project_log.md, data_manifest.md, data_audit.md, datasheet.md, data_preparation.md, rq1_topic_models.md, rq1_trends.md, rq2_network.md, rq3_classification.md, label_guidelines.md, rq3_label_audit.md, rq4_similarity.md, dashboard.md
+docs/             environment.md, project_log.md, data_manifest.md, data_audit.md, datasheet.md, data_preparation.md, rq1_topic_models.md, rq1_trends.md, rq2_network.md, rq3_classification.md, rq4_similarity.md, dashboard.md
 tests/            smoke tests
 ```
 

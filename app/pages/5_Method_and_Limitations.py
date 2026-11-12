@@ -51,7 +51,7 @@ st.markdown(
 - **RQ2 network:** typed incident graph and weighted entity co-occurrence network; centrality (degree, betweenness, PageRank, eigenvector);
   Louvain vs Leiden vs label propagation over 10 seeds, chosen by a pre-specified rule.
 - **RQ3 classification:** TF-IDF / embedding models with nested 5-fold CV, a time split, bootstrap CIs and paired tests; temperature-scaled confidences;
-  blind human audit of 150 machine-generated labels (Cohen's kappa).
+  label reliability judged against CSETv1/GMF, editor-linked pairs and confident learning.
 - **RQ4 retrieval:** TF-IDF, BM25, sentence embeddings and a hybrid against editor-marked similar incidents (MRR, nDCG@10, P@5).
 - Every number is produced by code in `src/aicidentia` and stored in `reports/results.json`; random seed {data.snapshot_info()["seed"]}.
 """
@@ -68,7 +68,7 @@ st.subheader("Limitations")
 st.markdown(
     """
 - **Reported, not all, incidents.** AIID reflects what journalists covered and editors accepted; trends describe the database, not the prevalence of AI harm.
-- **Machine-generated labels.** MIT risk domains were assigned automatically; the classifier learns to reproduce them. The blind audit measures how far a human agrees.
+- **Machine-generated labels.** MIT risk domains were assigned automatically; the classifier learns to reproduce them. Their reliability is assessed against independent signals in AIID.
 - **Short series.** 11 complete years give trend tests little power; a 'no trend' result is not evidence of stability. Forecasts are not shown because they did not beat a naive forecast.
 - **Alleged involvement.** Organisations are alleged developers/deployers; network centrality reflects frequency in reports, not responsibility. Communities depend on a few generic hubs.
 - **Sparse similarity judgements.** Editors mark few similar pairs, so retrieval scores are lower bounds.

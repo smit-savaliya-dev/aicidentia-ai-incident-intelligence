@@ -114,11 +114,10 @@ def pick_examples(
     gt: R.GroundTruth,
     method: str,
     seed: int,
-    exclude: set[int],
 ) -> pd.DataFrame:
     """Three illustrative queries for `method` (two found in the top 5, one missed), chosen by seed, with titles only."""
     rng = np.random.default_rng(seed)
-    sub = per_query[(per_query["method"] == method) & ~per_query["query"].isin(exclude)]
+    sub = per_query[per_query["method"] == method]
     picks = list(rng.choice(sub.loc[sub["hit@5"] == 1, "query"].to_numpy(), 2, replace=False))
     misses = sub.loc[sub["hit@5"] == 0, "query"].to_numpy()
     if len(misses):
@@ -173,11 +172,7 @@ def run_retrieval() -> RetrievalResults:
         R.evaluate_suggestions(gt, gt.queries), ["rr@3", "p@3", "hit@3"], n_boot, seed
     )
     res.deployed, res.deployed_reason = choose_deployed(res.summary["all"], res.comparisons["all"])
-    from aicidentia.models.label_audit import audit_incident_ids
-
-    res.examples = pick_examples(
-        res.per_query["all"], index, gt, res.deployed, seed, audit_incident_ids()
-    )
+    res.examples = pick_examples(res.per_query["all"], index, gt, res.deployed, seed)
     s = res.summary["all"].set_index("method")
     best = str(s[PRIMARY].idxmax())
     res.facts = {

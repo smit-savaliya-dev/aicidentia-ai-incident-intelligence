@@ -1,9 +1,4 @@
-"""Data the dashboard shows, read from the saved pipeline outputs (never recomputed here).
-
-Blind label audit: while `data/manual/label_audit_sample.csv` is not fully annotated, the MIT label and any
-model prediction for the 150 audit incidents are replaced by HIDDEN, and per-entity domain mixes in the network
-panel are withheld, so the dashboard cannot reveal those labels.
-"""
+"""Data the dashboard shows, read from the saved pipeline outputs (never recomputed here)."""
 
 from __future__ import annotations
 
@@ -16,13 +11,11 @@ import pandas as pd
 from aicidentia import registry
 from aicidentia.config import PROJECT_ROOT, load_config
 from aicidentia.data import clean
-from aicidentia.models import label_audit
 
 logger = logging.getLogger(__name__)
 TABLES = PROJECT_ROOT / "reports" / "tables"
 FIGURES = PROJECT_ROOT / "reports" / "figures"
 NETWORK_JSON = PROJECT_ROOT / "reports" / "network_graph.json"
-HIDDEN = "hidden (blind audit in progress)"
 
 
 def results() -> dict[str, Any]:
@@ -35,11 +28,6 @@ def fact(key: str, default: Any = None) -> Any:
         return registry.get(key)
     except KeyError:
         return default
-
-
-def blind_ids() -> set[int]:
-    """Incident ids whose MIT label must stay hidden right now (empty once the audit is fully annotated)."""
-    return label_audit.audit_incident_ids() if label_audit.blind_audit_active() else set()
 
 
 def table(name: str) -> pd.DataFrame:
@@ -62,8 +50,8 @@ def theme_names() -> tuple[pd.DataFrame, dict[str, Any]]:
         return out, {"provisional": True, "problem": str(exc)}
 
 
-def incidents(hide: set[int] | None = None) -> pd.DataFrame:
-    """Incident table for browsing: id, date, year, title, description, reports, theme, MIT domain (masked)."""
+def incidents() -> pd.DataFrame:
+    """Incident table for browsing: id, date, year, title, description, reports, theme, MIT domain."""
     inc = clean.load_processed("incidents_clean")[
         [
             "incident_id",
@@ -77,9 +65,7 @@ def incidents(hide: set[int] | None = None) -> pd.DataFrame:
     ]
     themes, _ = theme_names()
     out = inc.merge(themes[["incident_id", "theme"]], on="incident_id", how="left")
-    hide = blind_ids() if hide is None else hide
     out["mit_domain"] = out["mit_risk_domain"].fillna("(no MIT label)")
-    out.loc[out["incident_id"].isin(hide), "mit_domain"] = HIDDEN
     return out.drop(columns=["mit_risk_domain"]).rename(columns={"report_count_clean": "reports"})
 
 
@@ -118,9 +104,8 @@ def network() -> dict[str, Any]:
     return data
 
 
-def node_profile(node: dict[str, Any], hide: set[int] | None = None) -> dict[str, Any]:
-    """What the side panel shows for a node; the domain mix is withheld while the blind audit is active."""
-    hide = blind_ids() if hide is None else hide
+def node_profile(node: dict[str, Any]) -> dict[str, Any]:
+    """What the side panel shows for a node."""
     recent = [r for r in node.get("recent_incidents", [])]
     return {
         "label": node["label"],
@@ -129,7 +114,7 @@ def node_profile(node: dict[str, Any], hide: set[int] | None = None) -> dict[str
         "incidents": node["n_incidents"],
         "years": f"{node['first_year']}-{node['last_year']}",
         "pagerank": node["pagerank"],
-        "domains": None if hide else node.get("domains", {}),
+        "domains": node.get("domains", {}),
         "recent": recent,
     }
 

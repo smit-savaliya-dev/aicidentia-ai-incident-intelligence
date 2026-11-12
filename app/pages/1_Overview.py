@@ -9,8 +9,7 @@ ui.setup(
     "The AI Incident Database at a glance. Counts are of reported incidents, not of all AI harm.",
 )
 
-hide = ui.blind_ids()
-inc = ui.cached_incidents(tuple(sorted(hide)))
+inc = ui.cached_incidents()
 left, right = st.columns([3, 2])
 left.plotly_chart(charts.incidents_per_year(data.yearly_by_year()), width="stretch")
 right.plotly_chart(charts.domain_bars(data.domain_counts()), width="stretch")

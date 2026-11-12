@@ -27,11 +27,11 @@ _Structure follows Gebru et al., "Datasheets for Datasets". Facts about this sna
 ## 4. Preprocessing, cleaning and labelling in AICIDENTIA
 
 - Raw files are never modified. Phase 2 produces `data/processed/*.parquet`: entity normalisation via `config/entity_aliases.yaml`, merged-duplicate resolution, stub-report removal, and an entity-type column. The cleaning steps are documented in `docs/data_audit.md` and tested.
-- Human hand labels (150 incidents, blind to MIT label) are created by the project author in `data/manual/`.
+- Rule-based decisions on duplicates, person entities and topic names are recorded in `data/manual/` and `docs/decisions.md`.
 
 ## 5. Uses
 
-- **Intended in this project.** Topic modelling and trend analysis, network analysis, risk-domain classification and label auditing, similar-incident retrieval, a read-only dashboard.
+- **Intended in this project.** Topic modelling and trend analysis, network analysis, risk-domain classification and label-reliability assessment, similar-incident retrieval, a read-only dashboard.
 - **Out of scope / inappropriate.** Estimating the real-world frequency of AI harm; ranking organisations by culpability; individual-level inference about named people; treating MIT labels as ground truth.
 - **Known biases and gaps.**
   - *Reporting bias:* only incidents that reached news media and an editor; English-language and Western outlets dominate (95.6% English).
