@@ -262,3 +262,33 @@ precedent the deployed method finds in its top 5 [`rq4.demo_cases`].
 
 **Effect.** Seven pages; every page reaches its footer in 0.2-2.0 s in a real browser and renders in under 3 s in
 the warm-load test. The sector filter keeps at most 207 incidents, which the page states.
+
+## D14. Reproducibility and presentation assets
+
+**What.** `scripts/run_all.py` rebuilds everything from `data/raw`: it first checks the 48 raw files against the
+SHA-256 hashes in `docs/data_manifest.md` (instead of rewriting the manifest, which carries a timestamp), then runs
+Phase 1, the rules, Phases 2-7, the story analyses, the fact sheet and a headless dashboard check, and reports
+whether git changed (by file content, not only by file status). DistilBERT is not retrained by run_all; the saved
+predictions are scored. Figures are saved at their exact IEEE size (no tight bounding box): 3.5 in or 7.16 in wide,
+300 dpi PNG + SVG, with no save date and fixed SVG ids. `docs/report_facts.md` is generated from the registry.
+
+**Why.** One command, deterministic outputs and numbers that are never typed by hand make every result checkable.
+
+**Effect.** run_all takes 1.9 minutes with warm caches; a second run leaves git unchanged. All 32 figures are 3.5 in
+(7) or 7.16 in (25) wide. The fact sheet lists 126 facts with their keys and source files.
+
+## Earlier rules that shape the results (Phases 1-8)
+
+Fixed before the results were seen; details in the RQ documents.
+
+| Rule | Where | Effect [key] |
+|---|---|---|
+| Trend window: complete years with at least 20 incidents | `docs/data_audit.md` | 2015-2025; 2026 is partial [`audit.year_range_recommendation`] |
+| Topic model chosen by mean rank on C_v, NPMI, diversity and stability over 5 seeds, k in 8-25 | `docs/rq1_topic_models.md` | NMF k=12, robust to 4 alternative weightings [`rq1a.selection.sensitivity`] |
+| Emerging theme = significant increasing share (Mann-Kendall, BH q < 0.05) and recent share above the long-run mean | `docs/rq1_trends.md` | 5 of 12 themes [`rq1b.emerging_themes`] |
+| Forecasts shown only if they beat a naive forecast (rolling-origin MASE) | `docs/rq1_trends.md` | not shown [`rq1b.forecast_justified` = false] |
+| Network: entities in at least 2 incidents; best mean modularity among methods with mean ARI >= 0.5 over 10 seeds | `docs/rq2_network.md` | Leiden, 11 communities [`rq2.chosen_method`, `rq2.n_communities`] |
+| Domain mix hidden for communities with fewer than 20 incidents (small-cell rule) | `docs/rq2_network.md` | kept after D1 |
+| Deployable classifier: best CV macro-F1 only if significantly better than TF-IDF + LR | `docs/rq3_classification.md` | mpnet + LR (+0.037, CI +0.003 to +0.074) [`rq3.deployable_reason`] |
+| Calibration: keep uncalibrated unless a calibrator lowers ECE by more than 0.005 | `docs/rq3_classification.md` | temperature scaling, ECE 0.050 -> 0.020 [`rq3.ece`] |
+| Deployed search: best MRR only if significantly better than BM25 (paired bootstrap) | `docs/rq4_similarity.md` | BM25 [`rq4.deployed_reason`] |

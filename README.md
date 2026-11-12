@@ -4,149 +4,122 @@
 
 **Learning from Failure: A Data-Driven Analysis of Reported Real-World AI Incidents**
 
-MSc Data Analytics - Domain Applications project, National College of Ireland (individual work, due 19 Nov 2026).
+MSc Data Analytics, Domain Applications project, National College of Ireland (individual work, due 19 Nov 2026).
 Dashboard: **AICIDENTIA Intelligence** (Streamlit). Process framework: **CRISP-DM**.
+
+![AICIDENTIA Intelligence: key findings](reports/figures/dashboard/01_home.png)
 
 ## Overview
 
-AICIDENTIA analyses the [AI Incident Database (AIID)](https://incidentdatabase.ai/) to learn from reported
-real-world AI failures.
+AICIDENTIA analyses a frozen snapshot (2026-10-26) of the [AI Incident Database (AIID)](https://incidentdatabase.ai/):
+1,775 reported real-world AI incidents and 8,023 reports. It asks:
 
-| RQ | Question | Methods |
-|----|----------|---------|
-| RQ1 | Risk themes and their trends over time | LDA vs NMF vs BERTopic; Mann-Kendall trend tests |
-| RQ2 | Network of incidents, organisations, harmed groups and risk domains | Louvain vs Leiden vs label propagation; centrality |
-| RQ3 | Classify incidents into risk domains; how reliable are the AI-generated (MIT) labels? | TF-IDF + logistic regression/SVM vs sentence embeddings vs fine-tuned DistilBERT; agreement with CSETv1/GMF, editor-linked pairs, confident learning |
-| RQ4 (stretch) | Similar-incident retrieval | TF-IDF vs BM25 vs sentence embeddings; precision@5, MRR |
+| RQ | Question | Methods | Headline result |
+|----|----------|---------|-----------------|
+| RQ1 | Which risk themes exist and how do they change over time? | LDA vs NMF vs BERTopic (rule-based choice); Mann-Kendall + Sen's slope + Benjamini-Hochberg; chi-square before/after ChatGPT | 12 themes; 5 emerging (deepfakes, deepfake scams, hallucinated legal citations, AI nude images in schools, election disinformation); misuse rose from 12% to 52% of labelled incidents after Nov 2022 |
+| RQ2 | Which organisations, systems and groups cluster together? | Entity co-occurrence network, centrality, Louvain vs Leiden vs label propagation | 11 Leiden communities (modularity 0.36); deepfake, scam and election harms concentrate around the big platforms (alleged) |
+| RQ3 | Can incidents be classified into risk domains, and how reliable are AIID's AI-generated labels? | TF-IDF, sentence embeddings, DistilBERT with nested CV and a time split; CSETv1/GMF agreement, editor-linked pairs, confident learning | mpnet + LR macro-F1 0.651; labels agree with editors (75% vs 30% chance) but about 15% are probably wrong |
+| RQ4 | Can similar, earlier incidents be retrieved? | TF-IDF vs BM25 vs embeddings vs hybrid, scored against editor-marked similar incidents | BM25 finds an editor-linked precedent in the top 5 for 76% of 2024+ repeats; MRR@3 0.45 vs 0.03 for AIID's suggestions |
 
-**Status:** project scaffold only. Module functions are stubs (`NotImplementedError`) and the dashboard
-pages are placeholders.
-
-## Reproducibility
-
-- Python is pinned in `.python-version` (3.13.12); every dependency is pinned in `uv.lock`
-  (`requirements.txt` is an export of the same pins).
-- The global seed (`random_seed: 42` in `config/config.yaml`) is applied with `aicidentia.config.set_seeds()`.
-- The data is a frozen snapshot: file names carry the export date, and `scripts/check_data.py` records
-  SHA-256 hashes in `docs/data_manifest.md`.
-- `docs/environment.md` lists the exact OS, Python and package versions of the machine used.
+The five key findings, with numbers and limitations, are in [`docs/key_findings.md`](docs/key_findings.md); every
+citable number is in [`docs/report_facts.md`](docs/report_facts.md); every rule and decision is in
+[`docs/decisions.md`](docs/decisions.md). The pipeline picture is [`docs/methods_overview.svg`](docs/methods_overview.svg).
 
 ## Setup
 
 Prerequisites: [uv](https://docs.astral.sh/uv/) and git.
 
 ```bash
-# 1. Create .venv, install Python 3.13.12 (if needed) and every dependency from uv.lock
-uv sync --all-extras
-cp .env.example .env   # optional: set HF_HOME to keep models off a small system drive
-
-# 2. Strip notebook outputs on commit (once per clone)
-uv run nbstripout --install
-
-# 3. (Optional) regenerate docs/environment.md
-uv run python scripts/generate_environment_doc.py
+uv sync --all-extras          # Python 3.13.12 and every pinned dependency from uv.lock (keep --all-extras)
+cp .env.example .env          # optional: HF_HOME / PLAYWRIGHT_BROWSERS_PATH to keep caches off a small drive
+uv run nbstripout --install   # once per clone: strip notebook outputs on commit
 ```
 
-Activate the environment (optional - `uv run <cmd>` works without activating):
+**torch / GPU.** On Windows and Linux, `pyproject.toml` pulls the CUDA 13.2 build of torch. For a CPU-only machine,
+change the index URL in `[[tool.uv.index]]` from `.../whl/cu132` to `.../whl/cpu` and run `uv lock && uv sync --all-extras`.
+Without uv: `python -m venv .venv`, activate it, then `pip install -r requirements.txt && pip install -e . --no-deps`.
+
+**Data.** Download the AIID Excel export (`AIID_Excel_Export-YYYYMMDD.xlsx`) and the full database dump into
+`data/raw/` (nothing is downloaded automatically), set `snapshot_date` in `config/config.yaml`, and run
+`uv run python scripts/check_data.py` once; it records SHA-256 hashes in `docs/data_manifest.md`.
+
+## Run everything
 
 ```bash
-# Windows PowerShell
-.venv\Scripts\Activate.ps1
-# macOS / Linux
-source .venv/bin/activate
+uv run python scripts/run_all.py
 ```
 
-**torch / GPU.** On Windows and Linux, `pyproject.toml` pulls the CUDA 13.2 build of torch from the PyTorch
-index. For a CPU-only machine, change the index URL in `[[tool.uv.index]]` from `.../whl/cu132` to
-`.../whl/cpu`, then run `uv lock && uv sync --all-extras`. DistilBERT fine-tuning can also run on Google Colab.
-
-Without uv, use `python -m venv .venv`, activate it, then
-`pip install -r requirements.txt && pip install -e . --no-deps`.
-
-**VS Code.** Open this folder (`aicidentia-ai-incident-intelligence`) as the workspace and accept the
-recommended extensions. The interpreter is `.venv`, Ruff formats on save, and notebooks use the `.venv` kernel.
-
-## Data
-
-Download manually (nothing is downloaded automatically) and place in `data/raw/`:
-
-| File | Required | Used for |
-|------|----------|----------|
-| `AIID_Excel_Export-YYYYMMDD.xlsx` | yes | Main dataset (sheets: Incidents, Reports, Entities, Data Dictionary, Coverage Map) |
-| `backup-YYYYMMDDhhmmss.tar.bz2` | optional | Full article text and editor-marked similar incidents |
-
-Then set `snapshot_date` in `config/config.yaml` and verify:
-
-```bash
-uv run python scripts/check_data.py
-```
-
-This prints each sheet with its row and column counts (banner rows excluded), writes SHA-256 hashes to
-`docs/data_manifest.md`, and either safely extracts a `.tar.bz2` snapshot into `data/raw/snapshot_<date>/` or,
-if you already extracted the dump yourself (e.g. `data/raw/mongodump_full_snapshot/`), hashes and lists it.
-
-Rule-based decisions (duplicates, person entities, topic names) live in `data/manual/` (tracked in git) and are
-explained in `docs/decisions.md`. Optional OECD AIM exports go in `data/external/`.
-
-## How to run everything
+Regenerates every table, figure, registry entry and document from `data/raw` in about 2 minutes with warm caches
+(first run: longer, embeddings and topic fits are computed and cached in `data/interim/`): verify the raw files
+against the manifest -> Phase 1 audit -> rules D2/D3 -> Phases 2-7 -> story (key findings) -> fact sheet ->
+dashboard check, with a timing summary. A rerun leaves git unchanged (the script checks and reports it).
 
 | Task | Command |
 |------|---------|
-| Check the data | `uv run python scripts/check_data.py` |
-| Phase 1 data audit (tables, figures, `docs/data_audit.md`, `docs/datasheet.md`) | `uv run python scripts/run_phase1_audit.py` |
-| Phase 2 data preparation (parquet tables, review templates, `docs/data_preparation.md`) | `uv run python scripts/run_phase2_prepare.py` |
-| Phase 3 risk themes (LDA vs NMF vs BERTopic; slow only on the first run, then cached) | `uv run python scripts/run_phase3_topics.py` |
-| Phase 4 trends (Mann-Kendall, BH, reporting-bias sensitivity, forecasting evaluation; re-run after you label topics) | `uv run python scripts/run_phase4_trends.py` |
-| Phase 5 network (centrality, communities, temporal evolution, dashboard JSON) | `uv run python scripts/run_phase5_network.py` |
-| Phase 6 classification and calibration | `uv run python scripts/run_phase6_classification.py` |
-| Phase 7 similar-incident retrieval (RQ4) | `uv run python scripts/run_phase7_retrieval.py` |
-| **Refresh everything after editing your manual files** (Phases 2-7 + dashboard check) | `uv run python scripts/refresh_all.py` |
-| Status of your manual files only | `uv run python scripts/refresh_all.py --check` |
-| Open Jupyter | `uv run jupyter lab` |
-| Run the dashboard (offline; see `docs/dashboard.md`) | `uv run streamlit run app/Home.py` |
-| Run the tests | `uv run pytest` |
-| Lint / format | `uv run ruff check .` / `uv run ruff format .` |
-| Re-export requirements.txt | `uv run python scripts/export_requirements.py` |
+| Everything from raw data | `uv run python scripts/run_all.py` |
+| Re-apply the manual/rule files only (Phases 2-7, story, docs) | `uv run python scripts/refresh_all.py` |
+| Fine-tune DistilBERT on the local GPU (same folds as Colab) | `uv run python scripts/train_distilbert_local.py` |
+| Dashboard | `uv run streamlit run app/Home.py` |
+| Dashboard screenshots (`reports/figures/dashboard/`) | `uv run python scripts/capture_dashboard.py` |
+| Backup demo video (`reports/demo/backup_demo.webm`) | `uv run python scripts/record_demo.py` |
+| Tests / lint | `uv run pytest` · `uv run ruff check .` |
+| One phase at a time | `scripts/run_phase1_audit.py` ... `run_phase7_retrieval.py`, `run_story.py` |
 
-Notebooks run in order (CRISP-DM): `01_data_audit` -> `02_cleaning_eda` -> `03_rq1_themes_trends` ->
-`04_rq2_network` -> `05_rq3_classification_reliability` -> `06_rq4_similarity`.
+Notebooks run top to bottom in order: `01_data_audit` -> `02_cleaning_eda` -> `03_rq1_themes_trends` ->
+`04_rq2_network` -> `05_rq3_classification_reliability` -> `06_rq4_similarity` -> `07_story_synthesis`
+(`colab_distilbert_finetune.ipynb` is the Colab alternative to the local GPU script).
 
-## Manual files (your judgement; the pipeline only creates templates)
+## Dashboard
 
-| File | You fill in | Then |
-|---|---|---|
-| `data/manual/entity_review.csv` | `is_private_individual` = yes/no for each person-like entity | re-run `run_phase2_prepare.py`; confirmed individuals are excluded from the network and dashboard |
-| `data/manual/duplicate_review.csv` | `decision` = merge_into_a / merge_into_b / keep_separate | re-run `run_phase2_prepare.py` |
-| `data/manual/topic_labels.csv` | `final_label` (and `notes`) for each topic of the chosen model | Phase 4 uses your labels (blank = PROVISIONAL placeholder names; **two topics with the same `final_label` are merged into one theme**); the file carries a `model_key` so answers are never applied to a different topic solution |
-| `reports/colab/rq3_distilbert_predictions.csv` (copy from Colab) | run `notebooks/colab_distilbert_finetune.ipynb` on Colab with `reports/colab/rq3_colab_input.csv` | re-run `run_phase6_classification.py` |
-| `config/entity_aliases.yaml` (`manual:` / `blocked:`) | extra aliases or vetoes | re-run `run_phase2_prepare.py` |
-| `config/entity_types.yaml` (`overrides:`) | corrections to the heuristic entity types | re-run `run_phase2_prepare.py` |
+`uv run streamlit run app/Home.py` opens **AICIDENTIA Intelligence**: Key Findings, Themes and Trends, Risk Priority
+Matrix, Risk Network, Precedent Finder (with a demo mode), Label Reliability, Method and Limitations. It reads only
+precomputed artefacts, works offline, and every page loads in under 3 seconds. Global sidebar filters (year range,
+risk domain, sector) apply on every page; tables link to AIID and download as CSV. Details: [`docs/dashboard.md`](docs/dashboard.md).
 
-## Results registry
+| | |
+|---|---|
+| ![Themes and Trends](reports/figures/dashboard/02_themes_and_trends.png) | ![Risk Network](reports/figures/dashboard/04_risk_network.png) |
+| ![Precedent Finder](reports/figures/dashboard/05_precedent_finder.png) | ![Label Reliability](reports/figures/dashboard/06_label_reliability.png) |
 
-Every cited number is stored in `reports/results.json` as `key -> {value, source_file, function}`
-(see `aicidentia.registry`). Tables go to `reports/tables/` (CSV + Markdown) and figures to `reports/figures/`
-(PNG 300 dpi + SVG, IEEE column widths, colour-blind-safe palette). The dashboard and the report read from these,
-so numbers are never typed by hand.
+## Reproducibility
 
-## Project structure
+- Python 3.13.12 (`.python-version`), every dependency pinned in `uv.lock` (`requirements.txt` exports the same pins);
+  machine details in [`docs/environment.md`](docs/environment.md).
+- Global seed 42 (`config/config.yaml`); cross-validation folds are fixed once and shared by every model, including
+  DistilBERT.
+- Frozen data snapshot with SHA-256 hashes; results registry `reports/results.json` (`key -> value, source_file,
+  function`): the dashboard, the fact sheet and the documents read numbers from it, never by hand.
+- Figures: PNG 300 dpi + SVG at IEEE widths (3.5 in / 7.16 in), colour-blind-safe palette, no save dates.
+
+## Folder guide
 
 ```
-config/           config.yaml - paths, seed, model names, year range
-data/             raw (git-ignored), interim, processed, external, manual (tracked)
-notebooks/        01-06, one per CRISP-DM stage / research question
-src/aicidentia/   installable package: data, features, models, evaluation, viz
-app/              Streamlit dashboard (Home.py + pages/)
-scripts/          check_data.py, run_phase1_audit.py, run_phase2_prepare.py, run_phase3_topics.py, run_phase4_trends.py, run_phase5_network.py, run_phase6_classification.py, colab_distilbert_code.py, run_phase7_retrieval.py, refresh_all.py, generate_environment_doc.py, export_requirements.py
-models/           saved models (git-ignored)
-reports/          figures/ and tables/
-docs/             environment.md, project_log.md, data_manifest.md, data_audit.md, datasheet.md, data_preparation.md, rq1_topic_models.md, rq1_trends.md, rq2_network.md, rq3_classification.md, rq4_similarity.md, dashboard.md
-tests/            smoke tests
+app/              Streamlit dashboard (Home.py + pages/1-6)
+config/           config.yaml (paths, seed, models), entity aliases and type overrides
+data/             raw (git-ignored), interim (cache), processed (parquet), manual (rule-answered review files, tracked)
+docs/             decisions, key_findings, report_facts, presentation, model_card, datasheet, dashboard,
+                  data_audit, data_preparation, rq1_topic_models, rq1_trends, rq2_network, rq3_classification,
+                  rq4_similarity, environment, methods_overview.svg
+models/           saved classifiers (git-ignored)
+notebooks/        01-07, one per CRISP-DM stage / research question, plus the Colab DistilBERT notebook
+reports/          results.json, tables/, figures/ (+ dashboard/ screenshots), colab/ (DistilBERT input, predictions)
+scripts/          run_all, refresh_all, apply_rules, run_phase1-7, run_story, train_distilbert_local,
+                  capture_dashboard, record_demo, check_data, environment/requirements exports
+src/aicidentia/   installable package: data, features, models, evaluation, viz, dashboard, pipeline, registry
+tests/            pytest suite (unit tests on hand-made data, integration tests on the outputs, every dashboard page)
 ```
 
-## Notes
+## Ethics
 
-- The NLTK WordNet corpus is downloaded on first use into `./nltk_data/` (git-ignored) and Hugging Face models into the Hugging Face cache; neither is part of setup.
-- Expensive steps (embeddings, topic-model fits) are cached in `data/interim/` under a hash of their inputs, so re-runs are fast; delete the folder to force a recompute.
-- BERTopic installs the `hdbscan` package as a hard dependency; our code uses scikit-learn's built-in
-  `sklearn.cluster.HDBSCAN` and passes it to BERTopic.
+Organisations are *alleged* developers or deployers as AIID records them; centrality is not blame. All named persons
+(private or public) are excluded from entity analyses and the dashboard (rule D3). AIID reflects reported, mostly
+English-language incidents, so results describe the database, not the real-world frequency of AI harm.
+
+## Citation
+
+```
+Savaliya, S. (2026). AICIDENTIA: Learning from Failure. A Data-Driven Analysis of Reported Real-World AI Incidents.
+MSc Data Analytics project, National College of Ireland.
+Data: AI Incident Database, snapshot 2026-10-26, https://incidentdatabase.ai (CC BY-SA 4.0).
+McGregor, S. (2021). Preventing Repeated Real World AI Failures by Cataloging Incidents: The AI Incident Database. AAAI 35(17).
+```

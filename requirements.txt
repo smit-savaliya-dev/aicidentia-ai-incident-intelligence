@@ -56,6 +56,8 @@ cffi==2.1.1
     #   pyzmq
 charset-normalizer==3.5.2
     # via requests
+cleanlab==2.9.0
+    # via aicidentia
 click==8.5.0
     # via
     #   huggingface-hub
@@ -124,6 +126,8 @@ fsspec==2026.7.0
     #   torch
 gensim==4.4.0
     # via aicidentia
+greenlet==3.5.6
+    # via playwright
 h11==0.16.0
     # via
     #   httpcore
@@ -318,6 +322,7 @@ numpy==2.5.4
     #   accelerate
     #   aicidentia
     #   bertopic
+    #   cleanlab
     #   contourpy
     #   datasets
     #   formulaic
@@ -404,6 +409,7 @@ pandas==3.1.0
     # via
     #   aicidentia
     #   bertopic
+    #   cleanlab
     #   datasets
     #   formulaic
     #   seaborn
@@ -423,6 +429,8 @@ pillow==13.0.0
     #   streamlit
 platformdirs==4.14.3
     # via jupyter-core
+playwright==1.65.1
+    # via aicidentia
 plotly==7.1.0
     # via
     #   aicidentia
@@ -548,6 +556,7 @@ scikit-learn==1.9.1
     # via
     #   aicidentia
     #   bertopic
+    #   cleanlab
     #   hdbscan
     #   pynndescent
     #   sentence-transformers
@@ -592,6 +601,8 @@ streamlit==1.66.1
     # via aicidentia
 sympy==1.14.0
     # via torch
+termcolor==3.3.0
+    # via cleanlab
 terminado==0.18.1
     # via
     #   jupyter-server
@@ -627,6 +638,7 @@ tqdm==4.70.1
     # via
     #   aicidentia
     #   bertopic
+    #   cleanlab
     #   datasets
     #   huggingface-hub
     #   nltk

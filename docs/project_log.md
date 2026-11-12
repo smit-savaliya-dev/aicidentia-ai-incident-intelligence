@@ -14,4 +14,9 @@ Keep one row per work session. Time spent is in hours.
 | 2026-11-12 | Caches moved to D: (HF_HOME via .env, uv cache-dir via user uv.toml); offline model loading verified | | Freed about 8 GB on C:. |
 | 2026-11-12 | Phase 7: RQ4 retrieval (TF-IDF, BM25, MiniLM, mpnet, hybrid) against editor-marked similar incidents (447 queries; no manual judgements) | | Hybrid best (MRR 0.510) but not significantly better than BM25 by the primary test; BM25 deployed. Time spent: fill in. |
 | 2026-11-12 | Phase 8: Streamlit dashboard (5 pages, offline-first models with fallbacks, blind-audit masking) and one-command refresh (scripts/refresh_all.py) | | Full refresh 2.5 min; outputs now byte-reproducible across runs. Time spent: fill in. |
+| 2026-11-12 | Dropped the manual label audit (D1); answered duplicate and entity reviews by rule (D2, D3); topic labels (D4); DistilBERT on the local GPU (D5) | | 0 merges, 1,150 named persons excluded; DistilBERT macro-F1 0.628 (not better than mpnet + LR). Time spent: fill in. |
+| 2026-11-12 | RQ3 label reliability: CSETv1/GMF agreement, editor-linked pairs, confident learning, nested retrain (D6-D8) | | Kappa 0.74 (discrimination), 75% vs 30% on editor pairs, 15.4% estimated noise, retrain +0.003. Time spent: fill in. |
+| 2026-11-12 | Story analyses: ChatGPT shift, risk priority matrix, repeated failures, synthesis, key findings (D9-D12) | | Misuse 12% -> 52%; matrix supported for 2 of 12 themes only; 76% of recent repeats found in top 5. Time spent: fill in. |
+| 2026-11-12 | Dashboard redesign (7 pages, global filters, Precedent Finder demo), screenshots, backup demo video (D13) | | Every page reaches its footer in 0.2-2.0 s. Time spent: fill in. |
+| 2026-11-12 | Phase 9: run_all, fact sheet, IEEE-size figures, model card, datasheet, presentation, methods diagram, README | | run_all 1.9 min; a rerun leaves git unchanged. Time spent: fill in. |
 |  |  |  |  |
