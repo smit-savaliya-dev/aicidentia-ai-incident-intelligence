@@ -54,6 +54,7 @@ viz_app = [
     "matplotlib",
     "seaborn",
     "streamlit",
+    "playwright>=1.65.1",
 ]
 
 [dependency-groups]
