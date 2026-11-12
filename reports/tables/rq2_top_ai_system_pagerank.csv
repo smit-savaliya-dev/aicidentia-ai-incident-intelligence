@@ -1,11 +1,11 @@
 label,n_incidents,degree,weighted_degree,betweenness,pagerank,eigenvector
-Deepfake technology,429,421,4215,32927.02323,0.02736,0.40208
-Synthetic audio generation technology,250,333,2420,8611.46587,0.01592,0.26824
-Synthetic media generation technology,141,292,2193,5393.84897,0.01374,0.18572
-Large language models,164,335,1627,71379.65154,0.01295,0.0477
-Social media platforms,146,301,1812,5283.32745,0.01168,0.16208
-Synthetic image generation technology,126,225,1480,77.35878,0.00944,0.13342
-ChatGPT,115,256,979,3319.26912,0.00778,0.02796
-Chatbots,82,213,960,505.94472,0.00715,0.03032
-AI-enabled decision support systems,120,195,621,29551.14563,0.00708,0.01519
-Synthetic video generation technology,58,182,975,8.94968,0.00607,0.08613
+Deepfake technology,429,425,4220,33434.38157,0.02734,0.40208
+Synthetic audio generation technology,250,333,2420,8186.55159,0.01586,0.26823
+Synthetic media generation technology,141,293,2193,5354.47159,0.01371,0.18572
+Large language models,164,337,1630,72101.15154,0.01293,0.0477
+Social media platforms,146,301,1812,5328.82745,0.01164,0.16208
+Synthetic image generation technology,126,227,1483,90.85878,0.00947,0.13342
+ChatGPT,115,256,979,3336.26912,0.00774,0.02796
+Chatbots,82,213,960,506.94472,0.00712,0.03032
+AI-enabled decision support systems,120,195,621,29860.97897,0.00704,0.01519
+Synthetic video generation technology,58,183,976,10.42944,0.00607,0.08612

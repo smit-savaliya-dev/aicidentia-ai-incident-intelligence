@@ -7,8 +7,8 @@ _Auto-generated from `aicidentia.data.prepare` (AIID snapshot **20261026**); re-
 | Table | Rows | What it is |
 |---|---|---|
 | `incidents_clean` | 1,775 | one row per incident: ids, dates, `text`, report counts, tidied MIT/GMF/CSETv1 labels |
-| `incident_entities` | 18,797 | long table (incident, role, canonical entity, `entity_type`) |
-| `entity_table` | 6,936 | one row per canonical entity: name, type, incident count, roles |
+| `incident_entities` | 17,418 | long table (incident, role, canonical entity, `entity_type`) |
+| `entity_table` | 5,786 | one row per canonical entity: name, type, incident count, roles |
 | `reports_clean` | 7,211 | non-stub reports with full text and linked incident ids |
 
 ## Cleaning decisions
@@ -23,7 +23,7 @@ _Auto-generated from `aicidentia.data.prepare` (AIID snapshot **20261026**); re-
 ## Duplicate incidents
 
 - AIID's merge list has 13 pairs, resolved transitively (13 ids). The Excel export already excludes merged incidents (merged ids present in Excel: none), so no incident was removed by this step.
-- **Near-duplicate candidates for your review:** 8 pairs with TF-IDF cosine >= 0.6 in `data/manual/duplicate_review.csv`. The `decision` column is blank; you answer `merge_into_a`, `merge_into_b` or `keep_separate` (0 answered so far, 0 merges applied). Re-run the build after answering.
+- **Near-duplicate candidates:** 8 pairs with TF-IDF cosine >= 0.6 in `data/manual/duplicate_review.csv`, answered by rule D2 (`docs/decisions.md`): merge only when the incidents share a deployer, are at most 7 days apart and have similarity >= 0.90; otherwise `keep_separate` (8 answered, 0 merges applied).
 
 | incident_a | incident_b | cosine | title_a | title_b |
 |---|---|---|---|---|
@@ -38,7 +38,7 @@ _Auto-generated from `aicidentia.data.prepare` (AIID snapshot **20261026**); re-
 
 ## Entities
 
-- **Aliases.** 20 alias mappings are applied (entities used by incidents: 6,956 before, 6,936 after). Sources: AIID's own duplicate list, entities whose names differ only in case/accents/punctuation/Inc, and your manual entries (`facebook -> meta`, the example from the brief). The full list is in `config/entity_aliases.yaml` (sections `manual`, `blocked`, `generated`; your edits to `manual`/`blocked` survive regeneration) and the table below.
+- **Aliases.** 20 alias mappings are applied (entities used by incidents: 6,956 before, 5,786 after). Sources: AIID's own duplicate list, entities whose names differ only in case/accents/punctuation/Inc, and your manual entries (`facebook -> meta`, the example from the brief). The full list is in `config/entity_aliases.yaml` (sections `manual`, `blocked`, `generated`; your edits to `manual`/`blocked` survive regeneration) and the table below.
 
 | alias | canonical | source | incidents_alias | incidents_canonical |
 |---|---|---|---|---|
@@ -72,12 +72,11 @@ The data has no entity-type field. `entity_type` is assigned by the ordered rule
 
 | entity_type | entities |
 |---|---|
-| population_group | 2757 |
-| individual_candidate | 1343 |
-| technology_system | 1159 |
-| organisation | 1158 |
-| generic_actor_group | 447 |
-| abstract_value | 71 |
+| population_group | 2764 |
+| organisation | 1335 |
+| technology_system | 1170 |
+| generic_actor_group | 446 |
+| abstract_value | 70 |
 | unknown | 1 |
 
 Top 10 entities per type, to eyeball the rules:
@@ -104,16 +103,6 @@ Top 10 entities per type, to eyeball the rules:
 | generic_actor_group | Synthetic media creators | 105 | deployer | actor_side+generic_term |
 | generic_actor_group | Unknown | 90 | deployer,developer,harmed | actor_side+generic_term |
 | generic_actor_group | Information manipulation actors | 73 | deployer,developer | actor_side+generic_term |
-| individual_candidate | Donald Trump | 30 | deployer,harmed | person_like_name |
-| individual_candidate | Elon Musk | 19 | deployer,harmed | person_like_name |
-| individual_candidate | Joe Biden | 10 | harmed | person_like_name |
-| individual_candidate | Kamala Harris | 8 | harmed | person_like_name |
-| individual_candidate | John Mark Dougan | 6 | deployer,developer | person_like_name |
-| individual_candidate | Taylor Swift | 5 | harmed | person_like_name |
-| individual_candidate | Albin Kurti | 5 | harmed | person_like_name |
-| individual_candidate | Barack Obama | 5 | harmed | person_like_name |
-| individual_candidate | Keir Starmer | 4 | harmed | person_like_name |
-| individual_candidate | Volodymyr Zelenskyy | 4 | harmed | person_like_name |
 | organisation | OpenAI | 194 | deployer,developer,harmed,system | actor_side |
 | organisation | Meta | 194 | deployer,developer,harmed,system | actor_side |
 | organisation | Google | 102 | deployer,developer,harmed,system | actor_side |
@@ -150,11 +139,11 @@ Top 10 entities per type, to eyeball the rules:
 
 **Possible aliases not applied (your call; add them under `manual:` in `config/entity_aliases.yaml`):** Perplexity / Perplexity AI; Twitter / X (Twitter); Russian government / Government of Russia; Chinese government / Government of China; New York Police Department / New York City Police Department. These pairs were noticed in the frequency lists of this snapshot; whether they are the same entity for your analysis is a judgement.
 
-### Named individuals: your review
+### Named persons (rule D3)
 
-`data/manual/entity_review.csv` lists **1,346 entities with person-like names** (priority A: named in 1-2 incidents, 1,171; B: 3+ incidents, 21; C: surname ending in -s, which may be a plural group, 154). Each row shows the roles and example incident titles. **Fill `is_private_individual` with `yes` or `no`** (`no` = public figure or not a person). Answered so far: 0 of 1346; confirmed private: 0. Re-run the build afterwards; confirmed individuals are removed from `incident_entities`, `entity_table`, the network and the dashboard.
+`data/manual/entity_review.csv` lists **1,158 entities with person-like names** (priority A: named in 1-2 incidents, 1,021; B: 3+ incidents, 21; C: surname ending in -s, which may be a plural group, 116). Rule D3 (`docs/decisions.md`) answers `is_named_person`: every named person, private or public, is excluded; names that are organisations, products or groups are re-typed in `config/entity_types.yaml` and kept. Answered: 1346 of 1346; named persons excluded: 1150. Excluded persons are removed from `incident_entities`, `entity_table`, the network and the dashboard.
 
-Privacy switch: `privacy.exclude_unreviewed_individual_candidates` in `config/config.yaml` is currently **off**, so only confirmed individuals are excluded (now: 0 excluded; 1,343 person-like entities still unreviewed). Turning it on removes every unreviewed person-like entity until you clear it with `no`. Note that incident titles and descriptions are not edited; they come from AIID and the dashboard links back to AIID.
+Privacy switch: `privacy.exclude_unreviewed_individual_candidates` in `config/config.yaml` is **on**, so any person-like entity not yet reviewed is also excluded (now: 1150 excluded in total; 0 unreviewed). Note that incident titles and descriptions are not edited; they come from AIID and the dashboard links back to AIID.
 
 ## Validation
 
@@ -247,20 +236,20 @@ Privacy switch: `privacy.exclude_unreviewed_individual_candidates` in `config/co
 | incidents_clean | cset_estimated_harm_quantities | boolean | 207 |
 | incidents_clean | cset_special_interest_intangible_harm | string | 200 |
 | incidents_clean | report_count_clean | int64 | 1775 |
-| incident_entities | incident_id | int64 | 18797 |
-| incident_entities | role | str | 18797 |
-| incident_entities | entity_id | str | 18797 |
-| incident_entities | entity | str | 18797 |
-| incident_entities | entity_type | str | 18797 |
-| incident_entities | entity_type_rule | str | 18797 |
-| incident_entities | entity_id_raw | str | 18797 |
-| entity_table | entity_id | str | 6936 |
-| entity_table | entity | str | 6936 |
-| entity_table | n_incidents | int64 | 6936 |
-| entity_table | n_mentions | int64 | 6936 |
-| entity_table | roles | str | 6936 |
-| entity_table | entity_type | str | 6936 |
-| entity_table | entity_type_rule | str | 6936 |
+| incident_entities | incident_id | int64 | 17418 |
+| incident_entities | role | str | 17418 |
+| incident_entities | entity_id | str | 17418 |
+| incident_entities | entity | str | 17418 |
+| incident_entities | entity_type | str | 17418 |
+| incident_entities | entity_type_rule | str | 17418 |
+| incident_entities | entity_id_raw | str | 17418 |
+| entity_table | entity_id | str | 5786 |
+| entity_table | entity | str | 5786 |
+| entity_table | n_incidents | int64 | 5786 |
+| entity_table | n_mentions | int64 | 5786 |
+| entity_table | roles | str | 5786 |
+| entity_table | entity_type | str | 5786 |
+| entity_table | entity_type_rule | str | 5786 |
 | reports_clean | report_number | int64 | 7211 |
 | reports_clean | title | str | 7211 |
 | reports_clean | url | str | 7211 |

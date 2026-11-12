@@ -54,3 +54,12 @@
 | Socioeconomic & Environmental Harms | 0.6 | 0.125 | 0.207 | 24 | TF-IDF + LR, text + first report words (ablation) |
 | macro avg | 0.65 | 0.604 | 0.602 | 1496 | TF-IDF + LR, text + first report words (ablation) |
 | weighted avg | 0.753 | 0.747 | 0.746 | 1496 | TF-IDF + LR, text + first report words (ablation) |
+| AI system safety, failures, and limitations | 0.773 | 0.719 | 0.745 | 313 | DistilBERT fine-tuned |
+| Discrimination and Toxicity | 0.685 | 0.733 | 0.708 | 243 | DistilBERT fine-tuned |
+| Human-Computer Interaction | 0.415 | 0.405 | 0.41 | 42 | DistilBERT fine-tuned |
+| Malicious Actors & Misuse | 0.893 | 0.843 | 0.867 | 566 | DistilBERT fine-tuned |
+| Misinformation | 0.627 | 0.719 | 0.67 | 196 | DistilBERT fine-tuned |
+| Privacy & Security | 0.688 | 0.768 | 0.726 | 112 | DistilBERT fine-tuned |
+| Socioeconomic & Environmental Harms | 0.3 | 0.25 | 0.273 | 24 | DistilBERT fine-tuned |
+| macro avg | 0.626 | 0.634 | 0.628 | 1496 | DistilBERT fine-tuned |
+| weighted avg | 0.761 | 0.755 | 0.757 | 1496 | DistilBERT fine-tuned |

@@ -11,3 +11,5 @@ mpnet embeddings + logistic regression,cv,1496,0.6506,0.6161,0.6838,0.7689,0.762
 mpnet embeddings + logistic regression,time,802,0.5807,0.5227,0.6335,0.7455,0.7444,,
 "TF-IDF + LR, text + first report words (ablation)",cv,1496,0.6019,0.5618,0.6376,0.7458,0.7473,0.6005,0.0544
 "TF-IDF + LR, text + first report words (ablation)",time,802,0.4891,0.4469,0.5294,0.7386,0.7506,,
+DistilBERT fine-tuned,cv,1496,0.6283,0.5895,0.6638,0.7569,0.7553,0.6272,0.0399
+DistilBERT fine-tuned,time,802,0.5514,0.5069,0.5918,0.7458,0.7569,,

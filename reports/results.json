@@ -1066,7 +1066,7 @@
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.entities_after_alias": {
-    "value": 6936,
+    "value": 5786,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
@@ -1076,7 +1076,7 @@
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.entities_in_table": {
-    "value": 6936,
+    "value": 5786,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
@@ -1096,12 +1096,12 @@
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.entity_review.answered": {
-    "value": 0,
+    "value": 1346,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
-  "prep.entity_review.confirmed_private": {
-    "value": 0,
+  "prep.entity_review.named_persons": {
+    "value": 1150,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
@@ -1111,12 +1111,12 @@
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.entity_type_counts.abstract_value": {
-    "value": 71,
+    "value": 70,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.entity_type_counts.generic_actor_group": {
-    "value": 447,
+    "value": 446,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
@@ -1126,17 +1126,17 @@
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.entity_type_counts.organisation": {
-    "value": 1158,
+    "value": 1335,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.entity_type_counts.population_group": {
-    "value": 2757,
+    "value": 2764,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.entity_type_counts.technology_system": {
-    "value": 1159,
+    "value": 1170,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
@@ -1146,7 +1146,7 @@
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.incident_entities_rows": {
-    "value": 18797,
+    "value": 17418,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
@@ -1161,12 +1161,12 @@
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.incidents_with_deployer": {
-    "value": 1775,
+    "value": 1720,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.incidents_with_harmed": {
-    "value": 1774,
+    "value": 1721,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
@@ -1186,7 +1186,7 @@
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.near_duplicate_review.answered": {
-    "value": 0,
+    "value": 8,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
@@ -1200,23 +1200,23 @@
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
-  "prep.privacy.cleared_public": {
-    "value": 0,
-    "source_file": "data/processed/",
-    "function": "aicidentia.data.prepare.build_processed"
-  },
-  "prep.privacy.confirmed_private": {
-    "value": 0,
-    "source_file": "data/processed/",
-    "function": "aicidentia.data.prepare.build_processed"
-  },
   "prep.privacy.excluded_total": {
-    "value": 0,
+    "value": 1150,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.privacy.named_persons": {
+    "value": 1150,
+    "source_file": "data/processed/",
+    "function": "aicidentia.data.prepare.build_processed"
+  },
+  "prep.privacy.not_persons": {
+    "value": 196,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.privacy.unreviewed_candidates": {
-    "value": 1343,
+    "value": 0,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
@@ -1236,7 +1236,7 @@
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.review_candidates.priority_A": {
-    "value": 1171,
+    "value": 1021,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
@@ -1246,12 +1246,12 @@
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.review_candidates.priority_C": {
-    "value": 154,
+    "value": 116,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
   "prep.review_candidates.total": {
-    "value": 1346,
+    "value": 1158,
     "source_file": "data/processed/",
     "function": "aicidentia.data.prepare.build_processed"
   },
@@ -1684,11 +1684,11 @@
   },
   "rq1b.emerging_themes": {
     "value": [
-      "T0: video / depict / circulate",
-      "T2: court / citation / legal",
-      "T7: scam / impersonate / deepfake",
-      "T4: student / school / image",
-      "T6: election / campaign / disinformation"
+      "Deepfake videos and AI hoaxes",
+      "Hallucinated legal citations",
+      "Deepfake impersonation scams",
+      "AI nude images in schools",
+      "AI election disinformation"
     ],
     "source_file": "data/processed/incident_topics.parquet",
     "function": "aicidentia.models.trend_outputs.run_trends"
@@ -1720,7 +1720,7 @@
   },
   "rq1b.forecast_series_skipped": {
     "value": [
-      "T10: plate / license / reader"
+      "License-plate reader errors"
     ],
     "source_file": "data/processed/incident_topics.parquet",
     "function": "aicidentia.models.trend_outputs.run_trends"
@@ -1731,7 +1731,7 @@
         "model": "ets",
         "mean_mase_all_horizons": 3.1592345773053707,
         "median_mase_all_horizons": 3.3630924135557,
-        "mean_mase_h1": 2.3960735977312395,
+        "mean_mase_h1": 2.396073597731239,
         "mean_mase_h4": 3.936823488562956,
         "series_where_best": 6,
         "series_total": 12
@@ -1749,8 +1749,8 @@
         "model": "naive",
         "mean_mase_all_horizons": 3.1921972549272994,
         "median_mase_all_horizons": 3.2694659831932156,
-        "mean_mase_h1": 2.4091673554095405,
-        "mean_mase_h4": 3.8180468808132466,
+        "mean_mase_h1": 2.409167355409541,
+        "mean_mase_h4": 3.8180468808132457,
         "series_where_best": 4,
         "series_total": 12
       }
@@ -1776,9 +1776,9 @@
   "rq1b.labels": {
     "value": {
       "n_topics": 12,
-      "n_answered": 0,
+      "n_answered": 12,
       "n_themes": 12,
-      "provisional": true,
+      "provisional": false,
       "merged_themes": {},
       "model_key": "NMF k=12|269da2dc16"
     },
@@ -1844,14 +1844,14 @@
     "function": "aicidentia.models.trend_outputs.run_trends"
   },
   "rq1b.provisional": {
-    "value": true,
+    "value": false,
     "source_file": "data/processed/incident_topics.parquet",
     "function": "aicidentia.models.trend_outputs.run_trends"
   },
   "rq1b.theme_classification": {
     "value": [
       {
-        "theme": "T1: data / agent / openai",
+        "theme": "LLM chatbots and agents",
         "counts": "increasing",
         "share": "no trend",
         "report-weighted share": "no trend",
@@ -1860,7 +1860,7 @@
         "window_sensitive": false
       },
       {
-        "theme": "T0: video / depict / circulate",
+        "theme": "Deepfake videos and AI hoaxes",
         "counts": "increasing",
         "share": "increasing",
         "report-weighted share": "increasing",
@@ -1869,7 +1869,7 @@
         "window_sensitive": false
       },
       {
-        "theme": "T4: student / school / image",
+        "theme": "AI nude images in schools",
         "counts": "increasing",
         "share": "increasing",
         "report-weighted share": "increasing",
@@ -1878,7 +1878,7 @@
         "window_sensitive": true
       },
       {
-        "theme": "T2: court / citation / legal",
+        "theme": "Hallucinated legal citations",
         "counts": "increasing",
         "share": "increasing",
         "report-weighted share": "increasing",
@@ -1887,7 +1887,7 @@
         "window_sensitive": false
       },
       {
-        "theme": "T7: scam / impersonate / deepfake",
+        "theme": "Deepfake impersonation scams",
         "counts": "increasing",
         "share": "increasing",
         "report-weighted share": "increasing",
@@ -1896,7 +1896,7 @@
         "window_sensitive": false
       },
       {
-        "theme": "T11: google / bias / image",
+        "theme": "Algorithmic bias in search and images",
         "counts": "increasing",
         "share": "decreasing",
         "report-weighted share": "decreasing",
@@ -1905,7 +1905,7 @@
         "window_sensitive": true
       },
       {
-        "theme": "T6: election / campaign / disinformation",
+        "theme": "AI election disinformation",
         "counts": "increasing",
         "share": "increasing",
         "report-weighted share": "increasing",
@@ -1914,7 +1914,7 @@
         "window_sensitive": true
       },
       {
-        "theme": "T10: plate / license / reader",
+        "theme": "License-plate reader errors",
         "counts": "increasing",
         "share": "no trend",
         "report-weighted share": "no trend",
@@ -1923,7 +1923,7 @@
         "window_sensitive": false
       },
       {
-        "theme": "T8: content / facebook / moderation",
+        "theme": "Content moderation failures",
         "counts": "increasing",
         "share": "no trend",
         "report-weighted share": "no trend",
@@ -1932,7 +1932,7 @@
         "window_sensitive": false
       },
       {
-        "theme": "T3: vehicle / autonomous / drive",
+        "theme": "Autonomous vehicles and robotaxis",
         "counts": "increasing",
         "share": "decreasing",
         "report-weighted share": "decreasing",
@@ -1941,7 +1941,7 @@
         "window_sensitive": true
       },
       {
-        "theme": "T5: facial / recognition / arrest",
+        "theme": "Facial recognition and false arrests",
         "counts": "no trend",
         "share": "no trend",
         "report-weighted share": "no trend",
@@ -1950,7 +1950,7 @@
         "window_sensitive": true
       },
       {
-        "theme": "T9: tesla / autopilot / crash",
+        "theme": "Tesla Autopilot crashes",
         "counts": "no trend",
         "share": "no trend",
         "report-weighted share": "no trend",
@@ -1965,7 +1965,7 @@
   "rq1b.themes_share_trends": {
     "value": [
       {
-        "group": "T0: video / depict / circulate",
+        "group": "Deepfake videos and AI hoaxes",
         "sen_slope": 0.014623830093592513,
         "p": 0.014662193685297531,
         "p_bh": 0.029324387370595062,
@@ -1973,7 +1973,7 @@
         "emerging": true
       },
       {
-        "group": "T2: court / citation / legal",
+        "group": "Hallucinated legal citations",
         "sen_slope": 0.011075384065737763,
         "p": 0.009970028375973383,
         "p_bh": 0.02392806810233612,
@@ -1981,7 +1981,7 @@
         "emerging": true
       },
       {
-        "group": "T7: scam / impersonate / deepfake",
+        "group": "Deepfake impersonation scams",
         "sen_slope": 0.010744810744810745,
         "p": 0.003579808605350454,
         "p_bh": 0.020277238226806382,
@@ -1989,7 +1989,7 @@
         "emerging": true
       },
       {
-        "group": "T4: student / school / image",
+        "group": "AI nude images in schools",
         "sen_slope": 0.01070336391437309,
         "p": 0.003579808605350454,
         "p_bh": 0.020277238226806382,
@@ -1997,7 +1997,7 @@
         "emerging": true
       },
       {
-        "group": "T6: election / campaign / disinformation",
+        "group": "AI election disinformation",
         "sen_slope": 0.005893547792989136,
         "p": 0.019517481182177665,
         "p_bh": 0.033458539169447424,
@@ -2005,7 +2005,7 @@
         "emerging": true
       },
       {
-        "group": "T1: data / agent / openai",
+        "group": "LLM chatbots and agents",
         "sen_slope": 0.002277599142550907,
         "p": 0.7554968749288828,
         "p_bh": 0.7554968749288828,
@@ -2013,7 +2013,7 @@
         "emerging": false
       },
       {
-        "group": "T10: plate / license / reader",
+        "group": "License-plate reader errors",
         "sen_slope": 0.0015830185285123227,
         "p": 0.3903649625488059,
         "p_bh": 0.42585268641687923,
@@ -2021,7 +2021,7 @@
         "emerging": false
       },
       {
-        "group": "T9: tesla / autopilot / crash",
+        "group": "Tesla Autopilot crashes",
         "sen_slope": -0.007570672036995597,
         "p": 0.11947098677170076,
         "p_bh": 0.1433651841260409,
@@ -2029,7 +2029,7 @@
         "emerging": false
       },
       {
-        "group": "T3: vehicle / autonomous / drive",
+        "group": "Autonomous vehicles and robotaxis",
         "sen_slope": -0.011466141532206835,
         "p": 0.0050693095567015956,
         "p_bh": 0.020277238226806382,
@@ -2037,7 +2037,7 @@
         "emerging": false
       },
       {
-        "group": "T5: facial / recognition / arrest",
+        "group": "Facial recognition and false arrests",
         "sen_slope": -0.01338267258258636,
         "p": 0.06170669002831275,
         "p_bh": 0.09256003504246912,
@@ -2045,7 +2045,7 @@
         "emerging": false
       },
       {
-        "group": "T8: content / facebook / moderation",
+        "group": "Content moderation failures",
         "sen_slope": -0.016638080718248422,
         "p": 0.0867681727038756,
         "p_bh": 0.1156908969385008,
@@ -2053,7 +2053,7 @@
         "emerging": false
       },
       {
-        "group": "T11: google / bias / image",
+        "group": "Algorithmic bias in search and images",
         "sen_slope": -0.019787979500481865,
         "p": 0.008123423304273514,
         "p_bh": 0.02392806810233612,
@@ -2066,23 +2066,23 @@
   },
   "rq1b.themes_window_sensitive": {
     "value": [
-      "T4: student / school / image",
-      "T11: google / bias / image",
-      "T6: election / campaign / disinformation",
-      "T3: vehicle / autonomous / drive",
-      "T5: facial / recognition / arrest",
-      "T9: tesla / autopilot / crash"
+      "AI nude images in schools",
+      "Algorithmic bias in search and images",
+      "AI election disinformation",
+      "Autonomous vehicles and robotaxis",
+      "Facial recognition and false arrests",
+      "Tesla Autopilot crashes"
     ],
     "source_file": "data/processed/incident_topics.parquet",
     "function": "aicidentia.models.trend_outputs.run_trends"
   },
   "rq1b.themes_with_disagreeing_bases": {
     "value": [
-      "T1: data / agent / openai",
-      "T11: google / bias / image",
-      "T10: plate / license / reader",
-      "T8: content / facebook / moderation",
-      "T3: vehicle / autonomous / drive"
+      "LLM chatbots and agents",
+      "Algorithmic bias in search and images",
+      "License-plate reader errors",
+      "Content moderation failures",
+      "Autonomous vehicles and robotaxis"
     ],
     "source_file": "data/processed/incident_topics.parquet",
     "function": "aicidentia.models.trend_outputs.run_trends"
@@ -2101,7 +2101,7 @@
     "function": "aicidentia.models.network_outputs.run_network"
   },
   "rq2.chosen_modularity": {
-    "value": 0.36271332486897967,
+    "value": 0.3623482519132653,
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },
@@ -2114,55 +2114,55 @@
     "value": [
       {
         "community": 0,
-        "entities": 292,
-        "incidents": 467,
+        "entities": 293,
+        "incidents": 454,
         "organisations": "OpenAI; Google; Microsoft; Anthropic",
         "ai_systems": "Large language models; ChatGPT; Chatbots; AI agent systems",
         "harmed_groups": "Chatbot users; ChatGPT users; Emotionally vulnerable individuals; Companies",
         "top_domain": "Misinformation",
-        "top_domain_share": 0.2631578947368421,
-        "domains": "Misinformation (26%); Malicious Actors & Misuse (19%); Discrimination and Toxicity (18%)",
-        "sectors_n": 55,
-        "sectors": "information and communication (34); Arts, entertainment and recreation (11); transportation and storage (4)"
+        "top_domain_share": 0.2693409742120344,
+        "domains": "Misinformation (27%); Malicious Actors & Misuse (20%); Discrimination and Toxicity (18%)",
+        "sectors_n": 53,
+        "sectors": "information and communication (32); Arts, entertainment and recreation (11); transportation and storage (4)"
       },
       {
         "community": 1,
-        "entities": 271,
-        "incidents": 628,
+        "entities": 282,
+        "incidents": 633,
         "organisations": "Meta; YouTube; Twitter; Storm-1516",
         "ai_systems": "Deepfake technology; Synthetic audio generation technology; Social media platforms; X (Twitter)",
         "harmed_groups": "General public; Social media users; Facebook users; X (Twitter) users",
         "top_domain": "Malicious Actors & Misuse",
-        "top_domain_share": 0.6822916666666666,
+        "top_domain_share": 0.6817391304347826,
         "domains": "Malicious Actors & Misuse (68%); Misinformation (14%); Discrimination and Toxicity (10%)",
         "sectors_n": 39,
         "sectors": "information and communication (24); Arts, entertainment and recreation (10); wholesale and retail trade (2)"
       },
       {
         "community": 2,
-        "entities": 193,
-        "incidents": 277,
+        "entities": 194,
+        "incidents": 276,
         "organisations": "Law enforcement; Amazon; Flock Safety; Clearview AI",
         "ai_systems": "AI-enabled decision support systems; Enterprise AI systems; Facial recognition systems; Surveillance technology",
         "harmed_groups": "Biometric data subjects; Minority groups; General public of the United States; Patients",
         "top_domain": "AI system safety, failures, and limitations",
-        "top_domain_share": 0.3333333333333333,
-        "domains": "AI system safety, failures, and limitations (33%); Discrimination and Toxicity (29%); Privacy & Security (18%)",
-        "sectors_n": 85,
+        "top_domain_share": 0.3347457627118644,
+        "domains": "AI system safety, failures, and limitations (33%); Discrimination and Toxicity (29%); Privacy & Security (17%)",
+        "sectors_n": 87,
         "sectors": "information and communication (16); law enforcement (12); wholesale and retail trade (11)"
       },
       {
         "community": 3,
         "entities": 145,
-        "incidents": 189,
-        "organisations": "ElevenLabs; Universities; Knightscope; political campaigns",
+        "incidents": 198,
+        "organisations": "Apple; ElevenLabs; Universities; Knightscope",
         "ai_systems": "Synthetic media generation technology; Synthetic image generation technology; Synthetic video generation technology; AI nudification tools",
         "harmed_groups": "Educational communities; Minors; Students; Women and girls",
         "top_domain": "Malicious Actors & Misuse",
-        "top_domain_share": 0.5116279069767442,
-        "domains": "Malicious Actors & Misuse (51%); Discrimination and Toxicity (19%); AI system safety, failures, and limitations (19%)",
-        "sectors_n": 27,
-        "sectors": "Education (11); administrative and support service activities (3); Arts, entertainment and recreation (3)"
+        "top_domain_share": 0.47586206896551725,
+        "domains": "Malicious Actors & Misuse (48%); AI system safety, failures, and limitations (21%); Discrimination and Toxicity (17%)",
+        "sectors_n": 29,
+        "sectors": "Education (11); information and communication (5); administrative and support service activities (3)"
       },
       {
         "community": 4,
@@ -2179,7 +2179,7 @@
       },
       {
         "community": 5,
-        "entities": 25,
+        "entities": 24,
         "incidents": 15,
         "organisations": "Stability AI; LAION; EleutherAI; CompVis LMU",
         "ai_systems": "Music streaming services; Spotify; Stable Diffusion",
@@ -2192,16 +2192,16 @@
       },
       {
         "community": 6,
-        "entities": 14,
-        "incidents": 2,
-        "organisations": "Government of North Korea; Internal Revenue Service; Lazarus Group; Reconnaissance General Bureau",
-        "ai_systems": "Zoom; Cryptocurrency platforms; Cryptocurrency wallets; Document verification systems",
-        "harmed_groups": "Targets of fraudulent professional opportunities; Employers; IRS; Taxpayers in the United States",
+        "entities": 10,
+        "incidents": 3,
+        "organisations": "",
+        "ai_systems": "Data centers; Energy infrastructure; Unpermitted energy infrastructure; Methane gas turbines",
+        "harmed_groups": "General public of Tennessee; Environmental quality; Public health; Predominantly Black communities",
         "top_domain": "",
         "top_domain_share": null,
         "domains": "(not shown: fewer than 20 incidents)",
-        "sectors_n": 2,
-        "sectors": "public administration (1); financial and insurance activities (1)"
+        "sectors_n": 0,
+        "sectors": ""
       },
       {
         "community": 7,
@@ -2218,9 +2218,9 @@
       },
       {
         "community": 8,
-        "entities": 1,
+        "entities": 2,
         "incidents": 2,
-        "organisations": "Raytheon",
+        "organisations": "Lockheed Martin; Raytheon",
         "ai_systems": "",
         "harmed_groups": "",
         "top_domain": "",
@@ -2261,15 +2261,15 @@
   },
   "rq2.community_sizes": {
     "value": {
-      "0": 292,
-      "1": 271,
-      "2": 193,
+      "0": 293,
+      "1": 282,
+      "2": 194,
       "3": 145,
       "4": 58,
-      "5": 25,
-      "6": 14,
+      "5": 24,
+      "6": 10,
       "7": 4,
-      "8": 1,
+      "8": 2,
       "9": 1,
       "10": 1
     },
@@ -2282,17 +2282,17 @@
     "function": "aicidentia.models.network_outputs.run_network"
   },
   "rq2.entity_network_edges": {
-    "value": 17884,
+    "value": 17951,
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },
   "rq2.entity_network_nodes": {
-    "value": 1005,
+    "value": 1014,
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },
   "rq2.excluded_person_like_mentions": {
-    "value": 1624,
+    "value": 0,
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },
@@ -2305,20 +2305,20 @@
   },
   "rq2.export": {
     "value": {
-      "nodes": 128,
+      "nodes": 127,
       "edges": 900,
-      "bytes": 345393
+      "bytes": 344307
     },
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },
   "rq2.hetero_edges": {
-    "value": 17579,
+    "value": 17782,
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },
   "rq2.hetero_nodes": {
-    "value": 7393,
+    "value": 7586,
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },
@@ -2327,11 +2327,11 @@
       "incident": 1775,
       "risk_domain": 7,
       "sector": 18,
-      "organisation": 1158,
-      "harmed_group": 2757,
-      "ai_system": 1159,
-      "harm_value": 71,
-      "generic_actor": 447,
+      "organisation": 1335,
+      "harmed_group": 2764,
+      "ai_system": 1170,
+      "harm_value": 70,
+      "generic_actor": 446,
       "other": 1
     },
     "source_file": "data/processed/incident_entities.parquet",
@@ -2371,10 +2371,10 @@
       ],
       "n_hubs": 28,
       "limit_incidents": 88.75,
-      "nodes_after": 967,
-      "modularity_mean": 0.5651420388509948,
-      "ari_vs_main_mean": 0.34843701565139557,
-      "ari_vs_main_min": 0.29110132117869403
+      "nodes_after": 977,
+      "modularity_mean": 0.5660479429640317,
+      "ari_vs_main_mean": 0.32097481426838786,
+      "ari_vs_main_min": 0.2757780483397885
     },
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
@@ -2390,7 +2390,7 @@
     "function": "aicidentia.models.network_outputs.run_network"
   },
   "rq2.medoid_seed": {
-    "value": 43,
+    "value": 47,
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },
@@ -2398,33 +2398,33 @@
     "value": [
       {
         "method": "louvain",
-        "modularity_mean": 0.3568174888192007,
-        "modularity_sd": 0.005054207585784999,
-        "n_communities_mean": 11.1,
-        "largest_share_mean": 0.29323383084577115,
-        "singletons_mean": 3.0,
-        "stability_ari_mean": 0.7854301946924535,
-        "stability_ari_min": 0.5929316056455487
+        "modularity_mean": 0.3568192136479592,
+        "modularity_sd": 0.005223238012215174,
+        "n_communities_mean": 10.2,
+        "largest_share_mean": 0.2883629191321499,
+        "singletons_mean": 2.0,
+        "stability_ari_mean": 0.7762645797093977,
+        "stability_ari_min": 0.5642030128980592
       },
       {
         "method": "leiden",
-        "modularity_mean": 0.3594921954210789,
-        "modularity_sd": 0.003685538251104234,
+        "modularity_mean": 0.3607193410873724,
+        "modularity_sd": 0.0019160982419685023,
         "n_communities_mean": 10.4,
-        "largest_share_mean": 0.29970149253731343,
-        "singletons_mean": 3.0,
-        "stability_ari_mean": 0.7317185100539417,
-        "stability_ari_min": 0.4832530898693064
+        "largest_share_mean": 0.30690335305719924,
+        "singletons_mean": 2.0,
+        "stability_ari_mean": 0.7964840754995983,
+        "stability_ari_min": 0.6652463845059122
       },
       {
         "method": "label_propagation",
-        "modularity_mean": 0.044924108747450966,
-        "modularity_sd": 0.06028841335971337,
-        "n_communities_mean": 14.3,
-        "largest_share_mean": 0.8931343283582089,
-        "singletons_mean": 3.0,
-        "stability_ari_mean": 0.7981131455168945,
-        "stability_ari_min": 0.24450116301708177
+        "modularity_mean": 0.04466044035395403,
+        "modularity_sd": 0.05663068829099438,
+        "n_communities_mean": 14.9,
+        "largest_share_mean": 0.8935897435897436,
+        "singletons_mean": 2.0,
+        "stability_ari_mean": 0.8152711790085092,
+        "stability_ari_min": 0.2907516682846993
       }
     ],
     "source_file": "data/processed/incident_entities.parquet",
@@ -2446,12 +2446,12 @@
     "function": "aicidentia.models.network_outputs.run_network"
   },
   "rq2.nmi_community_vs_domain": {
-    "value": 0.19480307187337487,
+    "value": 0.19377779686494603,
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },
   "rq2.organisations_in_network": {
-    "value": 181,
+    "value": 190,
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },
@@ -2469,194 +2469,194 @@
     "value": [
       {
         "year": 2015,
-        "nodes": 341,
-        "edges": 467,
+        "nodes": 347,
+        "edges": 474,
         "nodes_incident": 71,
         "nodes_risk_domain": 7,
         "nodes_sector": 15,
-        "nodes_organisation": 69,
+        "nodes_organisation": 75,
         "nodes_harmed_group": 135,
         "nodes_ai_system": 40,
         "nodes_harm_value": 2,
         "nodes_generic_actor": 2,
-        "new_organisations": 69,
-        "organisations": 69,
+        "new_organisations": 75,
+        "organisations": 75,
         "nodes_other": 0
       },
       {
         "year": 2016,
-        "nodes": 462,
-        "edges": 668,
+        "nodes": 474,
+        "edges": 681,
         "nodes_incident": 112,
         "nodes_risk_domain": 7,
         "nodes_sector": 15,
-        "nodes_organisation": 95,
+        "nodes_organisation": 107,
         "nodes_harmed_group": 178,
         "nodes_ai_system": 50,
         "nodes_harm_value": 3,
         "nodes_generic_actor": 2,
-        "new_organisations": 26,
-        "organisations": 95,
+        "new_organisations": 32,
+        "organisations": 107,
         "nodes_other": 0
       },
       {
         "year": 2017,
-        "nodes": 672,
-        "edges": 1001,
+        "nodes": 691,
+        "edges": 1021,
         "nodes_incident": 163,
         "nodes_risk_domain": 7,
         "nodes_sector": 15,
-        "nodes_organisation": 142,
-        "nodes_harmed_group": 251,
+        "nodes_organisation": 160,
+        "nodes_harmed_group": 252,
         "nodes_ai_system": 81,
         "nodes_harm_value": 4,
         "nodes_generic_actor": 8,
-        "new_organisations": 47,
-        "organisations": 142,
+        "new_organisations": 53,
+        "organisations": 160,
         "nodes_other": 1
       },
       {
         "year": 2018,
-        "nodes": 831,
-        "edges": 1267,
+        "nodes": 853,
+        "edges": 1290,
         "nodes_incident": 209,
         "nodes_risk_domain": 7,
         "nodes_sector": 16,
-        "nodes_organisation": 178,
-        "nodes_harmed_group": 310,
+        "nodes_organisation": 198,
+        "nodes_harmed_group": 312,
         "nodes_ai_system": 97,
         "nodes_harm_value": 4,
         "nodes_generic_actor": 9,
-        "new_organisations": 36,
-        "organisations": 178,
+        "new_organisations": 38,
+        "organisations": 198,
         "nodes_other": 1
       },
       {
         "year": 2019,
-        "nodes": 1005,
-        "edges": 1574,
+        "nodes": 1029,
+        "edges": 1599,
         "nodes_incident": 254,
         "nodes_risk_domain": 7,
         "nodes_sector": 16,
-        "nodes_organisation": 214,
-        "nodes_harmed_group": 365,
+        "nodes_organisation": 236,
+        "nodes_harmed_group": 367,
         "nodes_ai_system": 128,
         "nodes_harm_value": 4,
         "nodes_generic_actor": 16,
-        "new_organisations": 36,
-        "organisations": 214,
+        "new_organisations": 38,
+        "organisations": 236,
         "nodes_other": 1
       },
       {
         "year": 2020,
-        "nodes": 1396,
-        "edges": 2269,
+        "nodes": 1430,
+        "edges": 2304,
         "nodes_incident": 345,
         "nodes_risk_domain": 7,
         "nodes_sector": 16,
-        "nodes_organisation": 277,
-        "nodes_harmed_group": 513,
+        "nodes_organisation": 309,
+        "nodes_harmed_group": 515,
         "nodes_ai_system": 199,
         "nodes_harm_value": 8,
         "nodes_generic_actor": 30,
-        "new_organisations": 63,
-        "organisations": 277,
+        "new_organisations": 73,
+        "organisations": 309,
         "nodes_other": 1
       },
       {
         "year": 2021,
-        "nodes": 1734,
-        "edges": 2845,
+        "nodes": 1780,
+        "edges": 2894,
         "nodes_incident": 425,
         "nodes_risk_domain": 7,
         "nodes_sector": 18,
-        "nodes_organisation": 345,
-        "nodes_harmed_group": 643,
-        "nodes_ai_system": 247,
+        "nodes_organisation": 388,
+        "nodes_harmed_group": 645,
+        "nodes_ai_system": 248,
         "nodes_harm_value": 11,
         "nodes_generic_actor": 37,
-        "new_organisations": 68,
-        "organisations": 345,
+        "new_organisations": 79,
+        "organisations": 388,
         "nodes_other": 1
       },
       {
         "year": 2022,
-        "nodes": 2113,
-        "edges": 3525,
+        "nodes": 2175,
+        "edges": 3591,
         "nodes_incident": 534,
         "nodes_risk_domain": 7,
         "nodes_sector": 18,
-        "nodes_organisation": 419,
-        "nodes_harmed_group": 786,
-        "nodes_ai_system": 287,
+        "nodes_organisation": 475,
+        "nodes_harmed_group": 788,
+        "nodes_ai_system": 291,
         "nodes_harm_value": 12,
         "nodes_generic_actor": 49,
-        "new_organisations": 74,
-        "organisations": 419,
+        "new_organisations": 87,
+        "organisations": 475,
         "nodes_other": 1
       },
       {
         "year": 2023,
-        "nodes": 2763,
-        "edges": 4968,
+        "nodes": 2837,
+        "edges": 5046,
         "nodes_incident": 713,
         "nodes_risk_domain": 7,
         "nodes_sector": 18,
-        "nodes_organisation": 544,
-        "nodes_harmed_group": 1026,
-        "nodes_ai_system": 359,
+        "nodes_organisation": 610,
+        "nodes_harmed_group": 1028,
+        "nodes_ai_system": 366,
         "nodes_harm_value": 21,
-        "nodes_generic_actor": 74,
-        "new_organisations": 125,
-        "organisations": 544,
+        "nodes_generic_actor": 73,
+        "new_organisations": 135,
+        "organisations": 610,
         "nodes_other": 1
       },
       {
         "year": 2024,
-        "nodes": 4048,
-        "edges": 7899,
+        "nodes": 4155,
+        "edges": 8010,
         "nodes_incident": 1024,
         "nodes_risk_domain": 7,
         "nodes_sector": 18,
-        "nodes_organisation": 757,
-        "nodes_harmed_group": 1519,
-        "nodes_ai_system": 527,
-        "nodes_harm_value": 39,
-        "nodes_generic_actor": 156,
-        "new_organisations": 213,
-        "organisations": 757,
+        "nodes_organisation": 851,
+        "nodes_harmed_group": 1524,
+        "nodes_ai_system": 537,
+        "nodes_harm_value": 38,
+        "nodes_generic_actor": 155,
+        "new_organisations": 241,
+        "organisations": 851,
         "nodes_other": 1
       },
       {
         "year": 2025,
-        "nodes": 6196,
-        "edges": 13450,
+        "nodes": 6361,
+        "edges": 13622,
         "nodes_incident": 1487,
         "nodes_risk_domain": 7,
         "nodes_sector": 18,
-        "nodes_organisation": 1005,
-        "nodes_harmed_group": 2370,
-        "nodes_ai_system": 894,
-        "nodes_harm_value": 61,
-        "nodes_generic_actor": 353,
-        "new_organisations": 248,
-        "organisations": 1005,
+        "nodes_organisation": 1155,
+        "nodes_harmed_group": 2377,
+        "nodes_ai_system": 904,
+        "nodes_harm_value": 60,
+        "nodes_generic_actor": 352,
+        "new_organisations": 304,
+        "organisations": 1155,
         "nodes_other": 1
       },
       {
         "year": 2026,
-        "nodes": 7393,
-        "edges": 17579,
+        "nodes": 7586,
+        "edges": 17782,
         "nodes_incident": 1775,
         "nodes_risk_domain": 7,
         "nodes_sector": 18,
-        "nodes_organisation": 1158,
-        "nodes_harmed_group": 2757,
-        "nodes_ai_system": 1159,
-        "nodes_harm_value": 71,
-        "nodes_generic_actor": 447,
-        "new_organisations": 153,
-        "organisations": 1158,
+        "nodes_organisation": 1335,
+        "nodes_harmed_group": 2764,
+        "nodes_ai_system": 1170,
+        "nodes_harm_value": 70,
+        "nodes_generic_actor": 446,
+        "new_organisations": 180,
+        "organisations": 1335,
         "nodes_other": 1
       }
     ],
@@ -2668,55 +2668,55 @@
       {
         "measure": "degree",
         "degree": 1.0,
-        "weighted_degree": 0.8257575231399088,
-        "betweenness": 0.4288668780461298,
-        "pagerank": 0.6661911877166408,
-        "eigenvector": 0.6000778909333297,
-        "n_incidents": 0.5627438172397491
+        "weighted_degree": 0.8274882909131798,
+        "betweenness": 0.4284971712891908,
+        "pagerank": 0.6624457730936258,
+        "eigenvector": 0.6006738181966232,
+        "n_incidents": 0.5636902209385783
       },
       {
         "measure": "weighted_degree",
-        "degree": 0.8257575231399088,
+        "degree": 0.8274882909131798,
         "weighted_degree": 1.0,
-        "betweenness": 0.44727041154775077,
-        "pagerank": 0.7701467805243426,
-        "eigenvector": 0.5893758177887473,
-        "n_incidents": 0.6456246177377105
+        "betweenness": 0.4479091161069262,
+        "pagerank": 0.7646398003238046,
+        "eigenvector": 0.590021509878654,
+        "n_incidents": 0.6457017605683842
       },
       {
         "measure": "betweenness",
-        "degree": 0.42886687804612983,
-        "weighted_degree": 0.4472704115477508,
+        "degree": 0.4284971712891908,
+        "weighted_degree": 0.4479091161069262,
         "betweenness": 1.0,
-        "pagerank": 0.513712696640348,
-        "eigenvector": 0.2752617736821226,
-        "n_incidents": 0.5486148386278187
+        "pagerank": 0.5129606146642742,
+        "eigenvector": 0.2770838312692826,
+        "n_incidents": 0.5534065717720047
       },
       {
         "measure": "pagerank",
-        "degree": 0.6661911877166408,
-        "weighted_degree": 0.7701467805243426,
-        "betweenness": 0.513712696640348,
+        "degree": 0.6624457730936258,
+        "weighted_degree": 0.7646398003238046,
+        "betweenness": 0.5129606146642742,
         "pagerank": 1.0,
-        "eigenvector": 0.3830994628612897,
-        "n_incidents": 0.6633531830709096
+        "eigenvector": 0.3785259789271292,
+        "n_incidents": 0.6627043102029366
       },
       {
         "measure": "eigenvector",
-        "degree": 0.6000778909333297,
-        "weighted_degree": 0.5893758177887473,
-        "betweenness": 0.2752617736821226,
-        "pagerank": 0.3830994628612897,
+        "degree": 0.6006738181966232,
+        "weighted_degree": 0.590021509878654,
+        "betweenness": 0.2770838312692826,
+        "pagerank": 0.37852597892712914,
         "eigenvector": 1.0,
-        "n_incidents": 0.45217587613612903
+        "n_incidents": 0.45043170074755373
       },
       {
         "measure": "n_incidents",
-        "degree": 0.5627438172397491,
-        "weighted_degree": 0.6456246177377105,
-        "betweenness": 0.5486148386278186,
-        "pagerank": 0.6633531830709097,
-        "eigenvector": 0.4521758761361291,
+        "degree": 0.5636902209385783,
+        "weighted_degree": 0.6457017605683844,
+        "betweenness": 0.5534065717720047,
+        "pagerank": 0.6627043102029366,
+        "eigenvector": 0.45043170074755373,
         "n_incidents": 1.0
       }
     ],
@@ -2724,12 +2724,12 @@
     "function": "aicidentia.models.network_outputs.run_network"
   },
   "rq2.tau_min_between_measures": {
-    "value": 0.2752617736821226,
+    "value": 0.2770838312692826,
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },
   "rq2.tau_pagerank_vs_weighted_degree": {
-    "value": 0.7701467805243426,
+    "value": 0.7646398003238046,
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },
@@ -2830,7 +2830,7 @@
     "function": "aicidentia.models.classify_outputs.run_classification"
   },
   "rq3.colab_present": {
-    "value": false,
+    "value": true,
     "source_file": "data/processed/incidents_clean.parquet",
     "function": "aicidentia.models.classify_outputs.run_classification"
   },
@@ -3052,6 +3052,30 @@
         "accuracy": 0.75062,
         "fold_macro_f1_mean": null,
         "fold_macro_f1_sd": null
+      },
+      {
+        "model": "DistilBERT fine-tuned",
+        "setting": "cv",
+        "n": 1496,
+        "macro_f1": 0.62829,
+        "ci_low": 0.58953,
+        "ci_high": 0.66383,
+        "weighted_f1": 0.75694,
+        "accuracy": 0.75535,
+        "fold_macro_f1_mean": 0.62725,
+        "fold_macro_f1_sd": 0.03991
+      },
+      {
+        "model": "DistilBERT fine-tuned",
+        "setting": "time",
+        "n": 802,
+        "macro_f1": 0.55135,
+        "ci_low": 0.50694,
+        "ci_high": 0.59179,
+        "weighted_f1": 0.74581,
+        "accuracy": 0.75686,
+        "fold_macro_f1_mean": null,
+        "fold_macro_f1_sd": null
       }
     ],
     "source_file": "data/processed/incidents_clean.parquet",
@@ -3183,6 +3207,30 @@
         "mcnemar_p": 0.07553,
         "a_only_correct": 74,
         "b_only_correct": 53
+      },
+      {
+        "model_a": "DistilBERT fine-tuned",
+        "model_b": "TF-IDF + logistic regression",
+        "setting": "cv",
+        "diff": 0.01453,
+        "ci_low": -0.02026,
+        "ci_high": 0.04783,
+        "p_value": 0.386,
+        "mcnemar_p": 0.64873,
+        "a_only_correct": 122,
+        "b_only_correct": 114
+      },
+      {
+        "model_a": "DistilBERT fine-tuned",
+        "model_b": "TF-IDF + logistic regression",
+        "setting": "time",
+        "diff": 0.05933,
+        "ci_low": 0.01449,
+        "ci_high": 0.10448,
+        "p_value": 0.012,
+        "mcnemar_p": 0.03041,
+        "a_only_correct": 80,
+        "b_only_correct": 54
       },
       {
         "model_a": "mpnet embeddings + logistic regression",
@@ -4302,5 +4350,65 @@
     ],
     "source_file": "data/processed/incidents_clean.parquet + snapshot editor_similar_incidents",
     "function": "aicidentia.models.retrieval_outputs.run_retrieval"
+  },
+  "rules.duplicates.fail_dates": {
+    "value": 5,
+    "source_file": "data/manual",
+    "function": "aicidentia.data.rules.apply_all"
+  },
+  "rules.duplicates.fail_deployer": {
+    "value": 0,
+    "source_file": "data/manual",
+    "function": "aicidentia.data.rules.apply_all"
+  },
+  "rules.duplicates.fail_similarity": {
+    "value": 7,
+    "source_file": "data/manual",
+    "function": "aicidentia.data.rules.apply_all"
+  },
+  "rules.duplicates.keep_separate": {
+    "value": 8,
+    "source_file": "data/manual",
+    "function": "aicidentia.data.rules.apply_all"
+  },
+  "rules.duplicates.merged": {
+    "value": 0,
+    "source_file": "data/manual",
+    "function": "aicidentia.data.rules.apply_all"
+  },
+  "rules.duplicates.pairs": {
+    "value": 8,
+    "source_file": "data/manual",
+    "function": "aicidentia.data.rules.apply_all"
+  },
+  "rules.entities.candidates": {
+    "value": 1346,
+    "source_file": "data/manual",
+    "function": "aicidentia.data.rules.apply_all"
+  },
+  "rules.entities.kept_as_organisation": {
+    "value": 177,
+    "source_file": "data/manual",
+    "function": "aicidentia.data.rules.apply_all"
+  },
+  "rules.entities.kept_as_population_group": {
+    "value": 8,
+    "source_file": "data/manual",
+    "function": "aicidentia.data.rules.apply_all"
+  },
+  "rules.entities.kept_as_technology_system": {
+    "value": 11,
+    "source_file": "data/manual",
+    "function": "aicidentia.data.rules.apply_all"
+  },
+  "rules.entities.named_persons_excluded": {
+    "value": 1150,
+    "source_file": "data/manual",
+    "function": "aicidentia.data.rules.apply_all"
+  },
+  "rules.entities.not_persons_kept": {
+    "value": 196,
+    "source_file": "data/manual",
+    "function": "aicidentia.data.rules.apply_all"
   }
 }

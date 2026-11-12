@@ -14,9 +14,9 @@
    "n_incidents": 448,
    "first_year": 2009,
    "last_year": 2026,
-   "weighted_degree": 4611,
-   "pagerank": 0.031817,
-   "betweenness": 287716.11,
+   "weighted_degree": 4621,
+   "pagerank": 0.031864,
+   "betweenness": 293563.85,
    "domains": {
     "Malicious Actors & Misuse": 209,
     "Misinformation": 65,
@@ -60,9 +60,9 @@
    "n_incidents": 451,
    "first_year": 2017,
    "last_year": 2026,
-   "weighted_degree": 4260,
-   "pagerank": 0.027894,
-   "betweenness": 117450.63,
+   "weighted_degree": 4265,
+   "pagerank": 0.027872,
+   "betweenness": 118662.2,
    "domains": {
     "Malicious Actors & Misuse": 348,
     "Misinformation": 29,
@@ -104,9 +104,9 @@
    "n_incidents": 429,
    "first_year": 2017,
    "last_year": 2026,
-   "weighted_degree": 4215,
-   "pagerank": 0.027361,
-   "betweenness": 32927.02,
+   "weighted_degree": 4220,
+   "pagerank": 0.027342,
+   "betweenness": 33434.38,
    "domains": {
     "Malicious Actors & Misuse": 329,
     "Misinformation": 27,
@@ -148,9 +148,9 @@
    "n_incidents": 355,
    "first_year": 2007,
    "last_year": 2026,
-   "weighted_degree": 3045,
-   "pagerank": 0.022813,
-   "betweenness": 100952.81,
+   "weighted_degree": 3048,
+   "pagerank": 0.022755,
+   "betweenness": 102655.33,
    "domains": {
     "Malicious Actors & Misuse": 158,
     "Misinformation": 61,
@@ -195,8 +195,8 @@
    "first_year": 2020,
    "last_year": 2026,
    "weighted_degree": 2420,
-   "pagerank": 0.015917,
-   "betweenness": 8611.47,
+   "pagerank": 0.015864,
+   "betweenness": 8186.55,
    "domains": {
     "Malicious Actors & Misuse": 200,
     "Misinformation": 14,
@@ -239,8 +239,8 @@
    "first_year": 2020,
    "last_year": 2026,
    "weighted_degree": 2335,
-   "pagerank": 0.015289,
-   "betweenness": 3624.02,
+   "pagerank": 0.015239,
+   "betweenness": 3408.07,
    "domains": {
     "Malicious Actors & Misuse": 195,
     "Misinformation": 13,
@@ -283,8 +283,8 @@
    "first_year": 2017,
    "last_year": 2026,
    "weighted_degree": 2193,
-   "pagerank": 0.013741,
-   "betweenness": 5393.85,
+   "pagerank": 0.013707,
+   "betweenness": 5354.47,
    "domains": {
     "Malicious Actors & Misuse": 48,
     "Discrimination and Toxicity": 2,
@@ -327,8 +327,8 @@
    "first_year": 2017,
    "last_year": 2026,
    "weighted_degree": 2174,
-   "pagerank": 0.013648,
-   "betweenness": 3357.72,
+   "pagerank": 0.013613,
+   "betweenness": 3284.93,
    "domains": {
     "Malicious Actors & Misuse": 44,
     "Discrimination and Toxicity": 2,
@@ -370,9 +370,9 @@
    "n_incidents": 240,
    "first_year": 2019,
    "last_year": 2026,
-   "weighted_degree": 2047,
-   "pagerank": 0.013884,
-   "betweenness": 25811.09,
+   "weighted_degree": 2048,
+   "pagerank": 0.013845,
+   "betweenness": 26021.27,
    "domains": {
     "Malicious Actors & Misuse": 200,
     "Misinformation": 2
@@ -414,8 +414,8 @@
    "first_year": 2003,
    "last_year": 2026,
    "weighted_degree": 2042,
-   "pagerank": 0.016169,
-   "betweenness": 91057.01,
+   "pagerank": 0.016086,
+   "betweenness": 91779.01,
    "domains": {
     "Privacy & Security": 68,
     "Malicious Actors & Misuse": 35,
@@ -460,8 +460,8 @@
    "first_year": 2013,
    "last_year": 2026,
    "weighted_degree": 1812,
-   "pagerank": 0.011677,
-   "betweenness": 5283.33,
+   "pagerank": 0.011644,
+   "betweenness": 5328.83,
    "domains": {
     "Malicious Actors & Misuse": 66,
     "Misinformation": 14,
@@ -506,8 +506,8 @@
    "first_year": 2017,
    "last_year": 2026,
    "weighted_degree": 1802,
-   "pagerank": 0.011216,
-   "betweenness": 2205.38,
+   "pagerank": 0.01118,
+   "betweenness": 2221.38,
    "domains": {
     "Malicious Actors & Misuse": 76,
     "Misinformation": 3
@@ -549,7 +549,7 @@
    "first_year": 2017,
    "last_year": 2026,
    "weighted_degree": 1718,
-   "pagerank": 0.010634,
+   "pagerank": 0.010601,
    "betweenness": 155.11,
    "domains": {
     "Malicious Actors & Misuse": 36,
@@ -591,9 +591,9 @@
    "n_incidents": 164,
    "first_year": 2019,
    "last_year": 2026,
-   "weighted_degree": 1627,
-   "pagerank": 0.012945,
-   "betweenness": 71379.65,
+   "weighted_degree": 1630,
+   "pagerank": 0.012933,
+   "betweenness": 72101.15,
    "domains": {
     "Malicious Actors & Misuse": 23,
     "Misinformation": 21,
@@ -637,8 +637,8 @@
    "n_incidents": 124,
    "first_year": 2019,
    "last_year": 2026,
-   "weighted_degree": 1526,
-   "pagerank": 0.009664,
+   "weighted_degree": 1528,
+   "pagerank": 0.009673,
    "betweenness": 55.35,
    "domains": {
     "Malicious Actors & Misuse": 61,
@@ -684,8 +684,8 @@
    "first_year": 2006,
    "last_year": 2026,
    "weighted_degree": 1518,
-   "pagerank": 0.010574,
-   "betweenness": 18525.77,
+   "pagerank": 0.010538,
+   "betweenness": 19647.77,
    "domains": {
     "Malicious Actors & Misuse": 63,
     "Discrimination and Toxicity": 32,
@@ -729,9 +729,9 @@
    "n_incidents": 126,
    "first_year": 2019,
    "last_year": 2026,
-   "weighted_degree": 1480,
-   "pagerank": 0.009441,
-   "betweenness": 77.36,
+   "weighted_degree": 1483,
+   "pagerank": 0.009471,
+   "betweenness": 90.86,
    "domains": {
     "Malicious Actors & Misuse": 63,
     "Misinformation": 13,
@@ -775,9 +775,9 @@
    "n_incidents": 141,
    "first_year": 2019,
    "last_year": 2026,
-   "weighted_degree": 1478,
-   "pagerank": 0.011675,
-   "betweenness": 980.29,
+   "weighted_degree": 1481,
+   "pagerank": 0.011669,
+   "betweenness": 1011.29,
    "domains": {
     "Misinformation": 18,
     "Privacy & Security": 12,
@@ -822,8 +822,8 @@
    "first_year": 2016,
    "last_year": 2026,
    "weighted_degree": 1298,
-   "pagerank": 0.010731,
-   "betweenness": 41662.92,
+   "pagerank": 0.010682,
+   "betweenness": 41966.92,
    "domains": {
     "Misinformation": 41,
     "Malicious Actors & Misuse": 41,
@@ -868,8 +868,8 @@
    "first_year": 1998,
    "last_year": 2026,
    "weighted_degree": 1207,
-   "pagerank": 0.008372,
-   "betweenness": 16395.78,
+   "pagerank": 0.008337,
+   "betweenness": 16529.78,
    "domains": {
     "Malicious Actors & Misuse": 36,
     "Discrimination and Toxicity": 27,
@@ -913,9 +913,9 @@
    "n_incidents": 98,
    "first_year": 2020,
    "last_year": 2026,
-   "weighted_degree": 1013,
-   "pagerank": 0.007194,
-   "betweenness": 11386.13,
+   "weighted_degree": 1017,
+   "pagerank": 0.007265,
+   "betweenness": 12498.96,
    "domains": {
     "Malicious Actors & Misuse": 63,
     "Misinformation": 10,
@@ -958,7 +958,7 @@
    "first_year": 2020,
    "last_year": 2026,
    "weighted_degree": 1001,
-   "pagerank": 0.006584,
+   "pagerank": 0.006565,
    "betweenness": 174.26,
    "domains": {
     "Malicious Actors & Misuse": 29,
@@ -1001,8 +1001,8 @@
    "first_year": 2007,
    "last_year": 2026,
    "weighted_degree": 987,
-   "pagerank": 0.007142,
-   "betweenness": 5962.67,
+   "pagerank": 0.00711,
+   "betweenness": 6001.67,
    "domains": {
     "Malicious Actors & Misuse": 34,
     "Discrimination and Toxicity": 16,
@@ -1046,9 +1046,9 @@
    "n_incidents": 57,
    "first_year": 2017,
    "last_year": 2026,
-   "weighted_degree": 980,
-   "pagerank": 0.006122,
-   "betweenness": 8.95,
+   "weighted_degree": 981,
+   "pagerank": 0.006118,
+   "betweenness": 10.43,
    "domains": {
     "Malicious Actors & Misuse": 18,
     "Discrimination and Toxicity": 1
@@ -1090,8 +1090,8 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 979,
-   "pagerank": 0.007778,
-   "betweenness": 3319.27,
+   "pagerank": 0.007741,
+   "betweenness": 3336.27,
    "domains": {
     "Malicious Actors & Misuse": 27,
     "Misinformation": 21,
@@ -1136,8 +1136,8 @@
    "first_year": 2009,
    "last_year": 2026,
    "weighted_degree": 979,
-   "pagerank": 0.007452,
-   "betweenness": 34738.45,
+   "pagerank": 0.007424,
+   "betweenness": 34996.45,
    "domains": {
     "Malicious Actors & Misuse": 45,
     "AI system safety, failures, and limitations": 23,
@@ -1181,9 +1181,9 @@
    "n_incidents": 58,
    "first_year": 2017,
    "last_year": 2026,
-   "weighted_degree": 975,
-   "pagerank": 0.006071,
-   "betweenness": 8.95,
+   "weighted_degree": 976,
+   "pagerank": 0.006067,
+   "betweenness": 10.43,
    "domains": {
     "Malicious Actors & Misuse": 18,
     "Discrimination and Toxicity": 1
@@ -1225,8 +1225,8 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 960,
-   "pagerank": 0.007149,
-   "betweenness": 505.94,
+   "pagerank": 0.007116,
+   "betweenness": 506.94,
    "domains": {
     "Privacy & Security": 14,
     "Malicious Actors & Misuse": 7,
@@ -1271,7 +1271,7 @@
    "first_year": 1998,
    "last_year": 2026,
    "weighted_degree": 940,
-   "pagerank": 0.00678,
+   "pagerank": 0.006749,
    "betweenness": 162.06,
    "domains": {
     "Malicious Actors & Misuse": 26,
@@ -1317,8 +1317,8 @@
    "first_year": 2013,
    "last_year": 2026,
    "weighted_degree": 934,
-   "pagerank": 0.006426,
-   "betweenness": 1149.85,
+   "pagerank": 0.006407,
+   "betweenness": 1157.85,
    "domains": {
     "Malicious Actors & Misuse": 20,
     "Misinformation": 10,
@@ -1363,8 +1363,8 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 885,
-   "pagerank": 0.006656,
-   "betweenness": 2964.66,
+   "pagerank": 0.006626,
+   "betweenness": 2988.66,
    "domains": {
     "Privacy & Security": 10,
     "Human-Computer Interaction": 5,
@@ -1408,9 +1408,9 @@
    "n_incidents": 98,
    "first_year": 2009,
    "last_year": 2026,
-   "weighted_degree": 850,
-   "pagerank": 0.006558,
-   "betweenness": 444.55,
+   "weighted_degree": 852,
+   "pagerank": 0.006562,
+   "betweenness": 527.05,
    "domains": {
     "Malicious Actors & Misuse": 44,
     "AI system safety, failures, and limitations": 22,
@@ -1454,9 +1454,9 @@
    "n_incidents": 76,
    "first_year": 2020,
    "last_year": 2026,
-   "weighted_degree": 824,
-   "pagerank": 0.00629,
-   "betweenness": 8180.48,
+   "weighted_degree": 826,
+   "pagerank": 0.006284,
+   "betweenness": 8268.57,
    "domains": {
     "Malicious Actors & Misuse": 46,
     "Misinformation": 10,
@@ -1501,7 +1501,7 @@
    "first_year": 2017,
    "last_year": 2026,
    "weighted_degree": 687,
-   "pagerank": 0.004263,
+   "pagerank": 0.004248,
    "betweenness": 4.4,
    "domains": {
     "Malicious Actors & Misuse": 21
@@ -1543,8 +1543,8 @@
    "first_year": 1998,
    "last_year": 2026,
    "weighted_degree": 621,
-   "pagerank": 0.00708,
-   "betweenness": 29551.15,
+   "pagerank": 0.007038,
+   "betweenness": 29860.98,
    "domains": {
     "AI system safety, failures, and limitations": 54,
     "Discrimination and Toxicity": 42,
@@ -1589,8 +1589,8 @@
    "first_year": 2006,
    "last_year": 2026,
    "weighted_degree": 599,
-   "pagerank": 0.005527,
-   "betweenness": 24769.06,
+   "pagerank": 0.005499,
+   "betweenness": 24965.06,
    "domains": {
     "Misinformation": 33,
     "Discrimination and Toxicity": 24,
@@ -1635,8 +1635,8 @@
    "first_year": 2020,
    "last_year": 2026,
    "weighted_degree": 581,
-   "pagerank": 0.004079,
-   "betweenness": 2128.55,
+   "pagerank": 0.004068,
+   "betweenness": 2142.55,
    "domains": {
     "Malicious Actors & Misuse": 25,
     "Misinformation": 11,
@@ -1679,9 +1679,9 @@
    "n_incidents": 69,
    "first_year": 2006,
    "last_year": 2026,
-   "weighted_degree": 545,
-   "pagerank": 0.003816,
-   "betweenness": 16.07,
+   "weighted_degree": 547,
+   "pagerank": 0.00385,
+   "betweenness": 1010.57,
    "domains": {
     "Discrimination and Toxicity": 15,
     "AI system safety, failures, and limitations": 12,
@@ -1726,8 +1726,8 @@
    "first_year": 2020,
    "last_year": 2026,
    "weighted_degree": 522,
-   "pagerank": 0.004049,
-   "betweenness": 2092.84,
+   "pagerank": 0.004029,
+   "betweenness": 2108.84,
    "domains": {
     "Malicious Actors & Misuse": 16,
     "Privacy & Security": 1
@@ -1769,7 +1769,7 @@
    "first_year": 2020,
    "last_year": 2026,
    "weighted_degree": 519,
-   "pagerank": 0.003854,
+   "pagerank": 0.003835,
    "betweenness": 35.89,
    "domains": {
     "Human-Computer Interaction": 6,
@@ -1814,9 +1814,9 @@
    "n_incidents": 66,
    "first_year": 2020,
    "last_year": 2026,
-   "weighted_degree": 505,
-   "pagerank": 0.003949,
-   "betweenness": 6936.61,
+   "weighted_degree": 508,
+   "pagerank": 0.003976,
+   "betweenness": 6998.53,
    "domains": {
     "Malicious Actors & Misuse": 44,
     "Misinformation": 12,
@@ -1861,8 +1861,8 @@
    "first_year": 2025,
    "last_year": 2026,
    "weighted_degree": 491,
-   "pagerank": 0.004613,
-   "betweenness": 19852.22,
+   "pagerank": 0.004583,
+   "betweenness": 20021.22,
    "domains": {
     "AI system safety, failures, and limitations": 6,
     "Malicious Actors & Misuse": 3,
@@ -1906,8 +1906,8 @@
    "first_year": 2017,
    "last_year": 2026,
    "weighted_degree": 458,
-   "pagerank": 0.003232,
-   "betweenness": 4996.73,
+   "pagerank": 0.00322,
+   "betweenness": 5036.73,
    "domains": {
     "Malicious Actors & Misuse": 27,
     "Discrimination and Toxicity": 10,
@@ -1950,8 +1950,8 @@
    "first_year": 2017,
    "last_year": 2026,
    "weighted_degree": 454,
-   "pagerank": 0.003928,
-   "betweenness": 6362.97,
+   "pagerank": 0.003905,
+   "betweenness": 6371.97,
    "domains": {
     "AI system safety, failures, and limitations": 11,
     "Discrimination and Toxicity": 6,
@@ -1996,7 +1996,7 @@
    "first_year": 2003,
    "last_year": 2026,
    "weighted_degree": 447,
-   "pagerank": 0.004504,
+   "pagerank": 0.004477,
    "betweenness": 364.03,
    "domains": {
     "Privacy & Security": 34,
@@ -2041,7 +2041,7 @@
    "first_year": 2006,
    "last_year": 2026,
    "weighted_degree": 446,
-   "pagerank": 0.003091,
+   "pagerank": 0.003081,
    "betweenness": 21.47,
    "domains": {
     "Malicious Actors & Misuse": 23,
@@ -2087,7 +2087,7 @@
    "first_year": 2026,
    "last_year": 2026,
    "weighted_degree": 440,
-   "pagerank": 0.004104,
+   "pagerank": 0.004078,
    "betweenness": 278.14,
    "domains": {},
    "recent_incidents": [
@@ -2127,8 +2127,8 @@
    "first_year": 2013,
    "last_year": 2026,
    "weighted_degree": 424,
-   "pagerank": 0.004171,
-   "betweenness": 4713.5,
+   "pagerank": 0.004148,
+   "betweenness": 4717.5,
    "domains": {
     "Privacy & Security": 20,
     "Discrimination and Toxicity": 18,
@@ -2172,8 +2172,8 @@
    "first_year": 2022,
    "last_year": 2026,
    "weighted_degree": 419,
-   "pagerank": 0.003739,
-   "betweenness": 1273.11,
+   "pagerank": 0.003717,
+   "betweenness": 1281.11,
    "domains": {
     "Misinformation": 6,
     "Malicious Actors & Misuse": 5,
@@ -2218,8 +2218,8 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 415,
-   "pagerank": 0.00276,
-   "betweenness": 1008.01,
+   "pagerank": 0.002751,
+   "betweenness": 1015.01,
    "domains": {
     "Malicious Actors & Misuse": 9,
     "Discrimination and Toxicity": 1,
@@ -2262,7 +2262,7 @@
    "first_year": 2017,
    "last_year": 2026,
    "weighted_degree": 408,
-   "pagerank": 0.002543,
+   "pagerank": 0.002533,
    "betweenness": 0.09,
    "domains": {
     "Malicious Actors & Misuse": 16,
@@ -2305,7 +2305,7 @@
    "first_year": 2017,
    "last_year": 2026,
    "weighted_degree": 399,
-   "pagerank": 0.002551,
+   "pagerank": 0.002541,
    "betweenness": 0.0,
    "domains": {
     "Malicious Actors & Misuse": 13,
@@ -2348,8 +2348,8 @@
    "first_year": 2022,
    "last_year": 2026,
    "weighted_degree": 394,
-   "pagerank": 0.003071,
-   "betweenness": 2884.81,
+   "pagerank": 0.003057,
+   "betweenness": 2907.81,
    "domains": {
     "Misinformation": 14,
     "Discrimination and Toxicity": 5,
@@ -2394,7 +2394,7 @@
    "first_year": 2026,
    "last_year": 2026,
    "weighted_degree": 391,
-   "pagerank": 0.00369,
+   "pagerank": 0.003666,
    "betweenness": 115.84,
    "domains": {},
    "recent_incidents": [
@@ -2434,7 +2434,7 @@
    "first_year": 2017,
    "last_year": 2026,
    "weighted_degree": 388,
-   "pagerank": 0.002615,
+   "pagerank": 0.002604,
    "betweenness": 12.58,
    "domains": {
     "Malicious Actors & Misuse": 9
@@ -2476,7 +2476,7 @@
    "first_year": 2022,
    "last_year": 2026,
    "weighted_degree": 379,
-   "pagerank": 0.002819,
+   "pagerank": 0.002805,
    "betweenness": 11.92,
    "domains": {
     "Human-Computer Interaction": 8,
@@ -2522,8 +2522,8 @@
    "first_year": 2014,
    "last_year": 2026,
    "weighted_degree": 371,
-   "pagerank": 0.00332,
-   "betweenness": 1524.97,
+   "pagerank": 0.003301,
+   "betweenness": 1531.97,
    "domains": {
     "Privacy & Security": 14,
     "Malicious Actors & Misuse": 4,
@@ -2567,7 +2567,7 @@
    "first_year": 2020,
    "last_year": 2026,
    "weighted_degree": 359,
-   "pagerank": 0.002592,
+   "pagerank": 0.002584,
    "betweenness": 6.03,
    "domains": {
     "Malicious Actors & Misuse": 16,
@@ -2612,8 +2612,8 @@
    "first_year": 2020,
    "last_year": 2026,
    "weighted_degree": 359,
-   "pagerank": 0.002422,
-   "betweenness": 1007.31,
+   "pagerank": 0.002413,
+   "betweenness": 1015.31,
    "domains": {
     "Malicious Actors & Misuse": 23,
     "Privacy & Security": 1,
@@ -2656,7 +2656,7 @@
    "first_year": 2024,
    "last_year": 2026,
    "weighted_degree": 318,
-   "pagerank": 0.002065,
+   "pagerank": 0.002062,
    "betweenness": 0.96,
    "domains": {
     "Malicious Actors & Misuse": 1
@@ -2698,8 +2698,8 @@
    "first_year": 2022,
    "last_year": 2026,
    "weighted_degree": 302,
-   "pagerank": 0.002487,
-   "betweenness": 830.93,
+   "pagerank": 0.002476,
+   "betweenness": 837.43,
    "domains": {
     "Misinformation": 8,
     "Malicious Actors & Misuse": 4,
@@ -2744,7 +2744,7 @@
    "first_year": 2024,
    "last_year": 2026,
    "weighted_degree": 299,
-   "pagerank": 0.002311,
+   "pagerank": 0.002301,
    "betweenness": 21.94,
    "domains": {
     "Misinformation": 9,
@@ -2788,9 +2788,9 @@
    "n_incidents": 39,
    "first_year": 2013,
    "last_year": 2026,
-   "weighted_degree": 296,
-   "pagerank": 0.002364,
-   "betweenness": 1098.78,
+   "weighted_degree": 294,
+   "pagerank": 0.002335,
+   "betweenness": 1099.78,
    "domains": {
     "Malicious Actors & Misuse": 18,
     "Discrimination and Toxicity": 7,
@@ -2835,7 +2835,7 @@
    "first_year": 2023,
    "last_year": 2026,
    "weighted_degree": 290,
-   "pagerank": 0.002553,
+   "pagerank": 0.002539,
    "betweenness": 4.99,
    "domains": {
     "Malicious Actors & Misuse": 3,
@@ -2873,51 +2873,6 @@
    ]
   },
   {
-   "id": "surveillance-technology-developers",
-   "label": "Surveillance technology developers",
-   "type": "generic_actor",
-   "community": 2,
-   "n_incidents": 25,
-   "first_year": 2019,
-   "last_year": 2026,
-   "weighted_degree": 287,
-   "pagerank": 0.002496,
-   "betweenness": 10.29,
-   "domains": {
-    "Privacy & Security": 4,
-    "Malicious Actors & Misuse": 4,
-    "Discrimination and Toxicity": 1,
-    "AI system safety, failures, and limitations": 1
-   },
-   "recent_incidents": [
-    {
-     "id": 1390,
-     "title": "DHS Agents Reportedly Threatened Legal Observers With 'Domestic Terrorist' Database While Using Purportedly AI-Enabled Surveillance During ICE Operations",
-     "year": 2026
-    },
-    {
-     "id": 1761,
-     "title": "Haines City, Florida, Police Officer Allegedly Used Flock License-Plate Reader System to Track Estranged Wife",
-     "year": 2026
-    },
-    {
-     "id": 1720,
-     "title": "Stow, Massachusetts, Police Officer Allegedly Used Flock License-Plate Reader System to Track Former Romantic Partner",
-     "year": 2026
-    },
-    {
-     "id": 1595,
-     "title": "Deputies in Cherokee County, Georgia, Allegedly Misused Automated License Plate Reader Data for Non-Law-Enforcement Purposes",
-     "year": 2026
-    },
-    {
-     "id": 1760,
-     "title": "Braselton, Georgia, Police Chief Allegedly Used Flock License-Plate Reader System to Stalk and Harass Multiple People",
-     "year": 2025
-    }
-   ]
-  },
-  {
    "id": "general-public-of-the-united-states",
    "label": "General public of the United States",
    "type": "harmed_group",
@@ -2925,8 +2880,8 @@
    "n_incidents": 25,
    "first_year": 2022,
    "last_year": 2026,
-   "weighted_degree": 287,
-   "pagerank": 0.002448,
+   "weighted_degree": 288,
+   "pagerank": 0.002451,
    "betweenness": 38.07,
    "domains": {
     "Malicious Actors & Misuse": 10,
@@ -2964,6 +2919,51 @@
    ]
   },
   {
+   "id": "surveillance-technology-developers",
+   "label": "Surveillance technology developers",
+   "type": "generic_actor",
+   "community": 2,
+   "n_incidents": 25,
+   "first_year": 2019,
+   "last_year": 2026,
+   "weighted_degree": 287,
+   "pagerank": 0.002482,
+   "betweenness": 10.29,
+   "domains": {
+    "Privacy & Security": 4,
+    "Malicious Actors & Misuse": 4,
+    "Discrimination and Toxicity": 1,
+    "AI system safety, failures, and limitations": 1
+   },
+   "recent_incidents": [
+    {
+     "id": 1390,
+     "title": "DHS Agents Reportedly Threatened Legal Observers With 'Domestic Terrorist' Database While Using Purportedly AI-Enabled Surveillance During ICE Operations",
+     "year": 2026
+    },
+    {
+     "id": 1761,
+     "title": "Haines City, Florida, Police Officer Allegedly Used Flock License-Plate Reader System to Track Estranged Wife",
+     "year": 2026
+    },
+    {
+     "id": 1720,
+     "title": "Stow, Massachusetts, Police Officer Allegedly Used Flock License-Plate Reader System to Track Former Romantic Partner",
+     "year": 2026
+    },
+    {
+     "id": 1595,
+     "title": "Deputies in Cherokee County, Georgia, Allegedly Misused Automated License Plate Reader Data for Non-Law-Enforcement Purposes",
+     "year": 2026
+    },
+    {
+     "id": 1760,
+     "title": "Braselton, Georgia, Police Chief Allegedly Used Flock License-Plate Reader System to Stalk and Harass Multiple People",
+     "year": 2025
+    }
+   ]
+  },
+  {
    "id": "investors",
    "label": "Investors",
    "type": "harmed_group",
@@ -2972,7 +2972,7 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 286,
-   "pagerank": 0.001929,
+   "pagerank": 0.001922,
    "betweenness": 0.14,
    "domains": {
     "Malicious Actors & Misuse": 21,
@@ -3007,49 +3007,6 @@
    ]
   },
   {
-   "id": "social-media",
-   "label": "Social media",
-   "type": "ai_system",
-   "community": 1,
-   "n_incidents": 32,
-   "first_year": 2023,
-   "last_year": 2025,
-   "weighted_degree": 285,
-   "pagerank": 0.002039,
-   "betweenness": 9.03,
-   "domains": {
-    "Malicious Actors & Misuse": 27,
-    "Misinformation": 5
-   },
-   "recent_incidents": [
-    {
-     "id": 1051,
-     "title": "Video Reportedly Created with AI Appears to Show Trump Backing Biafra Secession",
-     "year": 2025
-    },
-    {
-     "id": 1062,
-     "title": "Brazilian Authorities Reportedly Link AI-Generated Marcos Mion Videos to Purported Fake Restaurant Promotions in Brazil",
-     "year": 2025
-    },
-    {
-     "id": 1093,
-     "title": "Fact-Checkers Identify Viral Photo of Burkina Faso's Ibrahim Traoré with 'Wife and Children' as AI-Generated Composite",
-     "year": 2025
-    },
-    {
-     "id": 1128,
-     "title": "Philippine Officials Reportedly Share Veo 3-Generated Video to Support Vice President Sara Duterte During Impeachment",
-     "year": 2025
-    },
-    {
-     "id": 1095,
-     "title": "Alleged Russian-Linked Deepfake Campaign Misattributes Infrastructure Projects to Burkina Faso's Ibrahim Traoré",
-     "year": 2025
-    }
-   ]
-  },
-  {
    "id": "microsoft",
    "label": "Microsoft",
    "type": "organisation",
@@ -3057,9 +3014,9 @@
    "n_incidents": 46,
    "first_year": 2006,
    "last_year": 2026,
-   "weighted_degree": 284,
-   "pagerank": 0.002779,
-   "betweenness": 7079.11,
+   "weighted_degree": 285,
+   "pagerank": 0.002777,
+   "betweenness": 7153.61,
    "domains": {
     "Misinformation": 13,
     "Discrimination and Toxicity": 11,
@@ -3096,6 +3053,49 @@
    ]
   },
   {
+   "id": "social-media",
+   "label": "Social media",
+   "type": "ai_system",
+   "community": 1,
+   "n_incidents": 32,
+   "first_year": 2023,
+   "last_year": 2025,
+   "weighted_degree": 285,
+   "pagerank": 0.002031,
+   "betweenness": 9.03,
+   "domains": {
+    "Malicious Actors & Misuse": 27,
+    "Misinformation": 5
+   },
+   "recent_incidents": [
+    {
+     "id": 1051,
+     "title": "Video Reportedly Created with AI Appears to Show Trump Backing Biafra Secession",
+     "year": 2025
+    },
+    {
+     "id": 1062,
+     "title": "Brazilian Authorities Reportedly Link AI-Generated Marcos Mion Videos to Purported Fake Restaurant Promotions in Brazil",
+     "year": 2025
+    },
+    {
+     "id": 1093,
+     "title": "Fact-Checkers Identify Viral Photo of Burkina Faso's Ibrahim Traoré with 'Wife and Children' as AI-Generated Composite",
+     "year": 2025
+    },
+    {
+     "id": 1128,
+     "title": "Philippine Officials Reportedly Share Veo 3-Generated Video to Support Vice President Sara Duterte During Impeachment",
+     "year": 2025
+    },
+    {
+     "id": 1095,
+     "title": "Alleged Russian-Linked Deepfake Campaign Misattributes Infrastructure Projects to Burkina Faso's Ibrahim Traoré",
+     "year": 2025
+    }
+   ]
+  },
+  {
    "id": "boys",
    "label": "Boys",
    "type": "harmed_group",
@@ -3104,7 +3104,7 @@
    "first_year": 2023,
    "last_year": 2026,
    "weighted_degree": 278,
-   "pagerank": 0.001893,
+   "pagerank": 0.001885,
    "betweenness": 0.0,
    "domains": {
     "Malicious Actors & Misuse": 9
@@ -3146,7 +3146,7 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 271,
-   "pagerank": 0.00267,
+   "pagerank": 0.002656,
    "betweenness": 40.65,
    "domains": {
     "Privacy & Security": 8,
@@ -3191,7 +3191,7 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 265,
-   "pagerank": 0.002169,
+   "pagerank": 0.002157,
    "betweenness": 16.83,
    "domains": {
     "Socioeconomic & Environmental Harms": 2,
@@ -3237,7 +3237,7 @@
    "first_year": 2023,
    "last_year": 2026,
    "weighted_degree": 264,
-   "pagerank": 0.001804,
+   "pagerank": 0.001796,
    "betweenness": 0.0,
    "domains": {
     "Malicious Actors & Misuse": 7
@@ -3279,7 +3279,7 @@
    "first_year": 2023,
    "last_year": 2026,
    "weighted_degree": 261,
-   "pagerank": 0.00187,
+   "pagerank": 0.001861,
    "betweenness": 0.24,
    "domains": {
     "Discrimination and Toxicity": 3
@@ -3321,8 +3321,8 @@
    "first_year": 2014,
    "last_year": 2026,
    "weighted_degree": 255,
-   "pagerank": 0.00379,
-   "betweenness": 28933.17,
+   "pagerank": 0.003761,
+   "betweenness": 29166.17,
    "domains": {
     "AI system safety, failures, and limitations": 11,
     "Privacy & Security": 10,
@@ -3367,7 +3367,7 @@
    "first_year": 2009,
    "last_year": 2026,
    "weighted_degree": 253,
-   "pagerank": 0.001942,
+   "pagerank": 0.001932,
    "betweenness": 1.0,
    "domains": {
     "Malicious Actors & Misuse": 8,
@@ -3413,7 +3413,7 @@
    "first_year": 2017,
    "last_year": 2026,
    "weighted_degree": 248,
-   "pagerank": 0.001636,
+   "pagerank": 0.001629,
    "betweenness": 0.0,
    "domains": {
     "Malicious Actors & Misuse": 9,
@@ -3456,7 +3456,7 @@
    "first_year": 2023,
    "last_year": 2026,
    "weighted_degree": 245,
-   "pagerank": 0.001616,
+   "pagerank": 0.001609,
    "betweenness": 0.31,
    "domains": {
     "Malicious Actors & Misuse": 8
@@ -3498,8 +3498,8 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 245,
-   "pagerank": 0.003337,
-   "betweenness": 33596.81,
+   "pagerank": 0.00331,
+   "betweenness": 33880.81,
    "domains": {
     "AI system safety, failures, and limitations": 3
    },
@@ -3535,12 +3535,12 @@
    "id": "victims-of-impersonation-scams",
    "label": "Victims of impersonation scams",
    "type": "harmed_group",
-   "community": 3,
+   "community": 1,
    "n_incidents": 14,
    "first_year": 2020,
    "last_year": 2026,
    "weighted_degree": 243,
-   "pagerank": 0.001615,
+   "pagerank": 0.001609,
    "betweenness": 0.0,
    "domains": {
     "Malicious Actors & Misuse": 8
@@ -3582,7 +3582,7 @@
    "first_year": 2025,
    "last_year": 2026,
    "weighted_degree": 236,
-   "pagerank": 0.001507,
+   "pagerank": 0.001503,
    "betweenness": 0.12,
    "domains": {
     "Malicious Actors & Misuse": 1
@@ -3624,7 +3624,7 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 233,
-   "pagerank": 0.001713,
+   "pagerank": 0.001706,
    "betweenness": 1.5,
    "domains": {
     "Malicious Actors & Misuse": 17
@@ -3661,13 +3661,13 @@
    "id": "financial-scam-victims",
    "label": "Financial scam victims",
    "type": "harmed_group",
-   "community": 3,
+   "community": 1,
    "n_incidents": 17,
    "first_year": 2024,
    "last_year": 2026,
    "weighted_degree": 226,
-   "pagerank": 0.001676,
-   "betweenness": 994.09,
+   "pagerank": 0.001668,
+   "betweenness": 1002.09,
    "domains": {
     "Malicious Actors & Misuse": 5
    },
@@ -3707,9 +3707,9 @@
    "n_incidents": 38,
    "first_year": 2023,
    "last_year": 2026,
-   "weighted_degree": 220,
-   "pagerank": 0.00199,
-   "betweenness": 685.25,
+   "weighted_degree": 221,
+   "pagerank": 0.002005,
+   "betweenness": 1085.75,
    "domains": {
     "Misinformation": 14,
     "AI system safety, failures, and limitations": 4,
@@ -3753,7 +3753,7 @@
    "first_year": 2017,
    "last_year": 2026,
    "weighted_degree": 215,
-   "pagerank": 0.00151,
+   "pagerank": 0.001504,
    "betweenness": 0.0,
    "domains": {
     "Malicious Actors & Misuse": 15,
@@ -3797,7 +3797,7 @@
    "first_year": 2023,
    "last_year": 2026,
    "weighted_degree": 212,
-   "pagerank": 0.001557,
+   "pagerank": 0.00155,
    "betweenness": 0.33,
    "domains": {
     "Malicious Actors & Misuse": 9,
@@ -3842,7 +3842,7 @@
    "first_year": 2024,
    "last_year": 2026,
    "weighted_degree": 211,
-   "pagerank": 0.001421,
+   "pagerank": 0.001417,
    "betweenness": 0.31,
    "domains": {
     "Malicious Actors & Misuse": 4
@@ -3876,6 +3876,49 @@
    ]
   },
   {
+   "id": "malicious-actors",
+   "label": "Malicious actors",
+   "type": "generic_actor",
+   "community": 3,
+   "n_incidents": 20,
+   "first_year": 2023,
+   "last_year": 2026,
+   "weighted_degree": 209,
+   "pagerank": 0.00155,
+   "betweenness": 5.33,
+   "domains": {
+    "Malicious Actors & Misuse": 10,
+    "Misinformation": 2
+   },
+   "recent_incidents": [
+    {
+     "id": 1746,
+     "title": "Repeated Bomb Threat Calls, Some Reportedly AI-Generated, Disrupted Schools in Wheatland, California",
+     "year": 2026
+    },
+    {
+     "id": 1344,
+     "title": "Purported AI-Generated Images Depict Kate Garraway With Fictitious Partner",
+     "year": 2026
+    },
+    {
+     "id": 1394,
+     "title": "Purported Deepfake TikTok Account Using Grainville School Branding in Jersey Reportedly Targeted Staff, Prompting Police Probe",
+     "year": 2026
+    },
+    {
+     "id": 1368,
+     "title": "Malicious OpenClaw Skills Reportedly Delivered AMOS Stealer and Exfiltrated Credentials via ClawHub",
+     "year": 2026
+    },
+    {
+     "id": 1747,
+     "title": "Florida Man Allegedly Threatened Lee County Sheriff with Purportedly AI-Generated Image Depicting Him Wounded and Fleeing Gunmen",
+     "year": 2026
+    }
+   ]
+  },
+  {
    "id": "instagram-users",
    "label": "Instagram users",
    "type": "harmed_group",
@@ -3884,8 +3927,8 @@
    "first_year": 2006,
    "last_year": 2026,
    "weighted_degree": 209,
-   "pagerank": 0.001608,
-   "betweenness": 998.5,
+   "pagerank": 0.001603,
+   "betweenness": 1006.5,
    "domains": {
     "Discrimination and Toxicity": 10,
     "Malicious Actors & Misuse": 5,
@@ -3922,49 +3965,6 @@
    ]
   },
   {
-   "id": "malicious-actors",
-   "label": "Malicious actors",
-   "type": "generic_actor",
-   "community": 3,
-   "n_incidents": 20,
-   "first_year": 2023,
-   "last_year": 2026,
-   "weighted_degree": 209,
-   "pagerank": 0.001557,
-   "betweenness": 5.33,
-   "domains": {
-    "Malicious Actors & Misuse": 10,
-    "Misinformation": 2
-   },
-   "recent_incidents": [
-    {
-     "id": 1746,
-     "title": "Repeated Bomb Threat Calls, Some Reportedly AI-Generated, Disrupted Schools in Wheatland, California",
-     "year": 2026
-    },
-    {
-     "id": 1344,
-     "title": "Purported AI-Generated Images Depict Kate Garraway With Fictitious Partner",
-     "year": 2026
-    },
-    {
-     "id": 1394,
-     "title": "Purported Deepfake TikTok Account Using Grainville School Branding in Jersey Reportedly Targeted Staff, Prompting Police Probe",
-     "year": 2026
-    },
-    {
-     "id": 1368,
-     "title": "Malicious OpenClaw Skills Reportedly Delivered AMOS Stealer and Exfiltrated Credentials via ClawHub",
-     "year": 2026
-    },
-    {
-     "id": 1747,
-     "title": "Florida Man Allegedly Threatened Lee County Sheriff with Purportedly AI-Generated Image Depicting Him Wounded and Fleeing Gunmen",
-     "year": 2026
-    }
-   ]
-  },
-  {
    "id": "x-(twitter)-users",
    "label": "X (Twitter) users",
    "type": "harmed_group",
@@ -3972,9 +3972,9 @@
    "n_incidents": 32,
    "first_year": 2016,
    "last_year": 2026,
-   "weighted_degree": 203,
-   "pagerank": 0.001563,
-   "betweenness": 37.1,
+   "weighted_degree": 205,
+   "pagerank": 0.001604,
+   "betweenness": 42.6,
    "domains": {
     "Discrimination and Toxicity": 9,
     "Malicious Actors & Misuse": 8,
@@ -4010,6 +4010,51 @@
    ]
   },
   {
+   "id": "journalists",
+   "label": "Journalists",
+   "type": "harmed_group",
+   "community": 1,
+   "n_incidents": 15,
+   "first_year": 2020,
+   "last_year": 2026,
+   "weighted_degree": 201,
+   "pagerank": 0.001706,
+   "betweenness": 2.25,
+   "domains": {
+    "Malicious Actors & Misuse": 7,
+    "Privacy & Security": 3,
+    "Misinformation": 2,
+    "AI system safety, failures, and limitations": 1
+   },
+   "recent_incidents": [
+    {
+     "id": 1715,
+     "title": "Russia-Linked Matryoshka Operators Reportedly Circulated Deepfake of Mother Jones Editor Claiming DNC Paid CNN $259 Million",
+     "year": 2026
+    },
+    {
+     "id": 1407,
+     "title": "Grammarly's AI Expert Review Allegedly Used Journalists' and Authors' Names Without Consent",
+     "year": 2026
+    },
+    {
+     "id": 1290,
+     "title": "Alleged Fabricated News Sites and Deepfakes Impersonated Maltese Ministers, Financial Experts, and Media to Promote NethertoxAGENT Fraud",
+     "year": 2025
+    },
+    {
+     "id": 1069,
+     "title": "Purported Graphite Spyware Linked to Paragon Solutions Allegedly Deployed Against Journalists and Civil Society Workers",
+     "year": 2025
+    },
+    {
+     "id": 1060,
+     "title": "Institute for Strategic Dialogue Reports Russian-Aligned Operation Overload Using Purported AI-Generated Impersonations Across January to March 2025",
+     "year": 2025
+    }
+   ]
+  },
+  {
    "id": "information-manipulation-actors-in-kosovo",
    "label": "Information manipulation actors in Kosovo",
    "type": "generic_actor",
@@ -4018,7 +4063,7 @@
    "first_year": 2025,
    "last_year": 2026,
    "weighted_degree": 201,
-   "pagerank": 0.001302,
+   "pagerank": 0.001298,
    "betweenness": 0.0,
    "domains": {},
    "recent_incidents": [
@@ -4058,7 +4103,7 @@
    "first_year": 2017,
    "last_year": 2026,
    "weighted_degree": 201,
-   "pagerank": 0.001568,
+   "pagerank": 0.00156,
    "betweenness": 1.0,
    "domains": {
     "Malicious Actors & Misuse": 4,
@@ -4095,51 +4140,6 @@
    ]
   },
   {
-   "id": "journalists",
-   "label": "Journalists",
-   "type": "harmed_group",
-   "community": 1,
-   "n_incidents": 15,
-   "first_year": 2020,
-   "last_year": 2026,
-   "weighted_degree": 200,
-   "pagerank": 0.001703,
-   "betweenness": 2.25,
-   "domains": {
-    "Malicious Actors & Misuse": 7,
-    "Privacy & Security": 3,
-    "Misinformation": 2,
-    "AI system safety, failures, and limitations": 1
-   },
-   "recent_incidents": [
-    {
-     "id": 1715,
-     "title": "Russia-Linked Matryoshka Operators Reportedly Circulated Deepfake of Mother Jones Editor Claiming DNC Paid CNN $259 Million",
-     "year": 2026
-    },
-    {
-     "id": 1407,
-     "title": "Grammarly's AI Expert Review Allegedly Used Journalists' and Authors' Names Without Consent",
-     "year": 2026
-    },
-    {
-     "id": 1290,
-     "title": "Alleged Fabricated News Sites and Deepfakes Impersonated Maltese Ministers, Financial Experts, and Media to Promote NethertoxAGENT Fraud",
-     "year": 2025
-    },
-    {
-     "id": 1069,
-     "title": "Purported Graphite Spyware Linked to Paragon Solutions Allegedly Deployed Against Journalists and Civil Society Workers",
-     "year": 2025
-    },
-    {
-     "id": 1060,
-     "title": "Institute for Strategic Dialogue Reports Russian-Aligned Operation Overload Using Purported AI-Generated Impersonations Across January to March 2025",
-     "year": 2025
-    }
-   ]
-  },
-  {
    "id": "automated-license-plate-readers-(alpr)",
    "label": "Automated license plate readers (ALPR)",
    "type": "ai_system",
@@ -4148,7 +4148,7 @@
    "first_year": 2014,
    "last_year": 2026,
    "weighted_degree": 199,
-   "pagerank": 0.00171,
+   "pagerank": 0.001699,
    "betweenness": 60.84,
    "domains": {
     "AI system safety, failures, and limitations": 3,
@@ -4190,8 +4190,8 @@
    "n_incidents": 11,
    "first_year": 2022,
    "last_year": 2026,
-   "weighted_degree": 190,
-   "pagerank": 0.00146,
+   "weighted_degree": 191,
+   "pagerank": 0.001464,
    "betweenness": 0.73,
    "domains": {
     "Malicious Actors & Misuse": 9
@@ -4228,12 +4228,12 @@
    "id": "victims-of-deepfake-enabled-fraud",
    "label": "Victims of deepfake-enabled fraud",
    "type": "harmed_group",
-   "community": 3,
+   "community": 1,
    "n_incidents": 11,
    "first_year": 2020,
    "last_year": 2026,
-   "weighted_degree": 189,
-   "pagerank": 0.001307,
+   "weighted_degree": 190,
+   "pagerank": 0.001315,
    "betweenness": 0.0,
    "domains": {
     "Malicious Actors & Misuse": 5
@@ -4275,7 +4275,7 @@
    "first_year": 2025,
    "last_year": 2026,
    "weighted_degree": 188,
-   "pagerank": 0.001222,
+   "pagerank": 0.001219,
    "betweenness": 0.0,
    "domains": {},
    "recent_incidents": [
@@ -4315,7 +4315,7 @@
    "first_year": 2020,
    "last_year": 2026,
    "weighted_degree": 187,
-   "pagerank": 0.001309,
+   "pagerank": 0.001304,
    "betweenness": 0.17,
    "domains": {
     "Malicious Actors & Misuse": 13,
@@ -4359,7 +4359,7 @@
    "first_year": 2022,
    "last_year": 2026,
    "weighted_degree": 185,
-   "pagerank": 0.001553,
+   "pagerank": 0.001543,
    "betweenness": 1.63,
    "domains": {},
    "recent_incidents": [
@@ -4399,7 +4399,7 @@
    "first_year": 2022,
    "last_year": 2026,
    "weighted_degree": 185,
-   "pagerank": 0.001553,
+   "pagerank": 0.001543,
    "betweenness": 1.63,
    "domains": {},
    "recent_incidents": [
@@ -4439,7 +4439,7 @@
    "first_year": 2021,
    "last_year": 2026,
    "weighted_degree": 183,
-   "pagerank": 0.001413,
+   "pagerank": 0.001406,
    "betweenness": 2.03,
    "domains": {
     "Malicious Actors & Misuse": 11,
@@ -4482,7 +4482,7 @@
    "first_year": 2022,
    "last_year": 2026,
    "weighted_degree": 182,
-   "pagerank": 0.001533,
+   "pagerank": 0.001523,
    "betweenness": 0.48,
    "domains": {
     "AI system safety, failures, and limitations": 1
@@ -4524,7 +4524,7 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 179,
-   "pagerank": 0.001779,
+   "pagerank": 0.001768,
    "betweenness": 7.72,
    "domains": {
     "AI system safety, failures, and limitations": 7,
@@ -4568,7 +4568,7 @@
    "first_year": 2025,
    "last_year": 2026,
    "weighted_degree": 177,
-   "pagerank": 0.001201,
+   "pagerank": 0.001196,
    "betweenness": 0.0,
    "domains": {
     "Malicious Actors & Misuse": 4
@@ -4610,7 +4610,7 @@
    "first_year": 2025,
    "last_year": 2026,
    "weighted_degree": 176,
-   "pagerank": 0.001335,
+   "pagerank": 0.001329,
    "betweenness": 1.7,
    "domains": {
     "Misinformation": 3,
@@ -4654,7 +4654,7 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 172,
-   "pagerank": 0.001143,
+   "pagerank": 0.001139,
    "betweenness": 0.0,
    "domains": {
     "Malicious Actors & Misuse": 7,
@@ -4696,9 +4696,9 @@
    "n_incidents": 22,
    "first_year": 2023,
    "last_year": 2026,
-   "weighted_degree": 167,
-   "pagerank": 0.001419,
-   "betweenness": 2.17,
+   "weighted_degree": 169,
+   "pagerank": 0.001443,
+   "betweenness": 3.0,
    "domains": {
     "Malicious Actors & Misuse": 13,
     "Misinformation": 9
@@ -4740,7 +4740,7 @@
    "first_year": 2022,
    "last_year": 2026,
    "weighted_degree": 166,
-   "pagerank": 0.001366,
+   "pagerank": 0.001359,
    "betweenness": 5.37,
    "domains": {
     "Misinformation": 4,
@@ -4784,9 +4784,9 @@
    "n_incidents": 21,
    "first_year": 2013,
    "last_year": 2026,
-   "weighted_degree": 164,
-   "pagerank": 0.001294,
-   "betweenness": 2.37,
+   "weighted_degree": 166,
+   "pagerank": 0.001334,
+   "betweenness": 7.37,
    "domains": {
     "Malicious Actors & Misuse": 7,
     "Discrimination and Toxicity": 5,
@@ -4823,49 +4823,6 @@
    ]
   },
   {
-   "id": "automated-driving-systems",
-   "label": "Automated driving systems",
-   "type": "ai_system",
-   "community": 4,
-   "n_incidents": 29,
-   "first_year": 2019,
-   "last_year": 2026,
-   "weighted_degree": 164,
-   "pagerank": 0.002551,
-   "betweenness": 10284.25,
-   "domains": {
-    "AI system safety, failures, and limitations": 11,
-    "Human-Computer Interaction": 1
-   },
-   "recent_incidents": [
-    {
-     "id": 1547,
-     "title": "Waymo Robotaxis Reportedly Entered Closed Freeway Construction Zones in Arizona and California",
-     "year": 2026
-    },
-    {
-     "id": 1678,
-     "title": "Avride Autonomous Vehicle Reportedly Struck and Killed Nesting Duck Near Mueller Lake Park in Austin, Texas",
-     "year": 2026
-    },
-    {
-     "id": 1602,
-     "title": "Zoox Autonomous Vehicle Reportedly Entered Smoke-Obscured Fire Scene, Prompting Heavy-Smoke Detection Recall",
-     "year": 2026
-    },
-    {
-     "id": 1786,
-     "title": "Tesla Reportedly Using a Driver-Assistance System Struck a Pedestrian in a Fatal Crash in Vallejo, California",
-     "year": 2026
-    },
-    {
-     "id": 1787,
-     "title": "Tesla Reportedly Using Driver Assistance Struck a Patrol Car and Injured Two Officers in Fairfield, California",
-     "year": 2026
-    }
-   ]
-  },
-  {
    "id": "tiktok-users",
    "label": "TikTok users",
    "type": "harmed_group",
@@ -4874,7 +4831,7 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 164,
-   "pagerank": 0.001306,
+   "pagerank": 0.0013,
    "betweenness": 0.5,
    "domains": {
     "Discrimination and Toxicity": 10,
@@ -4910,6 +4867,49 @@
    ]
   },
   {
+   "id": "automated-driving-systems",
+   "label": "Automated driving systems",
+   "type": "ai_system",
+   "community": 4,
+   "n_incidents": 29,
+   "first_year": 2019,
+   "last_year": 2026,
+   "weighted_degree": 164,
+   "pagerank": 0.002528,
+   "betweenness": 10368.25,
+   "domains": {
+    "AI system safety, failures, and limitations": 11,
+    "Human-Computer Interaction": 1
+   },
+   "recent_incidents": [
+    {
+     "id": 1547,
+     "title": "Waymo Robotaxis Reportedly Entered Closed Freeway Construction Zones in Arizona and California",
+     "year": 2026
+    },
+    {
+     "id": 1678,
+     "title": "Avride Autonomous Vehicle Reportedly Struck and Killed Nesting Duck Near Mueller Lake Park in Austin, Texas",
+     "year": 2026
+    },
+    {
+     "id": 1602,
+     "title": "Zoox Autonomous Vehicle Reportedly Entered Smoke-Obscured Fire Scene, Prompting Heavy-Smoke Detection Recall",
+     "year": 2026
+    },
+    {
+     "id": 1786,
+     "title": "Tesla Reportedly Using a Driver-Assistance System Struck a Pedestrian in a Fatal Crash in Vallejo, California",
+     "year": 2026
+    },
+    {
+     "id": 1787,
+     "title": "Tesla Reportedly Using Driver Assistance Struck a Patrol Car and Injured Two Officers in Fairfield, California",
+     "year": 2026
+    }
+   ]
+  },
+  {
    "id": "university-students",
    "label": "University students",
    "type": "harmed_group",
@@ -4918,7 +4918,7 @@
    "first_year": 2012,
    "last_year": 2026,
    "weighted_degree": 160,
-   "pagerank": 0.001561,
+   "pagerank": 0.001552,
    "betweenness": 24.14,
    "domains": {
     "Discrimination and Toxicity": 7,
@@ -4963,7 +4963,7 @@
    "first_year": 2015,
    "last_year": 2025,
    "weighted_degree": 160,
-   "pagerank": 0.001726,
+   "pagerank": 0.001715,
    "betweenness": 12.5,
    "domains": {
     "Privacy & Security": 17
@@ -5004,9 +5004,9 @@
    "n_incidents": 90,
    "first_year": 2009,
    "last_year": 2025,
-   "weighted_degree": 157,
-   "pagerank": 0.002141,
-   "betweenness": 4015.5,
+   "weighted_degree": 158,
+   "pagerank": 0.002151,
+   "betweenness": 4047.5,
    "domains": {
     "Malicious Actors & Misuse": 36,
     "AI system safety, failures, and limitations": 25,
@@ -5043,6 +5043,48 @@
    ]
   },
   {
+   "id": "investment-scam-operators",
+   "label": "Investment scam operators",
+   "type": "generic_actor",
+   "community": 1,
+   "n_incidents": 9,
+   "first_year": 2020,
+   "last_year": 2026,
+   "weighted_degree": 155,
+   "pagerank": 0.001188,
+   "betweenness": 4.05,
+   "domains": {
+    "Malicious Actors & Misuse": 4
+   },
+   "recent_incidents": [
+    {
+     "id": 1454,
+     "title": "Purported Deepfake Video Reportedly Portrayed Nirmala Sitharaman Endorsing Investment Scheme",
+     "year": 2026
+    },
+    {
+     "id": 1665,
+     "title": "Purportedly AI-Generated Article Falsely Depicted Australian Broadcasting Corporation Finance Presenter Alan Kohler Interviewing Reserve Bank Governor Michele Bullock to Promote Boulder Sparhaven",
+     "year": 2026
+    },
+    {
+     "id": 1526,
+     "title": "Reddit Scam Ads Reportedly Used Deepfake News Segments and Cloned Media Sites to Promote Allegedly Fake AI Investment Platforms",
+     "year": 2026
+    },
+    {
+     "id": 1527,
+     "title": "Purported Deepfake Ads Reportedly Fabricated BBC Question Time Confrontations Between Andrew Bailey and Nigel Farage",
+     "year": 2026
+    },
+    {
+     "id": 920,
+     "title": "Alleged Deepfake Scam Reportedly Promoted Trump Golden Eagles Project as Investment Opportunity",
+     "year": 2025
+    }
+   ]
+  },
+  {
    "id": "emotionally-vulnerable-individuals",
    "label": "Emotionally vulnerable individuals",
    "type": "harmed_group",
@@ -5051,7 +5093,7 @@
    "first_year": 2024,
    "last_year": 2026,
    "weighted_degree": 154,
-   "pagerank": 0.001394,
+   "pagerank": 0.001386,
    "betweenness": 14.2,
    "domains": {
     "Discrimination and Toxicity": 5,
@@ -5088,48 +5130,6 @@
    ]
   },
   {
-   "id": "investment-scam-operators",
-   "label": "Investment scam operators",
-   "type": "generic_actor",
-   "community": 1,
-   "n_incidents": 9,
-   "first_year": 2020,
-   "last_year": 2026,
-   "weighted_degree": 154,
-   "pagerank": 0.001179,
-   "betweenness": 3.07,
-   "domains": {
-    "Malicious Actors & Misuse": 4
-   },
-   "recent_incidents": [
-    {
-     "id": 1454,
-     "title": "Purported Deepfake Video Reportedly Portrayed Nirmala Sitharaman Endorsing Investment Scheme",
-     "year": 2026
-    },
-    {
-     "id": 1665,
-     "title": "Purportedly AI-Generated Article Falsely Depicted Australian Broadcasting Corporation Finance Presenter Alan Kohler Interviewing Reserve Bank Governor Michele Bullock to Promote Boulder Sparhaven",
-     "year": 2026
-    },
-    {
-     "id": 1526,
-     "title": "Reddit Scam Ads Reportedly Used Deepfake News Segments and Cloned Media Sites to Promote Allegedly Fake AI Investment Platforms",
-     "year": 2026
-    },
-    {
-     "id": 1527,
-     "title": "Purported Deepfake Ads Reportedly Fabricated BBC Question Time Confrontations Between Andrew Bailey and Nigel Farage",
-     "year": 2026
-    },
-    {
-     "id": 920,
-     "title": "Alleged Deepfake Scam Reportedly Promoted Trump Golden Eagles Project as Investment Opportunity",
-     "year": 2025
-    }
-   ]
-  },
-  {
    "id": "celebrities",
    "label": "Celebrities",
    "type": "harmed_group",
@@ -5138,7 +5138,7 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 153,
-   "pagerank": 0.001157,
+   "pagerank": 0.001152,
    "betweenness": 7.11,
    "domains": {
     "Malicious Actors & Misuse": 8,
@@ -5181,7 +5181,7 @@
    "first_year": 2023,
    "last_year": 2025,
    "weighted_degree": 150,
-   "pagerank": 0.001137,
+   "pagerank": 0.001133,
    "betweenness": 0.5,
    "domains": {
     "Malicious Actors & Misuse": 12,
@@ -5224,7 +5224,7 @@
    "first_year": 2020,
    "last_year": 2026,
    "weighted_degree": 149,
-   "pagerank": 0.001236,
+   "pagerank": 0.00123,
    "betweenness": 4.75,
    "domains": {
     "Malicious Actors & Misuse": 5,
@@ -5270,7 +5270,7 @@
    "first_year": 2020,
    "last_year": 2026,
    "weighted_degree": 143,
-   "pagerank": 0.001127,
+   "pagerank": 0.001122,
    "betweenness": 3.67,
    "domains": {
     "Malicious Actors & Misuse": 10
@@ -5312,7 +5312,7 @@
    "first_year": 2023,
    "last_year": 2026,
    "weighted_degree": 136,
-   "pagerank": 0.001149,
+   "pagerank": 0.001143,
    "betweenness": 2.0,
    "domains": {
     "Malicious Actors & Misuse": 9,
@@ -5357,7 +5357,7 @@
    "first_year": 2021,
    "last_year": 2026,
    "weighted_degree": 131,
-   "pagerank": 0.001042,
+   "pagerank": 0.001035,
    "betweenness": 0.0,
    "domains": {
     "Human-Computer Interaction": 1
@@ -5399,7 +5399,7 @@
    "first_year": 2026,
    "last_year": 2026,
    "weighted_degree": 129,
-   "pagerank": 0.00129,
+   "pagerank": 0.001281,
    "betweenness": 8.22,
    "domains": {},
    "recent_incidents": [
@@ -5439,7 +5439,7 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 125,
-   "pagerank": 0.001943,
+   "pagerank": 0.001926,
    "betweenness": 29.92,
    "domains": {},
    "recent_incidents": [
@@ -5479,7 +5479,7 @@
    "first_year": 2019,
    "last_year": 2026,
    "weighted_degree": 120,
-   "pagerank": 0.001545,
+   "pagerank": 0.001533,
    "betweenness": 68.0,
    "domains": {
     "AI system safety, failures, and limitations": 2,
@@ -5522,7 +5522,7 @@
    "first_year": 2026,
    "last_year": 2026,
    "weighted_degree": 112,
-   "pagerank": 0.001142,
+   "pagerank": 0.001134,
    "betweenness": 1.72,
    "domains": {},
    "recent_incidents": [
@@ -5562,7 +5562,7 @@
    "first_year": 2022,
    "last_year": 2026,
    "weighted_degree": 110,
-   "pagerank": 0.000937,
+   "pagerank": 0.000931,
    "betweenness": 0.0,
    "domains": {
     "Human-Computer Interaction": 3,
@@ -5594,46 +5594,6 @@
      "id": 1106,
      "title": "Chatbots Allegedly Reinforced Delusional Thinking in Several Reported Users, Leading to Real-World Harm",
      "year": 2025
-    }
-   ]
-  },
-  {
-   "id": "automated-driving-system-deployers",
-   "label": "Automated driving system deployers",
-   "type": "ai_system",
-   "community": 4,
-   "n_incidents": 14,
-   "first_year": 2025,
-   "last_year": 2026,
-   "weighted_degree": 109,
-   "pagerank": 0.001717,
-   "betweenness": 5.92,
-   "domains": {},
-   "recent_incidents": [
-    {
-     "id": 1541,
-     "title": "Waymo Robotaxi Reportedly Entered Phoenix Light-Rail Tracks, Prompting Passenger to Exit",
-     "year": 2026
-    },
-    {
-     "id": 1540,
-     "title": "Zoox Robotaxi Reportedly Collided with Open Car Door, Allegedly Injuring San Francisco Street Ambassador",
-     "year": 2026
-    },
-    {
-     "id": 1543,
-     "title": "Waymo Robotaxi Reportedly Obstructed Ambulance Responding to Austin Mass Shooting",
-     "year": 2026
-    },
-    {
-     "id": 1583,
-     "title": "Waymo Robotaxi Reportedly Caught Fire After Driving Over Firework in San Francisco",
-     "year": 2026
-    },
-    {
-     "id": 1547,
-     "title": "Waymo Robotaxis Reportedly Entered Closed Freeway Construction Zones in Arizona and California",
-     "year": 2026
     }
    ]
   }
@@ -12290,24 +12250,6 @@
    }
   },
   {
-   "source": "automated-driving-system-deployers",
-   "target": "automated-driving-system-developers",
-   "weight": 14,
-   "by_year": {
-    "2025": 3,
-    "2026": 11
-   }
-  },
-  {
-   "source": "automated-driving-system-deployers",
-   "target": "automated-driving-systems",
-   "weight": 14,
-   "by_year": {
-    "2025": 3,
-    "2026": 11
-   }
-  },
-  {
    "source": "automated-license-plate-reader-(alpr)-developers",
    "target": "surveillance-technology-developers",
    "weight": 14,
@@ -13786,15 +13728,6 @@
     "2024": 1,
     "2025": 4,
     "2026": 2
-   }
-  },
-  {
-   "source": "automated-driving-system-deployers",
-   "target": "road-users",
-   "weight": 11,
-   "by_year": {
-    "2025": 3,
-    "2026": 8
    }
   },
   {
@@ -16093,6 +16026,36 @@
    "weight": 9,
    "by_year": {
     "2026": 9
+   }
+  },
+  {
+   "source": "privacy",
+   "target": "synthetic-audio-generation-technology-developers",
+   "weight": 9,
+   "by_year": {
+    "2026": 9
+   }
+  },
+  {
+   "source": "privacy",
+   "target": "victims-of-deepfake-child-abuse",
+   "weight": 9,
+   "by_year": {
+    "2023": 1,
+    "2024": 3,
+    "2025": 2,
+    "2026": 3
+   }
+  },
+  {
+   "source": "public-figures",
+   "target": "synthetic-image-generation-technology-developers",
+   "weight": 9,
+   "by_year": {
+    "2019": 1,
+    "2024": 2,
+    "2025": 1,
+    "2026": 5
    }
   }
  ]

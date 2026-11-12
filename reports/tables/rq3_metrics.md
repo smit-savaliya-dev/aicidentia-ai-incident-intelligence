@@ -12,3 +12,5 @@
 | mpnet embeddings + logistic regression | time | 802 | 0.581 | 0.523 | 0.633 | 0.746 | 0.744 |  |  |
 | TF-IDF + LR, text + first report words (ablation) | cv | 1496 | 0.602 | 0.562 | 0.638 | 0.746 | 0.747 | 0.601 | 0.0544 |
 | TF-IDF + LR, text + first report words (ablation) | time | 802 | 0.489 | 0.447 | 0.529 | 0.739 | 0.751 |  |  |
+| DistilBERT fine-tuned | cv | 1496 | 0.628 | 0.59 | 0.664 | 0.757 | 0.755 | 0.627 | 0.0399 |
+| DistilBERT fine-tuned | time | 802 | 0.551 | 0.507 | 0.592 | 0.746 | 0.757 |  |  |

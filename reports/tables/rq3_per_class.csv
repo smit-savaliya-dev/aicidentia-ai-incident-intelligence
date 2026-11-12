@@ -53,3 +53,12 @@ Privacy & Security,0.6207,0.8036,0.7004,112,"TF-IDF + LR, text + first report wo
 Socioeconomic & Environmental Harms,0.6,0.125,0.2069,24,"TF-IDF + LR, text + first report words (ablation)"
 macro avg,0.6497,0.604,0.6019,1496,"TF-IDF + LR, text + first report words (ablation)"
 weighted avg,0.7531,0.7473,0.7458,1496,"TF-IDF + LR, text + first report words (ablation)"
+"AI system safety, failures, and limitations",0.7732,0.7188,0.745,313,DistilBERT fine-tuned
+Discrimination and Toxicity,0.6846,0.7325,0.7078,243,DistilBERT fine-tuned
+Human-Computer Interaction,0.4146,0.4048,0.4096,42,DistilBERT fine-tuned
+Malicious Actors & Misuse,0.8933,0.8428,0.8673,566,DistilBERT fine-tuned
+Misinformation,0.6267,0.7194,0.6698,196,DistilBERT fine-tuned
+Privacy & Security,0.688,0.7679,0.7257,112,DistilBERT fine-tuned
+Socioeconomic & Environmental Harms,0.3,0.25,0.2727,24,DistilBERT fine-tuned
+macro avg,0.6258,0.6337,0.6283,1496,DistilBERT fine-tuned
+weighted avg,0.761,0.7553,0.7569,1496,DistilBERT fine-tuned

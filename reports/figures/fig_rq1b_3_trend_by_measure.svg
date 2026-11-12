@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="510.867313pt" height="396.437306pt" viewBox="0 0 510.867313 396.437306" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="510.716284pt" height="396.437306pt" viewBox="0 0 510.716284 396.437306" xmlns="http://www.w3.org/2000/svg" version="1.1">
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
@@ -21,8 +21,8 @@
  <g id="figure_1">
   <g id="patch_1">
    <path d="M 0 396.437306 
-L 510.867313 396.437306 
-L 510.867313 0 
+L 510.716284 396.437306 
+L 510.716284 0 
 L 0 0 
 z
 " style="fill: #ffffff"/>
@@ -500,7 +500,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_5">
-      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="44.284585" transform="rotate(-0 127.881563 44.284585)">T1: data / agent / openai</text>
+      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="44.284585" transform="rotate(-0 127.881563 44.284585)">LLM chatbots and agents</text>
      </g>
     </g>
     <g id="ytick_2">
@@ -510,7 +510,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_6">
-      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="62.45688" transform="rotate(-0 127.881563 62.45688)">T0: video / depict / circulate</text>
+      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="62.45688" transform="rotate(-0 127.881563 62.45688)">Deepfake videos and AI hoaxes</text>
      </g>
     </g>
     <g id="ytick_3">
@@ -520,7 +520,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_7">
-      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="80.629174" transform="rotate(-0 127.881563 80.629174)">T4: student / school / image</text>
+      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="80.629174" transform="rotate(-0 127.881563 80.629174)">AI nude images in schools</text>
      </g>
     </g>
     <g id="ytick_4">
@@ -530,7 +530,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_8">
-      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="98.801469" transform="rotate(-0 127.881563 98.801469)">T2: court / citation / legal</text>
+      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="98.801469" transform="rotate(-0 127.881563 98.801469)">Hallucinated legal citations</text>
      </g>
     </g>
     <g id="ytick_5">
@@ -540,7 +540,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_9">
-      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="116.973764" transform="rotate(-0 127.881563 116.973764)">T7: scam / impersonate / deepfake</text>
+      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="116.973764" transform="rotate(-0 127.881563 116.973764)">Deepfake impersonation scams</text>
      </g>
     </g>
     <g id="ytick_6">
@@ -550,7 +550,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_10">
-      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="135.146059" transform="rotate(-0 127.881563 135.146059)">T11: google / bias / image</text>
+      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="135.146059" transform="rotate(-0 127.881563 135.146059)">Algorithmic bias in search and images</text>
      </g>
     </g>
     <g id="ytick_7">
@@ -560,7 +560,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_11">
-      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="153.318353" transform="rotate(-0 127.881563 153.318353)">T6: election / campaign / disinformation</text>
+      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="153.318353" transform="rotate(-0 127.881563 153.318353)">AI election disinformation</text>
      </g>
     </g>
     <g id="ytick_8">
@@ -570,7 +570,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_12">
-      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="171.490648" transform="rotate(-0 127.881563 171.490648)">T10: plate / license / reader</text>
+      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="171.490648" transform="rotate(-0 127.881563 171.490648)">License-plate reader errors</text>
      </g>
     </g>
     <g id="ytick_9">
@@ -580,7 +580,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_13">
-      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="189.662943" transform="rotate(-0 127.881563 189.662943)">T8: content / facebook / moderation</text>
+      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="189.662943" transform="rotate(-0 127.881563 189.662943)">Content moderation failures</text>
      </g>
     </g>
     <g id="ytick_10">
@@ -590,7 +590,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_14">
-      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="207.835237" transform="rotate(-0 127.881563 207.835237)">T3: vehicle / autonomous / drive</text>
+      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="207.835237" transform="rotate(-0 127.881563 207.835237)">Autonomous vehicles and robotaxis</text>
      </g>
     </g>
     <g id="ytick_11">
@@ -600,7 +600,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_15">
-      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="226.007532" transform="rotate(-0 127.881563 226.007532)">T5: facial / recognition / arrest</text>
+      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="226.007532" transform="rotate(-0 127.881563 226.007532)">Facial recognition and false arrests</text>
      </g>
     </g>
     <g id="ytick_12">
@@ -610,7 +610,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_16">
-      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="244.179827" transform="rotate(-0 127.881563 244.179827)">T9: tesla / autopilot / crash</text>
+      <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="127.881563" y="244.179827" transform="rotate(-0 127.881563 244.179827)">Tesla Autopilot crashes</text>
      </g>
     </g>
     <g id="ytick_13">
@@ -957,7 +957,7 @@ L 502.519312 250.986443
     <text style="font-size: 6px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="402.950755" y="370.664953" transform="rotate(-0 402.950755 370.664953)">●</text>
    </g>
    <g id="text_113">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="318.700438" y="8.918906" transform="rotate(-0 318.700438 8.918906)">PROVISIONAL theme names. Trend direction by measure (▲ increasing, ▼ decreasing, ● none; BH q = 0.05)</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="318.700438" y="8.918906" transform="rotate(-0 318.700438 8.918906)">Trend direction by measure (▲ increasing, ▼ decreasing, ● none; BH q = 0.05)</text>
    </g>
   </g>
   <g id="text_114">

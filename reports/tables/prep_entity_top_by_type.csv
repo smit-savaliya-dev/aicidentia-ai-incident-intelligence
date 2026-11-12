@@ -19,16 +19,6 @@ generic_actor_group,Synthetic image generation technology developers,124,"develo
 generic_actor_group,Synthetic media creators,105,deployer,actor_side+generic_term
 generic_actor_group,Unknown,90,"deployer,developer,harmed",actor_side+generic_term
 generic_actor_group,Information manipulation actors,73,"deployer,developer",actor_side+generic_term
-individual_candidate,Donald Trump,30,"deployer,harmed",person_like_name
-individual_candidate,Elon Musk,19,"deployer,harmed",person_like_name
-individual_candidate,Joe Biden,10,harmed,person_like_name
-individual_candidate,Kamala Harris,8,harmed,person_like_name
-individual_candidate,John Mark Dougan,6,"deployer,developer",person_like_name
-individual_candidate,Taylor Swift,5,harmed,person_like_name
-individual_candidate,Albin Kurti,5,harmed,person_like_name
-individual_candidate,Barack Obama,5,harmed,person_like_name
-individual_candidate,Keir Starmer,4,harmed,person_like_name
-individual_candidate,Volodymyr Zelenskyy,4,harmed,person_like_name
 organisation,OpenAI,194,"deployer,developer,harmed,system",actor_side
 organisation,Meta,194,"deployer,developer,harmed,system",actor_side
 organisation,Google,102,"deployer,developer,harmed,system",actor_side
