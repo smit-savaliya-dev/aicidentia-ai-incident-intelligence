@@ -1,0 +1,18 @@
+domain_1,domain_2,pairs
+Malicious Actors & Misuse,Misinformation,13
+"AI system safety, failures, and limitations",Misinformation,7
+"AI system safety, failures, and limitations",Discrimination and Toxicity,6
+"AI system safety, failures, and limitations",Human-Computer Interaction,5
+Discrimination and Toxicity,Human-Computer Interaction,5
+Discrimination and Toxicity,Misinformation,4
+"AI system safety, failures, and limitations",Privacy & Security,3
+Human-Computer Interaction,Misinformation,3
+Privacy & Security,Socioeconomic & Environmental Harms,3
+"AI system safety, failures, and limitations",Socioeconomic & Environmental Harms,2
+Discrimination and Toxicity,Privacy & Security,2
+Discrimination and Toxicity,Malicious Actors & Misuse,2
+Human-Computer Interaction,Malicious Actors & Misuse,2
+Malicious Actors & Misuse,Socioeconomic & Environmental Harms,2
+"AI system safety, failures, and limitations",Malicious Actors & Misuse,1
+Malicious Actors & Misuse,Privacy & Security,1
+Misinformation,Privacy & Security,1

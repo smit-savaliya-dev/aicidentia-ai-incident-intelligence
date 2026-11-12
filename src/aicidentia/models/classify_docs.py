@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 
@@ -84,6 +85,17 @@ def write_classification_doc(res: ClassificationResults, path: Path) -> None:
         f"Expected calibration error: uncalibrated {f['ece']['raw']:.3f}, Platt {f['ece']['sigmoid']:.3f}, temperature scaling {f['ece']['temperature']:.3f}. "
         f"Saved to `{f['model_path']}` (git-ignored); predictions for every incident are in `data/processed/rq3_domain_predictions.parquet`.\n"
     )
+    if res.reliability is not None:
+        rf = res.reliability.facts
+        mk = res.reliability.mappings.set_index("mapping")
+        ps = rf["pairs_similar"]
+        add(
+            "- **Label reliability (section 5), three independent checks:** "
+            f"(a) against human CSETv1 fields the MIT discrimination label agrees substantially (kappa {mk.loc['discrimination_vs_protected_characteristic', 'kappa']:.2f}, n = {int(mk.loc['discrimination_vs_protected_characteristic', 'n'])}), "
+            f"the safety label moderately (kappa {mk.loc['safety_vs_tangible_harm', 'kappa']:.2f}); "
+            f"(b) {pct(ps['same_domain_rate'])} of editor-linked similar pairs share an MIT domain against {pct(ps['baseline_rate'])} for random same-year pairs; "
+            f"(c) confident learning estimates that {pct(rf['cl_noise_rate'])} of labels are wrong and flags {n(rf['cl_flagged'])} incidents ({pct(rf['cl_flagged_share'])}).\n"
+        )
     add("## 1. Method\n")
     add(
         f"- **Target and input.** MIT Risk Domain ({len(d.classes)} classes) as agreed in Phase 1 (docs/data_audit.md, D1); input = `text` (title + description).\n"
@@ -264,6 +276,8 @@ def write_classification_doc(res: ClassificationResults, path: Path) -> None:
     add("### Highest-weight terms per domain (linear models fitted on all labelled incidents)\n")
     add(to_markdown(res.features[res.features["model"] == BASELINE][["domain", "top_terms"]]))
     add("")
+    if res.reliability is not None:
+        _reliability_section(res, add, snap)
     add("## 6. Fine-tuning DistilBERT (local GPU; Colab as the documented alternative)\n")
     add(
         "`scripts/train_distilbert_local.py` runs the training code in `scripts/colab_distilbert_code.py` on the local NVIDIA GPU; `notebooks/colab_distilbert_finetune.ipynb` embeds the same file verbatim for Colab. "
@@ -283,3 +297,131 @@ def write_classification_doc(res: ClassificationResults, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(L) + "\n", encoding="utf-8", newline="\n")
     logger.info("Wrote %s", path)
+
+
+def _reliability_section(res: ClassificationResults, add: Any, snap: str) -> None:
+    """Section 5: how reliable are the AI-generated (MIT) labels? Three checks side by side."""
+    r = res.reliability
+    rf = r.facts
+    add("## 5. How reliable are the AI-generated (MIT) labels?\n")
+    add(
+        "No hand annotation is used (decision D1 in `docs/decisions.md`). Instead three complementary checks use independent signals already in AIID. "
+        "Each is partial on its own; together they show where the automatic labels can be trusted and where they cannot.\n"
+    )
+    add(
+        _figure(
+            "fig_rq3_5_label_reliability",
+            "Three reliability checks of the MIT risk-domain labels",
+            snap,
+        )
+    )
+    # (a)
+    add("### (a) Agreement with human annotations already in AIID (CSETv1, GMF)\n")
+    add(
+        f"CSETv1 annotations exist for {n(rf['cset_mit_overlap'])} MIT-labelled incidents (all from {rf['cset_year_max']} or earlier) and GMF for {n(rf['gmf_mit_overlap'])}. "
+        "No human field is a risk-domain label, so each comparison maps one MIT domain to the human field closest to it in meaning and compares the two yes/no answers. "
+        "**These are partial, convergent-validity checks, not ground truth:** low agreement can come from definitional mismatch as much as from labelling error. "
+        "Rows where the human field is 'maybe', 'unclear' or empty are excluded (column `excluded_unclear`). Kappa CIs are percentile bootstrap (2,000 resamples of incidents).\n"
+    )
+    m = r.mappings.copy()
+    m["kappa [95% CI]"] = m.apply(
+        lambda x: f"{x['kappa']:.2f} [{x['kappa_low']:.2f}, {x['kappa_high']:.2f}]", axis=1
+    )
+    m["agreement"] = m["agreement"].map(pct)
+    add(
+        to_markdown(
+            m[
+                [
+                    "mit_domain",
+                    "human_field",
+                    "n",
+                    "excluded_unclear",
+                    "mit_positive",
+                    "human_positive",
+                    "agreement",
+                    "kappa [95% CI]",
+                    "band",
+                    "rationale",
+                ]
+            ]
+        )
+    )
+    add("")
+    add(
+        "Reading: where the MIT domain and the human field describe the same thing (discrimination vs protected characteristic or harm distribution), agreement is substantial. "
+        "Where the concepts only overlap (AI-system safety vs tangible harm; misinformation/misuse vs detrimental content) agreement is moderate or fair, which is what partial overlap predicts. "
+        "The GMF comparison has too few incidents to say anything (its CI spans zero).\n"
+    )
+    # (b)
+    ps, pd_ = rf["pairs_similar"], rf["pairs_dissimilar"]
+    add("### (b) Consistency on editor-linked pairs\n")
+    add(
+        f"AIID editors marked {n(ps['pairs_total'])} pairs of incidents as similar (the RQ4 ground truth); in {n(ps['pairs_labelled'])} both incidents have an MIT label. "
+        f"**{pct(ps['same_domain_rate'])} of them share the same MIT domain** (95% CI {pct(ps['ci_low'])}-{pct(ps['ci_high'])}), against {pct(ps['baseline_rate'])} "
+        f"(95% range {pct(ps['baseline_low'])}-{pct(ps['baseline_high'])}) for random pairs matched on the two incidents' years (2,000 permutations; p = {ps['p_value']:.4f}; {ps['lift']:.1f} times the baseline). "
+        f"For the {n(pd_['pairs_labelled'])} pairs editors marked as *dissimilar*, the rate is {pct(pd_['same_domain_rate'])}, close to its own random baseline of {pct(pd_['baseline_rate'])} (p = {pd_['p_value']:.2f}). "
+        "So the automatic labels follow human editorial judgement about which incidents belong together. "
+        "Similar incidents need not share a domain (a deepfake used for a scam is both misuse and misinformation), so 100% is not the target.\n"
+    )
+    add("Most frequent domain combinations among editor-similar pairs whose MIT domains differ:\n")
+    add(to_markdown(r.pair_domains.head(6)))
+    add("")
+    # (c)
+    add("### (c) Confident learning (Northcutt et al., 2021)\n")
+    add(
+        f"Out-of-fold probabilities of the best classifier ({rf['cl_model']}, temperature-scaled) are used to estimate the joint distribution of given and latent labels "
+        "(cleanlab, default settings: per-class confidence thresholds, `prune_by_noise_rate`). "
+        f"**Estimated share of wrong labels: {pct(rf['cl_noise_rate'])}**; {n(rf['cl_flagged'])} incidents ({pct(rf['cl_flagged_share'])}) are flagged as likely mislabelled "
+        "(`reports/tables/rq3rel_flagged_incidents.csv`, most suspicious first). The estimate inherits the classifier's own errors: a flag means 'the text points elsewhere', not proof of a wrong label.\n"
+    )
+    nb = r.cl.noise_by_domain.copy()
+    nb["estimated_noise_rate"] = nb["estimated_noise_rate"].map(pct)
+    nb["flagged_share"] = nb["flagged_share"].map(pct)
+    add(to_markdown(nb))
+    add("")
+    add(
+        _figure(
+            "fig_rq3_6_label_confusion",
+            "Estimated incidents whose given MIT label is likely another domain",
+            snap,
+        )
+    )
+    sym = r.symmetric.head(6).copy()
+    add("Confusion structure (estimated incidents, both directions):\n")
+    add(to_markdown(sym.round(1)))
+    add("")
+    top, second = sym.iloc[0], sym.iloc[1]
+    add(
+        f"**Taxonomy overlap or labelling error?** The largest exchange is between {top['domain_a']} and {top['domain_b']} "
+        f"({top['total']:.0f} estimated incidents: {top['a_to_b']:.0f} one way, {top['b_to_a']:.0f} the other). For this pair MIT's own taxonomy allows either label "
+        "(AI-generated disinformation and deepfake scams are both deliberate misuse and false content), and the lopsided direction suggests the automatic labeller "
+        "applies a consistent preference rather than making random errors: mostly a taxonomy-overlap effect. "
+        f"The next exchange, {second['domain_a']} vs {second['domain_b']} ({second['total']:.0f} incidents), joins domains that are conceptually further apart, "
+        "so it is more likely to reflect inconsistent labelling. The two smallest domains (Human-Computer Interaction, Socioeconomic & Environmental Harms) have the highest "
+        "estimated noise rates, matching their low classifier F1: their boundaries are the least clear in the incident text.\n"
+    )
+    # retrain
+    rt = r.retrain
+    prim = rt.iloc[0]
+    add("### Sensitivity: retraining without likely mislabelled incidents\n")
+    add(
+        f"To avoid leakage, flags are recomputed inside every training part (inner 5-fold cross-validation, then confident learning on the training incidents only; {pct(rf['retrain_removed_share'])} of training incidents removed on average); "
+        "the model is refitted without them and evaluated on the untouched outer test fold, with the original MIT labels. "
+        f"Macro-F1 on all {n(int(prim['n']))} incidents: {prim['macro_f1_original']:.3f} originally, {prim['macro_f1_cleaned_training']:.3f} with cleaned training data "
+        f"(difference {prim['difference']:+.3f}, 95% CI [{prim['ci_low']:+.3f}, {prim['ci_high']:+.3f}], paired bootstrap p = {prim['p_value']:.3f}). "
+        + (
+            "Removing suspected label noise from training does not significantly change performance on the original labels. "
+            if prim["ci_low"] <= 0 <= prim["ci_high"]
+            else (
+                "Removing suspected label noise from training improves performance on the original labels, consistent with some genuine label noise. "
+                if prim["difference"] > 0
+                else "Removing suspected label noise from training lowers performance on the original labels. "
+            )
+        )
+        + "This is a sensitivity check of the reliability finding, not a way to report a higher score: the headline classifier results above are unchanged. "
+        "(A first, non-nested version flagged incidents once on all data and appeared to gain about 0.04, but there the test labels influenced which training incidents were removed; "
+        "the nested design above removes that leak.)\n"
+    )
+    show = rt.copy()
+    add(to_markdown(show.round(3)))
+    add("")

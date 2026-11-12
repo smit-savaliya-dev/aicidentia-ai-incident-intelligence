@@ -405,7 +405,9 @@ def test_apply_privacy_exclusions_modes(tmp_path):
     excluded, info = apply_privacy_exclusions(table, False, path)
     assert excluded == {"a"} and info["named_persons"] == 1 and info["not_persons"] == 1
     excluded, info = apply_privacy_exclusions(table, True, path)
-    assert excluded == {"a", "c"} and info["unreviewed_candidates"] == 1  # b was cleared as not a person
+    assert (
+        excluded == {"a", "c"} and info["unreviewed_candidates"] == 1
+    )  # b was cleared as not a person
     assert apply_privacy_exclusions(table, False, tmp_path / "missing.csv")[0] == set()
 
 

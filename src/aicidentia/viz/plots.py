@@ -7,7 +7,6 @@ Functions return the matplotlib Figure; call `style.save_figure` to write PNG + 
 from __future__ import annotations
 
 import textwrap
-from typing import Any
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -1127,30 +1126,147 @@ def plot_recall_at_k(
 
 
 # --------------------------------------------------------------------------------------
-# Later phases (stubs)
+# RQ3 label reliability
 # --------------------------------------------------------------------------------------
 
-
-def plot_topic_trends(topic_year: pd.DataFrame) -> Any:
-    """Topic share over time, one line per topic."""
-    raise NotImplementedError
-
-
-def plot_topic_words(topic_words: dict[int, list[str]]) -> Any:
-    """Bar charts of the top words per topic."""
-    raise NotImplementedError
-
-
-def plot_network(graph: Any, communities: dict | None = None) -> Any:
-    """Interactive network figure coloured by community."""
-    raise NotImplementedError
+SHORT_DOMAIN = {
+    "AI system safety, failures, and limitations": "AI system safety",
+    "Discrimination and Toxicity": "Discrimination & toxicity",
+    "Human-Computer Interaction": "Human-computer interaction",
+    "Malicious Actors & Misuse": "Malicious actors & misuse",
+    "Misinformation": "Misinformation",
+    "Privacy & Security": "Privacy & security",
+    "Socioeconomic & Environmental Harms": "Socioeconomic & environmental",
+}
 
 
-def plot_confusion_matrix(y_true: Any, y_pred: Any, labels: Any = None) -> Any:
-    """Confusion-matrix heatmap."""
-    raise NotImplementedError
+def short_domain(name: str) -> str:
+    return SHORT_DOMAIN.get(name, name)
 
 
-def plot_model_comparison(results: pd.DataFrame, metric: str) -> Any:
-    """Grouped bar chart comparing models on a metric."""
-    raise NotImplementedError
+def plot_label_reliability(
+    mappings: pd.DataFrame, pairs: dict[str, dict], noise: pd.DataFrame
+) -> plt.Figure:
+    """Three checks side by side: (a) kappa per human-field mapping with 95% CI and n; (b) same-MIT-domain rate
+    on editor-similar pairs vs a year-matched permutation baseline and editor-dissimilar pairs; (c) estimated
+    label-noise rate per domain (confident learning)."""
+    apply_style()
+    fig, axes = plt.subplots(
+        1, 3, figsize=(DOUBLE_COLUMN_IN, 2.9), gridspec_kw={"width_ratios": [1.0, 0.9, 1.0]}
+    )
+    ax = axes[0]
+    m = mappings.reset_index(drop=True)
+    y = np.arange(len(m))
+    ax.errorbar(
+        m["kappa"],
+        y,
+        xerr=[m["kappa"] - m["kappa_low"], m["kappa_high"] - m["kappa"]],
+        fmt="o",
+        ms=4,
+        color=PALETTE["blue"],
+        capsize=2,
+    )
+    ax.axvline(0, color=PALETTE["grey"], lw=0.6, ls="--")
+    short_map = {
+        "discrimination_vs_protected_characteristic": "Discrimination vs\nCSET protected char.",
+        "discrimination_vs_harm_distribution_basis": "Discrimination vs\nCSET harm distribution",
+        "safety_vs_tangible_harm": "AI safety vs\nCSET tangible harm",
+        "safety_vs_gmf_technical_failure": "AI safety vs\nGMF technical failure",
+        "misinformation_or_misuse_vs_detrimental_content": "Misinfo./misuse vs\nCSET detrimental content",
+    }
+    labels = [f"{short_map.get(r.mapping, r.mapping)}\n(n={r.n})" for r in m.itertuples()]
+    ax.set_yticks(y)
+    ax.set_yticklabels(labels, fontsize=5.5)
+    ax.invert_yaxis()
+    ax.set_xlim(-0.3, 1.0)
+    ax.set_xlabel("Cohen's kappa (95% CI)")
+    ax.set_title("(a) vs human CSETv1 / GMF fields", fontsize=7)
+
+    ax = axes[1]
+    sim, dis = pairs["similar"], pairs["dissimilar"]
+    counts = [sim["pairs_labelled"], sim["pairs_labelled"], dis.get("pairs_labelled", 0)]
+    names = [
+        f"Editor-similar\n(n={counts[0]})",
+        "Random pairs,\nsame years",
+        f"Editor-dissimilar\n(n={counts[2]})",
+    ]
+    values = [sim["same_domain_rate"], sim["baseline_rate"], dis.get("same_domain_rate", np.nan)]
+    lows = [sim["ci_low"], sim["baseline_low"], dis.get("ci_low", np.nan)]
+    highs = [sim["ci_high"], sim["baseline_high"], dis.get("ci_high", np.nan)]
+    colours = [PALETTE["blue"], PALETTE["grey"], PALETTE["orange"]]
+    ax.barh(range(3), values, color=colours, height=0.6)
+    ax.errorbar(
+        values,
+        range(3),
+        xerr=[np.subtract(values, lows), np.subtract(highs, values)],
+        fmt="none",
+        ecolor="black",
+        capsize=2,
+        lw=0.8,
+    )
+    for i, v in enumerate(values):
+        ax.text(highs[i] + 0.03, i, f"{v:.0%}", va="center", fontsize=6)
+    ax.set_yticks(range(3))
+    ax.set_yticklabels(names, fontsize=5.5)
+    ax.invert_yaxis()
+    ax.set_xlim(0, 1.0)
+    ax.set_xlabel("Pairs with the same MIT domain")
+    ax.set_title("(b) editor-linked pairs", fontsize=7)
+
+    ax = axes[2]
+    nz = noise.sort_values("estimated_noise_rate")
+    ax.barh(range(len(nz)), nz["estimated_noise_rate"], color=PALETTE["vermillion"])
+    ax.set_yticks(range(len(nz)))
+    ax.set_yticklabels(
+        [f"{short_domain(d)} (n={n_})" for d, n_ in zip(nz["domain"], nz["n"], strict=True)],
+        fontsize=5.5,
+    )
+    for i, v in enumerate(nz["estimated_noise_rate"]):
+        ax.text(v + 0.01, i, f"{v:.0%}", va="center", fontsize=5.5)
+    ax.set_xlim(0, max(0.6, float(nz["estimated_noise_rate"].max()) + 0.12))
+    ax.set_xlabel("Estimated share of labels that are wrong")
+    ax.set_title("(c) confident learning", fontsize=7)
+    fig.suptitle(
+        "How reliable are the AI-generated MIT risk labels? Three independent checks", fontsize=8
+    )
+    fig.tight_layout(rect=(0, 0.03, 1, 0.95))
+    return fig
+
+
+def plot_label_confusion(joint: pd.DataFrame, n: int) -> plt.Figure:
+    """Estimated off-diagonal joint (incidents whose given MIT label is likely another domain), counts."""
+    apply_style()
+    counts = joint.to_numpy() * n
+    off = counts.copy()
+    np.fill_diagonal(off, np.nan)
+    fig, ax = plt.subplots(figsize=(SINGLE_COLUMN_IN + 1.6, 3.6))
+    image = ax.imshow(off, cmap="Oranges", vmin=0)
+    short = [short_domain(c) for c in joint.columns]
+    ax.set_xticks(range(len(short)))
+    ax.set_xticklabels(short, rotation=50, ha="right", fontsize=6)
+    ax.set_yticks(range(len(short)))
+    ax.set_yticklabels(short, fontsize=6)
+    vmax = np.nanmax(off) if np.isfinite(np.nanmax(off)) else 1
+    for i in range(off.shape[0]):
+        for j in range(off.shape[1]):
+            if i == j:
+                ax.text(j, i, "-", ha="center", va="center", fontsize=6, color=PALETTE["grey"])
+            else:
+                v = off[i, j]
+                ax.text(
+                    j,
+                    i,
+                    f"{v:.0f}",
+                    ha="center",
+                    va="center",
+                    fontsize=5.5,
+                    color="white" if v > 0.6 * vmax else "black",
+                )
+    ax.set_xlabel("Likely correct domain (confident learning)")
+    ax.set_ylabel("Given MIT label")
+    cbar = fig.colorbar(image, ax=ax, fraction=0.046, pad=0.03)
+    cbar.ax.tick_params(labelsize=6)
+    cbar.set_label("Estimated incidents", fontsize=6)
+    ax.set_title("Where the MIT labels are likely wrong (estimated counts)", fontsize=7)
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    return fig

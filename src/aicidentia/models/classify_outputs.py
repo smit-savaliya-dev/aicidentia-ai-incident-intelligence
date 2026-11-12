@@ -52,6 +52,7 @@ class ClassificationResults:
     confusion: pd.DataFrame | None = None
     confusions_top: pd.DataFrame | None = None
     features: pd.DataFrame | None = None
+    reliability: Any = None  # reliability_outputs.ReliabilityResults
     facts: dict[str, Any] = field(default_factory=dict)
     colab_present: bool = False
 
@@ -335,6 +336,17 @@ def run_classification() -> ClassificationResults:
     ).sort_values("incident_id")
     clean.save_processed(predictions, "rq3_domain_predictions")
 
+    # ---- label reliability (RQ3, second half): CSETv1/GMF agreement, editor-linked pairs, confident learning.
+    # Confident learning uses the best classifier's out-of-fold probabilities (calibrated if it is the deployed
+    # model); if the best model cannot be refitted here (DistilBERT), the deployed model is used instead.
+    from aicidentia.models import reliability_outputs
+
+    rel_spec = next((s_ for s_ in SPECS if s_.name == res.best_model), spec)
+    rel_probs = oof_by_method[chosen] if rel_spec.name == res.deployable else res.oof[rel_spec.name]
+    res.reliability = reliability_outputs.run_reliability(
+        inc, data, rel_spec.name, rel_spec, rel_probs, res.oof[rel_spec.name], seed, n_boot
+    )
+
     population = data.frame["domain"].value_counts()
     res.facts = {
         "labelled": len(data.y),
@@ -443,4 +455,8 @@ def write_all(res: ClassificationResults) -> None:
     register(res)
     save_tables(res)
     make_figures(res)
+    if res.reliability is not None:
+        from aicidentia.models import reliability_outputs
+
+        reliability_outputs.write_all(res.reliability)
     classify_docs.write_classification_doc(res, PROJECT_ROOT / "docs" / "rq3_classification.md")

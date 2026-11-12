@@ -113,3 +113,65 @@ split [`rq3.metrics`]. It does not beat TF-IDF + logistic regression in cross-va
 [-0.020, +0.048]) but does on the time split (+0.059 [+0.014, +0.104]) [`rq3.significance`]. The best model
 remains mpnet embeddings + logistic regression (0.651) [`rq3.best_model`]. GPU kernels are not bit-for-bit
 deterministic, so a retrain can differ slightly; the saved predictions file is what the pipeline scores.
+
+## D6. Label reliability check (a): mappings from MIT domains to human fields
+
+**What.** Each MIT domain is compared with the human CSETv1/GMF field closest to it in meaning, as a yes/no
+pair, on incidents that carry both (CSETv1: 207 MIT-labelled incidents, all from 2023 or earlier; GMF: 41)
+[`rq3rel.cset_mit_overlap`, `rq3rel.gmf_mit_overlap`]. Human answers 'maybe', 'unclear' or empty are excluded.
+Cohen's kappa with a percentile bootstrap CI (2,000 resamples) [`rq3rel.mappings`]:
+
+| MIT domain (yes/no) | Human field (yes/no) | n | Kappa [95% CI] |
+|---|---|---|---|
+| Discrimination and Toxicity | CSETv1 Protected Characteristic = yes | 196 | 0.74 [0.64, 0.83] |
+| Discrimination and Toxicity | CSETv1 Harm Distribution Basis not 'none' | 194 | 0.73 [0.63, 0.83] |
+| AI system safety, failures, and limitations | CSETv1 Tangible Harm occurred or imminent | 197 | 0.40 [0.27, 0.53] |
+| AI system safety, failures, and limitations | GMF a Technical Failure is recorded | 41 | -0.00 [-0.29, 0.29] |
+| Misinformation or Malicious Actors & Misuse | CSETv1 Detrimental Content = yes | 193 | 0.31 [0.13, 0.47] |
+
+**Why.** No human field in AIID is a risk-domain label, so only partial mappings are defensible. Each was chosen
+from the field definitions in the snapshot's taxonomy records (for example, CSET defines detrimental content as
+"deepfakes, identity misrepresentation, ... misinformation, ... scam emails"). These are convergent-validity
+checks, not ground truth: agreement is capped by definitional mismatch.
+
+**Effect.** Where the concepts coincide (discrimination) agreement is substantial; where they only overlap it is
+moderate (safety vs tangible harm) or fair (misinformation/misuse vs detrimental content); GMF has too few
+incidents to conclude anything. Coverage limits these checks to pre-2024 incidents.
+
+## D7. Label reliability check (b): editor-linked pairs
+
+**What.** For the 325 incident pairs AIID editors marked as similar (the RQ4 ground truth), the share with the
+same MIT domain, among the 249 pairs where both are labelled; bootstrap CI over pairs. Baseline: 2,000
+permutations in which each incident of a pair is replaced by a random MIT-labelled incident from the same year.
+The same is computed for the 349 editor-marked dissimilar pairs [`rq3rel.pairs_similar`,
+`rq3rel.pairs_dissimilar`].
+
+**Why.** Editors' links are an existing human judgement about which incidents belong together; if the automatic
+labels are consistent, linked incidents should share a domain far more often than chance. Matching on year
+removes the effect of the domain mix changing over time.
+
+**Effect.** 75.1% of editor-similar pairs share a domain (95% CI 69.5-80.3%) against 29.7% for year-matched
+random pairs (p = 0.0005; 2.5 times the baseline). Editor-dissimilar pairs: 28.1%, at their own baseline (26.1%,
+p = 0.21). The most frequent mixed pair is Malicious Actors & Misuse with Misinformation (13 pairs).
+
+## D8. Label reliability check (c): confident learning, and the cleaned-label retrain
+
+**What.** cleanlab 2.9.0 (the latest stable release; it installed cleanly) with default settings
+(`prune_by_noise_rate`) on the temperature-scaled out-of-fold probabilities of the best classifier
+(mpnet embeddings + logistic regression). It estimates the joint distribution of given and latent labels,
+the noise rate per domain, and flags likely mislabelled incidents [`rq3rel.cl_*`]. The sensitivity check
+retrains the same model without flagged incidents. To keep it leakage-free, flags are recomputed inside every
+outer training part (inner 5-fold cross-validation, then confident learning on training incidents only), and
+the untouched outer test fold is scored against the original MIT labels [`rq3rel.retrain_*`].
+
+**Why.** Confident learning (Northcutt, Jiang & Chuang, 2021) estimates label noise without any extra
+annotation. A first, non-nested version flagged incidents once on all data and appeared to raise macro-F1 by
+0.041; that design lets test labels influence which training incidents are removed, so it was replaced by the
+nested design, which is the only version reported.
+
+**Effect.** Estimated share of wrong labels 15.4%; 214 of 1,496 incidents (14.3%) flagged
+[`rq3rel.cl_noise_rate`, `rq3rel.cl_flagged`]. Highest estimated noise: Human-Computer Interaction 26.2% and
+Socioeconomic & Environmental Harms 25.0%; lowest: Malicious Actors & Misuse 12.5%
+[`rq3rel.cl_noise_by_domain`]. Largest exchange: Malicious Actors & Misuse vs Misinformation (52 estimated
+incidents, 40 of them one way), read as taxonomy overlap. Retraining without flagged incidents changes macro-F1
+by +0.003 (95% CI [-0.023, +0.026], p = 0.81) [`rq3rel.retrain_diff`]: no effect on performance.

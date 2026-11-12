@@ -1,0 +1,215 @@
+incident_id,given_label,suggested_label,self_confidence,suggested_confidence
+377,Malicious Actors & Misuse,Discrimination and Toxicity,0.001,0.8339
+1370,Discrimination and Toxicity,Human-Computer Interaction,0.0013,0.9865
+167,Privacy & Security,Discrimination and Toxicity,0.0025,0.9911
+298,"AI system safety, failures, and limitations",Privacy & Security,0.0047,0.687
+967,Discrimination and Toxicity,Misinformation,0.0048,0.9832
+867,Malicious Actors & Misuse,Misinformation,0.0051,0.9601
+1099,"AI system safety, failures, and limitations",Misinformation,0.0059,0.9859
+403,Socioeconomic & Environmental Harms,Misinformation,0.0067,0.7987
+745,Malicious Actors & Misuse,Misinformation,0.0092,0.4234
+144,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.0111,0.9694
+508,Discrimination and Toxicity,Malicious Actors & Misuse,0.0119,0.9737
+450,Socioeconomic & Environmental Harms,Discrimination and Toxicity,0.0121,0.7641
+485,Malicious Actors & Misuse,Privacy & Security,0.0125,0.9799
+1335,Discrimination and Toxicity,Privacy & Security,0.0129,0.6022
+490,Malicious Actors & Misuse,Socioeconomic & Environmental Harms,0.0134,0.6779
+56,Discrimination and Toxicity,Misinformation,0.0148,0.5488
+1402,Discrimination and Toxicity,Socioeconomic & Environmental Harms,0.0157,0.476
+893,Discrimination and Toxicity,Malicious Actors & Misuse,0.0169,0.8209
+1244,Discrimination and Toxicity,Malicious Actors & Misuse,0.0176,0.5057
+1390,Malicious Actors & Misuse,Privacy & Security,0.0177,0.8605
+424,Discrimination and Toxicity,Privacy & Security,0.0178,0.9549
+549,Socioeconomic & Environmental Harms,Discrimination and Toxicity,0.019,0.3803
+729,"AI system safety, failures, and limitations",Privacy & Security,0.0201,0.5533
+1281,"AI system safety, failures, and limitations",Misinformation,0.0209,0.6594
+263,Malicious Actors & Misuse,Discrimination and Toxicity,0.0218,0.9697
+559,Malicious Actors & Misuse,Privacy & Security,0.0219,0.7998
+337,Human-Computer Interaction,"AI system safety, failures, and limitations",0.0224,0.9762
+952,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.023,0.9149
+723,Human-Computer Interaction,Discrimination and Toxicity,0.0231,0.8151
+28,Malicious Actors & Misuse,"AI system safety, failures, and limitations",0.0238,0.8667
+1031,"AI system safety, failures, and limitations",Human-Computer Interaction,0.024,0.6754
+738,Discrimination and Toxicity,"AI system safety, failures, and limitations",0.0251,0.9541
+525,Human-Computer Interaction,"AI system safety, failures, and limitations",0.0258,0.9712
+507,Misinformation,Human-Computer Interaction,0.0259,0.5524
+1072,Misinformation,Discrimination and Toxicity,0.0263,0.9646
+1470,Human-Computer Interaction,"AI system safety, failures, and limitations",0.0267,0.4698
+202,Misinformation,Malicious Actors & Misuse,0.0297,0.9617
+1296,Malicious Actors & Misuse,"AI system safety, failures, and limitations",0.0304,0.4506
+497,"AI system safety, failures, and limitations",Misinformation,0.0315,0.7701
+141,Human-Computer Interaction,Socioeconomic & Environmental Harms,0.0316,0.3726
+316,Malicious Actors & Misuse,"AI system safety, failures, and limitations",0.0322,0.7998
+814,Privacy & Security,Discrimination and Toxicity,0.0327,0.7266
+995,Privacy & Security,Socioeconomic & Environmental Harms,0.0338,0.8185
+678,Misinformation,Privacy & Security,0.0339,0.9038
+528,"AI system safety, failures, and limitations",Socioeconomic & Environmental Harms,0.0345,0.8115
+170,Privacy & Security,Misinformation,0.0346,0.3251
+672,Malicious Actors & Misuse,Privacy & Security,0.035,0.4982
+590,Malicious Actors & Misuse,Misinformation,0.0365,0.8441
+1427,Malicious Actors & Misuse,Discrimination and Toxicity,0.0367,0.3743
+793,Malicious Actors & Misuse,Human-Computer Interaction,0.0367,0.8519
+148,Malicious Actors & Misuse,Misinformation,0.0373,0.2785
+1057,Malicious Actors & Misuse,Discrimination and Toxicity,0.0374,0.8501
+823,"AI system safety, failures, and limitations",Misinformation,0.0382,0.8213
+177,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.0387,0.9036
+1294,Socioeconomic & Environmental Harms,Privacy & Security,0.0396,0.8703
+261,Discrimination and Toxicity,"AI system safety, failures, and limitations",0.0397,0.5622
+1323,Malicious Actors & Misuse,Misinformation,0.0399,0.9273
+808,Discrimination and Toxicity,"AI system safety, failures, and limitations",0.0408,0.9183
+41,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.0412,0.7165
+906,Privacy & Security,Malicious Actors & Misuse,0.0415,0.946
+833,Socioeconomic & Environmental Harms,Misinformation,0.0422,0.5785
+17,Human-Computer Interaction,"AI system safety, failures, and limitations",0.0427,0.4702
+477,Human-Computer Interaction,Misinformation,0.0429,0.7696
+330,Misinformation,Socioeconomic & Environmental Harms,0.0432,0.465
+538,"AI system safety, failures, and limitations",Human-Computer Interaction,0.0437,0.8779
+1042,Malicious Actors & Misuse,Misinformation,0.0463,0.9458
+1349,Discrimination and Toxicity,Privacy & Security,0.0476,0.8929
+892,"AI system safety, failures, and limitations",Misinformation,0.0487,0.4047
+1311,Discrimination and Toxicity,"AI system safety, failures, and limitations",0.0488,0.9275
+233,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.0494,0.9453
+829,"AI system safety, failures, and limitations",Privacy & Security,0.0503,0.8651
+1003,Privacy & Security,Malicious Actors & Misuse,0.051,0.8573
+1005,Misinformation,Malicious Actors & Misuse,0.0526,0.928
+1230,Malicious Actors & Misuse,Human-Computer Interaction,0.0556,0.5923
+1401,Discrimination and Toxicity,"AI system safety, failures, and limitations",0.0584,0.7642
+420,Discrimination and Toxicity,Privacy & Security,0.0586,0.7733
+352,Privacy & Security,Malicious Actors & Misuse,0.0587,0.5898
+272,Discrimination and Toxicity,Socioeconomic & Environmental Harms,0.0628,0.9122
+682,Malicious Actors & Misuse,Discrimination and Toxicity,0.0634,0.6241
+850,Discrimination and Toxicity,Misinformation,0.0635,0.5237
+195,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.0641,0.6236
+854,Human-Computer Interaction,"AI system safety, failures, and limitations",0.0657,0.9193
+410,Discrimination and Toxicity,Socioeconomic & Environmental Harms,0.0658,0.4725
+1272,Misinformation,Malicious Actors & Misuse,0.0658,0.823
+658,Misinformation,Malicious Actors & Misuse,0.0668,0.894
+438,Malicious Actors & Misuse,Privacy & Security,0.0671,0.8985
+1400,Misinformation,"AI system safety, failures, and limitations",0.0674,0.7911
+1298,Privacy & Security,Socioeconomic & Environmental Harms,0.0675,0.5673
+311,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.0694,0.7538
+172,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.0702,0.9228
+1476,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.0706,0.4707
+1449,Human-Computer Interaction,Socioeconomic & Environmental Harms,0.0713,0.5397
+855,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.0714,0.3533
+575,Malicious Actors & Misuse,Misinformation,0.0747,0.4028
+1318,Malicious Actors & Misuse,Human-Computer Interaction,0.0753,0.5881
+1020,Privacy & Security,Discrimination and Toxicity,0.0799,0.7928
+861,Misinformation,Human-Computer Interaction,0.0819,0.8197
+164,Discrimination and Toxicity,Misinformation,0.0828,0.7087
+1159,"AI system safety, failures, and limitations",Misinformation,0.0854,0.8922
+371,Malicious Actors & Misuse,Privacy & Security,0.0858,0.8757
+1166,Misinformation,"AI system safety, failures, and limitations",0.0884,0.6
+545,"AI system safety, failures, and limitations",Human-Computer Interaction,0.0885,0.4756
+1043,Malicious Actors & Misuse,Misinformation,0.0906,0.7199
+214,Discrimination and Toxicity,"AI system safety, failures, and limitations",0.0907,0.6345
+66,Misinformation,"AI system safety, failures, and limitations",0.0928,0.2266
+50,"AI system safety, failures, and limitations",Malicious Actors & Misuse,0.0929,0.8683
+301,Discrimination and Toxicity,"AI system safety, failures, and limitations",0.095,0.6082
+414,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.0963,0.6684
+204,Privacy & Security,Discrimination and Toxicity,0.0969,0.5622
+162,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.0992,0.4097
+1092,Malicious Actors & Misuse,Misinformation,0.0996,0.897
+207,Human-Computer Interaction,"AI system safety, failures, and limitations",0.0999,0.3065
+1395,Privacy & Security,Malicious Actors & Misuse,0.1013,0.8601
+1188,Misinformation,Discrimination and Toxicity,0.1021,0.3331
+1430,Malicious Actors & Misuse,Privacy & Security,0.1033,0.8168
+1393,Misinformation,Privacy & Security,0.104,0.2596
+498,Malicious Actors & Misuse,Privacy & Security,0.1052,0.6104
+142,Discrimination and Toxicity,"AI system safety, failures, and limitations",0.1075,0.8207
+197,Misinformation,"AI system safety, failures, and limitations",0.1075,0.7886
+944,Misinformation,Malicious Actors & Misuse,0.1108,0.8681
+724,Malicious Actors & Misuse,Misinformation,0.1112,0.7674
+1358,Malicious Actors & Misuse,Misinformation,0.1125,0.8409
+1310,"AI system safety, failures, and limitations",Misinformation,0.113,0.4562
+386,Discrimination and Toxicity,Socioeconomic & Environmental Harms,0.1151,0.5167
+344,"AI system safety, failures, and limitations",Socioeconomic & Environmental Harms,0.1157,0.5023
+284,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.1192,0.783
+681,Misinformation,Malicious Actors & Misuse,0.1216,0.85
+431,Malicious Actors & Misuse,Privacy & Security,0.1221,0.5643
+631,Discrimination and Toxicity,"AI system safety, failures, and limitations",0.1287,0.3473
+185,Misinformation,Discrimination and Toxicity,0.1295,0.7907
+898,Malicious Actors & Misuse,Privacy & Security,0.1309,0.8509
+756,Malicious Actors & Misuse,Misinformation,0.1315,0.636
+295,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.1322,0.7603
+710,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.1326,0.7382
+382,Discrimination and Toxicity,Human-Computer Interaction,0.1344,0.8206
+934,Misinformation,"AI system safety, failures, and limitations",0.1347,0.7485
+329,Malicious Actors & Misuse,Socioeconomic & Environmental Harms,0.1357,0.4148
+949,Malicious Actors & Misuse,Misinformation,0.1397,0.7619
+384,Human-Computer Interaction,"AI system safety, failures, and limitations",0.1404,0.739
+1007,Malicious Actors & Misuse,Misinformation,0.1406,0.8411
+39,Misinformation,Malicious Actors & Misuse,0.1437,0.7225
+522,Misinformation,Discrimination and Toxicity,0.1453,0.6915
+277,Malicious Actors & Misuse,Privacy & Security,0.1461,0.7882
+121,Malicious Actors & Misuse,Socioeconomic & Environmental Harms,0.1496,0.559
+832,Malicious Actors & Misuse,Misinformation,0.1514,0.7722
+1426,Misinformation,"AI system safety, failures, and limitations",0.1516,0.4275
+1001,Socioeconomic & Environmental Harms,Privacy & Security,0.1518,0.5083
+291,Misinformation,"AI system safety, failures, and limitations",0.1544,0.6163
+315,Malicious Actors & Misuse,Discrimination and Toxicity,0.1547,0.7038
+649,Malicious Actors & Misuse,Misinformation,0.1605,0.8356
+479,Malicious Actors & Misuse,Discrimination and Toxicity,0.1648,0.6595
+1168,Malicious Actors & Misuse,Misinformation,0.1663,0.6902
+1487,Malicious Actors & Misuse,Human-Computer Interaction,0.1667,0.549
+475,"AI system safety, failures, and limitations",Socioeconomic & Environmental Harms,0.1677,0.7287
+807,Privacy & Security,Misinformation,0.1686,0.6646
+868,"AI system safety, failures, and limitations",Socioeconomic & Environmental Harms,0.1723,0.4312
+622,"AI system safety, failures, and limitations",Human-Computer Interaction,0.1768,0.6025
+1162,Malicious Actors & Misuse,Misinformation,0.1768,0.8181
+347,"AI system safety, failures, and limitations",Human-Computer Interaction,0.1769,0.805
+1317,Misinformation,Malicious Actors & Misuse,0.1807,0.811
+192,Discrimination and Toxicity,Socioeconomic & Environmental Harms,0.1808,0.5645
+1191,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.1842,0.7258
+418,Discrimination and Toxicity,"AI system safety, failures, and limitations",0.1884,0.7131
+1073,Misinformation,"AI system safety, failures, and limitations",0.1912,0.6965
+38,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.1919,0.766
+1231,Malicious Actors & Misuse,Misinformation,0.193,0.7383
+1386,Privacy & Security,Socioeconomic & Environmental Harms,0.1967,0.414
+136,"AI system safety, failures, and limitations",Misinformation,0.1986,0.5292
+1212,Discrimination and Toxicity,Human-Computer Interaction,0.1997,0.6653
+1357,Malicious Actors & Misuse,Misinformation,0.2015,0.6157
+629,Malicious Actors & Misuse,Socioeconomic & Environmental Harms,0.2051,0.4875
+896,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.2064,0.5092
+685,"AI system safety, failures, and limitations",Misinformation,0.2105,0.677
+895,Malicious Actors & Misuse,Misinformation,0.2114,0.775
+447,Misinformation,Discrimination and Toxicity,0.212,0.5771
+215,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.2129,0.5251
+268,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.2159,0.595
+804,Misinformation,Malicious Actors & Misuse,0.2204,0.7725
+679,Malicious Actors & Misuse,Misinformation,0.2244,0.6385
+1369,Malicious Actors & Misuse,Misinformation,0.2245,0.7627
+645,Misinformation,Discrimination and Toxicity,0.2277,0.6739
+883,Malicious Actors & Misuse,Misinformation,0.2292,0.6224
+702,Malicious Actors & Misuse,Misinformation,0.2314,0.7673
+677,Discrimination and Toxicity,Human-Computer Interaction,0.2324,0.5268
+1170,Misinformation,Malicious Actors & Misuse,0.2378,0.7461
+653,Malicious Actors & Misuse,Misinformation,0.2444,0.4928
+835,Malicious Actors & Misuse,Misinformation,0.2485,0.586
+125,"AI system safety, failures, and limitations",Socioeconomic & Environmental Harms,0.2487,0.7011
+511,"AI system safety, failures, and limitations",Misinformation,0.2501,0.7339
+1344,Malicious Actors & Misuse,Misinformation,0.2504,0.5677
+1029,Misinformation,Malicious Actors & Misuse,0.2511,0.7356
+853,"AI system safety, failures, and limitations",Human-Computer Interaction,0.2514,0.7422
+129,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.2515,0.7327
+567,Malicious Actors & Misuse,Privacy & Security,0.2516,0.6962
+65,"AI system safety, failures, and limitations",Socioeconomic & Environmental Harms,0.2534,0.452
+456,Discrimination and Toxicity,Human-Computer Interaction,0.2865,0.5471
+703,Misinformation,Malicious Actors & Misuse,0.288,0.7083
+1278,Privacy & Security,Socioeconomic & Environmental Harms,0.2888,0.6391
+1026,Discrimination and Toxicity,Human-Computer Interaction,0.289,0.5078
+1035,Malicious Actors & Misuse,Misinformation,0.2922,0.7061
+1346,Malicious Actors & Misuse,Misinformation,0.2924,0.6975
+1406,Malicious Actors & Misuse,Misinformation,0.2937,0.6847
+1498,Discrimination and Toxicity,Human-Computer Interaction,0.2977,0.6736
+1064,Malicious Actors & Misuse,Misinformation,0.2991,0.6235
+684,Misinformation,Socioeconomic & Environmental Harms,0.3031,0.4228
+568,Malicious Actors & Misuse,Misinformation,0.3056,0.6783
+201,Malicious Actors & Misuse,Misinformation,0.3061,0.6534
+186,"AI system safety, failures, and limitations",Discrimination and Toxicity,0.3067,0.6631
+1200,Discrimination and Toxicity,Human-Computer Interaction,0.3089,0.5908
+643,Malicious Actors & Misuse,Misinformation,0.3296,0.6624
+856,Malicious Actors & Misuse,Misinformation,0.3301,0.6648
+565,Malicious Actors & Misuse,Misinformation,0.3378,0.6518
+1214,Malicious Actors & Misuse,Misinformation,0.3658,0.5966
+527,Discrimination and Toxicity,Socioeconomic & Environmental Harms,0.3734,0.4868

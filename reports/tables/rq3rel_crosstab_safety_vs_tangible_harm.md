@@ -1,0 +1,4 @@
+| MIT | human: no | human: yes |
+|---|---|---|
+| MIT: no | 87 | 33 |
+| MIT: yes | 24 | 53 |

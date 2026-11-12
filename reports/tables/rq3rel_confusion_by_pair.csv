@@ -1,0 +1,21 @@
+domain_a,domain_b,a_to_b,b_to_a,total,two_way_share
+Malicious Actors & Misuse,Misinformation,40.0,12.0,52.0,0.3
+"AI system safety, failures, and limitations",Discrimination and Toxicity,21.0,9.0,30.0,0.43
+Malicious Actors & Misuse,Privacy & Security,12.0,4.0,16.0,0.33
+"AI system safety, failures, and limitations",Misinformation,10.0,6.0,16.0,0.6
+"AI system safety, failures, and limitations",Human-Computer Interaction,8.0,6.0,14.0,0.75
+Discrimination and Toxicity,Human-Computer Interaction,11.0,1.0,12.0,0.09
+Discrimination and Toxicity,Socioeconomic & Environmental Harms,10.0,2.0,12.0,0.2
+Discrimination and Toxicity,Misinformation,4.0,6.0,10.0,0.67
+"AI system safety, failures, and limitations",Socioeconomic & Environmental Harms,10.0,0.0,10.0,0.0
+Discrimination and Toxicity,Malicious Actors & Misuse,3.0,6.0,9.0,0.5
+Privacy & Security,Socioeconomic & Environmental Harms,7.0,2.0,9.0,0.29
+Discrimination and Toxicity,Privacy & Security,4.0,4.0,8.0,1.0
+Misinformation,Socioeconomic & Environmental Harms,5.0,2.0,7.0,0.4
+Malicious Actors & Misuse,Socioeconomic & Environmental Harms,5.0,0.0,5.0,0.0
+Human-Computer Interaction,Malicious Actors & Misuse,0.0,5.0,5.0,0.0
+"AI system safety, failures, and limitations",Malicious Actors & Misuse,1.0,3.0,4.0,0.33
+Human-Computer Interaction,Misinformation,1.0,3.0,4.0,0.33
+"AI system safety, failures, and limitations",Privacy & Security,3.0,0.0,3.0,0.0
+Human-Computer Interaction,Socioeconomic & Environmental Harms,3.0,0.0,3.0,0.0
+Misinformation,Privacy & Security,1.0,1.0,2.0,1.0

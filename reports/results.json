@@ -3280,6 +3280,348 @@
     "source_file": "data/processed/incidents_clean.parquet",
     "function": "aicidentia.models.classify_outputs.run_classification"
   },
+  "rq3rel.cl_flagged": {
+    "value": 214,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.cl_flagged_share": {
+    "value": 0.14304812834224598,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.cl_model": {
+    "value": "mpnet embeddings + logistic regression",
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.cl_n": {
+    "value": 1496,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.cl_noise_by_domain": {
+    "value": {
+      "Human-Computer Interaction": 0.2619,
+      "Socioeconomic & Environmental Harms": 0.25,
+      "AI system safety, failures, and limitations": 0.1693,
+      "Discrimination and Toxicity": 0.1687,
+      "Misinformation": 0.1684,
+      "Privacy & Security": 0.1429,
+      "Malicious Actors & Misuse": 0.1254
+    },
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.cl_noise_rate": {
+    "value": 0.15441176470588225,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.cl_top_confusions": {
+    "value": [
+      {
+        "given_label": "Malicious Actors & Misuse",
+        "likely_latent": "Misinformation",
+        "estimated_incidents": 40.0,
+        "share_of_given": 0.071
+      },
+      {
+        "given_label": "AI system safety, failures, and limitations",
+        "likely_latent": "Discrimination and Toxicity",
+        "estimated_incidents": 21.0,
+        "share_of_given": 0.067
+      },
+      {
+        "given_label": "Malicious Actors & Misuse",
+        "likely_latent": "Privacy & Security",
+        "estimated_incidents": 12.0,
+        "share_of_given": 0.021
+      },
+      {
+        "given_label": "Misinformation",
+        "likely_latent": "Malicious Actors & Misuse",
+        "estimated_incidents": 12.0,
+        "share_of_given": 0.061
+      },
+      {
+        "given_label": "Discrimination and Toxicity",
+        "likely_latent": "Human-Computer Interaction",
+        "estimated_incidents": 11.0,
+        "share_of_given": 0.045
+      },
+      {
+        "given_label": "AI system safety, failures, and limitations",
+        "likely_latent": "Socioeconomic & Environmental Harms",
+        "estimated_incidents": 10.0,
+        "share_of_given": 0.032
+      },
+      {
+        "given_label": "Discrimination and Toxicity",
+        "likely_latent": "Socioeconomic & Environmental Harms",
+        "estimated_incidents": 10.0,
+        "share_of_given": 0.041
+      },
+      {
+        "given_label": "AI system safety, failures, and limitations",
+        "likely_latent": "Misinformation",
+        "estimated_incidents": 10.0,
+        "share_of_given": 0.032
+      }
+    ],
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.cset_mit_overlap": {
+    "value": 207,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.cset_year_max": {
+    "value": 2023,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.gmf_mit_overlap": {
+    "value": 41,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.mapping_kappa": {
+    "value": {
+      "discrimination_vs_protected_characteristic": 0.7436,
+      "discrimination_vs_harm_distribution_basis": 0.7335,
+      "safety_vs_tangible_harm": 0.4048,
+      "safety_vs_gmf_technical_failure": -0.0047,
+      "misinformation_or_misuse_vs_detrimental_content": 0.3058
+    },
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.mapping_n": {
+    "value": {
+      "discrimination_vs_protected_characteristic": 196,
+      "discrimination_vs_harm_distribution_basis": 194,
+      "safety_vs_tangible_harm": 197,
+      "safety_vs_gmf_technical_failure": 41,
+      "misinformation_or_misuse_vs_detrimental_content": 193
+    },
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.mappings": {
+    "value": [
+      {
+        "mapping": "discrimination_vs_protected_characteristic",
+        "mit_domain": "Discrimination and Toxicity",
+        "human_field": "CSETv1 Protected Characteristic = yes",
+        "n": 196,
+        "excluded_unclear": 11,
+        "mit_positive": 70,
+        "human_positive": 69,
+        "both_positive": 58,
+        "agreement": 0.8827,
+        "kappa": 0.7436,
+        "kappa_low": 0.6363,
+        "kappa_high": 0.8349,
+        "band": "substantial",
+        "precision_of_mit": 0.8286,
+        "recall_of_mit": 0.8406,
+        "years": "1983-2023"
+      },
+      {
+        "mapping": "discrimination_vs_harm_distribution_basis",
+        "mit_domain": "Discrimination and Toxicity",
+        "human_field": "CSETv1 Harm Distribution Basis is not 'none'",
+        "n": 194,
+        "excluded_unclear": 13,
+        "mit_positive": 69,
+        "human_positive": 73,
+        "both_positive": 59,
+        "agreement": 0.8763,
+        "kappa": 0.7335,
+        "kappa_low": 0.6254,
+        "kappa_high": 0.8312,
+        "band": "substantial",
+        "precision_of_mit": 0.8551,
+        "recall_of_mit": 0.8082,
+        "years": "1983-2023"
+      },
+      {
+        "mapping": "safety_vs_tangible_harm",
+        "mit_domain": "AI system safety, failures, and limitations",
+        "human_field": "CSETv1 Tangible Harm occurred or imminent (near miss)",
+        "n": 197,
+        "excluded_unclear": 10,
+        "mit_positive": 77,
+        "human_positive": 86,
+        "both_positive": 53,
+        "agreement": 0.7107,
+        "kappa": 0.4048,
+        "kappa_low": 0.2691,
+        "kappa_high": 0.527,
+        "band": "moderate",
+        "precision_of_mit": 0.6883,
+        "recall_of_mit": 0.6163,
+        "years": "1983-2023"
+      },
+      {
+        "mapping": "safety_vs_gmf_technical_failure",
+        "mit_domain": "AI system safety, failures, and limitations",
+        "human_field": "GMF a Technical Failure is recorded",
+        "n": 41,
+        "excluded_unclear": 0,
+        "mit_positive": 19,
+        "human_positive": 26,
+        "both_positive": 12,
+        "agreement": 0.4878,
+        "kappa": -0.0047,
+        "kappa_low": -0.2926,
+        "kappa_high": 0.2879,
+        "band": "poor (below chance)",
+        "precision_of_mit": 0.6316,
+        "recall_of_mit": 0.4615,
+        "years": "1983-2022"
+      },
+      {
+        "mapping": "misinformation_or_misuse_vs_detrimental_content",
+        "mit_domain": "Misinformation or Malicious Actors & Misuse",
+        "human_field": "CSETv1 Detrimental Content = yes",
+        "n": 193,
+        "excluded_unclear": 14,
+        "mit_positive": 24,
+        "human_positive": 39,
+        "both_positive": 13,
+        "agreement": 0.8083,
+        "kappa": 0.3058,
+        "kappa_low": 0.1286,
+        "kappa_high": 0.471,
+        "band": "fair",
+        "precision_of_mit": 0.5417,
+        "recall_of_mit": 0.3333,
+        "years": "1983-2023"
+      }
+    ],
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.pairs_dissimilar": {
+    "value": {
+      "pairs_total": 349,
+      "pairs_labelled": 349,
+      "same_domain_rate": 0.2808022922636103,
+      "ci_low": 0.2349570200573066,
+      "ci_high": 0.32951289398280803,
+      "baseline_rate": 0.26134670487106015,
+      "baseline_low": 0.2177650429799427,
+      "baseline_high": 0.30659025787965616,
+      "p_value": 0.21339330334832585,
+      "lift": 1.0744435917114352
+    },
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.pairs_similar": {
+    "value": {
+      "pairs_total": 325,
+      "pairs_labelled": 249,
+      "same_domain_rate": 0.751004016064257,
+      "ci_low": 0.6947791164658634,
+      "ci_high": 0.8032128514056225,
+      "baseline_rate": 0.2966204819277109,
+      "baseline_low": 0.24096385542168675,
+      "baseline_high": 0.3534136546184739,
+      "p_value": 0.0004997501249375312,
+      "lift": 2.53186836992357
+    },
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.retrain_ci": {
+    "value": [
+      -0.022793232484879453,
+      0.026088170897619774
+    ],
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.retrain_diff": {
+    "value": 0.0031667588003074787,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.retrain_macro_f1_cleaned": {
+    "value": 0.6537927840589844,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.retrain_macro_f1_original": {
+    "value": 0.650626025258677,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.retrain_removed_per_fold": {
+    "value": [
+      {
+        "fold": 0,
+        "n_removed": 166,
+        "n_train": 1196
+      },
+      {
+        "fold": 1,
+        "n_removed": 198,
+        "n_train": 1197
+      },
+      {
+        "fold": 2,
+        "n_removed": 183,
+        "n_train": 1197
+      },
+      {
+        "fold": 3,
+        "n_removed": 153,
+        "n_train": 1197
+      },
+      {
+        "fold": 4,
+        "n_removed": 166,
+        "n_train": 1197
+      }
+    ],
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.retrain_removed_share": {
+    "value": 0.1447192513368984,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
+  "rq3rel.retrain_table": {
+    "value": [
+      {
+        "evaluated_on": "all incidents (primary)",
+        "n": 1496,
+        "macro_f1_original": 0.6506,
+        "macro_f1_cleaned_training": 0.6538,
+        "difference": 0.0032,
+        "ci_low": -0.0228,
+        "ci_high": 0.0261,
+        "p_value": 0.808
+      },
+      {
+        "evaluated_on": "unflagged incidents only",
+        "n": 1282,
+        "macro_f1_original": 0.8223,
+        "macro_f1_cleaned_training": 0.7966,
+        "difference": -0.0257,
+        "ci_low": -0.0635,
+        "ci_high": 0.0086,
+        "p_value": 0.138
+      }
+    ],
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.reliability_outputs.run_reliability"
+  },
   "rq4.aiid_nlp_rr3": {
     "value": 0.03355704697986577,
     "source_file": "data/processed/incidents_clean.parquet + snapshot editor_similar_incidents",
