@@ -149,22 +149,40 @@ def build_tfidf(tokens: Sequence[Sequence[str]], vocabulary: Sequence[str]) -> t
     return vectoriser.fit_transform(list(map(list, tokens))), vectoriser
 
 
+@lru_cache(maxsize=4)
+def load_sentence_model(
+    model_name: str, device: str = "cpu", local_files_only: bool = False
+) -> Any:
+    """A loaded sentence-transformers model (kept in memory). With `local_files_only`, never touch the
+    network: the model must already be in the Hugging Face cache (HF_HOME), otherwise this raises."""
+    from sentence_transformers import SentenceTransformer
+
+    return SentenceTransformer(model_name, device=device, local_files_only=local_files_only)
+
+
 def embed_sentences(
-    texts: Sequence[str], model_name: str, batch_size: int = 32, device: str = "cpu"
+    texts: Sequence[str],
+    model_name: str,
+    batch_size: int = 32,
+    device: str = "cpu",
+    use_cache: bool = True,
+    local_files_only: bool = False,
 ) -> np.ndarray:
     """L2-normalised sentence-transformers embeddings, cached in data/interim/.
 
     Runs on CPU by default for reproducibility; the cache key covers the model name and the texts.
+    `use_cache=False` (used for one-off dashboard queries) skips the disk cache; `local_files_only=True`
+    forbids downloading the model.
     """
 
     def compute() -> np.ndarray:
-        from sentence_transformers import SentenceTransformer
-
-        model = SentenceTransformer(model_name, device=device)
+        model = load_sentence_model(model_name, device, local_files_only)
         return model.encode(
             list(texts), batch_size=batch_size, normalize_embeddings=True, show_progress_bar=False
         ).astype("float32")
 
+    if not use_cache:
+        return compute()
     return cache.cached(
         "embeddings", (model_name, cache.hash_texts(texts), "normalised"), compute, version="1"
     )

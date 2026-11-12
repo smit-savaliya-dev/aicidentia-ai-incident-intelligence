@@ -93,3 +93,8 @@ classification:
   n_boot: 1000                 # bootstrap resamples for confidence intervals and paired tests
   report_words: 256            # ablation: words of the longest linked report appended to the text
   audit: {total: 150, floor: 10}   # blind audit sample: 150 incidents, at least 10 per MIT domain
+
+# Phase 7: similar-incident retrieval (RQ4). Ground truth = editor-marked similar incidents in the snapshot.
+retrieval:
+  n_boot: 2000                 # bootstrap resamples over queries
+  top_k_dashboard: 10          # results shown in the dashboard search

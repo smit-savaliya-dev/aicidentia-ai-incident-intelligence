@@ -1034,6 +1034,93 @@ def plot_reliability(panels: list[tuple[str, pd.DataFrame, float]], chosen: str)
 
 
 # --------------------------------------------------------------------------------------
+# Phase 7: retrieval
+# --------------------------------------------------------------------------------------
+
+
+def plot_retrieval_comparison(
+    summaries: dict[str, pd.DataFrame], labels: dict[str, str], p5_ceiling: float
+) -> plt.Figure:
+    """MRR, nDCG@10 and P@5 with bootstrap 95% CIs per method, one marker colour per setting."""
+    apply_style()
+    metrics = [("rr", "MRR"), ("ndcg@10", "nDCG@10"), ("p@5", "Precision@5")]
+    fig, axes = plt.subplots(1, 3, figsize=(DOUBLE_COLUMN_IN, 2.9), sharey=True)
+    colours = [PALETTE["blue"], PALETTE["orange"], PALETTE["green"]]
+    first = next(iter(summaries.values()))
+    methods = list(first["method"])
+    for ax, (metric, title) in zip(axes, metrics, strict=True):
+        for k, (setting, table) in enumerate(summaries.items()):
+            t = table.set_index("method").reindex(methods)
+            y = np.arange(len(methods)) + (k - (len(summaries) - 1) / 2) * 0.25
+            ax.errorbar(
+                t[metric],
+                y,
+                xerr=[t[metric] - t[f"{metric}_low"], t[f"{metric}_high"] - t[metric]],
+                fmt="o",
+                ms=3.5,
+                capsize=2,
+                color=colours[k],
+                label=setting,
+            )
+        if metric == "p@5":
+            ax.axvline(p5_ceiling, color="black", ls="--", lw=0.8)
+            title = f"{title} (dashed = best possible, {p5_ceiling:.2f})"
+        ax.set_title(title, fontsize=7)
+        ax.set_xlim(left=0)
+    axes[0].set_yticks(range(len(methods)))
+    axes[0].set_yticklabels([labels[m] for m in methods], fontsize=6.5)
+    axes[0].invert_yaxis()
+    handles, names = axes[0].get_legend_handles_labels()
+    fig.legend(
+        handles,
+        names,
+        frameon=False,
+        fontsize=6,
+        loc="lower center",
+        ncol=len(names),
+        bbox_to_anchor=(0.5, 0.0),
+    )
+    fig.suptitle(
+        "Similar-incident retrieval against editor-marked similar incidents (mean and bootstrap 95% CI over queries)",
+        fontsize=7.5,
+        y=1.0,
+    )
+    fig.tight_layout(rect=(0, 0.08, 1, 0.95))
+    return fig
+
+
+def plot_recall_at_k(
+    summaries: dict[str, pd.DataFrame], ks: tuple[int, ...], labels: dict[str, str]
+) -> plt.Figure:
+    """Recall@k curves per method, one panel per setting."""
+    apply_style()
+    fig, axes = plt.subplots(1, len(summaries), figsize=(DOUBLE_COLUMN_IN, 2.7), sharey=True)
+    axes = np.atleast_1d(axes)
+    for ax, (setting, table) in zip(axes, summaries.items(), strict=True):
+        for k, row in enumerate(table.itertuples(index=False)):
+            r = row._asdict()
+            ax.plot(
+                ks,
+                [table.loc[table["method"] == r["method"], f"recall@{x}"].iloc[0] for x in ks],
+                marker="o",
+                ms=2.5,
+                lw=1,
+                color=CATEGORICAL[k % len(CATEGORICAL)],
+                label=labels[r["method"]],
+            )
+        ax.set_xscale("log")
+        ax.set_xticks(list(ks))
+        ax.set_xticklabels([str(x) for x in ks])
+        ax.set_ylim(0, 1)
+        ax.set_xlabel("k (results inspected)")
+        ax.set_title(setting, fontsize=7)
+    axes[0].set_ylabel("Recall@k (share of editor-similar found)")
+    axes[-1].legend(frameon=False, fontsize=5.5, loc="lower right")
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    return fig
+
+
+# --------------------------------------------------------------------------------------
 # Later phases (stubs)
 # --------------------------------------------------------------------------------------
 

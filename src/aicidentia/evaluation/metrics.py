@@ -250,11 +250,77 @@ def per_class_agreement(reference: Sequence, other: Sequence, labels: Sequence) 
     return pd.DataFrame(rows)
 
 
-def mean_reciprocal_rank(retrieved: Sequence[Sequence[int]], relevant: Sequence[set[int]]) -> float:
-    """Mean reciprocal rank over queries (Phase 7)."""
-    raise NotImplementedError
+# --------------------------------------------------------------------------------------
+# Retrieval (RQ4). `retrieved` is a ranked list of ids (best first, query itself excluded);
+# `relevant` is the set of ids judged relevant for the query. Relevance is binary.
+# --------------------------------------------------------------------------------------
 
 
 def precision_at_k(retrieved: Sequence[int], relevant: set[int], k: int = 5) -> float:
-    """Precision@k for one query (Phase 7)."""
-    raise NotImplementedError
+    """Share of the top-k results that are relevant (the denominator is always k)."""
+    return sum(1 for r in list(retrieved)[:k] if r in relevant) / k
+
+
+def recall_at_k(retrieved: Sequence[int], relevant: set[int], k: int = 10) -> float:
+    """Share of the relevant items found in the top k."""
+    if not relevant:
+        return float("nan")
+    return sum(1 for r in list(retrieved)[:k] if r in relevant) / len(relevant)
+
+
+def hit_at_k(retrieved: Sequence[int], relevant: set[int], k: int = 5) -> float:
+    """1 if any relevant item is in the top k, else 0."""
+    return float(any(r in relevant for r in list(retrieved)[:k]))
+
+
+def reciprocal_rank(
+    retrieved: Sequence[int], relevant: set[int], depth: int | None = None
+) -> float:
+    """1 / rank of the first relevant item (0 if none within `depth`, or within the whole list)."""
+    for rank, r in enumerate(list(retrieved)[:depth] if depth else retrieved, start=1):
+        if r in relevant:
+            return 1.0 / rank
+    return 0.0
+
+
+def ndcg_at_k(retrieved: Sequence[int], relevant: set[int], k: int = 10) -> float:
+    """Binary-relevance nDCG@k: DCG of the ranking divided by the DCG of a perfect ranking."""
+    gains = [1.0 / np.log2(i + 2) for i, r in enumerate(list(retrieved)[:k]) if r in relevant]
+    ideal = sum(1.0 / np.log2(i + 2) for i in range(min(len(relevant), k)))
+    return float(sum(gains) / ideal) if ideal else float("nan")
+
+
+def mean_reciprocal_rank(retrieved: Sequence[Sequence[int]], relevant: Sequence[set[int]]) -> float:
+    """Mean reciprocal rank over queries."""
+    return float(
+        np.mean([reciprocal_rank(r, rel) for r, rel in zip(retrieved, relevant, strict=True)])
+    )
+
+
+def paired_bootstrap_mean_diff(
+    a: Sequence[float], b: Sequence[float], n_boot: int = 2000, seed: int = 42
+) -> dict[str, float]:
+    """Paired bootstrap of mean(a) - mean(b) over queries: difference, 95% CI and two-sided p-value."""
+    x, y = np.asarray(a, dtype=float), np.asarray(b, dtype=float)
+    rng = np.random.default_rng(seed)
+    idx = rng.integers(0, len(x), (n_boot, len(x)))
+    diffs = (x[idx] - y[idx]).mean(axis=1)
+    p = min(1.0, 2 * min(float((diffs <= 0).mean()), float((diffs >= 0).mean())))
+    return {
+        "diff": float((x - y).mean()),
+        "ci_low": float(np.quantile(diffs, 0.025)),
+        "ci_high": float(np.quantile(diffs, 0.975)),
+        "p_value": max(p, 1 / (n_boot + 1)),
+    }
+
+
+def holm_adjust(p_values: Sequence[float]) -> list[float]:
+    """Holm-Bonferroni adjusted p-values (same order as given)."""
+    p = np.asarray(p_values, dtype=float)
+    order = np.argsort(p)
+    adjusted = np.empty_like(p)
+    running = 0.0
+    for rank, i in enumerate(order):
+        running = max(running, min(1.0, (len(p) - rank) * p[i]))
+        adjusted[i] = running
+    return adjusted.tolist()
