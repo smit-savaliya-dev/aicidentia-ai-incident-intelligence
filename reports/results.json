@@ -2142,7 +2142,7 @@
         "community": 2,
         "entities": 193,
         "incidents": 277,
-        "organisations": "Law enforcement; Amazon; Flock Safety; Uber",
+        "organisations": "Law enforcement; Amazon; Flock Safety; Clearview AI",
         "ai_systems": "AI-enabled decision support systems; Enterprise AI systems; Facial recognition systems; Surveillance technology",
         "harmed_groups": "Biometric data subjects; Minority groups; General public of the United States; Patients",
         "top_domain": "AI system safety, failures, and limitations",
@@ -2182,8 +2182,8 @@
         "entities": 25,
         "incidents": 15,
         "organisations": "Stability AI; LAION; EleutherAI; CompVis LMU",
-        "ai_systems": "Spotify; Stable Diffusion; Music streaming services",
-        "harmed_groups": "Musicians; artists; Universal Music Group; Songwriters",
+        "ai_systems": "Music streaming services; Spotify; Stable Diffusion",
+        "harmed_groups": "Musicians; Songwriters; Universal Music Group; artists",
         "top_domain": "",
         "top_domain_share": null,
         "domains": "(not shown: fewer than 20 incidents)",
@@ -2194,9 +2194,9 @@
         "community": 6,
         "entities": 14,
         "incidents": 2,
-        "organisations": "Government of North Korea; Internal Revenue Service; Reconnaissance General Bureau; Lazarus Group",
-        "ai_systems": "Zoom; Cryptocurrency platforms; Document verification systems; Cryptocurrency wallets",
-        "harmed_groups": "Targets of fraudulent professional opportunities; Employers; Web3; macOS users",
+        "organisations": "Government of North Korea; Internal Revenue Service; Lazarus Group; Reconnaissance General Bureau",
+        "ai_systems": "Zoom; Cryptocurrency platforms; Cryptocurrency wallets; Document verification systems",
+        "harmed_groups": "Targets of fraudulent professional opportunities; Employers; IRS; Taxpayers in the United States",
         "top_domain": "",
         "top_domain_share": null,
         "domains": "(not shown: fewer than 20 incidents)",
@@ -2671,7 +2671,7 @@
         "weighted_degree": 0.8257575231399088,
         "betweenness": 0.4288668780461298,
         "pagerank": 0.6661911877166408,
-        "eigenvector": 0.599981537879961,
+        "eigenvector": 0.5999857003241097,
         "n_incidents": 0.5627438172397491
       },
       {
@@ -2680,7 +2680,7 @@
         "weighted_degree": 1.0,
         "betweenness": 0.44727041154775077,
         "pagerank": 0.7701467805243426,
-        "eigenvector": 0.5892811831413396,
+        "eigenvector": 0.589285271350489,
         "n_incidents": 0.6456246177377105
       },
       {
@@ -2689,7 +2689,7 @@
         "weighted_degree": 0.4472704115477508,
         "betweenness": 1.0,
         "pagerank": 0.513712696640348,
-        "eigenvector": 0.27521757556589355,
+        "eigenvector": 0.2752194849209565,
         "n_incidents": 0.5486148386278187
       },
       {
@@ -2698,17 +2698,17 @@
         "weighted_degree": 0.7701467805243426,
         "betweenness": 0.513712696640348,
         "pagerank": 1.0,
-        "eigenvector": 0.38302010723400093,
+        "eigenvector": 0.383006904572498,
         "n_incidents": 0.6633531830709096
       },
       {
         "measure": "eigenvector",
-        "degree": 0.599981537879961,
-        "weighted_degree": 0.5892811831413396,
-        "betweenness": 0.2752175755658936,
-        "pagerank": 0.3830201072340009,
+        "degree": 0.5999857003241097,
+        "weighted_degree": 0.589285271350489,
+        "betweenness": 0.2752194849209565,
+        "pagerank": 0.383006904572498,
         "eigenvector": 1.0,
-        "n_incidents": 0.4521078013531286
+        "n_incidents": 0.45210640787188294
       },
       {
         "measure": "n_incidents",
@@ -2716,7 +2716,7 @@
         "weighted_degree": 0.6456246177377105,
         "betweenness": 0.5486148386278186,
         "pagerank": 0.6633531830709097,
-        "eigenvector": 0.45210780135312856,
+        "eigenvector": 0.452106407871883,
         "n_incidents": 1.0
       }
     ],
@@ -2724,7 +2724,7 @@
     "function": "aicidentia.models.network_outputs.run_network"
   },
   "rq2.tau_min_between_measures": {
-    "value": 0.27521757556589355,
+    "value": 0.2752194849209565,
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },

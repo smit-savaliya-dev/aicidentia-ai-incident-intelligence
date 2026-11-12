@@ -420,7 +420,9 @@ def profile_communities(
     for comm, size in sorted(sizes.items(), key=lambda kv: -kv[1]):
         members = [n for n, c in assignment.items() if c == comm]
         by_type: dict[str, list[str]] = defaultdict(list)
-        for n in sorted(members, key=lambda n: -graph.nodes[n]["n_incidents"]):
+        for n in sorted(
+            members, key=lambda n: (-graph.nodes[n]["n_incidents"], graph.nodes[n]["label"], n)
+        ):
             by_type[graph.nodes[n]["type"]].append(graph.nodes[n]["label"])
         mine = inc[inc["community"] == comm]
         domains = mine["domain"].dropna().value_counts()
