@@ -119,9 +119,9 @@ def priority_matrix(
     pool = df[df["has_cset"]]
     overall = float(pool["severe"].mean())
     per["quadrant"] = [
-        _quadrant(t, s, overall) if ok else "not enough CSET data"
-        for t, s, ok in zip(
-            per["trend_pp_per_year"], per["severity"], per["supported"], strict=True
+        _quadrant(t, sv, overall, q) if ok else "not enough CSET data"
+        for t, sv, q, ok in zip(
+            per["trend_pp_per_year"], per["severity"], per["q_value"], per["supported"], strict=True
         )
     ]
     facts = {
@@ -135,16 +135,12 @@ def priority_matrix(
     return per.reset_index().sort_values("trend_pp_per_year", ascending=False), facts
 
 
-def _quadrant(trend: float, severity: float, threshold: float) -> str:
-    emerging = trend > 0
-    serious = severity >= threshold
-    if emerging and serious:
-        return "Emerging & severe"
-    if emerging:
-        return "Emerging"
-    if serious:
-        return "Established & severe"
-    return "Established"
+def _quadrant(trend: float, severity: float, threshold: float, q_value: float) -> str:
+    """Emerging = positive Sen's slope of the yearly share (the x axis); severe = severity at or above the share
+    among all CSET-annotated incidents (the y line). Slopes with BH q >= 0.05 are marked as not significant."""
+    side = "Emerging" if trend > 0 else "Established"
+    label = f"{side} & severe" if severity >= threshold else side
+    return label if q_value < 0.05 else f"{label} (trend not significant)"
 
 
 # --------------------------------------------------------------------------------------

@@ -12,6 +12,7 @@ import pandas as pd
 from aicidentia import cache, registry
 from aicidentia.config import PROJECT_ROOT, load_config
 from aicidentia.data import clean, load
+from aicidentia.evaluation import metrics as M
 from aicidentia.features.text import embed_sentences, tokenize
 from aicidentia.models import retrieval as R
 from aicidentia.viz import plots, style
@@ -20,6 +21,7 @@ logger = logging.getLogger(__name__)
 PRODUCER = "aicidentia.models.retrieval_outputs.run_retrieval"
 SOURCE = "data/processed/incidents_clean.parquet + snapshot editor_similar_incidents"
 BASELINE = "bm25"
+REPEAT_FROM_YEAR = 2024
 PRIMARY = "rr"  # mean reciprocal rank (MRR)
 METRICS = ["rr", "p@5", "r@10", "hit@5", "ndcg@10", "dissimilar@5", "rr@3", "p@3", "hit@3"] + [
     f"recall@{k}" for k in R.KS
@@ -49,6 +51,7 @@ class RetrievalResults:
     examples: pd.DataFrame | None = None
     deployed: str = ""
     deployed_reason: str = ""
+    repeat: dict[str, Any] = field(default_factory=dict)
     facts: dict[str, Any] = field(default_factory=dict)
 
 
@@ -196,8 +199,49 @@ def run_retrieval() -> RetrievalResults:
         "deployed_reason": res.deployed_reason,
         "fallback": BASELINE,
         "aiid_nlp_rr3": float(res.suggestions["rr@3"].iloc[0]),
+        "mrr3": {
+            m: float(g["rr@3"].mean())
+            for m, g in res.per_query["all"].groupby("method", sort=False)
+        },
     }
+    res.repeat = repeated_failures(frame, res.per_query, gt, n_boot, seed)
+    res.facts["repeat"] = res.repeat
     return res
+
+
+def repeated_failures(
+    frame: pd.DataFrame,
+    per_query: dict[str, pd.DataFrame],
+    gt: R.GroundTruth,
+    n_boot: int,
+    seed: int,
+    from_year: int = REPEAT_FROM_YEAR,
+) -> dict[str, Any]:
+    """'Learning from failure' (D11): of the incidents from `from_year` on, how many have an editor-linked
+    EARLIER precedent, and how often each method finds one in its top 5 when it searches only earlier incidents."""
+    recent = frame.loc[frame["year"] >= from_year, "incident_id"].astype(int)
+    earlier = per_query["earlier"]
+    with_precedent = earlier[earlier["query"].isin(set(recent))]
+    queries = sorted(with_precedent["query"].unique())
+    found = {}
+    for method, g in with_precedent.groupby("method", sort=False):
+        point = float(g["hit@5"].mean())
+        lo, hi = M.bootstrap_ci(g["hit@5"].to_numpy(), n_boot, seed)
+        found[method] = {
+            "hit@5": point,
+            "ci_low": lo,
+            "ci_high": hi,
+            "mrr3": float(g["rr@3"].mean()),
+        }
+    linked_recent = sum(1 for q in recent if q in gt.relevant)
+    return {
+        "from_year": from_year,
+        "recent_incidents": int(len(recent)),
+        "recent_with_any_editor_link": int(linked_recent),
+        "recent_with_earlier_precedent": len(queries),
+        "share_with_earlier_precedent": len(queries) / len(recent) if len(recent) else float("nan"),
+        "found_in_top5": found,
+    }
 
 
 # --------------------------------------------------------------------------------------

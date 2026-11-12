@@ -210,7 +210,7 @@ def test_select_only_and_from():
         pipeline.select(steps, only=["phase9"])
     assert [s.name for s in pipeline.steps(pipeline.RefreshOptions(dashboard_check=False))][
         -1
-    ] == "phase7"
+    ] == "story"
 
 
 def test_write_summary(tmp_path):

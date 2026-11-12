@@ -1270,3 +1270,127 @@ def plot_label_confusion(joint: pd.DataFrame, n: int) -> plt.Figure:
     ax.set_title("Where the MIT labels are likely wrong (estimated counts)", fontsize=7)
     fig.tight_layout(rect=(0, 0.03, 1, 1))
     return fig
+
+
+# --------------------------------------------------------------------------------------
+# Story: before/after ChatGPT, risk priority matrix
+# --------------------------------------------------------------------------------------
+
+
+def plot_chatgpt_slopes(themes: pd.DataFrame, domains: pd.DataFrame, cutoff: str) -> plt.Figure:
+    """Slope chart of shares before vs after the cut-off; lines coloured by the adjusted residual sign
+    (blue = over-represented after, vermillion = under-represented after, grey = not significant)."""
+    apply_style()
+    fig, axes = plt.subplots(1, 2, figsize=(DOUBLE_COLUMN_IN, 3.6))
+    for ax, table, title in (
+        (axes[0], themes, "Themes (all incidents)"),
+        (axes[1], domains, "MIT risk domains (labelled incidents)"),
+    ):
+        top = max(table["share_before"].max(), table["share_after"].max())
+        for r in table.itertuples():
+            colour = (
+                PALETTE["blue"]
+                if r.adj_residual_after > 1.96
+                else PALETTE["vermillion"]
+                if r.adj_residual_after < -1.96
+                else PALETTE["grey"]
+            )
+            ax.plot([0, 1], [r.share_before, r.share_after], color=colour, lw=1.2, marker="o", ms=3)
+        _label_column(ax, table["share_after"].to_numpy(), list(table["group"]), 1.04, "left", top)
+        _label_column(ax, table["share_before"].to_numpy(), None, -0.04, "right", top)
+        ax.set_xlim(-0.55, 1.95)
+        ax.set_xticks([0, 1])
+        ax.set_xticklabels([f"before\n{cutoff}", f"after\n{cutoff}"], fontsize=6)
+        ax.set_ylabel("Share of incidents")
+        ax.yaxis.set_major_locator(plt.MultipleLocator(0.05 if top < 0.3 else 0.1))
+        ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
+        ax.set_title(title, fontsize=7)
+        ax.spines["bottom"].set_visible(False)
+    fig.suptitle(
+        "What changed after ChatGPT: blue = significantly more common after, red = less (adjusted residual)",
+        fontsize=7.5,
+    )
+    fig.tight_layout(rect=(0, 0.03, 1, 0.95))
+    return fig
+
+
+def _label_column(
+    ax: plt.Axes, values: np.ndarray, names: list[str] | None, x: float, ha: str, top: float
+) -> None:
+    """Value (and name) labels for one side of a slope chart, nudged apart so they do not overlap."""
+    order = np.argsort(values)
+    gap = top * 0.045
+    placed: list[float] = []
+    positions = np.empty(len(values))
+    for i in order:
+        y = values[i]
+        if placed and y - placed[-1] < gap:
+            y = placed[-1] + gap
+        placed.append(y)
+        positions[i] = y
+    for i, y in enumerate(positions):
+        text = f"{values[i]:.0%}" + (f"  {short_domain(names[i])}" if names else "")
+        ax.text(x, y, text, ha=ha, va="center", fontsize=5.3)
+
+
+def plot_risk_matrix(matrix: pd.DataFrame, threshold: float, min_cset: int) -> plt.Figure:
+    """Trend (Sen's slope of yearly share) vs severity (CSET share with tangible harm, injuries or deaths);
+    bubble area = incidents; themes with fewer than `min_cset` CSET-annotated incidents in grey with their n."""
+    apply_style()
+    fig, ax = plt.subplots(figsize=(DOUBLE_COLUMN_IN, 4.0))
+    size = 900 * matrix["incidents"] / matrix["incidents"].max()
+    ok = matrix["supported"]
+    ax.scatter(
+        matrix.loc[~ok, "trend_pp_per_year"],
+        matrix.loc[~ok, "severity"],
+        s=size[~ok],
+        color=PALETTE["grey"],
+        alpha=0.25,
+        edgecolor=PALETTE["grey"],
+    )
+    ax.scatter(
+        matrix.loc[ok, "trend_pp_per_year"],
+        matrix.loc[ok, "severity"],
+        s=size[ok],
+        color=PALETTE["blue"],
+        alpha=0.7,
+        edgecolor="black",
+    )
+    ordered = matrix.sort_values("trend_pp_per_year").reset_index(drop=True)
+    sizes = 900 * ordered["incidents"] / matrix["incidents"].max()
+    for i, r in ordered.iterrows():
+        label = r["theme"] if r["supported"] else f"{r['theme']} (CSET n={r['cset_n']})"
+        radius = float(np.sqrt(sizes[i] / np.pi)) + 1.5
+        above = i % 2 == 0
+        ax.annotate(
+            textwrap.fill(label, 24),
+            (r["trend_pp_per_year"], r["severity"]),
+            xytext=(0, radius if above else -radius),
+            textcoords="offset points",
+            fontsize=5.3,
+            ha="center",
+            va="bottom" if above else "top",
+            color="black" if r["supported"] else PALETTE["grey"],
+        )
+    ax.axvline(0, color=PALETTE["grey"], lw=0.6, ls="--")
+    ax.axhline(threshold, color=PALETTE["grey"], lw=0.6, ls="--")
+    x0, x1 = ax.get_xlim()
+    for text, x, y, ha in (
+        ("Emerging & severe", x1, 1.03, "right"),
+        ("Established & severe", x0, 1.03, "left"),
+        ("Emerging", x1, -0.2, "right"),
+        ("Established", x0, -0.2, "left"),
+    ):
+        ax.text(
+            x, y, text, ha=ha, va="center", fontsize=7, fontweight="bold", color=PALETTE["purple"]
+        )
+    ax.set_ylim(-0.25, 1.1)
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
+    ax.set_xlabel("Trend: Sen's slope of the theme's yearly share (percentage points per year)")
+    ax.set_ylabel("Severity: CSET-annotated incidents with\ntangible harm, injuries or deaths")
+    ax.set_title(
+        f"Risk priority matrix (bubble = incidents; grey = fewer than {min_cset} CSET annotations, not supported)",
+        fontsize=7,
+    )
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    return fig

@@ -9,6 +9,7 @@ rules (answers duplicate_review.csv and entity_review.csv by rules D2 and D3)
   -> phase5 (network)
   -> phase6 (classification; scores the Colab DistilBERT predictions if present and valid)
   -> phase7 (retrieval)
+-> story (cross-question analyses, docs/key_findings.md; needs phases 4-7)
 -> dashboard (headless check that every page renders)
 
 A failed step blocks the steps that depend on it; the others still run. Nothing here edits a manual file.
@@ -161,6 +162,18 @@ def run_phase7() -> str:
     return f"best {res.facts['best_method']} (MRR {res.facts['best_mrr']:.3f}); deployed {res.deployed}"
 
 
+def run_story() -> str:
+    from aicidentia.models import story_outputs
+
+    res = story_outputs.run_story()
+    story_outputs.write_all(res)
+    f = res.facts
+    return (
+        f"ChatGPT shift: domains V={f['chatgpt_domains']['cramers_v']:.2f}, themes V={f['chatgpt_themes']['cramers_v']:.2f}; "
+        f"risk matrix supported for {f['matrix_themes_supported']}/{f['matrix_themes_total']} themes; {len(res.findings)} key findings"
+    )
+
+
 def check_dashboard() -> str:
     """Render every page headlessly; fail if any page raises."""
     from streamlit.testing.v1 import AppTest
@@ -199,6 +212,12 @@ def steps(options: RefreshOptions | None = None) -> list[Step]:
         Step("phase5", "Phase 5 network", run_phase5, ("phase2",)),
         Step("phase6", "Phase 6 classification (+ Colab predictions)", run_phase6, ("phase2",)),
         Step("phase7", "Phase 7 retrieval", run_phase7, ("phase2",)),
+        Step(
+            "story",
+            "Story: ChatGPT shift, risk matrix, synthesis, key findings",
+            run_story,
+            ("phase4", "phase5", "phase6", "phase7"),
+        ),
     ]
     if options.dashboard_check:
         out.append(
@@ -206,7 +225,7 @@ def steps(options: RefreshOptions | None = None) -> list[Step]:
                 "dashboard",
                 "Dashboard check (all pages render)",
                 check_dashboard,
-                ("phase4", "phase5", "phase6", "phase7"),
+                ("phase4", "phase5", "phase6", "phase7", "story"),
             )
         )
     return out

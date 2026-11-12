@@ -220,7 +220,11 @@ def kappa_bootstrap(
         values.append(cohens_kappa(a[idx], b[idx]))
     values = [v for v in values if not np.isnan(v)]
     if not values:  # every resample degenerate (e.g. one side constant): no interval
-        return cohens_kappa(a, b) if len(set(a) | set(b)) > 1 else float("nan"), float("nan"), float("nan")
+        return (
+            cohens_kappa(a, b) if len(set(a) | set(b)) > 1 else float("nan"),
+            float("nan"),
+            float("nan"),
+        )
     return cohens_kappa(a, b), float(np.quantile(values, 0.025)), float(np.quantile(values, 0.975))
 
 

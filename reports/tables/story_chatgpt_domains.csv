@@ -1,0 +1,8 @@
+group,n_before,n_after,share_before,share_after,change_pp,adj_residual_after,min_expected,driver
+Malicious Actors & Misuse,56,508,0.1207,0.5157,39.5046,14.3896,180.6046,over-represented after
+Misinformation,21,174,0.0453,0.1766,13.1391,6.8377,62.4431,over-represented after
+Human-Computer Interaction,12,30,0.0259,0.0305,0.4595,0.4864,13.4493,
+Privacy & Security,43,65,0.0927,0.066,-2.6683,-1.8043,34.5839,
+Socioeconomic & Environmental Harms,11,10,0.0237,0.0102,-1.3555,-2.0143,6.7246,under-represented after
+Discrimination and Toxicity,140,87,0.3017,0.0883,-21.3399,-10.4269,72.6901,under-represented after
+"AI system safety, failures, and limitations",181,111,0.3901,0.1127,-27.7396,-12.2815,93.5045,under-represented after

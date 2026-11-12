@@ -1,0 +1,13 @@
+group,n_before,n_after,share_before,share_after,change_pp,adj_residual_after,min_expected,driver
+Deepfake videos and AI hoaxes,11,205,0.0233,0.1633,14.0091,7.8511,59.125,over-represented after
+Deepfake impersonation scams,12,197,0.0254,0.157,13.1602,7.4806,57.2089,over-represented after
+Hallucinated legal citations,17,134,0.0359,0.1068,7.0832,4.6489,41.3328,over-represented after
+LLM chatbots and agents,57,245,0.1205,0.1952,7.4712,3.6463,82.6655,over-represented after
+AI nude images in schools,25,124,0.0529,0.0988,4.5951,3.0341,40.7853,over-represented after
+AI election disinformation,17,94,0.0359,0.0749,3.896,2.9453,30.3837,over-represented after
+License-plate reader errors,15,28,0.0317,0.0223,-0.9402,-1.1187,11.7703,
+Autonomous vehicles and robotaxis,50,50,0.1057,0.0398,-6.5868,-5.2284,27.3727,under-represented after
+Algorithmic bias in search and images,87,83,0.1839,0.0661,-11.7797,-7.3308,46.5336,under-represented after
+Content moderation failures,71,51,0.1501,0.0406,-10.9468,-7.9206,33.3947,under-represented after
+Facial recognition and false arrests,59,32,0.1247,0.0255,-9.9238,-8.2349,24.9091,under-represented after
+Tesla Autopilot crashes,52,12,0.1099,0.0096,-10.0375,-9.851,17.5185,under-represented after

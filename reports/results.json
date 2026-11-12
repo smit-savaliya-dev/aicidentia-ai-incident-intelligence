@@ -3884,6 +3884,17 @@
     "source_file": "data/processed/incidents_clean.parquet + snapshot editor_similar_incidents",
     "function": "aicidentia.models.retrieval_outputs.run_retrieval"
   },
+  "rq4.mrr3": {
+    "value": {
+      "tfidf": 0.4451901565995526,
+      "bm25": 0.4459358687546607,
+      "minilm": 0.39149888143176736,
+      "mpnet": 0.4116331096196868,
+      "hybrid": 0.4671886651752423
+    },
+    "source_file": "data/processed/incidents_clean.parquet + snapshot editor_similar_incidents",
+    "function": "aicidentia.models.retrieval_outputs.run_retrieval"
+  },
   "rq4.ndcg10": {
     "value": {
       "tfidf": 0.4919031050427004,
@@ -3937,6 +3948,49 @@
   },
   "rq4.relevant_per_query_mean": {
     "value": 1.45413870246085,
+    "source_file": "data/processed/incidents_clean.parquet + snapshot editor_similar_incidents",
+    "function": "aicidentia.models.retrieval_outputs.run_retrieval"
+  },
+  "rq4.repeat": {
+    "value": {
+      "from_year": 2024,
+      "recent_incidents": 1062,
+      "recent_with_any_editor_link": 306,
+      "recent_with_earlier_precedent": 183,
+      "share_with_earlier_precedent": 0.17231638418079095,
+      "found_in_top5": {
+        "tfidf": {
+          "hit@5": 0.726775956284153,
+          "ci_low": 0.6557377049180327,
+          "ci_high": 0.7868852459016393,
+          "mrr3": 0.54735883424408
+        },
+        "bm25": {
+          "hit@5": 0.7595628415300546,
+          "ci_low": 0.6939890710382514,
+          "ci_high": 0.819672131147541,
+          "mrr3": 0.5819672131147541
+        },
+        "minilm": {
+          "hit@5": 0.6939890710382514,
+          "ci_low": 0.6284153005464481,
+          "ci_high": 0.7595628415300546,
+          "mrr3": 0.5355191256830601
+        },
+        "mpnet": {
+          "hit@5": 0.7103825136612022,
+          "ci_low": 0.6446721311475411,
+          "ci_high": 0.7759562841530054,
+          "mrr3": 0.5273224043715847
+        },
+        "hybrid": {
+          "hit@5": 0.7759562841530054,
+          "ci_low": 0.7103825136612022,
+          "ci_high": 0.8360655737704918,
+          "mrr3": 0.5892531876138434
+        }
+      }
+    },
     "source_file": "data/processed/incidents_clean.parquet + snapshot editor_similar_incidents",
     "function": "aicidentia.models.retrieval_outputs.run_retrieval"
   },
@@ -4752,5 +4806,555 @@
     "value": 196,
     "source_file": "data/manual",
     "function": "aicidentia.data.rules.apply_all"
+  },
+  "story.chatgpt_cutoff": {
+    "value": "2022-11-30",
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.story_outputs.run_story"
+  },
+  "story.chatgpt_domains": {
+    "value": {
+      "chi2": 386.2974395643687,
+      "dof": 6,
+      "p_value": 2.4650594637498138e-80,
+      "cramers_v": 0.5163292423617442,
+      "n": 1449,
+      "n_before": 464,
+      "n_after": 985,
+      "min_expected": 6.72463768115942,
+      "table": [
+        {
+          "group": "Malicious Actors & Misuse",
+          "n_before": 56,
+          "n_after": 508,
+          "share_before": 0.1207,
+          "share_after": 0.5157,
+          "change_pp": 39.5046,
+          "adj_residual_after": 14.3896,
+          "min_expected": 180.6046,
+          "driver": "over-represented after"
+        },
+        {
+          "group": "Misinformation",
+          "n_before": 21,
+          "n_after": 174,
+          "share_before": 0.0453,
+          "share_after": 0.1766,
+          "change_pp": 13.1391,
+          "adj_residual_after": 6.8377,
+          "min_expected": 62.4431,
+          "driver": "over-represented after"
+        },
+        {
+          "group": "Human-Computer Interaction",
+          "n_before": 12,
+          "n_after": 30,
+          "share_before": 0.0259,
+          "share_after": 0.0305,
+          "change_pp": 0.4595,
+          "adj_residual_after": 0.4864,
+          "min_expected": 13.4493,
+          "driver": ""
+        },
+        {
+          "group": "Privacy & Security",
+          "n_before": 43,
+          "n_after": 65,
+          "share_before": 0.0927,
+          "share_after": 0.066,
+          "change_pp": -2.6683,
+          "adj_residual_after": -1.8043,
+          "min_expected": 34.5839,
+          "driver": ""
+        },
+        {
+          "group": "Socioeconomic & Environmental Harms",
+          "n_before": 11,
+          "n_after": 10,
+          "share_before": 0.0237,
+          "share_after": 0.0102,
+          "change_pp": -1.3555,
+          "adj_residual_after": -2.0143,
+          "min_expected": 6.7246,
+          "driver": "under-represented after"
+        },
+        {
+          "group": "Discrimination and Toxicity",
+          "n_before": 140,
+          "n_after": 87,
+          "share_before": 0.3017,
+          "share_after": 0.0883,
+          "change_pp": -21.3399,
+          "adj_residual_after": -10.4269,
+          "min_expected": 72.6901,
+          "driver": "under-represented after"
+        },
+        {
+          "group": "AI system safety, failures, and limitations",
+          "n_before": 181,
+          "n_after": 111,
+          "share_before": 0.3901,
+          "share_after": 0.1127,
+          "change_pp": -27.7396,
+          "adj_residual_after": -12.2815,
+          "min_expected": 93.5045,
+          "driver": "under-represented after"
+        }
+      ],
+      "mit_coverage_before": 0.9809725158562368,
+      "mit_coverage_after": 0.7848605577689243
+    },
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.story_outputs.run_story"
+  },
+  "story.chatgpt_malicious_share_after": {
+    "value": 0.515736040609137,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.story_outputs.run_story"
+  },
+  "story.chatgpt_malicious_share_before": {
+    "value": 0.1206896551724138,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.story_outputs.run_story"
+  },
+  "story.chatgpt_themes": {
+    "value": {
+      "chi2": 441.77616713798614,
+      "dof": 11,
+      "p_value": 8.097301548078513e-88,
+      "cramers_v": 0.5056258538986896,
+      "n": 1728,
+      "n_before": 473,
+      "n_after": 1255,
+      "min_expected": 11.77025462962963,
+      "table": [
+        {
+          "group": "Deepfake videos and AI hoaxes",
+          "n_before": 11,
+          "n_after": 205,
+          "share_before": 0.0233,
+          "share_after": 0.1633,
+          "change_pp": 14.0091,
+          "adj_residual_after": 7.8511,
+          "min_expected": 59.125,
+          "driver": "over-represented after"
+        },
+        {
+          "group": "Deepfake impersonation scams",
+          "n_before": 12,
+          "n_after": 197,
+          "share_before": 0.0254,
+          "share_after": 0.157,
+          "change_pp": 13.1602,
+          "adj_residual_after": 7.4806,
+          "min_expected": 57.2089,
+          "driver": "over-represented after"
+        },
+        {
+          "group": "Hallucinated legal citations",
+          "n_before": 17,
+          "n_after": 134,
+          "share_before": 0.0359,
+          "share_after": 0.1068,
+          "change_pp": 7.0832,
+          "adj_residual_after": 4.6489,
+          "min_expected": 41.3328,
+          "driver": "over-represented after"
+        },
+        {
+          "group": "LLM chatbots and agents",
+          "n_before": 57,
+          "n_after": 245,
+          "share_before": 0.1205,
+          "share_after": 0.1952,
+          "change_pp": 7.4712,
+          "adj_residual_after": 3.6463,
+          "min_expected": 82.6655,
+          "driver": "over-represented after"
+        },
+        {
+          "group": "AI nude images in schools",
+          "n_before": 25,
+          "n_after": 124,
+          "share_before": 0.0529,
+          "share_after": 0.0988,
+          "change_pp": 4.5951,
+          "adj_residual_after": 3.0341,
+          "min_expected": 40.7853,
+          "driver": "over-represented after"
+        },
+        {
+          "group": "AI election disinformation",
+          "n_before": 17,
+          "n_after": 94,
+          "share_before": 0.0359,
+          "share_after": 0.0749,
+          "change_pp": 3.896,
+          "adj_residual_after": 2.9453,
+          "min_expected": 30.3837,
+          "driver": "over-represented after"
+        },
+        {
+          "group": "License-plate reader errors",
+          "n_before": 15,
+          "n_after": 28,
+          "share_before": 0.0317,
+          "share_after": 0.0223,
+          "change_pp": -0.9402,
+          "adj_residual_after": -1.1187,
+          "min_expected": 11.7703,
+          "driver": ""
+        },
+        {
+          "group": "Autonomous vehicles and robotaxis",
+          "n_before": 50,
+          "n_after": 50,
+          "share_before": 0.1057,
+          "share_after": 0.0398,
+          "change_pp": -6.5868,
+          "adj_residual_after": -5.2284,
+          "min_expected": 27.3727,
+          "driver": "under-represented after"
+        },
+        {
+          "group": "Algorithmic bias in search and images",
+          "n_before": 87,
+          "n_after": 83,
+          "share_before": 0.1839,
+          "share_after": 0.0661,
+          "change_pp": -11.7797,
+          "adj_residual_after": -7.3308,
+          "min_expected": 46.5336,
+          "driver": "under-represented after"
+        },
+        {
+          "group": "Content moderation failures",
+          "n_before": 71,
+          "n_after": 51,
+          "share_before": 0.1501,
+          "share_after": 0.0406,
+          "change_pp": -10.9468,
+          "adj_residual_after": -7.9206,
+          "min_expected": 33.3947,
+          "driver": "under-represented after"
+        },
+        {
+          "group": "Facial recognition and false arrests",
+          "n_before": 59,
+          "n_after": 32,
+          "share_before": 0.1247,
+          "share_after": 0.0255,
+          "change_pp": -9.9238,
+          "adj_residual_after": -8.2349,
+          "min_expected": 24.9091,
+          "driver": "under-represented after"
+        },
+        {
+          "group": "Tesla Autopilot crashes",
+          "n_before": 52,
+          "n_after": 12,
+          "share_before": 0.1099,
+          "share_after": 0.0096,
+          "change_pp": -10.0375,
+          "adj_residual_after": -9.851,
+          "min_expected": 17.5185,
+          "driver": "under-represented after"
+        }
+      ]
+    },
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.story_outputs.run_story"
+  },
+  "story.chatgpt_window_start": {
+    "value": 2015,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.story_outputs.run_story"
+  },
+  "story.key_findings": {
+    "value": [
+      {
+        "title": "AI harm shifted from failures to misuse after ChatGPT",
+        "sentence": "Malicious Actors & Misuse rose from 12% to 52% of MIT-labelled incidents after 30 Nov 2022, the largest shift in the risk-domain mix (Cramer's V 0.52; themes V 0.51).",
+        "number": "12% -> 52%",
+        "key": "story.chatgpt_malicious_share_after; story.chatgpt_domains",
+        "limitation": "Reported incidents only; MIT coverage is lower after the cut-off (78% vs 98%) and AIID's editorial intake changed over the same years.",
+        "page": "Themes and Trends"
+      },
+      {
+        "title": "5 of 12 risk themes are emerging",
+        "sentence": "Deepfake videos and hoaxes, hallucinated legal citations, deepfake impersonation scams, AI nude images in schools and AI election disinformation all grow significantly as a share of incidents (Mann-Kendall with Benjamini-Hochberg, 2015-2025).",
+        "number": "5 emerging themes",
+        "key": "rq1b.emerging_themes; rq1b.themes_share_trends",
+        "limitation": "Eleven complete years give little power; shares describe the database, not the real-world frequency of harm.",
+        "page": "Themes and Trends"
+      },
+      {
+        "title": "One in six recent incidents repeats a known failure, and search finds the precedent",
+        "sentence": "17% of incidents since 2024 have an editor-linked earlier precedent, and searching only earlier incidents puts it in the top 5 for 76% of them; at depth 3 our search scores MRR 0.45 against 0.034 for AIID's built-in suggestions.",
+        "number": "76% found in top 5",
+        "key": "rq4.repeat; rq4.mrr3; rq4.aiid_nlp_rr3",
+        "limitation": "Editors link only some incidents, so the share with a precedent is a lower bound and the search is scored on linked incidents only.",
+        "page": "Precedent Finder"
+      },
+      {
+        "title": "The AI-generated labels are usable but about 1 in 7 is doubtful",
+        "sentence": "Editor-linked similar incidents share an MIT domain 75% of the time against 30% by chance, and the discrimination label agrees substantially with human CSETv1 annotation (kappa 0.74), yet confident learning estimates 15% of labels are wrong.",
+        "number": "15% estimated label noise",
+        "key": "rq3rel.pairs_similar; rq3rel.mapping_kappa; rq3rel.cl_noise_rate",
+        "limitation": "Human fields map only partially onto MIT domains and cover pre-2024 incidents; confident learning inherits the classifier's own errors.",
+        "page": "Label Reliability"
+      },
+      {
+        "title": "Deepfake, scam and election harms concentrate around the big platforms",
+        "sentence": "3 of the 5 emerging themes concentrate in network community 1, where 92%-96% of their incidents involve its entities (about 1.6 times the rate for all incidents), with Meta and YouTube as the most central allegedly involved organisations.",
+        "number": "96% of incidents",
+        "key": "story.synthesis; rq2.community_profile",
+        "limitation": "Organisations are alleged deployers or developers, centrality reflects how often they are reported (not blame), and communities depend on a few hub entities.",
+        "page": "Risk Network"
+      }
+    ],
+    "source_file": "docs/key_findings.md",
+    "function": "aicidentia.models.story_outputs.run_story"
+  },
+  "story.matrix": {
+    "value": [
+      {
+        "theme": "Deepfake videos and AI hoaxes",
+        "incidents": 216,
+        "cset_n": 3,
+        "severe_n": 1.0,
+        "severity": 0.3333,
+        "trend_pp_per_year": 1.46,
+        "q_value": 0.0293,
+        "emerging": true,
+        "supported": false,
+        "quadrant": "not enough CSET data"
+      },
+      {
+        "theme": "Hallucinated legal citations",
+        "incidents": 155,
+        "cset_n": 13,
+        "severe_n": 3.0,
+        "severity": 0.2308,
+        "trend_pp_per_year": 1.11,
+        "q_value": 0.0239,
+        "emerging": true,
+        "supported": false,
+        "quadrant": "not enough CSET data"
+      },
+      {
+        "theme": "AI nude images in schools",
+        "incidents": 153,
+        "cset_n": 11,
+        "severe_n": 1.0,
+        "severity": 0.0909,
+        "trend_pp_per_year": 1.07,
+        "q_value": 0.0203,
+        "emerging": true,
+        "supported": false,
+        "quadrant": "not enough CSET data"
+      },
+      {
+        "theme": "Deepfake impersonation scams",
+        "incidents": 209,
+        "cset_n": 5,
+        "severe_n": 3.0,
+        "severity": 0.6,
+        "trend_pp_per_year": 1.07,
+        "q_value": 0.0203,
+        "emerging": true,
+        "supported": false,
+        "quadrant": "not enough CSET data"
+      },
+      {
+        "theme": "AI election disinformation",
+        "incidents": 111,
+        "cset_n": 4,
+        "severe_n": 0.0,
+        "severity": 0.0,
+        "trend_pp_per_year": 0.59,
+        "q_value": 0.0335,
+        "emerging": true,
+        "supported": false,
+        "quadrant": "not enough CSET data"
+      },
+      {
+        "theme": "LLM chatbots and agents",
+        "incidents": 311,
+        "cset_n": 31,
+        "severe_n": 7.0,
+        "severity": 0.2258,
+        "trend_pp_per_year": 0.23,
+        "q_value": 0.7555,
+        "emerging": false,
+        "supported": true,
+        "quadrant": "Emerging (trend not significant)"
+      },
+      {
+        "theme": "License-plate reader errors",
+        "incidents": 48,
+        "cset_n": 10,
+        "severe_n": 8.0,
+        "severity": 0.8,
+        "trend_pp_per_year": 0.16,
+        "q_value": 0.4259,
+        "emerging": false,
+        "supported": false,
+        "quadrant": "not enough CSET data"
+      },
+      {
+        "theme": "Tesla Autopilot crashes",
+        "incidents": 67,
+        "cset_n": 17,
+        "severe_n": 13.0,
+        "severity": 0.7647,
+        "trend_pp_per_year": -0.76,
+        "q_value": 0.1434,
+        "emerging": false,
+        "supported": false,
+        "quadrant": "not enough CSET data"
+      },
+      {
+        "theme": "Autonomous vehicles and robotaxis",
+        "incidents": 101,
+        "cset_n": 19,
+        "severe_n": 15.0,
+        "severity": 0.7895,
+        "trend_pp_per_year": -1.15,
+        "q_value": 0.0203,
+        "emerging": false,
+        "supported": false,
+        "quadrant": "not enough CSET data"
+      },
+      {
+        "theme": "Facial recognition and false arrests",
+        "incidents": 97,
+        "cset_n": 13,
+        "severe_n": 3.0,
+        "severity": 0.2308,
+        "trend_pp_per_year": -1.34,
+        "q_value": 0.0926,
+        "emerging": false,
+        "supported": false,
+        "quadrant": "not enough CSET data"
+      },
+      {
+        "theme": "Content moderation failures",
+        "incidents": 126,
+        "cset_n": 24,
+        "severe_n": 6.0,
+        "severity": 0.25,
+        "trend_pp_per_year": -1.66,
+        "q_value": 0.1157,
+        "emerging": false,
+        "supported": false,
+        "quadrant": "not enough CSET data"
+      },
+      {
+        "theme": "Algorithmic bias in search and images",
+        "incidents": 181,
+        "cset_n": 57,
+        "severe_n": 13.0,
+        "severity": 0.2281,
+        "trend_pp_per_year": -1.98,
+        "q_value": 0.0239,
+        "emerging": false,
+        "supported": true,
+        "quadrant": "Established"
+      }
+    ],
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.story_outputs.run_story"
+  },
+  "story.matrix_cset_incidents": {
+    "value": 207,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.story_outputs.run_story"
+  },
+  "story.matrix_cset_year_max": {
+    "value": 2023,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.story_outputs.run_story"
+  },
+  "story.matrix_min_cset_per_theme": {
+    "value": 30,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.story_outputs.run_story"
+  },
+  "story.matrix_severity_overall": {
+    "value": 0.3526570048309179,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.story_outputs.run_story"
+  },
+  "story.matrix_themes_supported": {
+    "value": 2,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.story_outputs.run_story"
+  },
+  "story.matrix_themes_total": {
+    "value": 12,
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.story_outputs.run_story"
+  },
+  "story.synthesis": {
+    "value": [
+      {
+        "theme": "Deepfake videos and AI hoaxes",
+        "incidents": 216,
+        "community": 1,
+        "share_in_community": 0.9444,
+        "lift": 1.6213,
+        "alleged_central_organisations": "Meta; YouTube; Quantum AI",
+        "dominant_mit_domain": "Malicious Actors & Misuse",
+        "dominant_domain_share": 0.691,
+        "mit_coverage": 0.8241
+      },
+      {
+        "theme": "Hallucinated legal citations",
+        "incidents": 155,
+        "community": 0,
+        "share_in_community": 0.671,
+        "lift": 1.8785,
+        "alleged_central_organisations": "OpenAI; Google; Anthropic",
+        "dominant_mit_domain": "Misinformation",
+        "dominant_domain_share": 0.4793,
+        "mit_coverage": 0.7806
+      },
+      {
+        "theme": "Deepfake impersonation scams",
+        "incidents": 209,
+        "community": 1,
+        "share_in_community": 0.9569,
+        "lift": 1.6427,
+        "alleged_central_organisations": "Meta; YouTube; Quantum AI",
+        "dominant_mit_domain": "Malicious Actors & Misuse",
+        "dominant_domain_share": 0.9617,
+        "mit_coverage": 0.8756
+      },
+      {
+        "theme": "AI nude images in schools",
+        "incidents": 153,
+        "community": 3,
+        "share_in_community": 0.8954,
+        "lift": 3.1788,
+        "alleged_central_organisations": "Universities; Apple; Institutions of higher education",
+        "dominant_mit_domain": "Malicious Actors & Misuse",
+        "dominant_domain_share": 0.672,
+        "mit_coverage": 0.817
+      },
+      {
+        "theme": "AI election disinformation",
+        "incidents": 111,
+        "community": 1,
+        "share_in_community": 0.9189,
+        "lift": 1.5774,
+        "alleged_central_organisations": "Meta; YouTube; Matryoshka",
+        "dominant_mit_domain": "Malicious Actors & Misuse",
+        "dominant_domain_share": 0.7525,
+        "mit_coverage": 0.9099
+      }
+    ],
+    "source_file": "data/processed/incidents_clean.parquet",
+    "function": "aicidentia.models.story_outputs.run_story"
   }
 }

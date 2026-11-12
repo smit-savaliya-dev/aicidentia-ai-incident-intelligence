@@ -175,3 +175,72 @@ Socioeconomic & Environmental Harms 25.0%; lowest: Malicious Actors & Misuse 12.
 [`rq3rel.cl_noise_by_domain`]. Largest exchange: Malicious Actors & Misuse vs Misinformation (52 estimated
 incidents, 40 of them one way), read as taxonomy overlap. Retraining without flagged incidents changes macro-F1
 by +0.003 (95% CI [-0.023, +0.026], p = 0.81) [`rq3rel.retrain_diff`]: no effect on performance.
+
+## D9. What changed after ChatGPT
+
+**What.** Incidents from 2015 (the trend window start [`audit.year_range_recommendation`]) are split at
+30 Nov 2022 (ChatGPT's public release): before = incident date earlier than that day. Chi-square test of
+independence of period x theme (all incidents) and period x MIT domain (labelled incidents only), adjusted
+standardised residuals (|r| > 1.96 marks a cell that drives the change) and Cramer's V as effect size
+[`story.chatgpt_themes`, `story.chatgpt_domains`]. Shares, not counts, are compared, so the partial year 2026
+can stay in.
+
+**Why.** A single, well-known breakpoint gives a simple before/after story; residuals show which themes drive
+it, and Cramer's V shows how large it is independent of sample size.
+
+**Effect.** Themes: n = 1,728 (473 before, 1,255 after), chi-square 441.8 on 11 df, p < 1e-80, V = 0.51.
+Domains: n = 1,449, chi-square 386.3 on 6 df, V = 0.52; Malicious Actors & Misuse rises from 12% to 52%
+[`story.chatgpt_malicious_share_before`, `..._after`], AI system safety falls from 39% to 11%. Coverage:
+MIT labels cover 98% of incidents before and 78% after [`story.chatgpt_domains.mit_coverage_*`]; the
+smallest expected cell is 6.7, above the usual minimum of 5. Limitation: AIID's intake and editorial focus
+changed over the same period, so this is a shift in reported incidents, not a causal effect of ChatGPT.
+
+## D10. Risk priority matrix: severity from CSETv1, shown only where coverage supports it
+
+**What.** x = Sen's slope of each theme's yearly share (from RQ1b, in percentage points per year);
+y = severity = share of the theme's CSETv1-annotated incidents with tangible harm that definitively occurred,
+or injuries > 0, or lives lost > 0; bubble size = incidents. Quadrants split at x = 0 and at the severity of
+all 207 CSET-annotated incidents (35.3% [`story.matrix_severity_overall`]); a quadrant label gets
+"(trend not significant)" when the BH q-value is 0.05 or more. Themes with fewer than 30 CSET-annotated
+incidents are drawn in grey with their n and get no quadrant [`story.matrix`].
+
+**Why.** CSETv1 is the only human-annotated harm-severity source in AIID. With fewer than 30 annotated
+incidents a share has a 95% interval wider than about +/-18 points, too wide to place a theme.
+
+**Effect.** Only 2 of 12 themes are supported [`story.matrix_themes_supported`]: LLM chatbots and agents
+(n = 31, severity 23%, positive but non-significant trend) and Algorithmic bias in search and images
+(n = 57, 23%, established). CSETv1 annotation stops in 2023 [`story.matrix_cset_year_max`], so the emerging
+deepfake, scam and election themes have 3-13 annotations each. **The data cannot support a severity ranking of
+the emerging themes;** the matrix is kept as an honest picture of that gap.
+
+## D11. Repeated failures and the like-for-like comparison with AIID's suggestions
+
+**What.** For incidents from 2024 on: the share with at least one editor-linked (similar) incident that
+happened strictly earlier, and, for those, the share where retrieval restricted to earlier incidents puts such a
+precedent in its top 5 (bootstrap CI over incidents) [`rq4.repeat`]. MRR@3 for every method on all 447 queries
+with all incidents as candidates, the same depth as AIID's three built-in suggestions [`rq4.mrr3`,
+`rq4.aiid_nlp_rr3`].
+
+**Why.** "Learning from failure" needs a measurable version: does a precedent exist, and would a search tool
+surface it?
+
+**Effect.** 1,062 incidents since 2024; 183 (17.2%) have an editor-linked earlier precedent; BM25 (deployed)
+finds one in its top 5 for 76% (95% CI 69-82%), the hybrid for 78%. MRR@3: BM25 0.446, hybrid 0.467, against
+0.034 for AIID's suggestions. Editors link only some incidents (306 of the 1,062 have any link), so 17.2% is a
+lower bound.
+
+## D12. Cross-question synthesis and key findings
+
+**What.** For each emerging theme, the network community whose entities appear in the largest share of the
+theme's incidents relative to all incidents (lift), the three organisations of that community present in the
+theme with the highest PageRank (always "alleged"), and the theme's dominant MIT domain with its coverage
+[`story.synthesis`]. `docs/key_findings.md` states five findings, each with one sentence, its number, its
+results.json key, its limitation and the dashboard page that shows it [`story.key_findings`].
+
+**Why.** Linking RQ1 (themes), RQ2 (communities) and RQ3 (domains) answers "who is involved in the risks that
+are growing" in one place, without new modelling.
+
+**Effect.** 3 of the 5 emerging themes (deepfake videos and hoaxes, deepfake scams, election disinformation)
+concentrate in community 1, where 92-96% of their incidents involve its entities (about 1.6 times the rate for
+all incidents), with Meta and YouTube as the most central allegedly involved organisations. Limitation: the
+communities depend on hub entities (Phase 5), and centrality reflects how often an organisation is reported.

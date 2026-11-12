@@ -154,7 +154,7 @@ def write_retrieval_doc(res: RetrievalResults, path: Path) -> None:
     add("")
     add("## 4. Examples (deployed method, titles only)\n")
     add(
-        "Two queries where an editor-similar incident appears in the top 5 and one where it does not (chosen by seed; incidents in the blind label-audit sample are excluded). Checked rows are editor-marked similar.\n"
+        "Two queries where an editor-similar incident appears in the top 5 and one where it does not (chosen by seed). Checked rows are editor-marked similar.\n"
     )
     for q, sub in res.examples.groupby("query", sort=False):
         add(
@@ -168,7 +168,35 @@ def write_retrieval_doc(res: RetrievalResults, path: Path) -> None:
             )
         )
         add("")
-    add("## 5. Limitations\n")
+    rp = res.repeat
+    if rp:
+        f3 = res.facts["mrr3"]
+        dep = rp["found_in_top5"][res.deployed]
+        add("## 5. Repeated failures: does a precedent exist, and do we find it?\n")
+        add(
+            f"Of the {rp['recent_incidents']:,} incidents from {rp['from_year']} on, **{rp['recent_with_earlier_precedent']} ({100 * rp['share_with_earlier_precedent']:.1f}%) have an editor-linked earlier precedent** "
+            f"({rp['recent_with_any_editor_link']} have any editor link). Searching only incidents that happened before each of them, the deployed method ({R.LABELS[res.deployed]}) puts a precedent in its top 5 "
+            f"for **{100 * dep['hit@5']:.0f}%** (95% CI {100 * dep['ci_low']:.0f}-{100 * dep['ci_high']:.0f}%). "
+            "The share with a precedent is a lower bound: editors link only some incidents, and recent ones may not yet be linked.\n"
+        )
+        rows = pd.DataFrame(
+            [
+                {
+                    "method": R.LABELS[m],
+                    "found in top 5": f"{100 * v['hit@5']:.0f}% [{100 * v['ci_low']:.0f}, {100 * v['ci_high']:.0f}]",
+                    "MRR@3": round(v["mrr3"], 3),
+                }
+                for m, v in rp["found_in_top5"].items()
+            ]
+        )
+        add(to_markdown(rows))
+        add("")
+        add(
+            f"**Like-for-like with AIID's built-in suggestions (MRR@3, all {res.facts['queries']} queries, all incidents as candidates):** "
+            + ", ".join(f"{R.LABELS[m]} {v:.3f}" for m, v in f3.items())
+            + f"; AIID's own suggestions {res.facts['aiid_nlp_rr3']:.3f}. AIID offers only three suggestions, so depth 3 is the fair comparison; the provenance caveat in section 3 still applies.\n"
+        )
+    add("## 6. Limitations\n")
     add(
         "- **Sparse, incomplete ground truth:** most queries have one relevant incident and editors do not mark every similar pair, so scores are lower bounds and small differences between methods are hard to detect.\n"
         "- **Query selection:** only incidents with editor links are evaluated; they are mostly recent (2023-2026), when editors used the feature most, so results describe recent incidents best.\n"

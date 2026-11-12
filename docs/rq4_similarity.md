@@ -102,7 +102,7 @@ The snapshot stores three NLP-based suggestions per incident (`nlp_similar_incid
 
 ## 4. Examples (deployed method, titles only)
 
-Two queries where an editor-similar incident appears in the top 5 and one where it does not (chosen by seed; incidents in the blind label-audit sample are excluded). Checked rows are editor-marked similar.
+Two queries where an editor-similar incident appears in the top 5 and one where it does not (chosen by seed). Checked rows are editor-marked similar.
 
 **Query #530: Telegram Channels Allowed Users to Make Non-Consensual Deepfake Porn as Paid Service** (first editor-similar incident at rank 5)
 
@@ -134,7 +134,21 @@ Two queries where an editor-similar incident appears in the top 5 and one where 
 | 4 | 862 | Purportedly AI-Generated Video Allegedly Depicts Martin Luther King Jr. Supporting Donald Trump |  |
 | 5 | 1150 | Purported Deepfake of Barack Obama's Detention Reportedly Amplified by Donald Trump via Truth Social |  |
 
-## 5. Limitations
+## 5. Repeated failures: does a precedent exist, and do we find it?
+
+Of the 1,062 incidents from 2024 on, **183 (17.2%) have an editor-linked earlier precedent** (306 have any editor link). Searching only incidents that happened before each of them, the deployed method (BM25) puts a precedent in its top 5 for **76%** (95% CI 69-82%). The share with a precedent is a lower bound: editors link only some incidents, and recent ones may not yet be linked.
+
+| method | found in top 5 | MRR@3 |
+|---|---|---|
+| TF-IDF (1-2-grams) | 73% [66, 79] | 0.547 |
+| BM25 | 76% [69, 82] | 0.582 |
+| MiniLM embeddings | 69% [63, 76] | 0.536 |
+| mpnet embeddings | 71% [64, 78] | 0.527 |
+| Hybrid (BM25 + mpnet, RRF) | 78% [71, 84] | 0.589 |
+
+**Like-for-like with AIID's built-in suggestions (MRR@3, all 447 queries, all incidents as candidates):** TF-IDF (1-2-grams) 0.445, BM25 0.446, MiniLM embeddings 0.391, mpnet embeddings 0.412, Hybrid (BM25 + mpnet, RRF) 0.467; AIID's own suggestions 0.034. AIID offers only three suggestions, so depth 3 is the fair comparison; the provenance caveat in section 3 still applies.
+
+## 6. Limitations
 
 - **Sparse, incomplete ground truth:** most queries have one relevant incident and editors do not mark every similar pair, so scores are lower bounds and small differences between methods are hard to detect.
 - **Query selection:** only incidents with editor links are evaluated; they are mostly recent (2023-2026), when editors used the feature most, so results describe recent incidents best.
