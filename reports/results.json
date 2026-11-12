@@ -2671,7 +2671,7 @@
         "weighted_degree": 0.8257575231399088,
         "betweenness": 0.4288668780461298,
         "pagerank": 0.6661911877166408,
-        "eigenvector": 0.5999857003241097,
+        "eigenvector": 0.6000778909333297,
         "n_incidents": 0.5627438172397491
       },
       {
@@ -2680,7 +2680,7 @@
         "weighted_degree": 1.0,
         "betweenness": 0.44727041154775077,
         "pagerank": 0.7701467805243426,
-        "eigenvector": 0.589285271350489,
+        "eigenvector": 0.5893758177887473,
         "n_incidents": 0.6456246177377105
       },
       {
@@ -2689,7 +2689,7 @@
         "weighted_degree": 0.4472704115477508,
         "betweenness": 1.0,
         "pagerank": 0.513712696640348,
-        "eigenvector": 0.2752194849209565,
+        "eigenvector": 0.2752617736821226,
         "n_incidents": 0.5486148386278187
       },
       {
@@ -2698,17 +2698,17 @@
         "weighted_degree": 0.7701467805243426,
         "betweenness": 0.513712696640348,
         "pagerank": 1.0,
-        "eigenvector": 0.383006904572498,
+        "eigenvector": 0.3830994628612897,
         "n_incidents": 0.6633531830709096
       },
       {
         "measure": "eigenvector",
-        "degree": 0.5999857003241097,
-        "weighted_degree": 0.589285271350489,
-        "betweenness": 0.2752194849209565,
-        "pagerank": 0.383006904572498,
+        "degree": 0.6000778909333297,
+        "weighted_degree": 0.5893758177887473,
+        "betweenness": 0.2752617736821226,
+        "pagerank": 0.3830994628612897,
         "eigenvector": 1.0,
-        "n_incidents": 0.45210640787188294
+        "n_incidents": 0.45217587613612903
       },
       {
         "measure": "n_incidents",
@@ -2716,7 +2716,7 @@
         "weighted_degree": 0.6456246177377105,
         "betweenness": 0.5486148386278186,
         "pagerank": 0.6633531830709097,
-        "eigenvector": 0.452106407871883,
+        "eigenvector": 0.4521758761361291,
         "n_incidents": 1.0
       }
     ],
@@ -2724,7 +2724,7 @@
     "function": "aicidentia.models.network_outputs.run_network"
   },
   "rq2.tau_min_between_measures": {
-    "value": 0.2752194849209565,
+    "value": 0.2752617736821226,
     "source_file": "data/processed/incident_entities.parquet",
     "function": "aicidentia.models.network_outputs.run_network"
   },

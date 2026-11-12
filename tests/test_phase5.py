@@ -339,3 +339,12 @@ def test_export_is_identical_across_python_hash_seeds(tmp_path):
     assert outputs[0] == outputs[1] == outputs[2]
     data = json.loads(outputs[0])
     assert all(e["source"] < e["target"] for e in data["edges"])
+
+
+def test_exact_eigenvector_centrality_matches_networkx_and_is_deterministic():
+    g = _two_cliques()
+    exact = N.eigenvector_centrality_exact(g, set(g.nodes))
+    reference = nx.eigenvector_centrality_numpy(g, weight="weight")
+    assert all(abs(exact[n] - reference[n]) < 1e-6 for n in g.nodes)
+    assert sum(v * v for v in exact.values()) == pytest.approx(1.0)
+    assert exact == N.eigenvector_centrality_exact(g, set(g.nodes))

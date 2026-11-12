@@ -245,6 +245,21 @@ def _to_igraph(graph: nx.Graph) -> tuple[ig.Graph, list[str]]:
     return g, names
 
 
+def eigenvector_centrality_exact(graph: nx.Graph, nodes: set[str]) -> dict[str, float]:
+    """Weighted eigenvector centrality of the connected `nodes`, by an exact dense symmetric eigen-decomposition.
+
+    Same definition and scaling as networkx (leading eigenvector of the weighted adjacency matrix, positive,
+    unit Euclidean norm), but deterministic: networkx's sparse solver (ARPACK) starts from an unseeded random
+    vector, so its results differed between runs in the 6th decimal.
+    """
+    order = sorted(nodes)
+    matrix = nx.to_numpy_array(graph, nodelist=order, weight="weight")
+    _, vectors = np.linalg.eigh(matrix)
+    lead = vectors[:, -1]
+    lead = np.abs(lead) / np.linalg.norm(lead)  # Perron vector of a connected graph has one sign
+    return dict(zip(order, lead.tolist(), strict=True))
+
+
 def centrality_table(graph: nx.Graph) -> pd.DataFrame:
     """Degree, weighted degree, betweenness, PageRank and eigenvector centrality per node.
 
@@ -258,7 +273,7 @@ def centrality_table(graph: nx.Graph) -> pd.DataFrame:
     betweenness = ig_graph.betweenness(weights=lengths)
     pagerank = nx.pagerank(graph, weight="weight")
     component = max(nx.connected_components(graph), key=len)
-    eig = nx.eigenvector_centrality_numpy(graph.subgraph(component), weight="weight")
+    eig = eigenvector_centrality_exact(graph, component)
     rows = []
     for i, node in enumerate(names):
         attrs = graph.nodes[node]
