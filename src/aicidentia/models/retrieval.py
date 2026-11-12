@@ -261,10 +261,12 @@ def search(
     k: int = 10,
     embed: Callable[[Sequence[str], str], np.ndarray] | None = None,
     exclude_ids: Sequence[int] = (),
+    before: np.datetime64 | None = None,
 ) -> pd.DataFrame:
-    """Top-k incidents for a free-text query: incident_id, title, score, rank."""
+    """Top-k incidents for a free-text query: incident_id, title, score, rank. With `before`, only incidents
+    strictly earlier than that date are candidates (precedent search)."""
     scores = score_texts(index, method, [text], embed)[0]
-    ranked = rank_candidates(scores, index, exclude_ids)[:k]
+    ranked = rank_candidates(scores, index, exclude_ids, before=before)[:k]
     rows = [index.row_of[i] for i in ranked]
     return pd.DataFrame(
         {

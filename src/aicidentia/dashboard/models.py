@@ -140,3 +140,78 @@ def usable_methods(active: ActiveRetriever) -> list[str]:
         for m in active.index.available_methods
         if m in R.LEXICAL or (m == "hybrid" and ok.get("mpnet")) or ok.get(m)
     ]
+
+
+def model_in_local_cache(name: str) -> bool:
+    """True if the Hugging Face model's weights are in the local cache (checked without loading it)."""
+    from huggingface_hub import try_to_load_from_cache
+
+    for filename in ("model.safetensors", "pytorch_model.bin"):
+        found = try_to_load_from_cache(name, filename)
+        if isinstance(found, str):
+            return True
+    return False
+
+
+def expected_status(cache_check: Any = model_in_local_cache) -> pd.DataFrame:
+    """Which classifier and search method the dashboard will use, decided from files on disk without loading
+    any model (keeps the Method page fast). The Precedent Finder applies the same rules when it loads them."""
+    from aicidentia.config import load_config
+
+    models_cfg = load_config()["models"]
+    rows = []
+    bundle = joblib.load(C.MODEL_PATH) if C.MODEL_PATH.exists() else {}
+    deployed = bundle["spec"].name if bundle else ""
+    emb = bundle.get("embedding_model")
+    if C.MODEL_PATH.exists() and (emb is None or cache_check(emb)):
+        rows.append(
+            (
+                "Risk-domain classifier",
+                deployed,
+                "no",
+                f"deployed model; {emb or 'no embedding model'} found in the local cache",
+            )
+        )
+    elif C.FALLBACK_MODEL_PATH.exists():
+        rows.append(
+            (
+                "Risk-domain classifier",
+                "TF-IDF + logistic regression",
+                "yes",
+                f"fallback: {emb} not in the local cache",
+            )
+        )
+    else:
+        rows.append(
+            (
+                "Risk-domain classifier",
+                "none",
+                "-",
+                "no model file: run scripts/run_phase6_classification.py",
+            )
+        )
+    method = str(registry.get("rq4.deployed"))
+    needs = {
+        "mpnet": "sentence_embedding_large",
+        "hybrid": "sentence_embedding_large",
+        "minilm": "sentence_embedding_small",
+    }
+    if method in needs and not cache_check(models_cfg[needs[method]]):
+        rows.append(
+            (
+                "Similar-incident search",
+                R.LABELS["bm25"],
+                "yes",
+                f"fallback: {R.LABELS[method]} needs a model not in the local cache",
+            )
+        )
+    else:
+        rows.append(
+            (
+                "Similar-incident search",
+                R.LABELS.get(method, method),
+                "no",
+                "deployed method (Phase 7)" + ("" if method in needs else "; needs no model"),
+            )
+        )
+    return pd.DataFrame(rows, columns=["component", "active", "fallback", "why"])

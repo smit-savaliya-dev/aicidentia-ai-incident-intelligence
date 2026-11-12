@@ -29,14 +29,37 @@ TYPE_NAME = {
 }
 
 
+FONT = {"family": "Inter, Segoe UI, Helvetica, Arial, sans-serif", "size": 14, "color": "#1B2430"}
+GRID = "#E6EBF1"
+SHORT_DOMAIN = {
+    "AI system safety, failures, and limitations": "AI system safety",
+    "Discrimination and Toxicity": "Discrimination & toxicity",
+    "Human-Computer Interaction": "Human-computer interaction",
+    "Malicious Actors & Misuse": "Malicious actors & misuse",
+    "Misinformation": "Misinformation",
+    "Privacy & Security": "Privacy & security",
+    "Socioeconomic & Environmental Harms": "Socioeconomic & environmental",
+}
+
+
+def short(name: str) -> str:
+    return SHORT_DOMAIN.get(name, name)
+
+
 def _layout(fig: go.Figure, title: str = "", height: int = 380) -> go.Figure:
+    """One calm house style: white background, light grid, readable fonts, legend below."""
     fig.update_layout(
-        title=title,
+        title={"text": title, "font": {"size": 16}, "x": 0, "xanchor": "left"},
         height=height,
-        margin={"l": 10, "r": 10, "t": 50 if title else 20, "b": 10},
-        font={"size": 12},
-        legend={"orientation": "h", "y": -0.15},
+        margin={"l": 10, "r": 10, "t": 50 if title else 16, "b": 10},
+        font=FONT,
+        plot_bgcolor="white",
+        paper_bgcolor="white",
+        legend={"orientation": "h", "y": -0.18, "x": 0},
+        hoverlabel={"font_size": 13},
     )
+    fig.update_xaxes(gridcolor=GRID, zerolinecolor=GRID)
+    fig.update_yaxes(gridcolor=GRID, zerolinecolor=GRID)
     return fig
 
 
@@ -109,14 +132,17 @@ def theme_heatmap(yearly: pd.DataFrame, order: list[str]) -> go.Figure:
         .pivot(index="group", columns="year", values="share")
         .reindex(order)
         * 100
-    )
+    ).fillna(0.0)
     fig = go.Figure(
         go.Heatmap(
             z=data.values,
             x=data.columns,
             y=[g[:45] for g in data.index],
-            colorscale="Cividis",
-            colorbar={"title": "%"},
+            colorscale="Blues",
+            zmin=0,
+            colorbar={"title": "% of year"},
+            xgap=1,
+            ygap=1,
             hovertemplate="%{y}<br>%{x}: %{z:.1f}%<extra></extra>",
         )
     )
@@ -197,10 +223,12 @@ def probability_bars(prediction: pd.DataFrame) -> go.Figure:
         )
     )
     fig.update_xaxes(title="Calibrated probability (%)", range=[0, 100])
+    fig.update_yaxes(ticklabelstandoff=6)
     return _layout(fig, "", 300)
 
 
 def model_comparison(metrics: pd.DataFrame) -> go.Figure:
+    """Macro-F1 with 95% CI per model, cross-validation and time split."""
     fig = go.Figure()
     for k, setting in enumerate(["cv", "time"]):
         sub = metrics[(metrics["setting"] == setting) & ~metrics["model"].str.contains("ablation")]
@@ -221,3 +249,364 @@ def model_comparison(metrics: pd.DataFrame) -> go.Figure:
         )
     fig.update_xaxes(title="Macro-F1 (bootstrap 95% CI)", range=[0, 0.8])
     return _layout(fig, "", 360)
+
+
+# --------------------------------------------------------------------------------------
+# Story and reliability charts
+# --------------------------------------------------------------------------------------
+
+
+def chatgpt_slope(table: pd.DataFrame, title: str) -> go.Figure:
+    """Share before vs after 30 Nov 2022; blue = significantly more common after, vermillion = less."""
+    fig = go.Figure()
+    for r in table.itertuples():
+        colour = (
+            PALETTE["blue"]
+            if r.adj_residual_after > 1.96
+            else PALETTE["vermillion"]
+            if r.adj_residual_after < -1.96
+            else PALETTE["grey"]
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=["Before 30 Nov 2022", "After 30 Nov 2022"],
+                y=[100 * r.share_before, 100 * r.share_after],
+                mode="lines+markers",
+                line={"color": colour, "width": 3},
+                marker={"size": 9},
+                name=short(r.group),
+                showlegend=False,
+                hovertemplate=f"{r.group}<br>%{{x}}: %{{y:.1f}}%<br>adjusted residual {r.adj_residual_after:+.1f}<extra></extra>",
+            )
+        )
+    # labels at the right end, nudged apart so they never overlap
+    values = (100 * table["share_after"]).to_numpy()
+    gap = max(values.max(), (100 * table["share_before"]).max()) * 0.045
+    order = values.argsort()
+    placed: list[float] = []
+    for i in order:
+        y = values[i] if not placed or values[i] - placed[-1] >= gap else placed[-1] + gap
+        placed.append(y)
+        r = table.iloc[i]
+        colour = (
+            PALETTE["blue"]
+            if r["adj_residual_after"] > 1.96
+            else PALETTE["vermillion"]
+            if r["adj_residual_after"] < -1.96
+            else PALETTE["grey"]
+        )
+        fig.add_annotation(
+            x=1,
+            y=y,
+            xref="x",
+            text=f"{short(r['group'])} {values[i]:.0f}%",
+            showarrow=False,
+            xanchor="left",
+            xshift=10,
+            font={"size": 12, "color": colour},
+        )
+    fig.update_yaxes(title="Share of incidents (%)", rangemode="tozero")
+    fig.update_xaxes(range=[-0.15, 2.1])
+    return _layout(fig, title, 540)
+
+
+def _wrap(text: str, width: int = 22) -> str:
+    import textwrap
+
+    return "<br>".join(textwrap.wrap(text, width))
+
+
+def risk_matrix(matrix: pd.DataFrame, threshold: float) -> go.Figure:
+    """Bubble chart: trend (pp/yr) vs CSET severity; unsupported themes grey with their CSET n."""
+    fig = go.Figure()
+    order = matrix.sort_values("trend_pp_per_year")["theme"].tolist()
+    position = {t: ("top center" if i % 2 == 0 else "bottom center") for i, t in enumerate(order)}
+    for supported in (False, True):
+        sub = matrix[matrix["supported"] == supported]
+        fig.add_trace(
+            go.Scatter(
+                x=sub["trend_pp_per_year"],
+                y=100 * sub["severity"].fillna(0),
+                mode="markers+text",
+                text=[
+                    _wrap(t if ok else f"{t} (CSET n={n})")
+                    for t, ok, n in zip(sub["theme"], sub["supported"], sub["cset_n"], strict=True)
+                ],
+                textposition=[position[t] for t in sub["theme"]],
+                textfont={"size": 12, "color": "#1B2430" if supported else "#8A94A3"},
+                customdata=sub[["theme", "incidents", "cset_n", "q_value", "quadrant"]].to_numpy(),
+                marker={
+                    "size": sub["incidents"],
+                    "sizemode": "area",
+                    "sizeref": 2.0 * matrix["incidents"].max() / 70**2,
+                    "color": PALETTE["blue"] if supported else "#C9D1DB",
+                    "line": {"color": "#1B2430" if supported else "#9AA4B2", "width": 1},
+                    "opacity": 0.85 if supported else 0.55,
+                },
+                name="enough CSET data (n >= 30)"
+                if supported
+                else "too few CSET annotations (grey)",
+                hovertemplate="<b>%{customdata[0]}</b><br>trend %{x:+.2f} pp/yr (q=%{customdata[3]:.3f})"
+                "<br>severity %{y:.0f}% of %{customdata[2]} CSET-annotated<br>%{customdata[1]} incidents"
+                "<br>%{customdata[4]}<extra></extra>",
+            )
+        )
+    fig.add_vline(x=0, line={"color": "#8A94A3", "dash": "dash", "width": 1})
+    fig.add_hline(y=100 * threshold, line={"color": "#8A94A3", "dash": "dash", "width": 1})
+    for text, x, y, anchor in (
+        ("EMERGING & SEVERE", 0.99, 0.99, "right"),
+        ("ESTABLISHED & SEVERE", 0.01, 0.99, "left"),
+        ("EMERGING", 0.99, 0.02, "right"),
+        ("ESTABLISHED", 0.01, 0.02, "left"),
+    ):
+        fig.add_annotation(
+            x=x,
+            y=y,
+            xref="paper",
+            yref="paper",
+            text=f"<b>{text}</b>",
+            showarrow=False,
+            xanchor=anchor,
+            font={"size": 13, "color": PALETTE["purple"]},
+        )
+    fig.update_xaxes(
+        title="Trend: Sen's slope of the theme's yearly share (percentage points per year)"
+    )
+    fig.update_yaxes(
+        title="Severity: CSET-annotated incidents with tangible harm, injuries or deaths (%)",
+        range=[-30, 115],
+    )
+    return _layout(fig, "", 620)
+
+
+def ego_network(ego: dict[str, Any], colour_by: str = "community") -> go.Figure:
+    """A node and its neighbours; edge width = shared incidents; colour = community or node type."""
+    nodes = {n["id"]: n for n in ego["nodes"]}
+    centre = next((n["id"] for n in ego["nodes"] if n["centre"]), None)
+    fig = go.Figure()
+    top = max((e["weight"] for e in ego["edges"]), default=1)
+    for e in ego["edges"]:
+        a, b = nodes[e["source"]], nodes[e["target"]]
+        spoke = centre in (e["source"], e["target"])
+        if not spoke and e["weight"] < 0.25 * top:
+            continue  # neighbour-neighbour links only when strong, to keep the picture readable
+        fig.add_trace(
+            go.Scatter(
+                x=[a["x"], b["x"]],
+                y=[a["y"], b["y"]],
+                mode="lines",
+                line={
+                    "color": "#9FB3C8" if spoke else "#E3E8EE",
+                    "width": (1 + 6 * e["weight"] / top) if spoke else 0.8,
+                },
+                hoverinfo="skip",
+                showlegend=False,
+            )
+        )
+    key = (
+        (lambda n: "no community" if n["community"] is None else f"Community {n['community']}")
+        if colour_by == "community"
+        else (lambda n: n["type_name"])
+    )
+    groups = sorted({key(n) for n in nodes.values()})
+    palette = {g: CATEGORICAL[i % len(CATEGORICAL)] for i, g in enumerate(groups)}
+    biggest = max((n["shared"] for n in nodes.values() if not n["centre"]), default=1)
+    for g in groups:
+        members = [n for n in nodes.values() if key(n) == g]
+        fig.add_trace(
+            go.Scatter(
+                x=[n["x"] for n in members],
+                y=[n["y"] for n in members],
+                mode="markers+text",
+                name=g,
+                text=[n["label"] for n in members],
+                textposition=[
+                    "bottom center"
+                    if n["centre"]
+                    else ("middle right" if n["x"] >= 0 else "middle left")
+                    for n in members
+                ],
+                textfont={"size": [16 if n["centre"] else 12 for n in members]},
+                marker={
+                    "size": [
+                        38 if n["centre"] else 10 + 22 * (n["shared"] / biggest) ** 0.5
+                        for n in members
+                    ],
+                    "color": palette[g],
+                    "line": {
+                        "width": [3 if n["centre"] else 1 for n in members],
+                        "color": "#1B2430",
+                    },
+                    "symbol": [TYPE_SYMBOL_ENTITY.get(n["type"], "circle") for n in members],
+                },
+                customdata=[[n["type_name"], n["shared"]] for n in members],
+                hovertemplate="<b>%{text}</b><br>%{customdata[0]}<br>%{customdata[1]} shared incidents<extra></extra>",
+            )
+        )
+    fig.update_xaxes(visible=False, range=[-2.5, 2.5])
+    fig.update_yaxes(visible=False, range=[-1.2, 1.2])
+    fig.update_layout(
+        legend={
+            "title": {
+                "text": "Colour = "
+                + ("network community" if colour_by == "community" else "node type")
+            }
+        }
+    )
+    return _layout(fig, "", 640)
+
+
+TYPE_SYMBOL_ENTITY = {
+    "organisation": "circle",
+    "technology_system": "square",
+    "population_group": "triangle-up",
+    "generic_actor_group": "diamond",
+    "abstract_value": "cross",
+}
+
+
+def horizontal_bars(
+    values: pd.Series, title: str, xlabel: str, colour: str = PALETTE["blue"], pct: bool = False
+) -> go.Figure:
+    v = values.sort_values()
+    fig = go.Figure(
+        go.Bar(
+            x=v.values * (100 if pct else 1),
+            y=[short(str(i)) for i in v.index],
+            orientation="h",
+            marker_color=colour,
+            text=[f"{x * 100:.0f}%" if pct else f"{x:,.0f}" for x in v.values],
+            textposition="outside",
+            cliponaxis=False,
+        )
+    )
+    fig.update_xaxes(title=xlabel)
+    return _layout(fig, title, 60 + 34 * len(v))
+
+
+def kappa_forest(mappings: pd.DataFrame) -> go.Figure:
+    labels = {
+        "discrimination_vs_protected_characteristic": "Discrimination vs CSET protected characteristic",
+        "discrimination_vs_harm_distribution_basis": "Discrimination vs CSET harm distribution",
+        "safety_vs_tangible_harm": "AI safety vs CSET tangible harm",
+        "safety_vs_gmf_technical_failure": "AI safety vs GMF technical failure",
+        "misinformation_or_misuse_vs_detrimental_content": "Misinformation/misuse vs CSET detrimental content",
+    }
+    m = mappings.iloc[::-1]
+    fig = go.Figure(
+        go.Scatter(
+            x=m["kappa"],
+            y=[f"{labels.get(k, k)} (n={n})" for k, n in zip(m["mapping"], m["n"], strict=True)],
+            mode="markers",
+            marker={"size": 13, "color": PALETTE["blue"]},
+            error_x={
+                "type": "data",
+                "symmetric": False,
+                "array": m["kappa_high"] - m["kappa"],
+                "arrayminus": m["kappa"] - m["kappa_low"],
+                "thickness": 2,
+            },
+            hovertemplate="kappa %{x:.2f}<extra></extra>",
+        )
+    )
+    for x in (0.2, 0.4, 0.6, 0.8):
+        fig.add_vline(x=x, line={"color": GRID, "width": 1})
+    for x, text in (
+        (0.1, "slight"),
+        (0.3, "fair"),
+        (0.5, "moderate"),
+        (0.7, "substantial"),
+        (0.9, "almost<br>perfect"),
+    ):
+        fig.add_annotation(
+            x=x,
+            y=1.08,
+            yref="paper",
+            text=text,
+            showarrow=False,
+            font={"size": 11, "color": "#8A94A3"},
+        )
+    fig.add_vline(x=0, line={"color": "#8A94A3", "dash": "dash"})
+    fig.update_xaxes(
+        title="Cohen's kappa with 95% CI (0 = chance, 1 = perfect)", range=[-0.35, 1.0]
+    )
+    return _layout(fig, "", 360)
+
+
+def pair_bars(similar: dict[str, Any], dissimilar: dict[str, Any]) -> go.Figure:
+    names = [
+        "Editor-marked similar pairs",
+        "Random pairs (same years)",
+        "Editor-marked dissimilar pairs",
+    ]
+    vals = [
+        similar["same_domain_rate"],
+        similar["baseline_rate"],
+        dissimilar.get("same_domain_rate", float("nan")),
+    ]
+    lo = [similar["ci_low"], similar["baseline_low"], dissimilar.get("ci_low", float("nan"))]
+    hi = [similar["ci_high"], similar["baseline_high"], dissimilar.get("ci_high", float("nan"))]
+    fig = go.Figure(
+        go.Bar(
+            x=[100 * v for v in vals],
+            y=names,
+            orientation="h",
+            marker_color=[PALETTE["blue"], PALETTE["grey"], PALETTE["orange"]],
+            error_x={
+                "type": "data",
+                "symmetric": False,
+                "array": [100 * (h - v) for h, v in zip(hi, vals, strict=True)],
+                "arrayminus": [100 * (v - low) for v, low in zip(vals, lo, strict=True)],
+            },
+            text=[f"{100 * v:.0f}%" for v in vals],
+            textposition="inside",
+            insidetextanchor="start",
+            insidetextfont={"color": "white", "size": 15},
+        )
+    )
+    fig.update_yaxes(autorange="reversed")
+    fig.update_xaxes(title="Pairs whose two incidents have the same MIT domain (%)", range=[0, 100])
+    return _layout(fig, "", 300)
+
+
+def label_confusion(joint: pd.DataFrame) -> go.Figure:
+    """Estimated incidents whose given MIT label is likely another domain (off-diagonal only)."""
+    z = joint.to_numpy(dtype=float).copy()
+    for i in range(len(z)):
+        z[i, i] = float("nan")
+    names = [short(c) for c in joint.columns]
+    fig = go.Figure(
+        go.Heatmap(
+            z=z,
+            x=names,
+            y=[short(c) for c in joint.index],
+            colorscale="Oranges",
+            text=[["" if v != v else f"{v:.0f}" for v in row] for row in z],
+            texttemplate="%{text}",
+            hovertemplate="given %{y}<br>likely %{x}<br>%{z:.0f} incidents<extra></extra>",
+            colorbar={"title": "incidents"},
+        )
+    )
+    fig.update_yaxes(autorange="reversed", title="Given MIT label")
+    fig.update_xaxes(title="Likely correct domain (confident learning)")
+    return _layout(fig, "", 460)
+
+
+def retrieval_comparison(summary: pd.DataFrame, labels: dict[str, str]) -> go.Figure:
+    s = summary.iloc[::-1]
+    fig = go.Figure(
+        go.Scatter(
+            x=s["rr"],
+            y=[labels.get(m, m) for m in s["method"]],
+            mode="markers",
+            marker={"size": 12, "color": PALETTE["blue"]},
+            error_x={
+                "type": "data",
+                "symmetric": False,
+                "array": s["rr_high"] - s["rr"],
+                "arrayminus": s["rr"] - s["rr_low"],
+            },
+        )
+    )
+    fig.update_xaxes(title="Mean reciprocal rank (bootstrap 95% CI)", range=[0.3, 0.6])
+    return _layout(fig, "", 300)

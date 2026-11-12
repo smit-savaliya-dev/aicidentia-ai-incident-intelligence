@@ -1,80 +1,99 @@
-"""AICIDENTIA Intelligence - Risk Network page (RQ2)."""
+"""AICIDENTIA Intelligence - Risk Network (RQ2): ego network of an organisation, system or group."""
 
-import pandas as pd
 import streamlit as st
 
 from aicidentia.dashboard import charts, data, ui
 
-ui.setup(
+flt = ui.setup(
     "Risk Network",
-    "RQ2: organisations, AI systems and harmed groups linked when they appear in the same incidents. "
-    "Organisations are ALLEGED developers or deployers; centrality means frequent involvement in reported incidents, not blame.",
+    "RQ2: who appears together in incidents. Pick an organisation, AI system or group to see its neighbours, "
+    "its risk domains and its incidents. Organisations are ALLEGED developers or deployers; named persons are excluded.",
 )
 f = data.fact
-net = ui.cached_network()
-years = sorted({n["first_year"] for n in net["nodes"]})
-types = sorted({n["type"] for n in net["nodes"]})
+inc = ui.cached_incidents()
+ents = ui.cached_entities()
+links = ui.cached_links()
 
-c1, c2 = st.columns([2, 3])
-year = c1.slider("Show the network up to the end of", min(years), max(years), max(years))
-chosen_types = c2.multiselect(
-    "Node types", types, default=types, format_func=lambda t: charts.TYPE_NAME.get(t, t)
+c1, c2, c3, c4 = st.columns([3, 2, 2, 2])
+search = c1.text_input(
+    "Search an organisation, system or group", "", placeholder="e.g. Meta, Tesla, deepfake"
 )
-nodes = sorted(
-    (n for n in net["nodes"] if n["first_year"] <= year and n["type"] in chosen_types),
-    key=lambda n: -n["weighted_degree"],
+pool = ents[ents["n_incidents"] >= 2]
+if search.strip():
+    pool = pool[pool["entity"].str.contains(search.strip(), case=False, regex=False)]
+options = list(pool["entity_id"][:300])
+labels = dict(
+    zip(
+        ents["entity_id"],
+        ents["entity"]
+        + " · "
+        + ents["type_name"]
+        + " · "
+        + ents["n_incidents"].astype(str)
+        + " incidents",
+        strict=True,
+    )
 )
-labels = {n["id"]: f"{n['label']} ({charts.TYPE_NAME.get(n['type'], n['type'])})" for n in nodes}
-pick = st.selectbox(
-    "Select an entity to inspect",
-    [None, *labels],
-    format_func=lambda k: "(none)" if k is None else labels[k],
-)
+default = options.index("meta") if "meta" in options else 0
+if not options:
+    st.warning("No entity matches the search.")
+    ui.footer()
+    st.stop()
+pick = c1.selectbox("Entity", options, index=default, format_func=lambda e: labels.get(e, e))
+year_max = c2.slider("Incidents up to year", flt.years[0], flt.years[1], flt.years[1])
+top_n = c3.slider("Neighbours shown (top N)", 5, 40, 20, step=5)
+colour_by = c4.radio("Colour by", ["community", "node type"], horizontal=True)
 
-left, right = st.columns([3, 1])
-left.plotly_chart(charts.network_figure(net, year, chosen_types, pick), width="stretch")
-with right:
-    st.markdown("**Selected entity**")
-    if pick is None:
-        st.write("Choose an entity above to see its profile.")
+window = data.Filters((flt.years[0], year_max), flt.domains, flt.sectors)
+sub = data.filter_incidents(inc, window)
+ego = data.ego_network(pick, links, ents, set(sub["incident_id"]), top_n=top_n)
+profile = data.entity_profile(pick, links, sub)
+ui.filter_note(window, len(sub), len(inc))
+
+left, right = st.columns([3, 2])
+with left:
+    if ego["incidents"] == 0:
+        st.info("This entity has no incidents within the filters.")
     else:
-        node = next(n for n in net["nodes"] if n["id"] == pick)
-        prof = data.node_profile(node)
-        st.markdown(
-            f"**{prof['label']}**  \n{charts.TYPE_NAME.get(prof['type'], prof['type'])}, community {prof['community']}  \n"
-            f"{prof['incidents']} incidents, {prof['years']}  \nPageRank {prof['pagerank']:.4f}"
+        st.plotly_chart(
+            charts.ego_network(ego, "community" if colour_by == "community" else "type"),
+            width="stretch",
         )
-        if prof["domains"]:
-            st.dataframe(
-                pd.Series(prof["domains"], name="incidents").rename_axis("MIT domain"),
-                width="stretch",
-            )
-        st.markdown("**Recent incidents**")
-        for r in prof["recent"]:
-            st.markdown(f"- #{r['id']} ({r['year']}) {r['title']}")
+        st.caption(
+            f"{labels.get(pick, pick).split(' · ')[0]} and its {len(ego['nodes']) - 1} most frequent co-occurring entities in "
+            f"{ego['incidents']} incidents ({window.years[0]}-{window.years[1]}). Neighbours sit on a ring grouped by community; node size and spoke width = shared incidents; faint lines join neighbours that often appear together; "
+            "symbol = type (circle organisation, square AI system, triangle harmed group). Communities come from Leiden on the full network (Phase 5)."
+        )
+with right:
+    row = ents.set_index("entity_id").loc[pick]
+    k = st.columns(2)
+    ui.kpi(k[0], "Incidents", f"{profile['incidents']:,}", profile["years"])
+    comm = "none" if row["community"] != row["community"] else f"{int(row['community'])}"
+    ui.kpi(k[1], "Community", comm, row["type_name"])
+    st.markdown("**Risk domains of its incidents**")
+    if len(profile["domains"]):
+        st.plotly_chart(
+            charts.horizontal_bars(profile["domains"].head(7), "", "Incidents"), width="stretch"
+        )
+    else:
+        st.caption("No MIT-labelled incidents within the filters.")
+    st.markdown("**Sectors (CSETv1)**")
+    if len(profile["sectors"]):
+        st.write(", ".join(f"{s} ({n})" for s, n in profile["sectors"].head(5).items()))
+        st.caption(f"From the {profile['sector_coverage']} of its incidents with a CSETv1 sector.")
+    else:
+        st.caption("None of its incidents in view has a CSETv1 sector annotation.")
+    roles = ", ".join(f"{r} {n}" for r, n in profile["roles"].items())
+    st.caption(f"Roles recorded by AIID: {roles or 'none'} (alleged).")
 
-st.caption(
-    f"{net['caps']['top_n']} most connected entities and at most {net['caps']['max_edges']} strongest links are shown "
-    f"(the full network has {f('rq2.entity_network_nodes', '?'):,} entities). Communities: {f('rq2.chosen_method', '?')}, "
-    f"modularity {f('rq2.chosen_modularity', float('nan')):.3f}. Community boundaries depend heavily on a few generic hubs "
-    "(see Method page), so treat colours as one reading of the network."
-)
+st.markdown("### Linked incidents")
+ui.incident_table(profile["linked"], height=300)
+ui.download(profile["linked"], f"incidents_{pick}")
 
-st.subheader("Communities")
-st.dataframe(
-    ui.cached_table("rq2_community_profile")[
-        [
-            "community",
-            "entities",
-            "incidents",
-            "organisations",
-            "ai_systems",
-            "harmed_groups",
-            "domains",
-        ]
-    ],
-    hide_index=True,
-    width="stretch",
-)
-st.subheader("Most central organisations (PageRank)")
-st.dataframe(ui.cached_table("rq2_top_organisation_pagerank"), hide_index=True, width="stretch")
+with st.expander("Most central organisations in the whole network (PageRank)"):
+    top = ui.cached_table("rq2_top_organisation_pagerank")
+    st.dataframe(top, hide_index=True, width="stretch")
+    st.caption(
+        "Centrality reflects how often an organisation appears in reported incidents with others, not responsibility."
+    )
+ui.footer()

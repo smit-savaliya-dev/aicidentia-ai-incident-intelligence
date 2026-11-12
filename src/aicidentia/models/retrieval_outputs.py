@@ -206,7 +206,20 @@ def run_retrieval() -> RetrievalResults:
     }
     res.repeat = repeated_failures(frame, res.per_query, gt, n_boot, seed)
     res.facts["repeat"] = res.repeat
+    res.facts["demo_cases"] = demo_cases(frame, res.per_query["earlier"], res.deployed)
     return res
+
+
+def demo_cases(
+    frame: pd.DataFrame, earlier: pd.DataFrame, method: str, months: int = 3, n: int = 3
+) -> list[int]:
+    """Dashboard demo: the most recent incidents (last `months` months of the snapshot) whose editor-linked
+    earlier precedent the deployed method finds in its top 5 when searching earlier incidents only."""
+    dates = frame.set_index("incident_id")["date"]
+    cutoff = dates.max() - pd.DateOffset(months=months)
+    ok = earlier[(earlier["method"] == method) & (earlier["hit@5"] == 1)]["query"].astype(int)
+    recent = dates[dates.index.isin(set(ok)) & (dates >= cutoff)]
+    return [int(i) for i in recent.sort_values(ascending=False, kind="stable").index[:n]]
 
 
 def repeated_failures(

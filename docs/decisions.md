@@ -244,3 +244,21 @@ are growing" in one place, without new modelling.
 concentrate in community 1, where 92-96% of their incidents involve its entities (about 1.6 times the rate for
 all incidents), with Meta and YouTube as the most central allegedly involved organisations. Limitation: the
 communities depend on hub entities (Phase 5), and centrality reflects how often an organisation is reported.
+
+## D13. Dashboard design rules
+
+**What.** (1) One theme in `.streamlit/config.toml`: Okabe-Ito colour-blind-safe palette, one accent colour
+(#0072B2), white background. (2) Every page: header with the AICIDENTIA name and tagline, a one-line purpose,
+captions under every chart, a footer with the snapshot date and "reported incidents only". (3) Global sidebar
+filters (year range, MIT domain, CSETv1 sector) kept in session state and applied on every page that lists
+incidents; pages that show precomputed tests say the filters do not change them. (4) Pages read only precomputed
+artefacts; models load lazily on the first Precedent Finder query; the Method page decides which models are
+active from the local cache without loading them. (5) Precedent search returns only incidents earlier than the
+case. (6) Demo cases: the three most recent incidents (last three months of the snapshot) whose editor-linked
+precedent the deployed method finds in its top 5 [`rq4.demo_cases`].
+
+**Why.** Readable at a glance in a classroom, consistent across pages, honest about coverage, and fast enough
+(under 3 s) for a live demo.
+
+**Effect.** Seven pages; every page reaches its footer in 0.2-2.0 s in a real browser and renders in under 3 s in
+the warm-load test. The sector filter keeps at most 207 incidents, which the page states.

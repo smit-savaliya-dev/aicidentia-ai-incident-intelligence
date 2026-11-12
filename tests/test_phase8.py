@@ -210,7 +210,7 @@ def test_select_only_and_from():
         pipeline.select(steps, only=["phase9"])
     assert [s.name for s in pipeline.steps(pipeline.RefreshOptions(dashboard_check=False))][
         -1
-    ] == "story"
+    ] == "docs"
 
 
 def test_write_summary(tmp_path):
@@ -255,17 +255,25 @@ def test_charts_build_from_real_outputs():
 
 
 # ------------------------------------------------------------------ pages
-@pytest.mark.parametrize(
-    "page",
-    [
-        "Home.py",
-        "pages/1_Overview.py",
-        "pages/2_Themes_and_Trends.py",
-        "pages/3_Risk_Network.py",
-        "pages/4_Classify_and_Compare.py",
-        "pages/5_Method_and_Limitations.py",
-    ],
-)
+PAGES = [
+    "Home.py",
+    "pages/1_Themes_and_Trends.py",
+    "pages/2_Risk_Priority_Matrix.py",
+    "pages/3_Risk_Network.py",
+    "pages/4_Precedent_Finder.py",
+    "pages/5_Label_Reliability.py",
+    "pages/6_Method_and_Limitations.py",
+]
+
+
+def test_every_page_file_is_tested():
+    on_disk = {"Home.py"} | {
+        f"pages/{p.name}" for p in (PROJECT_ROOT / "app" / "pages").glob("*.py")
+    }
+    assert on_disk == set(PAGES)
+
+
+@pytest.mark.parametrize("page", PAGES)
 def test_page_renders_without_error(page):
     from streamlit.testing.v1 import AppTest
 
@@ -273,12 +281,62 @@ def test_page_renders_without_error(page):
     assert not at.exception, at.exception[0].value if at.exception else ""
 
 
+@pytest.mark.parametrize("page", PAGES)
+def test_page_loads_fast_from_precomputed_artefacts(page):
+    """After a first (warm-up) run, a page renders in under 3 seconds."""
+    import time
+
+    from streamlit.testing.v1 import AppTest
+
+    AppTest.from_file(str(PROJECT_ROOT / "app" / page), default_timeout=300).run()
+    start = time.perf_counter()
+    at = AppTest.from_file(str(PROJECT_ROOT / "app" / page), default_timeout=300).run()
+    assert not at.exception and time.perf_counter() - start < 3.0
+
+
 def test_method_page_names_the_active_models():
     from streamlit.testing.v1 import AppTest
 
     at = AppTest.from_file(
-        str(PROJECT_ROOT / "app" / "pages" / "5_Method_and_Limitations.py"), default_timeout=300
+        str(PROJECT_ROOT / "app" / "pages" / "6_Method_and_Limitations.py"), default_timeout=300
     ).run()
     active = at.dataframe[0].value
     assert list(active["component"]) == ["Risk-domain classifier", "Similar-incident search"]
     assert active["active"].str.len().gt(0).all() and set(active["fallback"]) <= {"yes", "no"}
+
+
+def test_home_shows_five_findings_with_links():
+    from streamlit.testing.v1 import AppTest
+
+    at = AppTest.from_file(str(PROJECT_ROOT / "app" / "Home.py"), default_timeout=300).run()
+    html = " ".join(m.value for m in at.markdown)
+    assert html.count("class='aic-card-title'") == 5 and "Source: AIID snapshot" in html
+
+
+def test_precedent_finder_demo_returns_five_earlier_incidents():
+    from streamlit.testing.v1 import AppTest
+
+    at = AppTest.from_file(
+        str(PROJECT_ROOT / "app" / "pages" / "4_Precedent_Finder.py"), default_timeout=300
+    ).run()
+    demo = [b for b in at.button if b.key and b.key.startswith("demo_")]
+    assert len(demo) == 3
+    at = demo[0].click().run()
+    assert not at.exception, at.exception[0].value if at.exception else ""
+    table = at.dataframe[1].value
+    assert len(table) == 5 and (table["rank"].tolist() == [1, 2, 3, 4, 5])
+    case = int(demo[0].key.split("_")[1])
+    dates = data.incidents().set_index("incident_id")["date"]
+    assert (pd.to_datetime(table["date"]) < dates[case]).all()  # earlier incidents only
+    assert case not in set(table["incident_id"])
+
+
+def test_global_filters_apply_and_persist():
+    flt = data.Filters((2020, 2021), ("Misinformation",), ())
+    inc = data.incidents()
+    sub = data.filter_incidents(inc, flt)
+    assert sub["year"].between(2020, 2021).all() and set(sub["mit_domain"]) == {"Misinformation"}
+    sec = data.filter_incidents(
+        inc, data.Filters((2015, 2026), (), ("transportation and storage",))
+    )
+    assert sec["sectors"].map(lambda s: "transportation and storage" in s).all() and len(sec) > 0

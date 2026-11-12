@@ -120,7 +120,7 @@ def key_findings(res: StoryResults) -> list[dict[str, Any]]:
                 f"{f['chatgpt_malicious_share_after']:.0%} of MIT-labelled incidents after 30 Nov 2022, the largest "
                 f"shift in the risk-domain mix (Cramer's V {cd['cramers_v']:.2f}; themes V {ct['cramers_v']:.2f})."
             ),
-            "number": f"{f['chatgpt_malicious_share_before']:.0%} -> {f['chatgpt_malicious_share_after']:.0%}",
+            "number": f"{f['chatgpt_malicious_share_before']:.0%} → {f['chatgpt_malicious_share_after']:.0%}",
             "key": "story.chatgpt_malicious_share_after; story.chatgpt_domains",
             "limitation": (
                 "Reported incidents only; MIT coverage is lower after the cut-off "
@@ -160,7 +160,7 @@ def key_findings(res: StoryResults) -> list[dict[str, Any]]:
                 f"annotation (kappa {kap['discrimination_vs_protected_characteristic']:.2f}), yet confident learning "
                 f"estimates {get('rq3rel.cl_noise_rate'):.0%} of labels are wrong."
             ),
-            "number": f"{get('rq3rel.cl_noise_rate'):.0%} estimated label noise",
+            "number": f"{get('rq3rel.cl_noise_rate'):.0%} doubtful labels",
             "key": "rq3rel.pairs_similar; rq3rel.mapping_kappa; rq3rel.cl_noise_rate",
             "limitation": "Human fields map only partially onto MIT domains and cover pre-2024 incidents; confident learning inherits the classifier's own errors.",
             "page": "Label Reliability",
@@ -173,7 +173,7 @@ def key_findings(res: StoryResults) -> list[dict[str, Any]]:
                 f"(about {big['lift'].mean():.1f} times the rate for all incidents), "
                 f"with {' and '.join(orgs)} as the most central allegedly involved organisations."
             ),
-            "number": f"{big['share_in_community'].max():.0%} of incidents",
+            "number": f"{big['share_in_community'].min():.0%}-{big['share_in_community'].max():.0%} in one community",
             "key": "story.synthesis; rq2.community_profile",
             "limitation": "Organisations are alleged deployers or developers, centrality reflects how often they are reported (not blame), and communities depend on a few hub entities.",
             "page": "Risk Network",
