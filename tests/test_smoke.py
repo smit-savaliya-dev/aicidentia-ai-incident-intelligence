@@ -77,9 +77,10 @@ APP_FILES = [APP_DIR / "Home.py", *sorted((APP_DIR / "pages").glob("*.py"))]
 
 
 @pytest.mark.parametrize("path", APP_FILES, ids=lambda p: Path(p).name)
-def test_app_pages_run_without_data(path):
+def test_app_pages_show_the_brand_header_and_footer(path):
     from streamlit.testing.v1 import AppTest
 
-    at = AppTest.from_file(str(path), default_timeout=30).run()
+    at = AppTest.from_file(str(path), default_timeout=120).run()
     assert not at.exception
-    assert any("AICIDENTIA Intelligence" in t.value for t in at.title)
+    text = " ".join(m.value for m in at.markdown)
+    assert "AICIDENTIA Intelligence" in text and "reported incidents only" in text

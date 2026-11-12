@@ -116,7 +116,7 @@ def _row(
 def choose_deployable(
     rows: pd.DataFrame, oof: dict[str, pd.DataFrame], data: C.Dataset, n_boot: int, seed: int
 ) -> tuple[str, str]:
-    """Pre-specified rule: the local model (not the dummy, not Colab) with the highest cross-validated macro-F1;
+    """Pre-specified rule: the scikit-learn model (not the dummy, not DistilBERT) with the highest cross-validated macro-F1;
     but if its paired-bootstrap advantage over TF-IDF + LR is not significant (95% CI includes 0), choose
     TF-IDF + LR, which needs no model download and works offline."""
     local = [s.name for s in SPECS if s.kind != "dummy"]

@@ -3837,6 +3837,15 @@
     "source_file": "data/processed/incidents_clean.parquet + snapshot editor_similar_incidents",
     "function": "aicidentia.models.retrieval_outputs.run_retrieval"
   },
+  "rq4.demo_cases": {
+    "value": [
+      1785,
+      1710,
+      1715
+    ],
+    "source_file": "data/processed/incidents_clean.parquet + snapshot editor_similar_incidents",
+    "function": "aicidentia.models.retrieval_outputs.run_retrieval"
+  },
   "rq4.deployed": {
     "value": "bm25",
     "source_file": "data/processed/incidents_clean.parquet + snapshot editor_similar_incidents",
@@ -5075,7 +5084,7 @@
       {
         "title": "AI harm shifted from failures to misuse after ChatGPT",
         "sentence": "Malicious Actors & Misuse rose from 12% to 52% of MIT-labelled incidents after 30 Nov 2022, the largest shift in the risk-domain mix (Cramer's V 0.52; themes V 0.51).",
-        "number": "12% -> 52%",
+        "number": "12% → 52%",
         "key": "story.chatgpt_malicious_share_after; story.chatgpt_domains",
         "limitation": "Reported incidents only; MIT coverage is lower after the cut-off (78% vs 98%) and AIID's editorial intake changed over the same years.",
         "page": "Themes and Trends"
@@ -5099,7 +5108,7 @@
       {
         "title": "The AI-generated labels are usable but about 1 in 7 is doubtful",
         "sentence": "Editor-linked similar incidents share an MIT domain 75% of the time against 30% by chance, and the discrimination label agrees substantially with human CSETv1 annotation (kappa 0.74), yet confident learning estimates 15% of labels are wrong.",
-        "number": "15% estimated label noise",
+        "number": "15% doubtful labels",
         "key": "rq3rel.pairs_similar; rq3rel.mapping_kappa; rq3rel.cl_noise_rate",
         "limitation": "Human fields map only partially onto MIT domains and cover pre-2024 incidents; confident learning inherits the classifier's own errors.",
         "page": "Label Reliability"
@@ -5107,7 +5116,7 @@
       {
         "title": "Deepfake, scam and election harms concentrate around the big platforms",
         "sentence": "3 of the 5 emerging themes concentrate in network community 1, where 92%-96% of their incidents involve its entities (about 1.6 times the rate for all incidents), with Meta and YouTube as the most central allegedly involved organisations.",
-        "number": "96% of incidents",
+        "number": "92%-96% in one community",
         "key": "story.synthesis; rq2.community_profile",
         "limitation": "Organisations are alleged deployers or developers, centrality reflects how often they are reported (not blame), and communities depend on a few hub entities.",
         "page": "Risk Network"
