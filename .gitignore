@@ -11,10 +11,23 @@ data/interim/*
 !data/interim/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
+# (data/processed/label_audit_key.parquet holds the MIT labels for the blind audit sample: never commit it)
+# External datasets you add yourself (e.g. an OECD AIM export) may carry their own licence: keep them local.
+data/external/*
+!data/external/.gitkeep
 
-# Saved models
+# Saved models and large model artefacts
 models/*
 !models/.gitkeep
+*.joblib
+*.pt
+*.pth
+*.safetensors
+*.ckpt
+
+# AI-assistant local configuration (not part of the project)
+.claude/
+CLAUDE.md
 
 # Python / tooling caches
 __pycache__/
@@ -33,10 +46,25 @@ dist/
 .huggingface/
 nltk_data/
 
+# Test / coverage output
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Logs and temporary files (e.g. the labelling app writes a .tmp before replacing the CSV)
+*.log
+*.tmp
+*.bak
+*.swp
+
 # Streamlit
 .streamlit/secrets.toml
 
 # OS / editor
 .DS_Store
 Thumbs.db
+desktop.ini
+~$*
 .idea/
+.vscode/*.log
