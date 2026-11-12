@@ -274,7 +274,9 @@ def run_classification() -> ClassificationResults:
         best_oof["y_true"].to_numpy(), best_oof["y_pred"].to_numpy(), data.classes, normalise=True
     )
     res.confusions_top = C.top_confusions(
-        res.oof[res.deployable].assign(**{f"proba_{i}": p_chosen[:, i] for i in range(k)}), data
+        res.oof[res.deployable].assign(**{f"proba_{i}": p_chosen[:, i] for i in range(k)}),
+        data,
+        exclude_examples=A.audit_incident_ids(),
     )
     res.features = pd.concat(
         [C.top_features(s, data, seed=seed) for s in SPECS if s.kind in ("tfidf_lr", "tfidf_svm")],

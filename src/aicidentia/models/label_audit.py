@@ -83,6 +83,22 @@ def write_template(
     return "created"
 
 
+def audit_incident_ids(path: Path = SAMPLE_PATH) -> set[int]:
+    """Incident ids in the blind audit sample (empty if the sample does not exist yet)."""
+    if not path.exists():
+        return set()
+    return set(pd.read_csv(path, usecols=["incident_id"])["incident_id"].astype(int))
+
+
+def blind_audit_active(path: Path = SAMPLE_PATH, classes: list[str] | None = None) -> bool:
+    """True while the audit sample exists and is not fully annotated: per-incident MIT labels (and
+    predictions trained on them) for sample incidents must then stay hidden everywhere."""
+    if not path.exists():
+        return False
+    progress = annotation_progress(path, classes)
+    return progress["labelled"] < progress["rows"]
+
+
 def normalise_label(value: str, classes: list[str]) -> str | None:
     """Map what you typed to a domain name: exact name (any case), MIT-numbered name ('1. ...') or just the digit
     (1-7, MIT numbering: 1 Discrimination, 2 Privacy, 3 Misinformation, 4 Malicious, 5 HCI, 6 Socioeconomic, 7 AI safety)."""

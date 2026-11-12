@@ -573,3 +573,52 @@ def test_threaded_decorator_uses_threads_not_processes():
     assert (
         type(get_active_backend()[0]).__name__ != "ThreadingBackend"
     )  # the setting does not leak out
+
+
+def test_top_confusions_never_shows_audit_sample_incidents_as_examples():
+    d = _dataset()
+    oof = pd.DataFrame(
+        {
+            "incident_id": [0, 1, 2],
+            "y_true": [0, 0, 0],
+            "y_pred": [1, 1, 1],
+            "proba_0": [0.1] * 3,
+            "proba_1": [0.9, 0.8, 0.7],
+            "proba_2": [0.0] * 3,
+        }
+    )
+    top = C.top_confusions(oof, d, n_pairs=1, n_examples=3, exclude_examples={0, 1})
+    assert top.iloc[0]["count"] == 3  # counts still use every error
+    assert (
+        top.iloc[0]["examples"].startswith("#2")
+        and "#0" not in top.iloc[0]["examples"]
+        and "#1:" not in top.iloc[0]["examples"]
+    )
+
+
+def test_blind_audit_active_and_ids(tmp_path):
+    classes = ["Misinformation", "Privacy & Security"]
+    path = tmp_path / "s.csv"
+    assert not A.blind_audit_active(path, classes) and A.audit_incident_ids(path) == set()
+    pd.DataFrame(
+        {
+            "incident_id": [5, 6],
+            "title": "t",
+            "description": "d",
+            "my_label": ["Misinformation", ""],
+            "my_confidence": ["2", ""],
+            "notes": "",
+        }
+    ).to_csv(path, index=False)
+    assert A.blind_audit_active(path, classes) and A.audit_incident_ids(path) == {5, 6}
+    pd.DataFrame(
+        {
+            "incident_id": [5, 6],
+            "title": "t",
+            "description": "d",
+            "my_label": ["Misinformation", "2"],
+            "my_confidence": ["2", "3"],
+            "notes": "",
+        }
+    ).to_csv(path, index=False)
+    assert not A.blind_audit_active(path, classes)  # fully annotated: labels may be shown again

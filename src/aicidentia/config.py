@@ -19,6 +19,24 @@ import yaml
 # src/aicidentia/config.py -> parents[2] is the project root (works for editable installs).
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CONFIG_PATH = PROJECT_ROOT / "config" / "config.yaml"
+ENV_PATH = PROJECT_ROOT / ".env"
+
+
+def load_env(path: Path = ENV_PATH) -> bool:
+    """Load machine-specific settings (cache locations such as HF_HOME) from the project's `.env`.
+
+    Runs once when this module is imported, i.e. before any Hugging Face library is imported by the
+    package, because those libraries read HF_HOME at import time. Variables already set in the
+    environment are not overridden. Returns True if a file was read.
+    """
+    if not path.exists():
+        return False
+    from dotenv import load_dotenv
+
+    return bool(load_dotenv(path, override=False))
+
+
+load_env()
 
 
 @lru_cache(maxsize=1)
